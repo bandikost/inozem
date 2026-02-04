@@ -1,0 +1,35 @@
+import Link from 'next/link'
+
+type News = { // явно типизируем приходящие данные с бд
+  id: number
+  title: string
+  text: string
+  created_at: string
+}
+
+async function getNews(): Promise<News[]> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog`, {
+    next: { revalidate: 60 }, // delay 1 min
+  })
+
+  if (!res.ok) throw new Error('Failed to fetch news') // обработчик ошибки
+
+  return res.json() // ВОЗВРАЩАЕМ JSON В СТРОКУ
+}
+
+export default async function NewsListPage() {
+  const news = await getNews()
+
+  return (
+    <div>
+      <h1>News</h1>
+      <ul>
+        {news.map((n) => (
+          <li key={n.id}>
+            <Link href={`/blog/${n.id}`}>{n.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
