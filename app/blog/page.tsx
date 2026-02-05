@@ -1,5 +1,6 @@
 import { MoveRight } from 'lucide-react'
 import Link from 'next/link'
+import { Metadata } from "next"
 
 type News = { // явно типизируем приходящие данные с бд
   id: number
@@ -16,6 +17,26 @@ async function getNews(): Promise<News[]> {
   if (!res.ok) throw new Error('Failed to fetch news') // обработчик ошибки
 
   return res.json() // ВОЗВРАЩАЕМ JSON В СТРОКУ
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const news = await getNews()
+
+  return {
+    title: 'Новости',
+    description: `Последние ${news.length} новостей на нашем сайте.`,
+    openGraph: {
+      title: 'Новости',
+      description: `Последние ${news.length} новостей на нашем сайте.`,
+      type: 'website',
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/blog`,
+    },
+    twitter: {
+      title: 'Новости',
+      description: `Последние ${news.length} новостей на нашем сайте.`,
+      card: 'summary_large_image',
+    },
+  }
 }
 
 export default async function NewsListPage() {
