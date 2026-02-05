@@ -45,7 +45,13 @@ p, li, span, a, input, textarea, button {
   .bg-prpl {
     background-color: var(--bg-prpl);
   }
+  .hover\:bg-prpl:hover {
+    background-color: var(--bg-prpl);
+  }
   .bg-blue {
+    background-color: var(--bg-blue);
+  }
+  .hover\:bg-blue:hover {
     background-color: var(--bg-blue);
   }
 }
