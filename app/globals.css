@@ -4,8 +4,12 @@
   --background: #ffffff;
   --text-default: #2c2c31; 
   --text-prpl: #a753b6;
+  --text-blue: #3089b4;
   --bg-prpl: #a753b6;
   --bg-blue: #3089b4;
+  --border-prpl-dotted: #a753b6;
+  
+ 
 }
 
 @theme inline {
@@ -34,6 +38,37 @@ p, li, span, a, input, textarea, button {
   font-weight: 300; 
 }
 
+.button-blue {
+  text-align: center;            
+  width: 50%;                       
+  padding-top: 0.75rem;              
+  padding-bottom: 0.75rem;
+  background-color: #3089b4;     
+  font-size: 1.125rem;             
+  color: #ffffff;                   
+  border-radius: 0.5rem;             
+  transition: opacity 0.2s;         
+}
+
+.button-prpl {
+  text-align: center;            
+  width: 50%;                       
+  padding-top: 0.75rem;              
+  padding-bottom: 0.75rem;
+  background-color: #a753b6;     
+  font-size: 1.125rem;             
+  color: #ffffff;                   
+  border-radius: 0.5rem;             
+  transition: opacity 0.2s;         
+}
+
+.button-blue:hover,
+.button-prpl:hover {
+  opacity: 0.8;                      
+}
+
+
+
 @layer utilities {
   .text-default {
     color: var(--text-default);
@@ -42,9 +77,24 @@ p, li, span, a, input, textarea, button {
   .text-prpl {
     color: var(--text-prpl);
   }
+  .text-blue {
+    color: var(--text-blue);
+  }
   .bg-prpl {
     background-color: var(--bg-prpl);
   }
+
+  .border-prpl-dotted {
+  border-width: 1px;
+  border-style: dotted;
+  border-color: var(--border-prpl-dotted);
+}
+
+.border-none {
+   border: 1px dotted;
+   border-color: var(--border-prpl-dotted);
+}
+
   .hover\:bg-prpl:hover {
     background-color: var(--bg-prpl);
   }
