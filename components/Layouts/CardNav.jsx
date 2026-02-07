@@ -49,7 +49,6 @@ const CardNav = ({
         contentEl.style.position = 'static';
         contentEl.style.height = 'auto';
 
-        contentEl.offsetHeight;
 
         const topBar = 60;
         const padding = 16;
@@ -147,6 +146,11 @@ const CardNav = ({
     <div className={`card-nav-container ${className}`}>
       <nav ref={navRef} className={`card-nav ${isExpanded ? 'open' : ''}`}>
         <div className="card-nav-top">
+          <Link aria-label="Главная" className=" flex items-center gap-4 " href="/">
+              <Image src="/layouts/LogoCHOU.png" alt="Логотип CHOU — Академия медицинского образования" width={50} height={50} priority sizes="50px" className="h-auto w-auto"/>
+             
+          </Link>
+          <h1 className='md:text-sm lg:text-base font-bold text-white'>Академия медицинского образования имени Ф.И.Иноземцева</h1>
           <div
             className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''}`}
             onClick={toggleMenu}
@@ -159,20 +163,12 @@ const CardNav = ({
             <div className="hamburger-line" />
           </div>
 
-          <h1 className="text-base ">
-          <Link aria-label="Главная" className="text-base font-bold flex items-center gap-4 text-white" href="/">
-              <Image src="/header/LogoCHOU.png" alt="Логотип CHOU — Академия медицинского образования" width={40} height={40} priority sizes="55px" className="h-auto w-auto"/>
-              Академия медицинского образования имени Ф.И.Иноземцева
-          </Link>
           
-        </h1>
-          <Link aria-label="Личный кабинет" className="text-lg font-bold" href="/profile">
-             <button className="card-nav-cta-button text-base px-4 py-2">Личный кабинет</button>
-          </Link>
+          
         </div>
 
         <div className="card-nav-content" aria-hidden={!isExpanded}>
-          {(items || []).slice(0, 4).map((item, idx) => (
+          {(items || []).slice(0, 5).map((item, idx) => (
             <div
               key={`${item.label}-${idx}`}
               className="nav-card"

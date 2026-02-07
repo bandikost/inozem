@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function FirstBlock() {
 
     return (
-        <section className="border border-dotted border-zinc-300 pb-4 rounded hover:shadow-2xl">
+        <section className="border-2 border-dotted border-zinc-300 pb-8 rounded shadow-2xl bg-white">
             <div className="grid grid-cols-2 justify-center px-6 py-4">
                 <div className="flex flex-col">
                     <h1 className="text-prpl text-3xl font-light">Современные технологии в медицине, образовании и бизнесе!</h1>

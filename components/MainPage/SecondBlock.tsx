@@ -18,8 +18,8 @@ export default async function SecondBlock() {
   const news: News[] = await res.json()
 
     return (
-        <section className="grid grid-cols-2 justify-center gap-8 ">
-            <div className="border border-dotted border-zinc-300 rounded hover:shadow-2xl">
+        <section className="grid grid-cols-2 justify-center gap-8 relative mt-10">
+            <div className="border border-dotted border-zinc-300 rounded shadow-2xl">
                 <div className="flex flex-col">
                     <h1 className="text-white bg-prpl text-3xl font-light px-8 py-4 rounded-t flex items-center  gap-2">
                         <Newspaper className="relative top-0.5"/>
@@ -42,12 +42,12 @@ export default async function SecondBlock() {
                     </ul>
                 </div>
             </div>
-            <div className="border border-dotted border-zinc-300 rounded hover:shadow-2xl">
-                <h1 className="text-prpl text-3xl font-light px-8 py-4 rounded-t flex items-center justify-center gap-2">
+            <div className="border-2 border-dotted border-zinc-300 rounded shadow-2xl">
+                <h1 className="text-blue text-3xl font-light px-8 py-4 rounded-t flex items-center justify-center gap-2">
                     <BadgePercent className="relative top-0.5"/> 
                     Акции и скидки! 
                 </h1>
-                <hr className="border-zinc-200" />
+                <hr className="border-zinc-300" />
                 <div className="flex flex-col items-center">
                     <p className="text-default text-center mt-6 text-md">Специально для вас мы подготовили раздел акций и скидок, приуроченных к важным медицинским и не только событиям. Не пропустите!
                     <Link href="/" className="ml-2 underline text-blue">Ознакомиться со всеми акциями</Link></p>

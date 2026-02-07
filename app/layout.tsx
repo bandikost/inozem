@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Mulish } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Layouts/Header";
+import Footer from "@/components/Layouts/Footer";
 
 const mulish = Mulish({
   variable: "--font-sans",
@@ -23,9 +24,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${mulish.variable} antialiased`}>
         <Header />
-        <main className="w-full max-w-[1200px] mx-auto px-4 mt-20">
+        <main className="w-[90%] max-w-[1200px] mx-auto px-4 mt-20">
          {children}
+         
         </main>
+        <Footer />
       </body>
     </html>
   );

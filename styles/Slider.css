@@ -1,0 +1,24 @@
+.slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.slider-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slider-slide {
+  min-width: 100%;
+  user-select: none;
+}
+
+.slider-slide img {
+  width: 100%;
+  object-fit: contain;
+  display: block;
+}
