@@ -1,0 +1,295 @@
+"use client"
+
+import { File, Info } from "lucide-react"
+import Link from "next/link"
+import { useState } from "react"
+
+const features = [
+  "Академия расположена в историческом центре Санкт-Петербурга",
+  "Гибкая ценовая политика и грамотный менеджмент позволяют нам всегда находить компромиссы и идти вперед вместе с Вами",
+  "Уникальное предложение для работодателей по организации и проведению входного обучения новых сотрудников",
+  "Возможность дистанционного обучения сотрудников",
+  "Современное симуляционное оборудование",
+  "Просторный лекционный зал",
+  "Мы оказываем услуги по повышению уровня квалификации врачебного и среднего медицинского персонала",
+  "Все услуги лицензированы в соответствии с Российским законодательством",
+  "Перечень услуг включает проведение стажировок, циклов повышения квалификации, тренингов, семинаров, мастер-классов, конференций и прочее",
+]
+
+const legalInfo = [
+  { title: "Полное наименование образовательной организации", text: "Частное образовательное учреждение дополнительного профессионального образования «Академия медицинского образования имени Федора Ивановича Иноземцева»"},
+  { title: "Сокращенное наименование", text: "ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»"},
+  { title: "Полное наименование образовательной организации на английском языке", text: "Private Educational Institution of Supplementary Education «Academy of Medical Education named after F.I.Inozemtsev»" },
+  { title: "Дата создания образовательной организации", text: "27 января 2009 года"},
+  { title: "Лицензия, аккредитация", text: "Лицензия на право ведения образовательной деятельности - регистрационный № 2337, выдана Комитетом по образованию Правительства Санкт-Петербурга 16 ноября 2016 года, серия 78Л01 №0000752"},
+  { title: "Учредитель образовательной организации", text: "Акционерное общество «Современные медицинские технологии», являющееся юридическим лицом по законодательству РФ, место нахождения: 190013, Санкт-Петербург, Московский пр., 22, зарегистрированное Межрайонной инспекцией Федеральной налоговой службы №15 по Санкт-Петербургу 05.06.2008г. за основным государственным регистрационным номером 1089847230417, о чем выдано свидетельство Серия 78 №006981724"},
+  { title: "Директор Академии", text: "Кощеева Наталья Александровна"},
+]
+
+const documents = [
+  { name: "Устав Академии от 2018 года", link: "/files/about/ustav_2017.pdf" },
+  { name: "Лицензия на осуществление образовательной деятельности", link: "/files/about/litsenz.pdf" },
+  { name: "Выписка из реестра лицензий", link: "/files/about/reester.pdf" },
+  { name: "Свидетельство о гос. регистрации", link: "/files/about/svid_2016.pdf" },
+  { name: "Санитарно-эпидемиологическое заключение", link: "/files/about/san_epid.png" },
+  { name: "Заключение о соответствии требованиям пожарной безопасности", link: "/files/about/pozh_bez.png" },
+  { name: "Решение Учредителя", link: "/files/about/reshenie.pdf" }
+]
+
+const smeta = [
+  { name: "Поступление и расходование финансовых и материальных средств 2014 год", link: "/files/about/smeta/smeta2014.pdf" },
+  { name: "Поступление и расходование финансовых и материальных средств 2015 год", link: "/files/about/smeta/smeta2015.pdf" },
+  { name: "Поступление и расходование финансовых и материальных средств 2016 год", link: "/files/about/smeta/smeta2016.pdf" },
+  { name: "Поступление и расходование финансовых и материальных средств 2017 год", link: "/files/about/smeta/smeta2017.pdf" },
+  { name: "Поступление и расходование финансовых и материальных средств 2018 год", link: "/files/about/smeta/smeta2018.pdf" },
+  { name: "Поступление и расходование финансовых и материальных средств 2020 год", link: "/files/about/smeta/smeta2020.pdf" },
+]
+
+const regulations = [
+  { name: "Положение об Общем собрании работников ЧОУ ДПО «Академия медицинского образования им. Ф.И. Иноземцева»", link: "/files/about/regulations/obshchee_sobranie_rabotnikov.pdf"},
+  { name: "Положение о Педагогическом совете", link: "/files/about/regulations/pedagogicheskiy_sovet.pdf" },
+  { name: "Положение об информационной открытости", link: "/files/about/regulations/informatsionnaya_otkrytost.pdf" },
+  { name: "Положение по организации и осуществлению образовательной деятельности", link: "/files/about/regulations/organizatsiya_obrazovatelnoy_deyatelnosti.pdf" },
+  { name: "Положение об обработке и защите персональных данных", link: "/files/about/regulations/personalnye_dannye.pdf" },
+  { name: "Политика конфиденциальности", link: "/files/about/regulations/politika_konfidentsialnosti.pdf" },
+  { name: "Правила приема, отчисления и восстановления обучающихся", link: "/files/about/regulations/priemy_otchislenie_vosstanovlenie.pdf" },
+  { name: "Положение о порядке проведения сертификационного экзамена при реализации дополнительных профессиональных программ", link: "/files/about/regulations/sertifikatsionnyy_ekzamen.pdf" },
+  { name: "Положение о формах, периодичности и порядке текущего контроля успеваемости", link: "/files/about/regulations/tekushchiy_kontrol_uspevaemosti.pdf" },
+  { name: "Правила внутреннего распорядка обучающихся", link: "/files/about/regulations/vnutrenniy_rasporyadok_obuchayushchikhsya.pdf" },
+  { name: "Режим занятий обучающихся", link: "/files/about/regulations/rezhim_zanyatiy.pdf" },
+  { name: "Правила внутреннего трудового распорядка", link: "/files/about/regulations/trudovoy_rasporyadok.pdf" },
+  { name: "Положение об электронной информационно-образовательной среде", link: "/files/about/regulations/eios.pdf" },
+  { name: "Сведения о научно-педагогическом совете", link: "/files/about/regulations/nauchno_pedagogicheskiy_sovet.pdf" },
+]
+
+const order = [
+  {name: "", link: ""},
+]
+
+const prescript = [
+  {name: "", link: ""},
+]
+
+
+function ToggleBlock({ title, children }: { title: string, children: React.ReactNode }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="px-4">
+      <button
+        onClick={() => setOpen(prev => !prev)}
+        className="text-prpl text-base cursor-pointer hover:underline "
+    >
+        {title} ({open ? "Свернуть" : "Показать"})
+      </button>
+      {open && <div className="px-6 mt-2 text-default grid gap-2 mt-4">{children}</div>}
+    </div>
+  )
+}
+
+export default function Page() {
+  return (
+    <section className="flex flex-col">
+      <h1 className="text-prpl font-semibold mt-10 text-3xl text-center">О нас</h1>
+
+      <div className="border-2 border-dotted border-zinc-300  mt-8 rounded shadow-2xl bg-white px-6 py-3">
+        <h2 className="text-prpl font-semibold text-2xl mt-2">Наши особенности</h2>
+        <ul className="grid gap-1 mt-4 text-md">
+          {features.map((f, i) => <li key={i}>{i + 1}. {f}</li>)}
+        </ul>
+      </div>
+      <p className="text-default text-base p-1 mt-8">Раздел подготовлен в соответствии с Правилами размещения информации на официальном сайте образовательной организации (Постановление Правительства Российской Федерации от 20 октября 2021 г. № 1802, Приказ Рособрнадзора от 14.08.2020 N 831, письмо Федеральной службы по надзору в сфере образования и науки №07-675 от 25 марта 2015 г.)</p>
+      <h2 className="text-prpl font-semibold mt-8 text-3xl">Наши слушатели по всей России</h2>
+      <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A4IbnQNqOhTRc_MYs6AhwA-u0opOGhWWI&lang=ru_RU" width="100%" height="320" allowFullScreen loading="lazy"></iframe>
+
+      <div className="grid grid-cols-2 gap-8">
+        <div className="flex flex-col mt-8">
+          <h1 className="text-prpl font-semibold text-3xl mt-2 flex items-center px-6">
+            <Info className="mr-2" />Юридическая информация
+          </h1>
+          <div className="border-2 border-dotted border-zinc-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-3">
+            {legalInfo.map((item, i) => (
+              <div key={i} className="mt-4">
+                <h2 className="text-prpl font-semibold text-2xl">{item.title}</h2>
+                <hr className="border-zinc-300 w-full h-2" />
+                <p className="text-default text-md mt-2">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col mt-8">
+          <h1 className="text-blue font-semibold text-3xl mt-2 flex items-center px-6">
+            <File className="mr-2"/>Документы Академии
+          </h1>
+
+          <div className="border-2 border-dotted border-zinc-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-3">
+            <h2 className="text-blue font-semibold text-2xl mt-4">
+              Уставные документы и лицензия на право ведения образовательной деятельности:
+            </h2>
+            <hr className="border-zinc-300 w-full h-2" />
+            <ul className="grid gap-4 mt-4 text-blue">
+              {documents
+              .slice(0, 7)
+              .map((doc, i) => (
+                <li key={i}>
+                  <Link href={doc.link} className="hover:underline px-1" target="_blank" rel="noopener noreferrer">{doc.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="border-2 border-dotted border-zinc-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-8 grid gap-4">
+            <ToggleBlock title="Бюджетные сметы образовательной организации:">
+              {smeta.map((doc, i) => (
+                <li key={i} className="list-none text-blue ">
+                  <Link href={doc.link} className="hover:underline" target="_blank" rel="noopener noreferrer">{doc.name}</Link>
+                </li>
+              ))}
+            </ToggleBlock>
+             <ToggleBlock title="Локальные нормативные акты">
+              {regulations.map((doc, i) => (
+                <li key={i} className="list-none text-blue ">
+                  <Link href={doc.link} className="hover:underline" target="_blank" rel="noopener noreferrer">{doc.name}</Link>
+                </li>
+              ))}
+             </ToggleBlock>
+             <ToggleBlock title="Порядок оказания платных образовательных услуг:">
+              {order.map((doc, i) => (
+                <li key={i} className="list-none text-blue ">
+                  <Link href={doc.link} className="hover:underline" target="_blank" rel="noopener noreferrer">{doc.name}</Link>
+                </li>
+              ))}
+             </ToggleBlock>
+             <ToggleBlock title="Предписания: ">
+              {prescript.map((doc, i) => (
+                <li key={i} className="list-none text-blue ">
+                  <Link href={doc.link} className="hover:underline" target="_blank" rel="noopener noreferrer">{doc.name}</Link>
+                </li>
+              ))}
+             </ToggleBlock>
+             <Link className="mt-2 px-4 text-blue hover:underline" href={""}>Отчет о результатах самообследования за 2015 год</Link>
+          </div>
+
+          <div className="border-2 border-dotted border-zinc-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-3">
+              <img width={20} height={20}src="/Images/about/inozemtsev.png" className="mt-1 float-left w-36 h-36 mr-8 rounded object-cover [shape-outside:circle(50%)]"  alt="Федор Иванович Иноземцев"/>
+              <p className="mt-1 mb-6 text-left text-default text-base">Академия носит имя Фёдора Ивановича Иноземцева, воплотившего в себе качества блестящего врача, учёного и замечательного педагога. Федор Иванович Иноземцев — русский врач-клиницист, педагог и общественный деятель. Родился 12 февраля 1802 года в деревне Белкино Боровского уезда Калужской губернии. Отец Федора, Иван Ильич, по одним источникам, был персиянин, по другим - турок, по третьим - кавказский горец. Достоверно известно лишь то, что его мальчиком в качестве пленного вывез с Кавказа граф П.А.Бутурлин.Отец умер, когда Федору исполнилось двенадцать лет. О матери ничего не известно. Всего у четы Иноземцевых родилось пять детей.</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-2 border-dotted border-zinc-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-3">
+            <h2 className="text-prpl font-semibold text-2xl mt-4">
+              Образовательные стандарты
+            </h2>
+            <hr className="border-zinc-300 w-full h-2" />
+            <p className="text-default mt-2">ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева» осуществляет свою деятельность в соответствии с Конституцией Российской Федерации, Гражданским Кодексом Российской Федерации, Законом Российской Федерации «Об образовании», Федеральным законом «О некоммерческих организациях», Постановлением Правительства Российской Федерации «Об утверждении Типового положения об образовательном учреждении дополнительного профессионального образования (повышения квалификации) специалистов», другими законодательными актами Российской Федерации и Уставом.</p>
+
+            <ul className="mt-4 grid gap-3">«ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева» самостоятельно осуществляет образовательный процесс, разрабатывает, принимает и реализует программы дополнительного образования с учетом:
+              <li>Указа президента РФ № 598 от 07.05.2012 «О совершенствовании государственной политики в сфере здравоохранения»</li>
+							<li>Указа президента РФ № 400 от 02.07.2021 «О Стратегии национальной безопасности Российской Федерации»</li>
+							<li>Федерального закона от 29.12.2012 N 273-ФЗ (ред. от 28.02.2025) «Об образовании в Российской Федерации»</li>
+							<li>Федерального закона от 28.02.2025 г. N 28-ФЗ «О внесении изменений в отдельные законодательные акты Российской Федерации»</li>
+							<li>Федерального закона от 21.11.2011 N 323-ФЗ (ред. от 28.12.2024) «Об основах охраны здоровья граждан в Российской Федерации»</li>
+							<li>Федерального закона от 17.02.2023 N 16-ФЗ (ред. от 26.12.2024) «Об особенностях правового регулирования отношений в сферах охраны здоровья, обязательного медицинского страхования, обращения лекарственных средств и обращения медицинских изделий в связи с принятием в Российскую Федерацию Донецкой Народной Республики, Луганской Народной Республики, Запорожской области и Херсонской области»</li>
+							<li>Федерального закона от 30.12. 2015 г. N 432-ФЗ «О внесении изменений в статью 25 закона Российской Федерации «Об организации страхового дела в Российской Федерации» и федеральный закон «Об обязательном медицинском страховании в Российской Федерации»</li>
+							<li>Постановления Правительства РФ от 26.02.2021 № 273 «Об утверждении Правил использования медицинскими организациями средств нормированного страхового запаса территориального фонда обязательного медицинского страхования для финансового обеспечения мероприятий по организации дополнительного профессионального образования медицинских работников по программам повышения квалификации, а также по приобретению и проведению ремонта медицинского оборудования»</li>
+							<li>Приказа Министерства образования и науки РФ от 15.11.2013 г. N 1244 «О внесении изменений в Порядок организации о осуществления образовательной деятельности по дополнительным профессиональным программам, утвержденным приказом Министерства образования и науки Российской Федерации от 1 июля 2013 года № 499»</li>
+							<li>Приказа Министерства образования и науки РФ от 25.10.2013 № 1185 «Об утверждении примерной формы договора об образовании на обучение по дополнительным образовательным программам»</li>
+							<li>Приказа Министерства здравоохранения и социального развития РФ от 23.07.2010 № 541н «Об утверждении единого квалификационного справочника должностей руководителей, специалистов и служащих, раздел «Квалификационные характеристики должностей работников в сфере образования»</li>
+							<li>Приказа Министерства здравоохранения и социального развития РФ от 03.08.2012 № 66н «Об утверждении Порядка и сроков совершенствования медицинскими работниками и фармацевтическими работниками профессиональных знаний и навыков путем обучения по дополнительным профессиональным образовательным программам в образовательных и научных организациях»</li>
+							<li>Приказа Министерства здравоохранения РФ от 02.05.2023 г. № 206н «Об утверждении Квалификационных требований к медицинским и фармацевтическим работникам с высшим образованием»</li>
+							<li>Приказа Министерства здравоохранения РФ от 19.02.2024 N 72н «О внесении изменений в Квалификационные требования к медицинским и фармацевтическим работникам с высшим образованием, утвержденные приказом Министерства здравоохранения Российской Федерации от 2 мая 2023 г. N 206н»</li>
+							<li>Приказа Министерства здравоохранения РФ «Об утверждении Квалификационных требований к медицинским и фармацевтическим работникам со средним медицинским и фармацевтическим образованием» от 10.02.2016 № 83н</li>
+							<li>Приказа Министерства здравоохранения РФ от 04.12.2023 N 649н «О внесении изменений в Номенклатуру должностей медицинских работников и фармацевтических работников, утвержденную приказом Министерства здравоохранения Российской Федерации от 2 мая 2023 г. N 205н»</li>
+							<li>Приказа Министерства здравоохранения РФ от 02.05.2023 N 205н «Об утверждении Номенклатуры должностей медицинских работников и фармацевтических работников»</li>
+							<li>Приказа Министерства здравоохранения РФ от 01.03.2023 N 86н «Об установлении соответствия должностей медицинских работников и фармацевтических работников, установленных до 1 марта 2023 года в Донецкой Народной Республике, Луганской Народной Республике, Запорожской области и Херсонской области, а также на территории Украины, должностям, указанным в номенклатуре должностей медицинских работников и фармацевтических работников, утвержденной в соответствии с частью 2 статьи 14 Федерального закона от 21 ноября 2011 г. N 323-ФЗ «Об основах охраны здоровья граждан в Российской Федерации»</li>
+							<li>Приказа Министерства здравоохранения РФ от 01.03.2023 N 85н «Об установлении соответствия специальностей, по которым до 1 марта 2023 года в Донецкой Народной Республике, Луганской Народной Республике, Запорожской области и Херсонской области, а также на территории Украины были выданы сертификаты специалиста, и (или) свидетельства об аккредитации специалиста, и (или) документы, подтверждающие присвоение квалификационной категории, специальностям, указанным в номенклатурах специальностей специалистов, имеющих медицинское и фармацевтическое образование, утвержденных в соответствии с частью 2 статьи 14 Федерального закона от 21 ноября 2011 г. N 323-ФЗ «Об основах охраны здоровья граждан в Российской Федерации»</li>
+							<li>Приказа Министерства здравоохранения РФ от 28.10.2022 N 709н «Об утверждении Положения об аккредитации специалистов»</li>
+	  					<li>Приказа Минздрава России от 22.11.2021 N 1082н «Об утверждении порядка выдачи свидетельства об аккредитации специалиста на бумажном носителе, формы свидетельства об аккредитации специалиста на бумажном носителе и технических требований к нему, а также порядка выдачи выписки о наличии в единой государственной информационной системе в сфере здравоохранения данных, подтверждающих факт прохождения лицом аккредитации специалиста»</li>
+							<li>Приказа Минздрава России от 15.03.2021 N 205н «Об утверждении Порядка выбора медицинским работником программы повышения квалификации в организации, осуществляющей образовательную деятельность, для направления на дополнительное профессиональное образование за счет средств нормированного страхового запаса Федерального фонда обязательного медицинского страхования, нормированного страхового запаса территориального фонда обязательного медицинского страхования».</li>
+							<li>Приказа Министерства здравоохранения РФ от 07.10.2015 N 700н «О номенклатуре специальностей специалистов, имеющих высшее медицинское и фармацевтическое образование»</li>
+							<li>Приказа Министерства здравоохранения и социального развития РФ от 16.04.2008 N 176н «О номенклатуре специальностей специалистов со средним медицинским и фармацевтическим образованием в сфере здравоохранения Российской Федерации»</li>
+							<li>Приказа Министерства здравоохранения и социального развития Российской Федерации от 30.03.2010 N 199н «О внесении изменений в Номенклатуру специальностей специалистов со средним медицинским и фармацевтическим образованием в сфере здравоохранения РФ, утвержденную приказом Минздравсоцразвития России от 16 апреля 2008г. N 176н»</li>
+	  					<li>Приказа  Минздрава России от 01.11.2022 N 715н «Об утверждении Порядка допуска лиц, не завершивших освоение образовательных программ высшего медицинского или высшего фармацевтического образования в российских или иностранных организациях, осуществляющих образовательную деятельность, а также лиц с высшим медицинским или высшим фармацевтическим образованием, полученным в российских или иностранных организациях, осуществляющих образовательную деятельность, к осуществлению медицинской деятельности или фармацевтической деятельности на должностях специалистов со средним медицинским или средним фармацевтическим образованием»</li>
+							<li>Приказа  Росздравнадзора от 31.10. 2022 N 10335 «Об утверждении порядка установления соответствия полученных в иностранных организациях, осуществляющих образовательную деятельность, медицинского, фармацевтического или иного образования и (или) квалификации квалификационным требованиям к медицинским и фармацевтическим работникам».</li>
+	  					<li>Устава Академии и иных локальных нормативных актов.</li>
+            </ul>
+      </div>
+
+      <div className="border-2 border-dotted border-zinc-300 my-8 rounded shadow-2xl bg-white px-6 py-3">
+        <h2 className="text-prpl font-semibold text-2xl mt-2">Наши партнеры</h2>
+        <ul className="grid gap-6 grid-cols-6 mt-4 text-md">
+          <a href="https://video.organum-visus.ru/" target="_blank"><img width={20} height={20} src="/images/site/ovis.png" /></a>
+								<a href="http://vrachi-spb.ru/" target="_blank"><img width={20} height={20} src="/images/site/roo_vrachi.png" /></a>
+								<a href="http://www.acspb.ru/" target="_blank"><img width={20} height={20} src="/images/site/acspb.png" /></a>
+								<a href="http://olympus.com.ru/" target="_blank"><img width={20} height={20} src="/images/site/olympus.png" /></a>
+								<a href="http://www.ivrach.com" target="_blank"><img width={20} height={20} src="/images/site/ivrachi_logo.png" /></a>
+								<a href="http://gematolog.com" target="_blank"><img width={20} height={20} src="/images/site/gematolog.jpg" /></a>
+								
+								<a href="http://bewinner.biz" target="_blank"><img width={20} height={20} src="/images/site/bw.png" /></a>
+								<a href="http://www.isoseroclon.ru" target="_blank"><img width={20} height={20} src="/images/site/mediclon.png" /></a>
+								<a href="http://nwcspb.ru/" target="_blank"><img width={20} height={20} src="https://nwcspb.ru/image/logo/logo_nwc.png" /></a>
+								
+								<a href="https://spbmrc.ru/" target="_blank"><img width={20} height={20}src="/images/news/1583854926MRC.png"  alt="" /></a>
+								
+								<a href="https://www.sogaz-clinic.ru/" target="_blank"><img width={20} height={20}src="/images/site/sogaz.png"/></a>
+								<a href="http://loposm.ru/" target="_blank"><img width={20} height={20}src="/images/site/passd.jpg" alt="" /></a>
+								<a href="https://rusal.ru/" target="_blank"><img width={20} height={20}src="/images/site/Русал.png" alt="" /></a>
+								<a href="https://efamedica.ru/" target="_blank"><img width={20} height={20}src="/images/site/efa-medica.png" alt="" /></a>
+								<a href="https://www.medison.ru/" target="_blank"><img width={20} height={20}src="/npm/2025/img/медиэйс.webp" alt="" /></a>
+								<a href="https://www.jnjmedicaldevices.com/en-US/companies/ethicon" target="_blank"><img width={20} height={20}src="/images/site/ethicon.png" alt="" /></a>
+								<a href="https://www.lintex.ru/" target="_blank"><img width={20} height={20}src="/images/site/lintex.png" alt=""/></a>
+								<a href="https://spb-maneken.ru/" target="_blank"><img width={20} height={20}src="/images/site/medtech.png" alt=""/></a>
+								<a href="https://medsestre.ru/" target="_blank"><img width={20} height={20}src="/images/site/rams.png" alt=""/></a>
+								<a href="https://2440202.ru/" target="_blank"><img width={20} height={20}src="/images/site/solt.png" alt=""/></a>
+								<a href="https://www.karlstorz.com/ru/ru/index.htm" target="_blank"><img width={20} height={20}src="/images/site/storz.png" alt="" /></a>
+								<a href="https://xn--b1aecboaym3f.xn--p1ai/" target="_blank"><img width={20} height={20}src="/images/site/vmedrf.png" alt="" /></a>
+								<a href="http://www.vodokanal.spb.ru/" target="_blank"><img width={20} height={20}src="/images/site/vodokanal.png" alt="" /></a>
+								<a href="https://medsyst.ru/" target="_blank"><img width={20} height={20}src="/images/site/medsyst.jpeg" alt="" /></a>
+								<a href="http://fondendomir.ru/" target="_blank"><img width={20} height={20}src="/images/site/endomir.webp" alt="" /></a>
+								<a href="https://www.martinex.ru/" target="_blank"><img width={20} height={20}src="/images/site/MARTINEX_LOGO MT.png" alt="" /></a>
+								<a href="http://medcomtech.ru/" target="_blank"><img width={20} height={20}src="http://www.medcomtech.ru/img/elements/verh_.png"  alt=""/></a>
+        </ul>
+      </div>
+
+      <div className="border-2 border-dotted border-zinc-300 my-8 rounded shadow-2xl bg-white px-6 py-3">
+        <h2 className="text-prpl font-semibold text-2xl mt-2">Клинические базы Академии</h2>
+        <ul className="grid gap-6 grid-cols-6 mt-4 text-md">
+          <a href="https://medsi.ru/" target="_blank"><img width={20} height={20}src="/images/site/image002.jpg" /></a>
+									<a href="http://www.kardioklinika.ru/about" target="_blank"><img width={20} height={20}src="http://kardioklinika.ru/wp-content/themes/kardioklinika/assets/images/logo-header.png" /></a>
+									<a href="http://clinic-complex.ru/" target="_blank"><img width={20} height={20}src="https://clinic-complex.ru/upload/CMedc2/2d5/2d5ec4dca6ed9637e9b7dd540fa64af0.svg" /></a>
+									<a href="http://spbsverdlovka.ru/" target="_blank"><img width={20} height={20}src="http://spbsverdlovka.ru/images/svlogo.png" /></a>
+									<a href="http://www.railway-hospital.spb.ru/" target="_blank"><img width={20} height={20}src="https://www.railway-hospital.spb.ru/local/templates/main_page_redesign/assets/images/logo.svg" /></a>
+									<a href="http://www.med157.ru" target="_blank"><img width={20} height={20}src="http://www.med157.ru/images/newlogo.jpg"/></a>									
+									<a href="https://med122.ru/" target="_blank"><img width={20} height={20}src="https://sun9-77.userapi.com/s/v1/if2/gU72YiB8xxm4z6atPPj3uXQfHyybTI6xdTZVAZLK7ghB5-ZSfNPdGswpBSzjXZTTYBqedAJ0rBHmWhTGLae4EMvw.jpg?quality=95&as=32x17,48x26,72x39,108x58,160x86,240x129,360x194,480x258,540x291,640x344,720x387,959x516&from=bu&cs=959x0"/></a>
+									<a href="https://www.sogaz-clinic.ru/" target="_blank"><img width={20} height={20}src="/images/site/sogaz.png"/></a>
+				
+									<a href="https://www.medswiss.ru/" target=""><img width={20} height={20}src="https://www.medswiss.ru/local/img/logo-new.svg" alt=""/></a>
+									<a href="http://www.verficlinic.ru/" target="_blank"><img width={20} height={20}src="https://pp.userapi.com/c636721/v636721809/3948c/g5ssFoGcIzQ.jpg" alt=""/></a>
+									<a href="http://alexhospital.ru" target="_blank"><img width={20} height={20}src="http://alexhospital.ru/assets/images/FrontPageGraphics/logo.gif" alt=""/></a>
+									<a href="https://rrcrst.ru" target="_blank"><img width={20} height={20}src="https://rrcrst.ru/content/index/logo.png" alt=""/></a>
+									<a href="https://spbkbran.ru" target="_blank"><img width={20} height={20}src="/images/site/spbkran.png" alt=""/></a>
+									<a href="https://lucaclinic.ru/" target="_blank"><img width={20} height={20}src="https://sun9-6.userapi.com/impg/ob4rO6-XvmKTUEzlWiu8RoJhmfKTJ4z3ws14vg/4s7cmj08b0w.jpg?size=1179x809&quality=95&sign=984e05c2103e1c57177b568f4f57704d&type=album" alt=""/></a>
+
+									<a href="http://amclinic.ru/" target="_blank"><img width={20} height={20}src="http://amclinic.ru/theme/amclinic/images/logo.png" alt=""/></a>
+									<a href="http://lugamb.ru/" target="_blank"><img width={20} height={20}src="/images/site/lugamb.jpg" alt=""/></a>
+									<a href="https://p107.spb.ru/" target="_blank"><img width={20} height={20}src="/images/site/p107.jpg"  alt="" /></a>
+									<a href="https://www.gosmed.ru/" target="_blank"><img width={20} height={20}src="https://www.gosmed.ru/upload/CMedc2/e03/fdr4vemrrtirqn1ulu2rsi2uy2vmwivn.png"  alt=""/></a>
+									<a href="https://www.zdrav.org/"><img width={20} height={20}src="/images/site/ezs.png"  alt=""/></a>
+                  <a href="http://rihophe.ru/"><img width={20} height={20}src="/images/site/logo@2x.png"  alt="" /></a>
+									<a href="https://oren.medguard.ru/" target="_blank"><img width={20} height={20}src="https://oren.medguard.ru/local/templates/medguard/images/static/logo.svg" alt=""/></a>
+									<a href="https://spbu.ru/" target="_blank"><img width={20} height={20}src="https://spbu.ru/themes/spbgu/markup/dist/img/logo-big.svg" alt="" /></a>
+									<a href="https://roddom10.ru/" target="_blank"><img width={20} height={20}src="/images/site/rd10.jpg" alt=""/></a>
+									<a href="http://botkinhosp.org/" target="_blank"><img width={20} height={20}src="/images/site/botkin.png" alt=""/></a>
+									<img width={20} height={20}src="/images/site/sk.png" alt=""/>
+									<a href="https://baltclinic.ru/company/" target="_blank"><img width={20} height={20}src="/images/site/baltmed.png" alt=""/></a>
+									<a href="http://viamedika.com/" target="_blank"><img width={20} height={20}src="/images/site/vm.png" alt=""/></a>									
+									<a href="https://cispb.com/" target="_blank"><img width={20} height={20}src="/images/site/istochnik.jpg" alt=""/></a>									
+									<a href="https://happy-klinika.ru/" target="_blank"><img width={20} height={20}src="https://happy-klinika.ru/local/templates/klinika/images/logo.svg" alt=""/></a>
+									<a href="https://pirogovclinic.ru/" target="_blank"><img width={20} height={20}src="https://sun6-22.userapi.com/s/v1/ig2/UsKMuvwLroByBcTpGYZQwzXpU-zzqa4jqNiTmn0I7UUVD-9l361wGFJ-942eauiDuyhdWfHc8uwR20YJOPrh_JH-.jpg?quality=95&crop=101,101,879,879&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&cs=100x100" alt=""/></a>
+									<a href="https://nzabota.ru" target="_blank"><img width={20} height={20}src="https://nzabota.ru/img/logo.svg" alt=""/></a>
+        </ul>
+      </div>
+    </section>
+  )
+}
