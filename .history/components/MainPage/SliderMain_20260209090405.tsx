@@ -52,7 +52,7 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {slides.map((slide, idx) => (
-         <div className="slider-slide" key={idx}>
+         <div className="slider-slide">
             <div className="slide-image">
               <Image
                 src={slide}

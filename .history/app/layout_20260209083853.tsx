@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
+import { Mulish } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Layouts/Header";
 import Footer from "@/components/Layouts/Footer";
 
-const nunito = Nunito({
+const mulish = Mulish({
   variable: "--font-sans",
-  subsets: ["latin", "cyrillic"],
+  subsets: ["ital", "cyrillic"],
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800"],
 });
@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${nunito.variable} antialiased`}>
+      <body className={`${mulish.variable} antialiased`}>
         <Header />
         <main className="w-[90%] max-w-[1200px] mx-auto px-4 mt-20">
          {children}

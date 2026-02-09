@@ -52,19 +52,9 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {slides.map((slide, idx) => (
-         <div className="slider-slide" key={idx}>
-            <div className="slide-image">
-              <Image
-                src={slide}
-                alt={`Slide ${idx + 1}`}
-                fill
-                priority={idx === 0}
-                sizes="(max-width: 1200px) 100vw, 1200px"
-                className="rounded object-contain"
-              />
-            </div>
+          <div key={idx} className="slider-slide">
+            <Image src={slide} alt={`Slide ${idx + 1}`} width={400} height={400} className='rounded' />
           </div>
-
         ))}
       </div>
 
