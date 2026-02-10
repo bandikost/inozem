@@ -1,5 +1,6 @@
 
 
+import Image from "next/image"
 import AnimatedNumber from "./components/AnimatedNumber"
 
 type Teachers = {
@@ -34,7 +35,7 @@ export default async function ThirdBlock() {
                        
                     {teach.photo_url && (
                         <>
-                        <img 
+                        <Image 
                         src={teach.photo_url} 
                         alt={`${teach.name} ${teach.last_name}`} 
                         className="w-18 h-18 rounded-full object-cover border" 
