@@ -8,7 +8,7 @@
   --bg-prpl: #a753b6;
   --bg-blue: #3089b4;
   --border-prpl-dotted: #a753b6;
-  --my-dark-blue: #e7e0e9;
+  
  
 }
 
@@ -104,43 +104,5 @@ p, li, span, a, input, textarea, button {
   .hover\:bg-blue:hover {
     background-color: var(--bg-blue);
   }
-
-
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
- .animate-fade-in {
-  animation: fade-in 1s ease-out forwards;
-}
-
-
-.pulse-container {
-    width: 220px;
-    overflow: hidden;
-  }
-
-  .pulse-line {
-    stroke-dasharray: 400;
-    stroke-dashoffset: 400;
-    animation: pulse-move 1.5s linear infinite;
-    filter: drop-shadow(0 0 6px rgba(167, 83, 182, 0.4));
-  }
-
-  @keyframes pulse-move {
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-
-
-
 }
 

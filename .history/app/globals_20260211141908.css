@@ -8,7 +8,7 @@
   --bg-prpl: #a753b6;
   --bg-blue: #3089b4;
   --border-prpl-dotted: #a753b6;
-  --my-dark-blue: #e7e0e9;
+  --my-dark-blue: #040430;
  
 }
 
@@ -140,7 +140,37 @@ p, li, span, a, input, textarea, button {
     }
   }
 
+.loader-top-text,
+.loader-bottom-text {
+  display: inline-block;
+  font-weight: 600;
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
 
+.loader-top-text {
+  animation: top-text-slide 4s ease-in-out infinite;
+}
+
+.loader-bottom-text {
+  animation: bottom-text-slide 4s ease-in-out infinite;
+}
+
+@keyframes bottom-text-slide {
+  0%   { transform: translateX(100%); opacity: 0; }
+  20%  { transform: translateX(0%);   opacity: 1; }
+  50%  { transform: translateX(0%);   opacity: 1; }
+  70%  { transform: translateX(100%); opacity: 0; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes top-text-slide {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  20%  { transform: translateX(0%);    opacity: 1; }
+  50%  { transform: translateX(0%);    opacity: 1; }
+  70%  { transform: translateX(-100%); opacity: 0; }
+  100% { transform: translateX(-100%); opacity: 0; }
+}
 
 }
 

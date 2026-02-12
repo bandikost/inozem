@@ -1,5 +1,6 @@
 
 
+import Image from "next/image"
 import AnimatedNumber from "./components/AnimatedNumber"
 
 type Teachers = {

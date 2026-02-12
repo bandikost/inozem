@@ -1,5 +1,6 @@
 
 
+import Image from "next/image"
 import AnimatedNumber from "./components/AnimatedNumber"
 
 type Teachers = {
@@ -34,7 +35,7 @@ export default async function ThirdBlock() {
                        
                     {teach.photo_url && (
                         <>
-                        <img 
+                        <Image 
                         src={teach.photo_url} 
                         width={100}
                         height={100}
