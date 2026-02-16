@@ -7,15 +7,21 @@ type News = { // явно типизируем приходящие данные
   created_at: string
 }
 
+async function getNewsSafe(): Promise<News[]> {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog`, {
+      next: { revalidate: 60 },
+    })
+    if (!res.ok) throw new Error('Failed to fetch news')
+    return await res.json()
+  } catch (err) {
+    console.error('safeFetch: плохой ответ с API новостей, возвращаем fallback', err)
+    return [] // fallback
+  }
+}
 
 export default async function SecondBlock() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog`, {
-    next: { revalidate: 60 }, // delay 1 min
-  })
-
-  if (!res.ok) throw new Error('Failed to fetch news') // обработчик ошибки
-
-  const news: News[] = await res.json()
+    const news = await getNewsSafe()
 
     return (
         <section className="grid grid-cols-2 justify-center gap-8 relative mt-10">
