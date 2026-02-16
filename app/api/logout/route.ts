@@ -12,5 +12,5 @@ export async function POST() {
     maxAge: 0,
   });
 
-  return NextResponse.json({ message: "Logged out" });
+  return NextResponse.json({ message: "Вы успешно вышли с личного профиля" });
 }

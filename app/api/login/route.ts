@@ -1,14 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import bcrypt from "bcrypt"
-import { RowDataPacket } from "mysql2"
 import { signToken } from "@/lib/jwt"
 import { cookies } from "next/headers"
+import { UserRow } from "@/app/types/user"
 
-interface UserRow extends RowDataPacket {
-  id: number
-  password: string
-}
 
 interface LoginBody {
   email: string
@@ -22,7 +18,7 @@ export async function POST(req: NextRequest) {
 
     if (!email || !password) {
       return NextResponse.json(
-        { message: "Email and password required" },
+        { message: "Почта и пароль авторизированы" },
         { status: 400 }
       )
     }
@@ -59,15 +55,15 @@ export async function POST(req: NextRequest) {
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
       path: "/",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: 60 * 60 * 24 * 182,
     })
 
     return NextResponse.json(
-      { message: "Login successful" },
+      { message: "Пользователь авторизирован!" },
       { status: 200 }
     )
   } catch (error) {
-    console.error("Login error:", error)
+    console.error("Ошибка авторизации:", error)
 
     return NextResponse.json(
       { message: "Internal server error" },
