@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
 
     if (!name || !last_name || !email || !phone || !password) {
       return NextResponse.json(
-        { message: "Required fields missing" },
+        { message: "Вы заполнили не все поля" },
         { status: 400 }
       )
     }
