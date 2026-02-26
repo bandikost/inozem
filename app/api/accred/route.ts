@@ -12,21 +12,7 @@ export async function GET(req: Request) {
     }
 
     const [rows] = await db.execute(`
-  SELECT 
-    a.id,
-    a.stage,
-    a.specialty,
-    a.date,
-    a.timestart,
-    r.id as result_id,
-    r.title as result_title,
-    r.file_url
-  FROM accred a
-  LEFT JOIN accred_results r ON a.id = r.accred_id
-  WHERE a.specialty = ?
-  AND YEAR(a.date) = ?
-  ORDER BY a.date ASC
-`, [specialty, year])
+  SELECT  id, stage, specialty, date, timestart, file_urls, protocol FROM accred WHERE specialty = ? AND YEAR(date) = ?`, [specialty, year])
 
 
 

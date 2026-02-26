@@ -93,22 +93,49 @@ const handleSecondaryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         <table className="w-full border border-gray-300 text-left">
           <thead className="bg-gray-100">
             <tr>
-               <th className="p-2 border">Этап</th>
-              <th className="p-2 border">Дата</th>
+                <th className="p-2 border">Этап</th>
+                <th className="p-2 border">Дата</th>
+                <th className="p-2 border">Итог</th>
             </tr>
           </thead>
-          <tbody>
-            {dates.map((row, index) => (
-              <tr key={index}>
-                
-                <td className="p-2 border font-semibold">{index + 1}</td>
-                
-                <td className="p-2 border">
-                  {new Date(row.date).toLocaleDateString("ru-RU")}
-                </td>
-              </tr>
-            ))}
-          </tbody>
+         <tbody>
+  {dates.map((row) => (
+    <tr key={row.id}>
+      {row.file_urls && row.file_urls.length > 0 ? (
+        <>
+        <td className="p-2 border font-semibold">
+        {row.stage}
+      </td>
+
+      <td className="p-2 border">
+        {new Date(row.date).toLocaleDateString("ru-RU")}
+      </td>
+
+      <td className="p-2 border">
+
+          {row.file_urls.map((url: string, i: number) => {
+            const protocolNumber = Number(row.protocol) + i
+            return (
+              <div key={i} className="mb-2">
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline hover:text-blue-800"
+                >
+                  Протокол № {protocolNumber}
+                </a>
+              </div>
+            )
+          })}
+      </td>
+        </>
+      ) :  null}
+      
+
+    </tr>
+  ))}
+</tbody>
         </table>
         </div>
       )}

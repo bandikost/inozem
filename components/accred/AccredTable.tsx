@@ -8,6 +8,7 @@ export default function AccredTable() {
   const [selected, setSelected] = useState("")
   const [dates, setDates] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
+  const year = new Date().getFullYear()
 
   useEffect(() => {
     if (!selected) return
@@ -15,7 +16,7 @@ export default function AccredTable() {
     async function fetchData() {
       setLoading(true)
 
-      const res = await fetch(`/api/accred?specialty=${encodeURIComponent(selected)}`)
+      const res = await fetch(`/api/accred?specialty=${encodeURIComponent(selected)}&year=${year}`)
       const data = await res.json()
 
       setDates(data)
@@ -23,7 +24,7 @@ export default function AccredTable() {
     }
 
     fetchData()
-  }, [selected])
+  }, [selected, year])
 
 
   return (
@@ -75,12 +76,17 @@ export default function AccredTable() {
           <tbody>
             {dates.map((row, index) => (
               <tr key={index}>
-                <td className="p-2 border font-semibold">{row.stage}</td>
-                <td className="p-2 border">{selected}</td>
-                <td className="p-2 border">
-                  {new Date(row.date).toLocaleDateString("ru-RU")}
+                <td className={`p-2 border ${(row.stage.includes("Основной этап") || row.stage.includes("Второй этап") || row.stage.includes("Итоги"))  ? "!font-bold" : ""}`}>
+                  {row.stage === "Основной этап" ? "Основной этап (1 попытка)" : row.stage === "Второй этап" ? "Второй этап (1 попытка)" : row.stage}
                 </td>
-                <td className="p-2 border">{row.timestart}</td>
+                <td className="p-2 border">
+                  {row.stage === "Итоги" ? "" : selected}</td>
+                <td className="p-2 border">
+                  {row.stage === "Итоги"
+                  ? ""
+                  : new Date(row.date).toLocaleDateString("ru-RU")}
+                </td>
+                <td className="p-2 border">{row.timestart === "00:00:00" ? "" : row.timestart}</td>
               </tr>
             ))}
           </tbody>

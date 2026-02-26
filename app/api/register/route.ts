@@ -35,9 +35,11 @@ export async function POST(req: NextRequest) {
       specialization
     } = body
 
-    if (!name || !last_name || !patronymic || !email || !phone || !password || !education_level ||
-    (education_level !== "без образования" && !specialization)) {
-      return NextResponse.json({ message: "Заполните все поля!" }, { status: 400 })
+    if (!name || !last_name || !email || !phone || !password) {
+      return NextResponse.json(
+        { message: "Вы заполнили не все поля" },
+        { status: 400 }
+      )
     }
 
     const [existingUsers] = await db.query<ExistingUserRow[]>(
