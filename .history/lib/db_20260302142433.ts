@@ -6,5 +6,8 @@ export const db = mysql.createPool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   charset: "utf8mb4",
-  
+  decimalNumbers: true,
+  timezone: "+00:00",
 });
+
+
