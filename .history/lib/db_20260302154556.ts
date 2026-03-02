@@ -13,6 +13,7 @@ export const db = mysql.createPool({
   queueLimit: 0
 });
 
-db.on("connection", async (conn) => {
-  await conn.query("SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci");
+db.on("connection", (conn) => {
+  conn.query("SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci")
+    .catch(err => console.error("Ошибка при настройке соединения:", err));
 });

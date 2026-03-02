@@ -18,15 +18,12 @@ export default async function ThirdBlock() {
                         {teachers.map(teach => (
                             <li key={teach.id}>
                                 <div className="flex items-start px-2 py-2">
-                                   <img src={teach.photo_url} width={100} height={100} className="w-44 h-44 object-cover" loading="lazy" alt="Преподаватель месяца"/>
-                                   <div className="flex flex-col items-start px-6">
-                                        <p className="!font-semibold text-lg">{teach.last_name} {teach.name} {teach.patronymic} </p>
+                                   <img src={teach.photo_url} width={100} height={100} className="w-40 h-40 object-cover" loading="lazy" alt="Преподаватель месяца"/>
+                                   <div className="flex flex-col px-6">
+                                        <p className="!font-semibold text-lg">{teach.name} {teach.last_name}</p>
                                         <p className="py-2">{teach.education_level} - {teach.specialization}</p>
                                         <p className="">{teach.Teacher_text}</p>
-                                        <button className="bg-[#533282] text-white px-4 py-2 mt-4.5 rounded transition-colors duration-500 
-                                        hover:bg-gradient-to-l hover:from-[#533282] hover:to-[#3CA7B5]">
-                                            <Link href={"/"}>Перейти к программам</Link>
-                                        </button>
+                                        <Link href={"/"}>Перейти к программе</Link>
                                    </div>
                                 </div>
                             </li>

@@ -23,10 +23,11 @@ export default async function ThirdBlock() {
                                         <p className="!font-semibold text-lg">{teach.last_name} {teach.name} {teach.patronymic} </p>
                                         <p className="py-2">{teach.education_level} - {teach.specialization}</p>
                                         <p className="">{teach.Teacher_text}</p>
-                                        <button className="bg-[#533282] text-white px-4 py-2 mt-4.5 rounded transition-colors duration-500 
-                                        hover:bg-gradient-to-l hover:from-[#533282] hover:to-[#3CA7B5]">
-                                            <Link href={"/"}>Перейти к программам</Link>
-                                        </button>
+                                        <button className="relative px-4 py-2 mt-4.5 rounded text-white overflow-hidden">
+  <span className="absolute inset-0 bg-[#533282] transition-opacity duration-300 hover:opacity-0"></span>
+  <span className="absolute inset-0 bg-gradient-to-r from-[#533282] to-[#3CA7B5] opacity-0 transition-opacity duration-1000 hover:opacity-100"></span>
+  <span className="relative z-10">Кнопка</span>
+</button>
                                    </div>
                                 </div>
                             </li>
