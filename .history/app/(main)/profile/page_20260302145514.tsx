@@ -55,9 +55,8 @@ export default async function ProfilePage() {
         <div className="grid grid-cols-2 gap-8 mt-8">
       <div className="border-2 border-dotted border-zinc-300 mt-8 rounded shadow-2xl bg-white px-6 py-3">
         <div className="grid grid-cols-2">
-
-            <div className="flex flex-col items-start ml-4" >
-                {user.photo_url && <img src={user.photo_url}   width={150} height={150} className="rounded-xs " alt="Profile"/>}
+            <div className="flex flex-col items-center">
+                {user.photo_url && <img src={user.photo_url}   width={150} height={150} className="rounded-xs ml-4" alt="Profile"/>}
                  {user.isTeacher ? (
             <div className="flex items-center mt-2">
                 <div className="flex underline">
@@ -82,11 +81,7 @@ export default async function ProfilePage() {
              
             <div className="flex flex-col">
             <h2 className="text-prpl text-2xl mr-4">Пользователь</h2>
-            <ul className="text-default text-lg py-4">   
-              <li><strong>Фамилия:</strong> <span >{user.last_name}</span></li>
-              <li><strong>Имя:</strong><span className="ml-1">{user.name}</span></li>
-              <li><strong>Отчество:</strong><span className="ml-1">{user.patronymic ?? ""}</span></li>
-            </ul>
+            <p className="text-default text-lg py-4"> {user.last_name} {user.name} {user.patronymic ?? ""}</p>
             <LogoutButton />
         </div>
         </div>

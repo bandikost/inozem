@@ -14,12 +14,13 @@ export default async function ThirdBlock() {
                     <p className="p-4 text-center text-zinc-500">Преподаватели временно недоступны</p>
                 ) : (
                     <ul>
-                        {teachers.map(teach => (
+                        {teachers.map((teach, i) => (
                             <li key={teach.id}>
                                 <div className="flex items-center px-6 py-2 gap-4">
-                                   <img src={teach.photo_url} width={100} height={100} className="w-30 h-30 object-cover" loading="lazy" alt="Преподаватель месяца"/>
+                                   
                                     <p className="ml-2">{teach.name} {teach.last_name}</p>
                                 </div>
+                                {i < 2 && <hr className="border-zinc-300 w-full h-2" />}
                             </li>
                         ))}
                     </ul>

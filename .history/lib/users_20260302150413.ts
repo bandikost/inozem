@@ -11,7 +11,7 @@ export type Teacher = {
 
 export async function getTeachers(): Promise<Teacher[]> {
   const [rows] = await db.query<Teacher[] & RowDataPacket[]>
-  (` SELECT id, name, last_name, photo_url, isTeacher FROM users WHERE isTeacher AND isRated = 1`)
+  (` SELECT id, name, last_name, photo_url, isTeacher FROM users WHERE isTeacher = 1 AND WHERE isRated = 1`)
 
   return rows
 }

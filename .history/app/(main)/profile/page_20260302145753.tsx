@@ -83,9 +83,9 @@ export default async function ProfilePage() {
             <div className="flex flex-col">
             <h2 className="text-prpl text-2xl mr-4">Пользователь</h2>
             <ul className="text-default text-lg py-4">   
-              <li><strong>Фамилия:</strong> <span >{user.last_name}</span></li>
-              <li><strong>Имя:</strong><span className="ml-1">{user.name}</span></li>
-              <li><strong>Отчество:</strong><span className="ml-1">{user.patronymic ?? ""}</span></li>
+              <li><strong>Фамилия:</strong> <span>{user.last_name}</span></li>
+              <li><strong>Имя:</strong><span>{user.name}</span></li>
+              <li><strong>Отчество:</strong><span>{user.patronymic ?? ""}</span></li>
             </ul>
             <LogoutButton />
         </div>
