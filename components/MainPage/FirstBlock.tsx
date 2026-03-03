@@ -1,63 +1,58 @@
-import { Image, MoveRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+
+const cards = [
+  {
+    title: "Образовательные мероприятия",
+    description: "Семинары, мастер-классы и конференции",
+  },
+  {
+    title: "Подобрать цикл обучения",
+    description: "Подбор программы обучения",
+  },
+  {
+    title: "Аккредитация",
+    description: "Информация и итоги аккредитации",
+  },
+  {
+    title: "Акции",
+    description: "Специальные предложения",
+  },
+];
 
 export default async function FirstBlock() {
 
     return (
-        <section className="flex gap-8 px-4 items-start">
+        <section className="grid tablet:flex gap-6 items-center justify-center tablet:items-start px-4">
   
-                <div className="border-2 border-dotted border-zinc-300 pb-8 mt-5 rounded shadow-2xl bg-white">
-                        <Image className="w-120" />
+                <div className="border-2 border-zinc-300 mt-4 rounded-xl shadow-2xl bg-white">
+                        <Image alt="Изображение академии на главной странице" width={100} height={100} src={"/Images/Placeholder.png"} 
+                        className="max-w-[660px] w-full tablet:w-114 tablet:h-114 object-cover rounded-xl "  />
                 </div>
 
-                <div className="flex flex-col p-4">
+                <div className="grid  gap-3 py-4">
 
-                    <div className="rounded-xl shadow-xl border border-gray-200">
-                        <div className="flex p-4">
-                            <Image />
-                            <div className="flex flex-col px-4">
-                                <h1 className="text-xl">Образовательные мероприятия</h1>
-                                <p className="text-base">Семинары, мастер-классы и конференции</p>
-                                <Link href={"/"} className="flex mt-4 text-blue-600">Посмотреть мероприятия <MoveRight className="pl-2" /> </Link>
-                            </div>
+                   {cards.map((card, index) => (
+                    <div key={index} className={` rounded-xl shadow border border-gray-300 ${index >= 2 ? "md:col-span-1" : "lg:col-span-2 "}`}>
+                        <div className={`flex p-3 ${index >= 2 ? "flex-row md-custom-flex-col items-center" : ""}`}>
+
+                         <Image alt="Изображение академии на главной странице" width={100} height={100} src={"/Images/Placeholder.png"} 
+                         className="w-30 h-30 object-cover border border-zinc-400 rounded-xl"  />
+
+                        <div className={`flex flex-col justify-between px-3  ${index >= 2 ? "items-start md-custom-items-center" : "items-start"}`}>
+                            <h2 className="mt-1 !font-semibold">{card.title}</h2>
+                            <p className={`mt-2  ${index >= 2 ? "text-small md-custom-text-center" : " text-small xs:text-base"}`}>{card.description}</p>
+
+                            <Link
+                            href="/"
+                            className="inline-flex items-center my-2 button-more"
+                            >
+                            Подробнее
+                            </Link>
                         </div>
-                        
-                    </div>
-                    <div className="rounded-xl shadow-xl border border-gray-200 mt-6">
-                        <div className="flex p-4">
-                            <Image />
-                            <div className="flex flex-col px-4">
-                                <h1 className="text-xl">Подобрать цикл обучения</h1>
-                                <p className="text-base">Подбор программы обучния в зависимости от специальности</p>
-                                <Link href={"/"} className="flex mt-4 text-blue-600">Посмотреть мероприятия <MoveRight className="pl-2" /> </Link>
-                            </div>
                         </div>
-                        
                     </div>
-                    <div className="flex justify-between mt-8 gap-2">
-                        <div className="rounded-xl shadow-xl border border-gray-200">
-                        <div className="flex p-4">
-                            <Image />
-                            <div className="flex flex-col px-4">
-                                <h1 className="text-xl">Аккредитация</h1>
-                                <p className="text-sm">Информация и итоги аккредитации</p>
-                                <Link href={"/"} className="flex mt-4 text-blue-600">Подготовка <MoveRight className="pl-2" /> </Link>
-                            </div>
-                        </div>
-                        
-                    </div>
-                        <div className="rounded-xl shadow-xl border border-gray-200">
-                        <div className="flex p-4">
-                            <Image />
-                            <div className="flex flex-col px-4">
-                                <h1 className="text-xl">Акции и скидки</h1>
-                                <p className="text-sm">Специальные предложения</p>
-                                <Link href={"/"} className="flex mt-4 text-blue-600">Ознакомиться <MoveRight className="pl-2" /> </Link>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    </div>
+                    ))}
                 </div>
        
         </section>

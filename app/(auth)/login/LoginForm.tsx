@@ -78,12 +78,12 @@ export default function LoginForm() {
           required
         />
 
-        <button type="submit" disabled={loading} className="flex items-center px-4 py-2 bg-purple-600 text-white text-center rounded flex cursor-pointer hover:bg-prpl">
+        <button type="submit" disabled={loading} className="flex items-center px-4 py-2 bg-prpl text-white text-center rounded flex cursor-pointer hover:bg-prpl">
           {loading ? "Авторизация..." : "Авторизация"}
         </button>
       </form>
    
-        <p className="ml-4 mt-4 text-zinc-700">У вас еще нет личного аккаунта? <Link className="text-blue-500 hover:text-blue-700" href={"/register"}>Регистрация</Link></p>
+        <p className="ml-4 mt-4 text-zinc-700">У вас еще нет аккаунта? <Link className="text-blue-500 hover:text-blue-700" href={"/register"}>Регистрация</Link></p>
         <p className="ml-4 mt-2 text-zinc-700">Вернуться на <Link className="text-blue-500 hover:text-blue-700" href={"/"}>главную</Link> </p>
     
     {error && <p className="text-red-600 mt-4">{error}</p>}

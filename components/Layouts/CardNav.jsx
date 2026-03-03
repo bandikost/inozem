@@ -150,7 +150,7 @@ const CardNav = ({
               <Image src="/layouts/LogoCHOU.png" alt="Логотип CHOU — Академия медицинского образования" width={50} height={50} priority sizes="50px" className="h-auto w-auto"/>
              
           </Link>
-          <h1 className='md:text-sm lg:text-base font-bold text-white'>Академия медицинского образования имени Ф.И.Иноземцева</h1>
+          <h3 className='!text-white ml-2 md:ml-0 px-3 hidden xs:block'>Академия медицинского образования имени Ф.И.Иноземцева</h3>
           <div
             className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''}`}
             onClick={toggleMenu}
@@ -181,7 +181,7 @@ const CardNav = ({
                   item.links.map((lnk, i) => (
                     <Link
                       key={`${lnk.label}-${i}`}
-                      className="nav-card-link "
+                      className="nav-card-link !text-white"
                       href={lnk.href}
                       aria-label={lnk.ariaLabel}
                       onClick={() => {

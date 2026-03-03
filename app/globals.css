@@ -2,13 +2,15 @@
 
 :root {
   --background: #ffffff;
-  --text-default: #2c2c31; 
-  --text-prpl: #a753b6;
-  --text-blue: #3089b4;
-  --bg-prpl: #a753b6;
-  --bg-blue: #3089b4;
+  --button-text: #ffffff;
+  --text-default: #38383d; 
+  --text-prpl: #8D4C98;
+  --text-prpl-strong: #533785;
+  --text-blue: #4A6398;
+  --bg-prpl: #8D4C98;
+  --bg-blue: #4A6398;
   --bg-green: #0a9688;
-  --border-prpl-dotted: #a753b6;
+  --border-prpl: #8D4C98;
   --my-dark-blue: #e7e0e9;
   --text-green: #0a9688;
 
@@ -20,6 +22,11 @@
 
   --font-sans: var(--font-sans);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@theme {
+  --breakpoint-xs: 450px;
+  --breakpoint-tablet: 880px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -38,6 +45,41 @@ body {
 h1, h2, h3, h4, h5, h6,
 p, li, span, a, input, textarea, button {
   font-weight: 400; 
+
+}
+
+h1 {
+  font-size: 2rem; 
+  line-height: 2rem; 
+}
+
+h2 {
+  font-size: 1.5rem; 
+  line-height: 1.5rem; 
+}
+
+h3 {
+  font-size: 1.25rem; 
+  line-height: 1.25rem; 
+}
+
+p {
+  font-size: 1rem; 
+  line-height: 1rem; 
+}
+
+button {
+  color: var(--button-text)
+}
+
+a {
+  color: var(--text-blue)
+}
+
+
+.text-small {
+  font-size: 0.875rem; 
+  line-height: 0.875rem; 
 }
 
 .button-blue {
@@ -62,10 +104,59 @@ p, li, span, a, input, textarea, button {
 }
 
 
+.button-more {
+  background-color: #533282;   
+  color: white;               
+  padding: 0.5rem 1rem;        
+  margin-top: 1rem;            
+  cursor: pointer;             
+  border-radius: 0.375rem;     
+  display: inline-flex;        
+  align-items: center;
+  justify-content: center;
+}
+
+.button-more:hover {
+  background: linear-gradient(to left, #533282, #3CA7B5); 
+}
+
+@media (min-width: 1024px) and (max-width: 1150px) {
+  .md-custom-flex-col {
+    flex-direction: column;
+  }
+
+  .md-custom-items-center {
+    align-items: center;
+  }
+  .md-custom-text-center {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  h3 {
+    font-size: 1rem; 
+    line-height: 1rem; 
+  }
+
+  
+}
+
+@media (max-width: 450px) {
+  h2 {
+    font-size: 1.1rem; 
+    line-height: 1rem; 
+  }
+}
+
 
 @layer utilities {
   .text-default {
     color: var(--text-default);
+  }
+
+  .text-prpl-strong {
+    color: var(--text-prpl-strong);
   }
 
   .text-green {
@@ -85,10 +176,9 @@ p, li, span, a, input, textarea, button {
     background-color: var(--bg-green);
   }
 
-  .border-prpl-dotted {
+  .border-prpl {
   border-width: 1px;
-  border-style: dotted;
-  border-color: var(--border-prpl-dotted);
+  border-color: var(--border-prpl);
 }
 
 .border-none {
@@ -162,6 +252,8 @@ p, li, span, a, input, textarea, button {
   }
 
 
+  
 
 }
+
 

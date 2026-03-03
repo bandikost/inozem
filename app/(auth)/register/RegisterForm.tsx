@@ -98,8 +98,8 @@ function handleChange(
   }
 
   return (
-    <div className="max-w-[400px] mx-auto mb-15">
-      <h1 className="text-prpl font-semibold text-3xl text-center mt-10">Регистрация</h1>
+    <div className="max-w-[400px] mx-auto mb-20">
+      <h1 className="text-prpl font-semibold text-3xl text-center mt-27">Регистрация</h1>
       <p className="text-center mt-4 text-zinc-800 text-lg">ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»</p>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-5 border border-zinc-400 rounded-xl p-4 shadow-2xl">
