@@ -58,6 +58,7 @@ export default async function ProfilePage() {
         <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white">
           {user.isTeacher ? (
             <div className="grid w-full items-center grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Фото преподавателя */}
               {user.photo_url && (
                 <div className="flex justify-center md:justify-start">
                   <ImageWithSkeleton
@@ -68,6 +69,8 @@ export default async function ProfilePage() {
                   />
                 </div>
               )}
+
+              {/* Информация */}
               <div className="flex flex-col p-3 min-w-0">
                 <div className="flex items-center mt-4 pr-4 justify-start w-full">
                   <HatGlasses className="inline-block text-default w-5 -mt-0.5 mr-1 text-prpl" />
@@ -90,7 +93,7 @@ export default async function ProfilePage() {
           ) : (
             <div className="grid grid-cols-1">
               <div className="flex flex-col p-3 min-w-0">
-                <div className="flex items-center mt-4 pr-4 justify-start w-full">
+                <div className="flex items-center mt-4 pr-4 justify-end w-full">
                   <Book className="inline-block text-default w-5 -mt-0.5 mr-1 text-prpl" />
                   <h2 className="text-prpl font-semibold text-2xl">Слушатель</h2>
                 </div>
@@ -111,13 +114,7 @@ export default async function ProfilePage() {
           )}
         </div>
 
-        <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white px-6 py-3"> 
-          {user.isTeacher ? ( 
-            <h2 className="text-prpl font-semibold text-2xl p-3">Расписание</h2> 
-            ) : ( 
-            <h2 className="text-prpl font-semibold text-2xl p-3">Программы обучения</h2> 
-            )} 
-          </div>
+        <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white px-6 py-3"> {user.isTeacher ? ( <h2 className="text-prpl font-semibold text-2xl p-3">Расписание</h2> ) : ( <h2 className="text-prpl font-semibold text-2xl p-3">Программы обучения</h2> )} </div>
       </div>
 
     </section>
