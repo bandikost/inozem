@@ -35,7 +35,7 @@ const Header = () => {
       bgColor: "#754883", 
       textColor: "#fff",
       links: [
-       // { label: "Отзывы", href: "/feedbacks", ariaLabel: "Отзывы" },
+        { label: "Отзывы", href: "/feedbacks", ariaLabel: "Отзывы" },
         { label: "Контакты", href: "/contacts", ariaLabel: "Наши контакты" },
         { label: "Личный кабинет", href: "/profile", ariaLabel: "Личный кабинет пользователя" },
       ]

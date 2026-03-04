@@ -150,7 +150,7 @@ const CardNav = ({
               <Image src="/layouts/LogoCHOU.png" alt="Логотип CHOU — Академия медицинского образования" width={50} height={50} priority sizes="50px" className="h-auto w-auto"/>
              
           </Link>
-          <p className='!text-base tablet:!text-xl !text-white ml-2 md:ml-0 px-3 hidden xs:block'>Академия медицинского образования имени Ф.И.Иноземцева</p>
+          <p className='!text-white ml-2 md:ml-0 px-3 hidden xs:block'>Академия медицинского образования имени Ф.И.Иноземцева</p>
           <div
             className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''}`}
             onClick={toggleMenu}

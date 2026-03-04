@@ -53,7 +53,7 @@ return (
     
 
             <div className='border border-gray-300 mt-8 rounded shadow-2xl bg-white pb-6 w-full max-w-[500px] mx-auto md:max-w-none md:mx-0'>
-                <div className="px-6  text-default">
+                <div className="px-6 space-y-4 text-default">
                 <h2 className="text-prpl text-2xl p-6">Юридический адрес</h2>
                 <p className="text-default px-6 text-base">Санкт-Петербург, Московский пр., д. 22, литер М, пом. Н</p>
 

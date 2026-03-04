@@ -1,6 +1,6 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
-import { Book, GraduationCap, HatGlasses } from "lucide-react"
+import { GraduationCap, HatGlasses } from "lucide-react"
 import LogoutButton from "@/components/ui/LogoutButton"
 import ImageWithSkeleton from "@/components/ui/ImageWithSkeleton"
 
@@ -56,21 +56,21 @@ export default async function ProfilePage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
       <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white ">
          
-        <div className={`${user.isTeacher ? "" : `grid-cols-1 md:grid-cols-2`}grid  w-full items-center`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 w-full items-center">
           
             <div className="flex flex-col mt-3 md:mt-0 items-center md:items-start" >
                 
             {user.isTeacher &&  (
             <div className="flex flex-col mt-3 md:mt-0 items-center md:items-start" >
-                {user.photo_url && <ImageWithSkeleton src={user.photo_url} alt="Изображение академии" wrapperClassName="max-w-[220px] max-h-[220px] !rounded !border-2 border-prpl" aspect="1/1"/>}
+                {user.photo_url && <ImageWithSkeleton src={user.photo_url} alt="Изображение академии" wrapperClassName="max-w-[220px] max-h-[220px] !rounded !border-1 border-prpl" aspect="1/1"/>}
             </div>
           )}    
             </div>
              
             <div className="flex flex-col p-3 min-w-0">
-               <div className={`flex  mt-4 pr-4 ${user.isTeacher ? "justify-start" : `justify-end`}grid  w-full items-center`}>
-                <div className="flex items-center">
-                    {user.isTeacher ?  <HatGlasses className="inline-block text-default w-5 -mt-0.5 mr-1 text-prpl" />  : <Book  className="inline-block text-default w-5 -mt-0.5 mr-1 text-prpl"/>}
+               <div className="flex justify-end mt-4 px-4">
+                <div className="flex">
+                    <HatGlasses className="inline-block text-default w-5 -mt-0.5 mr-1 text-prpl" /> 
                     <h2 className="text-prpl font-semibold text-2xl">{user.isTeacher ?  "Преподаватель" : "Слушатель"}</h2>
                 </div> 
             </div>

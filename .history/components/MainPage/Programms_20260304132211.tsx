@@ -36,7 +36,7 @@ export default async function Programms() {
                     <div className="grid grid-cols-1 tablet:grid-cols-3 gap-4 mt-8">
                         {programs.map((p) => (
                             <div key={p.id} className="flex flex-col justify-between gap-8 bg-white p-4 rounded-lg shadow-md border border-gray-300">
-                                    <h3 className="md:text-left text-center">{p.name.length > 58 ? p.name.slice(0, 58) + "..." : p.name}</h3>
+                                    <h3 className="text-center">{p.name.length > 58 ? p.name.slice(0, 58) + "..." : p.name}</h3>
                                 <div className="grid gap-1">
                                     <p className=""><strong>Даты:</strong> {p.dates}</p>
                                     <p className=""><strong>Образование:</strong> {p.education}</p>

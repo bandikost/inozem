@@ -4,10 +4,9 @@ export default function Page() {
 
 return (
     <section className='flex flex-col justify-center pb-20 px-4'>
-        <h1 className='mt-27 text-prpl text-center'>Контактная информация</h1>
-        <div className="grid  grid-cols-1 md:grid-cols-2 gap-8 ">
-
-            <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white pb-6 w-full max-w-[500px] mx-auto md:max-w-none md:mx-0">   
+        <h1 className='text-3xl font-normal mt-27 text-prpl'>Контактная информация</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="border-2 border-dotted border-zinc-300 mt-8 rounded shadow-2xl bg-white pb-6">   
             <div className="px-6 space-y-4 text-default">
                 <h2 className="text-prpl text-2xl pt-6">Телефоны</h2>
                 <ul>
@@ -39,21 +38,19 @@ return (
                     </div>
             </div>
 
-            <div className='border border-gray-300 mt-8 rounded shadow-2xl bg-white pb-6 w-full max-w-[500px] mx-auto md:max-w-none md:mx-0'>
-                <div className="px-6 space-y-4 text-default">
+            <div className='border-2 border-dotted border-zinc-300 px-6 mt-8  rounded shadow-2xl bg-white'>
                <h2 className="text-prpl text-2xl py-6">Наши адреса</h2> 
                 <h3 className="text-prpl text-xl mt-4">Симуляционно-тренинговый центр</h3>
                 <p className="text-default text-base pb-6">Санкт-Петербург, Миллионная ул., д. 29</p>
                 <iframe className="rounded mt-6" src="https://yandex.ru/map-widget/v1/?um=constructor%3A6257a2039c7175badc4451c50308ebe2a4b551bc12a26400ab4ab43414238c9d&amp;lang=ru_RU" width="100%" height="380" allowFullScreen loading="lazy" ></iframe>
-                </div>
+
             </div>
         </div>
 
         
     
 
-            <div className='border border-gray-300 mt-8 rounded shadow-2xl bg-white pb-6 w-full max-w-[500px] mx-auto md:max-w-none md:mx-0'>
-                <div className="px-6  text-default">
+            <div className='border-2 border-dotted border-zinc-300 pb-8 mt-8 rounded shadow-2xl bg-white'>
                 <h2 className="text-prpl text-2xl p-6">Юридический адрес</h2>
                 <p className="text-default px-6 text-base">Санкт-Петербург, Московский пр., д. 22, литер М, пом. Н</p>
 
@@ -65,7 +62,7 @@ return (
                     <br/>р/с 40703810832000000005 
                     <br/>к/с 30101810600000000786 БИК 044030786</p>
             </div>
-            </div>
+     
 
     </section>    
 )

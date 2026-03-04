@@ -75,40 +75,41 @@ function ToggleBlock({ title, children }: { title: string, children: React.React
   const [open, setOpen] = useState(false)
   return (
     <div className="px-4">
-      <div
+      <button
         onClick={() => setOpen(prev => !prev)}
-        className="cursor-pointer hover:underline ">
-        <p>{title} ({open ? "Свернуть" : "Показать"})</p>
-      </div>
-      {open && <div className="px-6 mt-2 grid gap-2 mt-4">{children}</div>}
+        className="text-prpl text-base cursor-pointer hover:underline "
+    >
+        {title} ({open ? "Свернуть" : "Показать"})
+      </button>
+      {open && <div className="px-6 mt-2 text-default grid gap-2 mt-4">{children}</div>}
     </div>
   )
 }
 
 export default function Page() {
   return (
-    <section className="flex flex-col px-4">
-      <h1 className="text-prpl font-semibold mt-27 text-3xl text-center">О нас</h1>
+    <section className="flex flex-col">
+      <h1 className="text-prpl font-semibold mt-10 text-3xl text-center">О нас</h1>
 
-      <div className="border border-gray-300  mt-8 rounded shadow-2xl bg-white px-6 py-3">
+      <div className="border-2 border-dotted border-zinc-300  mt-8 rounded shadow-2xl bg-white px-6 py-3">
         <h2 className="text-prpl font-semibold text-2xl mt-2">Наши особенности</h2>
-        <ul className="grid gap-3 mt-4 text-md">
-          {features.map((f, i) => <li key={i}><span className="text-prpl">{i + 1}.</span> {f}</li>)}
+        <ul className="grid gap-1 mt-4 text-md">
+          {features.map((f, i) => <li key={i}>{i + 1}. {f}</li>)}
         </ul>
       </div>
       <p className="text-default text-base p-1 mt-8">Раздел подготовлен в соответствии с Правилами размещения информации на официальном сайте образовательной организации (Постановление Правительства Российской Федерации от 20 октября 2021 г. № 1802, Приказ Рособрнадзора от 14.08.2020 N 831, письмо Федеральной службы по надзору в сфере образования и науки №07-675 от 25 марта 2015 г.)</p>
-      <h2 className="text-prpl font-semibold mt-8 mb-4 text-3xl">Наши слушатели по всей России</h2>
+      <h2 className="text-prpl font-semibold mt-8 text-3xl">Наши слушатели по всей России</h2>
       <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A4IbnQNqOhTRc_MYs6AhwA-u0opOGhWWI&lang=ru_RU" width="100%" height="320" allowFullScreen loading="lazy"></iframe>
 
-      <div className="grid grid-cols-1 tablet:grid-cols-2 gap-8">
+      <div className="grid grid-cols-2 gap-8">
         <div className="flex flex-col mt-8">
-          <h2 className="text-prpl font-semibold text-3xl mt-2 flex items-center px-6">
+          <h1 className="text-prpl font-semibold text-3xl mt-2 flex items-center px-6">
             <Info className="mr-2" />Юридическая информация
-          </h2>
-          <div className="border border-gray-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-3">
+          </h1>
+          <div className="border-2 border-dotted border-zinc-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-3">
             {legalInfo.map((item, i) => (
               <div key={i} className="mt-4">
-                <h3 className="text-prpl font-semibold text-2xl">{item.title}</h3>
+                <h2 className="text-prpl font-semibold text-2xl">{item.title}</h2>
                 <hr className="border-zinc-300 w-full h-2" />
                 <p className="text-default text-md mt-2">{item.text}</p>
               </div>
@@ -117,14 +118,14 @@ export default function Page() {
         </div>
 
         <div className="flex flex-col mt-8">
-          <h2 className="text-blue font-semibold text-3xl mt-2 flex items-center px-6">
+          <h1 className="text-blue font-semibold text-3xl mt-2 flex items-center px-6">
             <File className="mr-2"/>Документы Академии
-          </h2>
+          </h1>
 
-          <div className="border border-gray-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-3">
-            <h3 className="text-blue font-semibold text-2xl mt-4">
+          <div className="border-2 border-dotted border-zinc-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-3">
+            <h2 className="text-blue font-semibold text-2xl mt-4">
               Уставные документы и лицензия на право ведения образовательной деятельности:
-            </h3>
+            </h2>
             <hr className="border-zinc-300 w-full h-2" />
             <ul className="grid gap-4 mt-4 text-blue">
               {documents
@@ -137,18 +138,18 @@ export default function Page() {
             </ul>
           </div>
 
-          <div className="border border-gray-300 pb-4 mt-8 rounded shadow-2xl  px-6 py-8 grid gap-4 ">
+          <div className="border-2 border-dotted border-zinc-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-8 grid gap-4">
             <ToggleBlock title="Бюджетные сметы образовательной организации:">
               {smeta.map((doc, i) => (
-                <li key={i} className="list-none">
-                  <Link href={doc.link} className="hover:underline !text-blue" target="_blank" rel="noopener noreferrer">{doc.name}</Link>
+                <li key={i} className="list-none text-blue ">
+                  <Link href={doc.link} className="hover:underline" target="_blank" rel="noopener noreferrer">{doc.name}</Link>
                 </li>
               ))}
             </ToggleBlock>
              <ToggleBlock title="Локальные нормативные акты">
               {regulations.map((doc, i) => (
-                <li key={i} className="list-none ">
-                  <Link href={doc.link} className="hover:underline !text-blue" target="_blank" rel="noopener noreferrer">{doc.name}</Link>
+                <li key={i} className="list-none text-blue ">
+                  <Link href={doc.link} className="hover:underline" target="_blank" rel="noopener noreferrer">{doc.name}</Link>
                 </li>
               ))}
              </ToggleBlock>
@@ -169,14 +170,14 @@ export default function Page() {
              <Link className="mt-2 px-4 text-blue hover:underline" href={""}>Отчет о результатах самообследования за 2015 год</Link>
           </div>
 
-          <div className="border border-gray-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-3">
+          <div className="border-2 border-dotted border-zinc-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-3">
               <img width={60} height={60}src="/Images/about/inozemtsev.png" className="mt-1 float-left w-36 h-36 mr-8 rounded object-cover [shape-outside:circle(50%)]"  alt="Федор Иванович Иноземцев"/>
               <p className="mt-1 mb-6 text-left text-default text-base">Академия носит имя Фёдора Ивановича Иноземцева, воплотившего в себе качества блестящего врача, учёного и замечательного педагога. Федор Иванович Иноземцев — русский врач-клиницист, педагог и общественный деятель. Родился 12 февраля 1802 года в деревне Белкино Боровского уезда Калужской губернии. Отец Федора, Иван Ильич, по одним источникам, был персиянин, по другим - турок, по третьим - кавказский горец. Достоверно известно лишь то, что его мальчиком в качестве пленного вывез с Кавказа граф П.А.Бутурлин.Отец умер, когда Федору исполнилось двенадцать лет. О матери ничего не известно. Всего у четы Иноземцевых родилось пять детей.</p>
           </div>
         </div>
       </div>
 
-      <div className="border border-gray-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-3">
+      <div className="border-2 border-dotted border-zinc-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-3">
             <h2 className="text-prpl font-semibold text-2xl mt-4">
               Образовательные стандарты
             </h2>
@@ -215,7 +216,7 @@ export default function Page() {
             </ul>
       </div>
 
-      <div className="border border-gray-300 my-8 rounded shadow-2xl bg-white px-6 py-3">
+      <div className="border-2 border-dotted border-zinc-300 my-8 rounded shadow-2xl bg-white px-6 py-3">
         <h2 className="text-prpl font-semibold text-2xl mt-2">Наши партнеры</h2>
         <ul className="grid gap-6 grid-cols-6 mt-4 text-md">
           <a href="https://video.organum-visus.ru/" target="_blank"><img className="object-fit" width={60} height={60} src="/images/site/ovis.png" /></a>
@@ -251,7 +252,7 @@ export default function Page() {
         </ul>
       </div>
 
-      <div className="border border-gray-300 my-8 rounded shadow-2xl bg-white px-6 py-3">
+      <div className="border-2 border-dotted border-zinc-300 my-8 rounded shadow-2xl bg-white px-6 py-3">
         <h2 className="text-prpl font-semibold text-2xl mt-2">Клинические базы Академии</h2>
         <ul className="grid gap-6 grid-cols-6 mt-4 text-md">
           <a href="https://medsi.ru/" target="_blank"><img className="object-fit" width={60} height={60}src="/images/site/image002.jpg" /></a>

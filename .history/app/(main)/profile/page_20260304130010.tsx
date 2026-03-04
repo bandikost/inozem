@@ -56,7 +56,7 @@ export default async function ProfilePage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
       <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white ">
          
-        <div className={`${user.isTeacher ? "" : `grid-cols-1 md:grid-cols-2`}grid  w-full items-center`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 w-full items-center">
           
             <div className="flex flex-col mt-3 md:mt-0 items-center md:items-start" >
                 
@@ -68,8 +68,8 @@ export default async function ProfilePage() {
             </div>
              
             <div className="flex flex-col p-3 min-w-0">
-               <div className={`flex  mt-4 pr-4 ${user.isTeacher ? "justify-start" : `justify-end`}grid  w-full items-center`}>
-                <div className="flex items-center">
+               <div className="flex justify-end mt-4 pr-4">
+                <div className="flex">
                     {user.isTeacher ?  <HatGlasses className="inline-block text-default w-5 -mt-0.5 mr-1 text-prpl" />  : <Book  className="inline-block text-default w-5 -mt-0.5 mr-1 text-prpl"/>}
                     <h2 className="text-prpl font-semibold text-2xl">{user.isTeacher ?  "Преподаватель" : "Слушатель"}</h2>
                 </div> 

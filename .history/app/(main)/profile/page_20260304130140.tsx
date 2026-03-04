@@ -68,8 +68,8 @@ export default async function ProfilePage() {
             </div>
              
             <div className="flex flex-col p-3 min-w-0">
-               <div className={`flex  mt-4 pr-4 ${user.isTeacher ? "justify-start" : `justify-end`}grid  w-full items-center`}>
-                <div className="flex items-center">
+               <div className="flex justify-end mt-4 pr-4">
+                <div className="flex">
                     {user.isTeacher ?  <HatGlasses className="inline-block text-default w-5 -mt-0.5 mr-1 text-prpl" />  : <Book  className="inline-block text-default w-5 -mt-0.5 mr-1 text-prpl"/>}
                     <h2 className="text-prpl font-semibold text-2xl">{user.isTeacher ?  "Преподаватель" : "Слушатель"}</h2>
                 </div> 

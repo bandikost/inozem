@@ -78,7 +78,7 @@ function ToggleBlock({ title, children }: { title: string, children: React.React
       <div
         onClick={() => setOpen(prev => !prev)}
         className="cursor-pointer hover:underline ">
-        <p>{title} ({open ? "Свернуть" : "Показать"})</p>
+        <p className="!text-blue">{title} ({open ? "Свернуть" : "Показать"})</p>
       </div>
       {open && <div className="px-6 mt-2 grid gap-2 mt-4">{children}</div>}
     </div>

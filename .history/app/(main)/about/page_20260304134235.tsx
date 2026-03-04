@@ -78,7 +78,7 @@ function ToggleBlock({ title, children }: { title: string, children: React.React
       <div
         onClick={() => setOpen(prev => !prev)}
         className="cursor-pointer hover:underline ">
-        <p>{title} ({open ? "Свернуть" : "Показать"})</p>
+        {title} ({open ? "Свернуть" : "Показать"})
       </div>
       {open && <div className="px-6 mt-2 grid gap-2 mt-4">{children}</div>}
     </div>
@@ -148,7 +148,7 @@ export default function Page() {
              <ToggleBlock title="Локальные нормативные акты">
               {regulations.map((doc, i) => (
                 <li key={i} className="list-none ">
-                  <Link href={doc.link} className="hover:underline !text-blue" target="_blank" rel="noopener noreferrer">{doc.name}</Link>
+                  <Link href={doc.link} className="hover:underline " target="_blank" rel="noopener noreferrer">{doc.name}</Link>
                 </li>
               ))}
              </ToggleBlock>
