@@ -64,7 +64,6 @@ export default function AccredTable() {
       )}
 
       {!loading && dates.length > 0 && (
-        <div className="w-full overflow-x-auto">
         <table className="min-w-[600px] w-full border border-gray-300 text-left">
           <thead className="bg-gray-100">
             <tr>
@@ -92,7 +91,6 @@ export default function AccredTable() {
             ))}
           </tbody>
         </table>
-        </div>
       )}
 
     </div>

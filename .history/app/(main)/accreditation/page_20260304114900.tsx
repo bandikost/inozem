@@ -48,7 +48,7 @@ return (
 
                         {link.url ? (
                             <a href={link.url} target="_blank" className="text-[#7C109A] underline hover:opacity-70 cursor-pointer flex flex-col items-start">
-                                <p className="flex items-center">{link.name}<MoveRight className="ml-1 min-w-[5px] max-w-[18px] w-full" /></p>
+                                <p className="flex items-center"><MoveRight className="mr-1 min-w-[3px] max-w-[10px] w-full" />{link.name}</p>
                                 {index < 1 || <hr className="border-zinc-300 w-full" />}
                             </a>
                         ) : (

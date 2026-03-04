@@ -26,11 +26,14 @@ export default async function FirstBlock() {
         <section className="grid tablet:flex gap-6 items-center justify-center tablet:items-start px-4">
   
                 <div className="border-2 border-zinc-300 mt-4 rounded-xl shadow-2xl bg-white">
-  <div className="relative w-full max-w-[520px] aspect-[16/9]">
+  <div className="relative w-full max-w-[660px] aspect-[16/9]">
     <img
       src={"https://storage.yandexcloud.net/inozemstorage/main/banner/%D0%9E%D0%9F%D0%95%D0%A0%D0%90%D0%A6%D0%98%D0%9E%D0%9D%D0%9D%D0%9E%D0%95%20%D0%94%D0%95%D0%9B%D0%9E.png"}
-      alt="Изображение академии на главной странице" className="object-cover rounded-xl"
-      sizes="(max-width: 768px) 100vw, 520px"
+      alt="Изображение академии на главной странице"
+      fill
+      className="object-cover rounded-xl"
+      sizes="(max-width: 768px) 100vw, 660px"
+      priority
     />
   </div>
 </div>

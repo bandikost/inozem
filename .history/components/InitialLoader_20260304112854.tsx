@@ -34,7 +34,7 @@ export default function InitialLoader() {
         >
           <polyline
             fill="none"
-            stroke="#0a9688"
+            stroke="#533785"
             strokeWidth="3"
             points="0,30 30,30 40,10 50,50 60,30 90,30 100,15 110,45 120,30 160,30"
           />

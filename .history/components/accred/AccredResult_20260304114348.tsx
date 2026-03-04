@@ -46,7 +46,7 @@ const handleSecondaryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
   return (
     <div className="max-w-4xl mx-auto my-10">
         <AccredButton activeYear={activeYear} onChange={setActiveYear}/>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-6">
 
         <select
             value={education === "Высшее" ? selected : ""}

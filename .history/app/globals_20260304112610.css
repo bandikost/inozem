@@ -140,12 +140,12 @@ a {
 @media (max-width: 768px) {
   h3 {
     font-size: 1rem; 
- 
+    line-height: 1rem; 
   }
 
    h2 {
     font-size: 1.5rem; 
-        line-height: 1.25rem;
+    line-height: 1rem; 
   }
 }
 
@@ -238,7 +238,9 @@ a {
 
 
 .pulse-container {
-    width: 250px;
+  display: flex;
+  justify-content: center;
+    width: 200px;
     overflow: hidden;
   }
 

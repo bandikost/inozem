@@ -2,7 +2,7 @@
 
 import AccredTable from "@/components/accred/AccredTable"
 import { items } from "@/data/accredNotice"
-import { MoveRight } from "lucide-react"
+import { Link } from "lucide-react"
 import { useState } from "react"
 import AccredResult from "@/components/accred/AccredResult"
 
@@ -19,16 +19,16 @@ export default function Page() {
 
 return (
     <section className="flex flex-col px-6">
-      <h2 className="text-green font-semibold mt-27 text-3xl text-center">Первичная специализированная аккредитация</h2>
+      <h1 className="text-green font-semibold mt-27 text-3xl text-center">Первичная специализированная аккредитация</h1>
 
-        <div className="flex flex-col sm:flex-row">
+        <div className="grid grid-cols-1 xs:grid xs:grid-cols-2">
 
              <div className="flex flex-col mt-4 mr-4">
           {items.map(item => (
             <button
               key={item.id}
               onClick={() => setActiveId(item.id)}
-              className={`px-2 py-2 button-more ${activeId === item.id ? "button-active" : ""}`}>
+              className={`px-2 py-2 button-more max-w-[300px] ${activeId === item.id ? "button-active" : ""}`}>
               {item.title}
             </button>
           ))}
@@ -48,7 +48,7 @@ return (
 
                         {link.url ? (
                             <a href={link.url} target="_blank" className="text-[#7C109A] underline hover:opacity-70 cursor-pointer flex flex-col items-start">
-                                <p className="flex items-center">{link.name}<MoveRight className="ml-1 min-w-[5px] max-w-[18px] w-full" /></p>
+                                <p className="flex"><Link />{link.name}</p>
                                 {index < 1 || <hr className="border-zinc-300 w-full" />}
                             </a>
                         ) : (

@@ -9,7 +9,7 @@ type Props = {
 
 export default function AccredButton({ activeYear, onChange }: Props) {
   return (
-    <div className="grid grid-cols-4 gap-2 mb-8 justify-center">
+    <div className="grid grid-cols-2 gap-2 mb-8 justify-center">
       {years.map((item) => (
         <button
           key={item.id}

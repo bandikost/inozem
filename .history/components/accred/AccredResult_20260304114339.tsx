@@ -46,7 +46,7 @@ const handleSecondaryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
   return (
     <div className="max-w-4xl mx-auto my-10">
         <AccredButton activeYear={activeYear} onChange={setActiveYear}/>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-6">
 
         <select
             value={education === "Высшее" ? selected : ""}
@@ -89,7 +89,7 @@ const handleSecondaryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
       {!loading && dates.length > 0 && (
         <div className="w-full overflow-x-auto">
         
-        <h2 className="text-2xl mb-4 text-center mt-4 text-green">{education}</h2>
+        <h2 className="text-2xl mb-4 text-center mt-4">{education}</h2>
         <p className=" mb-4 text-center">{selected}</p>
         <table className="min-w-[600px] w-full border border-gray-300 text-left">
           <thead className="bg-gray-100">

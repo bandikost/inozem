@@ -25,7 +25,7 @@
 }
 
 @theme {
-  --breakpoint-xs: 450px;
+  --breakpoint-xs: 470px;
   --breakpoint-tablet: 880px;
 }
 
@@ -140,12 +140,12 @@ a {
 @media (max-width: 768px) {
   h3 {
     font-size: 1rem; 
- 
+    line-height: 1rem; 
   }
 
    h2 {
     font-size: 1.5rem; 
-        line-height: 1.25rem;
+    line-height: 1rem; 
   }
 }
 
