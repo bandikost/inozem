@@ -20,7 +20,7 @@ export default async function ThirdBlock() {
                             <li key={teach.id}>
                                 <div className="flex flex-col tablet:flex-row gap-6 items-center py-2 ">
                                     
-                                    <ImageWithSkeleton src={teach.photo_url} alt="Преподаватель месяца" wrapperClassName="max-w-[300px] max-h-[300px] !border-2 border-prpl" aspect="1/1"/>
+                                    <ImageWithSkeleton src={teach.photo_url} alt="Преподаватель месяца" wrapperClassName="max-w-[150px] max-h-[150px] " aspect="1/1"/>
                                  
                                    <div className="flex flex-col items-center tablet:items-start px-8 bg-white p-4 rounded-lg shadow-md border border-gray-300 ">
                                         <p className="!font-semibold text-lg text-center tablet:text-left">{teach.last_name} {teach.name} {teach.patronymic} </p>

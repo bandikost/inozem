@@ -47,7 +47,7 @@ export default async function FirstBlock() {
                          <ImageWithSkeleton
                             src="https://storage.yandexcloud.net/inozemstorage/main/banner/od.png"
                             alt="Изображение академии"
-                            wrapperClassName="max-w-[120px] max-h-[120px] "
+                            wrapperClassName="max-w-[520px] max-h-[520px] "
                             aspect="1/1"
                             
                           /> 

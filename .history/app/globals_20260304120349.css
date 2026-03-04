@@ -124,6 +124,17 @@ a {
     background: #3CA7B5
 }
 
+ .animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    #e5e7eb 25%,
+    #f3f4f6 50%,
+    #e5e7eb 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
 @media (min-width: 1024px) and (max-width: 1150px) {
   .md-custom-flex-col {
     flex-direction: column;
@@ -155,6 +166,9 @@ a {
 
 
 @layer utilities {
+
+ 
+
   .text-default {
     color: var(--text-default);
   }
@@ -200,25 +214,6 @@ a {
     background-color: var(--bg-blue);
   }
 
-  @keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-.animate-shimmer {
-  background: linear-gradient(
-    90deg,
-    #e5e7eb 25%,
-    #f3f4f6 50%,
-    #e5e7eb 75%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite linear;
-}
 
     @keyframes wait {
     0% {
@@ -238,6 +233,17 @@ a {
   .animate-wait {
   animation: wait 2.5s ease-out infinite forwards;
 }
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+
 
 
   @keyframes fade-in {
