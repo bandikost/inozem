@@ -1,0 +1,52 @@
+
+'use client'
+
+import { items } from "@/data/simcenter"
+import { MoveRight } from "lucide-react"
+import { useState } from "react"
+
+export default function Page() {
+    const [activeId, setActiveId] = useState(1)
+
+    const activeItem = items.find(a => a.id === activeId)
+
+    if(!activeItem) return null
+
+    return (
+       <section className="flex flex-col px-4 justify-center mb-10">
+        <h1 className="text-prpl font-semibold mt-27 text-center">Симуляционно-тренинговый центр</h1>
+            <div className="flex flex-col sm:flex-row mt-8">
+
+                <div className="flex flex-col  mr-4 gap-2">
+                    {items.map(item => (
+                        <button key={item.id} onClick={() => setActiveId(item.id)} className={`button-more ${activeId === item.id ? "button-active" : ""}`}>
+                            {item.title}
+                        </button>
+                    ))}
+                </div> 
+
+                <div className="w-full border border-gray-300 rounded shadow-2xl bg-white px-6 py-3">
+                <h2 className="text-xl text-green">{activeItem?.title}</h2>
+                    {activeItem?.links?.length > 0 && (
+                        <ul className="flex gap-4 flex-col mt-5">
+                            {activeItem.links.map((link, index) => (
+                                <li key={index}><p className="text-default text-xl">{link.name}</p></li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+
+            </div>
+
+        <div className="flex flex-col mt-10 gap-4">
+            <p className="!text-base"><strong>Симуляционное обучение в медицинском образовании</strong> – это современные технологии обучения и оценки практических навыков, умений, основанная на реалистическом моделировании, имитации клинической ситуации - для чего используются различной сложности и реалистичности учебные модели.</p>
+            <p className="!text-base"><strong>Симуляционно-тренинговый центр (СТЦ)</strong> - Академии медицинского образования им. Ф.И. Иноземцева создан в 2015 году. СТЦ реализует образовательные программы дополнительного профессионального образования в соответствии c документами на право ведения образовательной деятельности и Уставом Академии при подготовке специалистов с высшим медицинским образованием и специалистов со средним медицинским образованием.</p>
+        </div>
+
+        <div className="border border-gray-300 rounded shadow-2xl bg-white px-6 py-4 mt-8">
+            <h2 className="text-prpl ">Большим успехом услуги СТЦ пользуются при подготовке специалистов к первичной специализированной аккредитации (ПСА) по направлениям подготовки</h2>
+        </div>
+
+    </section>
+    )
+}
