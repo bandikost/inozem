@@ -12,7 +12,7 @@ export default function Page() {
       <div className="border border-gray-300  mt-8 rounded shadow-2xl bg-white px-6 py-3">
         
 
-        <div className="grid grid-cols-1 tablet:grid-cols-2 gap-3 items-start">
+        <div className="grid grid-cols-2 gap-3 items-start">
 
           <div>
             <h2 className="text-prpl font-semibold text-2xl mt-2">Наши особенности</h2>

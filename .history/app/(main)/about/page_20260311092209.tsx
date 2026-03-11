@@ -12,7 +12,7 @@ export default function Page() {
       <div className="border border-gray-300  mt-8 rounded shadow-2xl bg-white px-6 py-3">
         
 
-        <div className="grid grid-cols-1 tablet:grid-cols-2 gap-3 items-start">
+        <div className="grid grid-cols-2 gap-3 items-start">
 
           <div>
             <h2 className="text-prpl font-semibold text-2xl mt-2">Наши особенности</h2>
@@ -23,7 +23,7 @@ export default function Page() {
 
             <div className="flex flex-col">
               <h2 className="text-prpl font-semibold mt-3 mb-4 text-3xl">Наши слушатели по всей России</h2>
-              <iframe className="border-2 border-gray-300 rounded-md" src="https://yandex.ru/map-widget/v1/?um=constructor%3A4IbnQNqOhTRc_MYs6AhwA-u0opOGhWWI&lang=ru_RU" width="100%" height="320" allowFullScreen loading="lazy"></iframe>
+              <iframe className="border-2 border-gray-300 rounded-xl" src="https://yandex.ru/map-widget/v1/?um=constructor%3A4IbnQNqOhTRc_MYs6AhwA-u0opOGhWWI&lang=ru_RU" width="100%" height="320" allowFullScreen loading="lazy"></iframe>
             </div>
 
         </div>

@@ -10,28 +10,14 @@ export default function Page() {
       <h1 className="text-prpl font-semibold mt-27 text-center">О нас</h1>
 
       <div className="border border-gray-300  mt-8 rounded shadow-2xl bg-white px-6 py-3">
-        
-
-        <div className="grid grid-cols-1 tablet:grid-cols-2 gap-3 items-start">
-
-          <div>
-            <h2 className="text-prpl font-semibold text-2xl mt-2">Наши особенности</h2>
-              <ul className="grid gap-3 mt-4 text-md">
-                  {features.map((f, i) => <li key={i}><span className="text-prpl">{i + 1}.</span> {f}</li>)}
-              </ul>
-          </div>
-
-            <div className="flex flex-col">
-              <h2 className="text-prpl font-semibold mt-3 mb-4 text-3xl">Наши слушатели по всей России</h2>
-              <iframe className="border-2 border-gray-300 rounded-md" src="https://yandex.ru/map-widget/v1/?um=constructor%3A4IbnQNqOhTRc_MYs6AhwA-u0opOGhWWI&lang=ru_RU" width="100%" height="320" allowFullScreen loading="lazy"></iframe>
-            </div>
-
-        </div>
-        
-
+        <h2 className="text-prpl font-semibold text-2xl mt-2">Наши особенности</h2>
+        <ul className="grid gap-3 mt-4 text-md">
+          {features.map((f, i) => <li key={i}><span className="text-prpl">{i + 1}.</span> {f}</li>)}
+        </ul>
       </div>
       <p className="text-default text-base p-1 mt-8">Раздел подготовлен в соответствии с Правилами размещения информации на официальном сайте образовательной организации (Постановление Правительства Российской Федерации от 20 октября 2021 г. № 1802, Приказ Рособрнадзора от 14.08.2020 N 831, письмо Федеральной службы по надзору в сфере образования и науки №07-675 от 25 марта 2015 г.)</p>
-      
+      <h2 className="text-prpl font-semibold mt-8 mb-4 text-3xl">Наши слушатели по всей России</h2>
+      <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A4IbnQNqOhTRc_MYs6AhwA-u0opOGhWWI&lang=ru_RU" width="100%" height="320" allowFullScreen loading="lazy"></iframe>
 
       <div className="grid grid-cols-1 tablet:grid-cols-2 gap-8">
         <div className="flex flex-col mt-8">
@@ -154,7 +140,7 @@ export default function Page() {
         {partners.map((p,i)=>(
           <li key={i}>
             <a href={p.href} target="_blank">
-              <img width={60} height={60} className="object-contain" src={p.src}/> 
+              <img width={60} height={60} className="object-contain" src={p.src}/>
             </a>
           </li>
         ))}
@@ -166,13 +152,9 @@ export default function Page() {
        <ul className="grid gap-6 grid-cols-6 mt-4">
         {clinics.map((c,i)=>(
           <li key={i}>
-            {c.href ? (
-              <a href={c.href} target="_blank">
-                <img width={60} height={60} className="object-contain" src={c.src}/>
-              </a>
-            ) : (
+           
               <ImageWithSkeleton src={c.src} alt="Изображение клинической базы Академии" wrapperClassName="max-w-[60px] max-h-[60px] !object-contain" aspect="1/1" /> 
-            )}
+            
           </li>
         ))}
       </ul>

@@ -15,7 +15,7 @@ const Header = () => {
       //  { label: "Блог", href: "/blog", ariaLabel: "Наш Блог" },
         { label: "О Нас", href: "/about", ariaLabel: "О нас" },
         { label: "Кафедры", href: "/", ariaLabel: "Кафедры" },
-        { label: "Сотрудники", href: "/employees", ariaLabel: "Сотрудники" },
+        { label: "Сотрудники", href: "/", ariaLabel: "Сотрудники" },
       ]
     },
     {
