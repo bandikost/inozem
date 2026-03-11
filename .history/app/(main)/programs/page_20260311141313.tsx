@@ -27,7 +27,7 @@ export default async function Page() {
   return (
     <section className="flex flex-col px-4 px-6 mt-27">
 
-      <h1 className="text-3xl font-semibold text-prpl mb-10 text-center">
+      <h1 className="text-3xl font-semibold mb-10">
         Программы обучения
       </h1>
 
@@ -45,11 +45,13 @@ export default async function Page() {
             <div className="flex items-center justify-between mt-6">
               {program.time && (
                 <p className="font-medium text-zinc-800 flex items-center">
-                  <Clock9 className="w-4 h-4 mr-1 mt-0.1" />{program.time} академ. {getHourWord(Number(program.time))}
+                  <Clock9 className="w-4 h-4 mr-1 mt-0.25" />{program.time} академ. {getHourWord(Number(program.time))}
                 </p>
               )}
 
-              <Link href={`/programs/${program.id}`} className="button-more">Подробнее</Link>
+              <Link href={`/programs/${program.id}`} className="button-more">
+                Подробнее
+              </Link>
             </div>
           </div>
         ))}

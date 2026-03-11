@@ -1,25 +1,5 @@
 import { getPrograms } from "@/lib/programm"
-import { Clock9 } from "lucide-react";
 import Link from "next/link"
-
-function getHourWord(value: number): string {
-  const lastTwo = value % 100;
-  const last = value % 10;
-
-  if (lastTwo >= 11 && lastTwo <= 14) {
-    return "часов";
-  }
-
-  if (last === 1) {
-    return "час";
-  }
-
-  if (last >= 2 && last <= 4) {
-    return "часа";
-  }
-
-  return "часов";
-}
 
 export default async function Page() {
   const programs = await getPrograms()
@@ -27,7 +7,7 @@ export default async function Page() {
   return (
     <section className="flex flex-col px-4 px-6 mt-27">
 
-      <h1 className="text-3xl font-semibold text-prpl mb-10 text-center">
+      <h1 className="text-3xl font-semibold text-zinc-800 mb-10">
         Программы обучения
       </h1>
 
@@ -39,17 +19,19 @@ export default async function Page() {
             </h3>
 
             {program.description && (
-              <div className="text-sm !font-medium text-zinc-600 mt-2" dangerouslySetInnerHTML={{ __html: program.description.slice(0, 100) + "..." }} />
+              <div className="text-sm text-zinc-600 mt-2" dangerouslySetInnerHTML={{ __html: program.description.slice(0, 100) + "..." }} />
             )}
 
             <div className="flex items-center justify-between mt-6">
               {program.time && (
-                <p className="font-medium text-zinc-800 flex items-center">
-                  <Clock9 className="w-4 h-4 mr-1 mt-0.1" />{program.time} академ. {getHourWord(Number(program.time))}
+                <p className="font-medium text-zinc-800">
+                  {program.time}
                 </p>
               )}
 
-              <Link href={`/programs/${program.id}`} className="button-more">Подробнее</Link>
+              <Link href={`/programs/${program.id}`} className="button-more">
+                Подробнее
+              </Link>
             </div>
           </div>
         ))}

@@ -27,7 +27,7 @@ export default async function Page() {
   return (
     <section className="flex flex-col px-4 px-6 mt-27">
 
-      <h1 className="text-3xl font-semibold text-prpl mb-10 text-center">
+      <h1 className="text-3xl font-semibold text-prpl mb-10">
         Программы обучения
       </h1>
 
@@ -49,7 +49,9 @@ export default async function Page() {
                 </p>
               )}
 
-              <Link href={`/programs/${program.id}`} className="button-more">Подробнее</Link>
+              <Link href={`/programs/${program.id}`} className="button-more">
+                Подробнее
+              </Link>
             </div>
           </div>
         ))}
