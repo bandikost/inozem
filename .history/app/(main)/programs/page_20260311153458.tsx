@@ -32,7 +32,7 @@ export default async function Page() {
         Программы обучения
       </h1>
       <div className="grid grid-cols-3 gap-2 my-10">
-          <ToggleBlock title="Инструкция создания профиля" classText="!text-xl !font-normal">
+          <ToggleBlock title="Инструкция создания профиля">
         <div className="border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition">
           <Link href={"/"} className="hover:underline">Просмотреть файл</Link> 
         </div>

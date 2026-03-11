@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-export function ToggleBlock({ title, children, classText = "text-base" }: { title: string, children: React.ReactNode, classText?: string }) {
+export function ToggleBlock({ title, children, classText }: { title: string, children: React.ReactNode, classText="text-base" }) {
   const [open, setOpen] = useState(false)
   return (
     <div className="px-4">

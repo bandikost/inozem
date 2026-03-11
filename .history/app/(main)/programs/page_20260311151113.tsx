@@ -31,28 +31,10 @@ export default async function Page() {
       <h1 className="text-3xl font-semibold text-prpl mb-10 text-center">
         Программы обучения
       </h1>
-      <div className="grid grid-cols-3 gap-2 my-10">
-          <ToggleBlock title="Инструкция создания профиля" classText="!text-xl !font-normal">
-        <div className="border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition">
-          <Link href={"/"} className="hover:underline">Просмотреть файл</Link> 
-        </div>
-        
-      </ToggleBlock>
-      <ToggleBlock title="Формы, анкеты, заявления">
-        <div className=" border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition">
-          <Link href={"/"} className="hover:underline">Просмотреть файл</Link> 
-        </div>
-        
-      </ToggleBlock>
-      <ToggleBlock title="Программы и прейскурант">
-        <div className=" border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition">
-          <Link href={"/"} className="hover:underline">Просмотреть файл</Link> 
-        </div>
-        
-      </ToggleBlock>
-      </div>
-        
 
+      <ToggleBlock>
+      <p>Инструкция по созданию личного кабинета</p>
+      </ToggleBlock>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {programs.map(program => (

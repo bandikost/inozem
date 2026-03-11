@@ -32,21 +32,21 @@ export default async function Page() {
         Программы обучения
       </h1>
       <div className="grid grid-cols-3 gap-2 my-10">
-          <ToggleBlock title="Инструкция создания профиля" classText="!text-xl !font-normal">
-        <div className="border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition">
-          <Link href={"/"} className="hover:underline">Просмотреть файл</Link> 
+          <ToggleBlock title="Инструкция создания профиля">
+        <div className="border border-zinc-200 rounded-xl  bg-white shadow-xl transition">
+          <Link href={"/"} className="hover:underline p-6">Просмотреть файл</Link> 
         </div>
         
       </ToggleBlock>
       <ToggleBlock title="Формы, анкеты, заявления">
-        <div className=" border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition">
-          <Link href={"/"} className="hover:underline">Просмотреть файл</Link> 
+        <div className=" border border-zinc-200 rounded-xl bg-white shadow-xl transition">
+          <Link href={"/"} className="hover:underline p-6">Просмотреть файл</Link> 
         </div>
         
       </ToggleBlock>
       <ToggleBlock title="Программы и прейскурант">
-        <div className=" border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition">
-          <Link href={"/"} className="hover:underline">Просмотреть файл</Link> 
+        <div className=" border border-zinc-200 rounded-xl bg-white shadow-xl transition">
+          <Link href={"/"} className="hover:underline p-6">Просмотреть файл</Link> 
         </div>
         
       </ToggleBlock>
