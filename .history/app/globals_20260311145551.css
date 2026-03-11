@@ -142,10 +142,9 @@ a {
 }
 
 .bg-card {
-  background: url("https://storage.yandexcloud.net/inozemstorage/main/cards/maincard.png");
-  background-size: cover;
-  background-position: center;
+  background-image: url("https://storage.yandexcloud.net/inozemstorage/main/cards/maincard.png")
 }
+
 
 
 .program-description li {
