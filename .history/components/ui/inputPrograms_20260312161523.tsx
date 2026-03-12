@@ -25,10 +25,10 @@ export default function InputPrograms({ programs }: { programs: any[] }) {
     <div className="border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition w-full">
             
         <div className="grid grid-cols-1 tablet:grid-cols-2 gap-4 items-center">
-            <div className="flex flex-col items-center tablet:items-start gap-3 w-full">
+            <div className="flex flex-col items-center tablet:items-start gap-3">
                 <h3 className="text-prpl mb-4 !font-normal text-center">Поиск программы по названию</h3>
                 <div className="flex flex-col sm:flex-row items-center gap-3">
-                    <input value={inputValue} onChange={(e) => setInputValue(e.target.value) } className="border border-gray-300 rounded p-2 w-full" placeholder="Введите название..." />
+                    <input value={inputValue} onChange={(e) => setInputValue(e.target.value) } className="border border-gray-300 rounded p-2 min-w-full" placeholder="Введите название..." />
                     <button className="button-more" onClick={() => handleFindProgramm()}>Найти программу</button>
                 </div>
             </div>

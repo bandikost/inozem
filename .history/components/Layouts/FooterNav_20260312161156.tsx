@@ -23,13 +23,13 @@ const FooterNav: React.FC<FooterNavProps> = ({ items }) => {
       <div className="footer-nav">
         {items.map((item, idx) => (
           <div key={`${item.label}-${idx}`} className="footer-column">
-            <div className="footer-title !text-lg sm:!text-base">{item.label}</div>
+            <div className="footer-title">{item.label}</div>
 
             <ul className="footer-links">
               {item.links.map((link, i) => (
-                <li key={`${link.label}-${i}`} className='flex items-center '>
+                <li key={`${link.label}-${i}`} className='flex items-center'>
                     <ChevronRight className='w-4 opacity-80 !text-white' />
-                  <Link href={link.href} aria-label={link.ariaLabel ?? link.label} className='!text-lg sm:!text-base'>
+                  <Link href={link.href} aria-label={link.ariaLabel ?? link.label} className='!text-lg sm:text-base'>
                     {link.label}
                   </Link>
                 </li>
