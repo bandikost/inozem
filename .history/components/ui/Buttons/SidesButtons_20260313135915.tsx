@@ -27,7 +27,7 @@ export default function SidesButtons() {
           ))}
         </div> 
 
-            <div className="w-full sm:w-3/4 border border-gray-300 rounded shadow-xl bg-white px-6 py-3 mt-8 sm:mt-0">
+            <div className="w-3/4 border border-gray-300 rounded shadow-xl bg-white px-6 py-3 mt-8 sm:mt-0">
                <h2 className="text-xl text-green text-center mt-2">{activeItem?.title}</h2>
                   <ul className="flex gap-2 flex-col mt-5">
                     {activeItem.links.map((link, index)=> (

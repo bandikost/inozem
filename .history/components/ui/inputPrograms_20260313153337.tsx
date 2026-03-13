@@ -73,43 +73,43 @@ export default function InputPrograms({ programs }: { programs: any[] }) {
 
         
         <div className="flex flex-col items-center mb-20">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-10">
-                
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-10">
             
-                {findTotal.slice(0, visibleItems).map(program => (
-                    <div key={program.id} className="flex flex-col justify-between border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition bg-card">
-                    <h3 className="text-lg !font-semibold text-prpl mb-4">
-                    {program.name.length > 58 ? program.name.slice(0, 58) + "..." : program.name}
-                    </h3>
-                    
-                    <div className="grid gap-1">
-                        <p className=""><strong className="text-blue">Даты:</strong> {program.dates}</p>
-                        <p className=""><strong className="text-blue">Образование:</strong> {program.education}</p>
-                        <p className=""><strong className="text-blue">Направления:</strong> {program.specialization}</p>
+           
+            {findTotal.slice(0, visibleItems).map(program => (
+                <div key={program.id} className="flex flex-col justify-between border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition bg-card">
+                <h3 className="text-lg !font-semibold text-prpl mb-4">
+                {program.name.length > 58 ? program.name.slice(0, 58) + "..." : program.name}
+                </h3>
+                
+                <div className="grid gap-1">
+                    <p className=""><strong className="text-blue">Даты:</strong> {program.dates}</p>
+                    <p className=""><strong className="text-blue">Образование:</strong> {program.education}</p>
+                    <p className=""><strong className="text-blue">Направления:</strong> {program.specialization}</p>
+                </div>
+
+                <div className="flex items-center justify-between mt-6">
+                    <div className="flex flex-col"> 
+                        {program.time && (
+                            <p className="font-medium text-zinc-800 flex items-center">
+                            <Clock9 className="w-4 h-4 mr-1 mt-0.1" />{program.time} академ. {getHourWord(Number(program.time))}
+                            </p>
+                        )}
+                        {program.price && <p>{program.price} ₽</p>}
                     </div>
 
-                    <div className="flex items-center justify-between mt-6">
-                        <div className="flex flex-col"> 
-                            {program.time && (
-                                <p className="font-medium text-zinc-800 flex items-center">
-                                <Clock9 className="w-4 h-4 mr-1 mt-0.1" />{program.time} академ. {getHourWord(Number(program.time))}
-                                </p>
-                            )}
-                            {program.price && <p>{program.price} ₽</p>}
-                        </div>
+                <Link href={`/programs/${program.id}`} className="button-more ">Подробнее</Link>
+                </div>
+                </div>
+            ))}
 
-                    <Link href={`/programs/${program.id}`} className="button-more ">Подробнее</Link>
-                    </div>
-                    </div>
-                ))}
+        </div>
 
-            </div>
-
-            {visibleItems < findTotal.length && (
-                <button className="button-more mt-6" onClick={handleShowMore}>
-                    Показать ещё
-                </button>
-            )}
+        {visibleItems < findTotal.length && (
+            <button className="button-more mt-6" onClick={handleShowMore}>
+                Показать ещё
+            </button>
+        )}
         </div>
 
     </section>

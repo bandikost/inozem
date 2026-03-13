@@ -8,7 +8,7 @@ export default async function Page() {
 
 
   return (
-    <section className="flex flex-col justify-center px-4 px-6 mt-27 ">
+    <section className="flex flex-col justify-center items-center px-4 px-6 mt-27 min-w-6xl">
 
       <h1 className="text-3xl font-semibold text-prpl text-center">
         Программы обучения
