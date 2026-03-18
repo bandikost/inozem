@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
       amount: { value: item, currency: "RUB" },
       confirmation: {
         type: "redirect",
-        return_url: `${process.env.CLIENT_URL}/success`
+        return_url: `${process.env.NEXT_PUBLIC_CLIENT_URL}/profile`,
       },
       capture: true,
       description: name,
@@ -32,11 +32,11 @@ export async function POST(req: NextRequest) {
           "Idempotence-Key": uuidv4(),
         },
       }
-    )
+    );
 
-    return NextResponse.json({ url: response.data.confirmation.confirmation_url })
+    return NextResponse.json({ url: response.data.confirmation.confirmation_url });
   } catch (error: any) {
-    console.error(error.response?.data || error.message)
-    return NextResponse.json({ error: "Не удалось создать платеж" }, { status: 500 })
+    console.error(error.response?.data || error.message);
+    return NextResponse.json({ error: "Не удалось создать платеж" }, { status: 500 });
   }
 }
