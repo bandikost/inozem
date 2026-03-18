@@ -72,7 +72,7 @@ export async function getAllUsers(): Promise<UserRow[]> {
   u.email,
   u.phone,
   u.specialization,
-  u.education_level,
+  u.education,
   GROUP_CONCAT(p.name SEPARATOR ', ') as program_name
 FROM users u
 LEFT JOIN user_programs up 

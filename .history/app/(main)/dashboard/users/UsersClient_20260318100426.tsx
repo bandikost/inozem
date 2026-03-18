@@ -12,7 +12,7 @@ type User = {
   email?: string
   program_name: string | null
   specialization: string
-  education_level: string
+  education: string
 }
 
 type Programs = {
@@ -97,7 +97,7 @@ const handleAssign = async (userId: number) => {
         value={value}
         onChange={e => setValue(e.target.value)}
         placeholder="Поиск пользователя..."
-        className="border border-gray-400 px-2 py-2 mt-4 rounded-md w-full text-lg"
+        className="border border-gray-400 px-2 py-1 mt-4 rounded-md"
       />
 
     <div className='grid gap-2'>
@@ -116,16 +116,15 @@ const handleAssign = async (userId: number) => {
     return (
       <div key={u.id} className='border border-gray-300 mt-8 rounded shadow-2xl bg-white py-3 px-6 '>
 
-        <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center '>
-          <ul className='flex flex-col '>
-            <li className='!text-lg'>{u.last_name} {u.name} {u.patronymic}</li>
-            <li className='text-gray-600 mt-2'><strong className='text-zinc-900'>Почта: </strong>{u.email}</li>
-            <li className='text-gray-600 mt-2'><strong className='text-zinc-900'>Телефон: </strong>{u.phone ? `+` + u.phone : ""}</li>
-            <li className='text-gray-600 mt-2'><strong className='text-zinc-900'>Образование: </strong>{u.education_level}</li>
-            <li className='text-gray-600 mt-2'><strong className='text-zinc-900'>Специальность: </strong>{u.specialization}</li>  
-            <li className='mt-2'><strong className='text-zinc-900 '>{u.program_name ? `Подключенные программы:` : ""}</strong></li>
+        <div className='flex justify-between items-center'>
+          <div className='flex flex-col '>
+            <p className='!text-lg'>{u.last_name} {u.name} {u.patronymic}</p>
+            <p className='text-gray-600 mt-2'><strong className='text-zinc-900'>Почта: </strong>{u.email}</p>
+            <p className='text-gray-600 mt-2'><strong className='text-zinc-900'>Телефон: </strong>{u.phone ? `+` + u.phone : ""}</p>
+            <p className='text-gray-600 mt-2'><strong className='text-zinc-900'>Специальность: </strong>{u.specialization}</p>
 
-            <div className='flex flex-col gap-1 '>
+            <p className='mt-2'><strong className='text-zinc-900 '>{u.program_name ? `Подключенные программы:` : ""}</strong></p>
+            <div className='flex flex-col gap-1 mt-1'>
               {u.program_name?.split(',').map(name => {
 
                 const program = programs.find(p => p.name === name.trim())
@@ -139,11 +138,11 @@ const handleAssign = async (userId: number) => {
                 )
               })}
             </div>
-          </ul>
+          </div>
 
           
 
-          <form className='flex flex-col mt-5 sm:mt-0'>
+          <form className='flex flex-col '>
             <select
               className='border border-gray-400 rounded p-1 mb-2 max-w-[220px] w-full truncate'
               value={selectedPrograms[u.id] ?? ''}

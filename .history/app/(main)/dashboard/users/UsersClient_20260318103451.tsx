@@ -97,7 +97,7 @@ const handleAssign = async (userId: number) => {
         value={value}
         onChange={e => setValue(e.target.value)}
         placeholder="Поиск пользователя..."
-        className="border border-gray-400 px-2 py-2 mt-4 rounded-md w-full text-lg"
+        className="border border-gray-400 px-2 py-1 mt-4 rounded-md"
       />
 
     <div className='grid gap-2'>
@@ -125,7 +125,7 @@ const handleAssign = async (userId: number) => {
             <li className='text-gray-600 mt-2'><strong className='text-zinc-900'>Специальность: </strong>{u.specialization}</li>  
             <li className='mt-2'><strong className='text-zinc-900 '>{u.program_name ? `Подключенные программы:` : ""}</strong></li>
 
-            <div className='flex flex-col gap-1 '>
+            <div className='flex flex-col gap-1 mt-3 sm:mt-0'>
               {u.program_name?.split(',').map(name => {
 
                 const program = programs.find(p => p.name === name.trim())
@@ -143,7 +143,7 @@ const handleAssign = async (userId: number) => {
 
           
 
-          <form className='flex flex-col mt-5 sm:mt-0'>
+          <form className='flex flex-col '>
             <select
               className='border border-gray-400 rounded p-1 mb-2 max-w-[220px] w-full truncate'
               value={selectedPrograms[u.id] ?? ''}

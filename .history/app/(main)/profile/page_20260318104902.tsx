@@ -71,7 +71,7 @@ export default async function ProfilePage() {
         <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white py-3">
           <h2 className="text-prpl font-semibold text-2xl p-4">Программы обучения</h2>
           {programs.length === 0 && (
-            <p className="text-gray-500 px-5 pb-4">
+            <p className="text-gray-500 px-4 pb-4">
               Вы пока не записаны ни на одну программу
             </p>
           )}

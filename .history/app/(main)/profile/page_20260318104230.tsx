@@ -71,15 +71,15 @@ export default async function ProfilePage() {
         <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white py-3">
           <h2 className="text-prpl font-semibold text-2xl p-4">Программы обучения</h2>
           {programs.length === 0 && (
-            <p className="text-gray-500 px-5 pb-4">
+            <p className="text-gray-500 px-3 pb-4">
               Вы пока не записаны ни на одну программу
             </p>
           )}
 
           <ul className="flex flex-col gap-4 px-3 pb-4">
             {programs.map(p => (
-              <Link key={p.id} href={`/programs/${p.id}`} className="!text-blue hover:opacity-70 bg-card">
-                <li className="p-4 rounded-lg shadow-md border border-gray-300  py-8">
+              <Link key={p.id} href={`/programs/${p.id}`} className="!text-blue hover:opacity-70">
+                <li className="p-4 rounded-lg shadow-md border border-gray-300 bg-card py-8">
                   {p.name}  
                 </li>
               </Link>
@@ -124,19 +124,16 @@ export default async function ProfilePage() {
               </ul>
 
               <LogoutButton />
-              {user.isAdmin ? (
-        <div className="mt-10 px-2">
-          <Link href={'/dashboard/manager'} className="text-lg hover:underline">Перейти в админку</Link>
-        </div>
-      ) : (
-        <></>
-      )}
             </div>
           )}
         </div>
       )}
       </div>
-      
+      {user.isAdmin ? (
+        <div className="mt-10">admin</div>
+      ) : (
+        <></>
+      )}
       
 
     </section>

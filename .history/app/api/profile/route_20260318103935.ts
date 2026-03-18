@@ -11,21 +11,21 @@ export async function GET(req: NextRequest) {
   try {
     const token = req.cookies.get("token")?.value
 
-    if (!token) return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
+    if (!token) return NextResponse.json({ message: "Не авторизован!" }, { status: 401 })
 
     let decoded: JwtPayload
     try {
       decoded = verifyToken(token) as JwtPayload
     } catch {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
+      return NextResponse.json({ message: "Не авторизован!" }, { status: 401 })
     }
 
     const [rows] = await db.query<UserRow[]>(
-      "SELECT id, name, last_name, patronymic, email, phone, isTeacher, photo_url, created_at FROM users WHERE id = ?",
+      "SELECT id, name, last_name, patronymic, email, education_level, specialization, phone, isTeacher, isAdmin, photo_url, created_at FROM users WHERE id = ?",
       [decoded.id]
     )
 
-    if (rows.length === 0) return NextResponse.json({ message: "User not found" }, { status: 404 })
+    if (rows.length === 0) return NextResponse.json({ message: "Пользователь не найден" }, { status: 404 })
 
     const user = rows[0]
 
@@ -34,8 +34,7 @@ export async function GET(req: NextRequest) {
       isTeacher: user.isTeacher === 1,
       created_at: user.created_at.toISOString(),
     })
-  } catch (err) {
-    console.error(err)
-    return NextResponse.json({ message: "Server error" }, { status: 500 })
+  } catch {
+    return NextResponse.json({ message: "Ошибка сервера" }, { status: 500 })
   }
 }

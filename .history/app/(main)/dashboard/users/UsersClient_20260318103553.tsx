@@ -97,7 +97,7 @@ const handleAssign = async (userId: number) => {
         value={value}
         onChange={e => setValue(e.target.value)}
         placeholder="Поиск пользователя..."
-        className="border border-gray-400 px-2 py-2 mt-4 rounded-md w-full text-lg"
+        className="border border-gray-400 px-2 py-2 mt-4 rounded-md w-full"
       />
 
     <div className='grid gap-2'>
