@@ -16,7 +16,7 @@ export default async function SecondBlock() {
             <ul className="w-full max-w-full mt-4 text-center grid grid-cols-1 md:grid-cols-3 gap-5 items-center justify-center p-4">
 
                 <li className="w-full max-w-[400px] md:max-w-full mx-auto text-blue text-3xl border border-gray-300 py-10 tablet:py-8 rounded-xl shadow-xl">
-                    {`>`}15 000 <p className="text-default text-sm">выпускников</p>
+                    {`>`}17 лет <p className="text-default text-sm">Предоставляем качество</p>
                 </li>
             
                 <li className="w-full max-w-[400px] md:max-w-full mx-auto text-prpl text-3xl border border-gray-300 py-10 tablet:py-8 rounded-xl shadow-xl ">
@@ -33,16 +33,10 @@ export default async function SecondBlock() {
                     <p className="text-default text-sm px-3">Образовательных программ</p>
                 </li>
                 <li className="w-full max-w-[400px] md:max-w-full mx-auto text-3xl border border-gray-300 py-8 rounded-xl shadow-xl">
-                    <div className="flex items-center justify-center text-prpl">
+                    <div className="flex items-center justify-center text-blue">
                         <AnimatedNumber value={96}/>%
                     </div>
                     <p className="text-default text-sm px-3">Успешной аттестации</p>
-                </li>
-                 <li className="w-full max-w-[400px] md:max-w-full mx-auto text-3xl border border-gray-300 py-8 rounded-xl shadow-xl">
-                    <div className="flex items-center justify-center text-blue">
-                        <AnimatedNumber value={84}/>%
-                    </div>
-                    <p className="text-default text-sm px-3">Трудоустройства после обучения</p>
                 </li>
                         
             </ul>

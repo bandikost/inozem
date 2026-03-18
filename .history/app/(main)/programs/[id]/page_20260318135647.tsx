@@ -49,8 +49,12 @@ export default async function Page({ params }: ProgramsPageProps) {
         <div className="mt-6 program-description" dangerouslySetInnerHTML={{ __html: program.description }}/>
         <div className="flex items-center mt-6">
         <div className="flex items-center">
-        <p className="pr-4 ">Итоговая цена: {program.price}₽</p>
-        <PayButton price={program.price} programId={program.id} userId={user.id} name={program.name}/>
+  <p className="pr-4 ">Итоговая цена: {program.price}₽</p>
+  <PayButton
+  price={program.price}
+  programId={program.id}
+  userId={user.id}
+/>
 </div>
       </div>
       </div>

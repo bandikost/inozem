@@ -48,10 +48,10 @@ export default async function Page({ params }: ProgramsPageProps) {
         <p className="mt-3 text-gray-500 !font-semibold">{program.name}</p>
         <div className="mt-6 program-description" dangerouslySetInnerHTML={{ __html: program.description }}/>
         <div className="flex items-center mt-6">
-        <div className="flex items-center">
-        <p className="pr-4 ">Итоговая цена: {program.price}₽</p>
-        <PayButton price={program.price} programId={program.id} userId={user.id} name={program.name}/>
-</div>
+        <button className="button-more">Оплатить обучение</button>
+        <p className="ml-4">Итоговая цена:
+          <span className="font-semibold underline ml-1">{program.price} ₽</span>
+        </p>
       </div>
       </div>
     )
@@ -66,10 +66,7 @@ export default async function Page({ params }: ProgramsPageProps) {
       <time className="text-sm mt-4 block mb-10">
         <strong>Даты проведения:</strong> {program.dates}
       </time>
-
-
-      
-
+      <PayButton item={program.price} />
     </section>
   )
 }

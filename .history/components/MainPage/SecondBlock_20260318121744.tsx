@@ -33,16 +33,10 @@ export default async function SecondBlock() {
                     <p className="text-default text-sm px-3">Образовательных программ</p>
                 </li>
                 <li className="w-full max-w-[400px] md:max-w-full mx-auto text-3xl border border-gray-300 py-8 rounded-xl shadow-xl">
-                    <div className="flex items-center justify-center text-prpl">
+                    <div className="flex items-center justify-center text-blue">
                         <AnimatedNumber value={96}/>%
                     </div>
                     <p className="text-default text-sm px-3">Успешной аттестации</p>
-                </li>
-                 <li className="w-full max-w-[400px] md:max-w-full mx-auto text-3xl border border-gray-300 py-8 rounded-xl shadow-xl">
-                    <div className="flex items-center justify-center text-blue">
-                        <AnimatedNumber value={84}/>%
-                    </div>
-                    <p className="text-default text-sm px-3">Трудоустройства после обучения</p>
                 </li>
                         
             </ul>
