@@ -1,6 +1,6 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
-import { getProgram, hasUserProgram } from "@/lib/programm"
+import { getProgram, getProgramContent, hasUserProgram } from "@/lib/programm"
 import PayButton from "@/components/ui/Buttons/PayButton"
 
 interface ProgramsPageProps { params: { id: string } }
@@ -12,6 +12,7 @@ async function getProfile(token: string) {
   })
 
   if (!res.ok) throw new Error("auth")
+
   return res.json()
 }
 
@@ -19,34 +20,24 @@ export default async function Page({ params }: ProgramsPageProps) {
   const { id } = await params
   const cookieStore = await cookies()
   const token =  cookieStore.get("token")?.value
+
+  if (!token) redirect("/login")
+
+  let user
+
+  try {
+    user = await getProfile(token)
+  } catch {
+    redirect("/login")
+  }
+
+  const hasAccess = await hasUserProgram(user.id, Number(id))
   const program = await getProgram(Number(id))
-  
+  const programContent = await getProgramContent(Number(id))
+
   if (!program) {
     return <div className="mt-20 text-center">Программа не найдена</div>
   }
-  if (!token) redirect("/login")
-
-let videos = []
-
-try {
-  videos = JSON.parse(program.video || "[]")
-} catch {
-  videos = []
-}
-
-let user
-
-try {
-  user = await getProfile(token)
-} catch {
-  redirect("/login")
-}
-
-  const hasAccess = await hasUserProgram(user.id, Number(id))
-  
-console.log("VIDEO RAW:", program.video)
-console.log("PARSED:", videos)
-
 
   if (!hasAccess) {
     return (
@@ -70,17 +61,26 @@ console.log("PARSED:", videos)
 
       <div className="mt-6 program-description" dangerouslySetInnerHTML={{ __html: program.description }}/>
 
-<div className=" grid grid-cols-3 gap-6">
-      {videos.map((video: any, i: number) => (
-      <div key={i} className="mb-6">
-        <iframe
-          src={video.url}
-          className="w-full h-64 rounded"
-          allowFullScreen
-        />
+      <div className="mt-6">
+  {programContent.map((section: any) => (
+    <div key={section.id} className="mb-8">
+      <h2 className="text-xl font-semibold">{section.title}</h2>
+
+      <div className="mt-3 space-y-2">
+        {section.items.map((item: any) => (
+          <div key={item.id}>
+            <p>{item.title}</p>
+
+            {item.type === "video" && <iframe src={item.content} />}
+            {item.type === "file" && <a href={item.content}>Открыть</a>}
+            {item.type === "link" && <a href={item.content}>Открыть</a>}
+          </div>
+        ))}
       </div>
-    ))}
+    </div>
+  ))}
 </div>
+
       <time className="text-sm mt-4 block mb-10">
         <strong>Даты проведения:</strong> {program.dates}
       </time>

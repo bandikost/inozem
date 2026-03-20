@@ -16,6 +16,8 @@ export default function InputPrograms({ programs }: { programs: any[] }) {
 
     const handleShowMore = () => setVisibleItems(prev => prev + 12)
 
+    const handleFindProgramm = () => setFindTotal(programs.filter(p => p.name.toLowerCase().startsWith(inputValue.toLowerCase())))
+
     useEffect(() => {
         let filtered = programs
 
@@ -49,7 +51,10 @@ export default function InputPrograms({ programs }: { programs: any[] }) {
         <div className="flex flex-col tablet:flex-row justify-between gap-4 items-start">
             <div className="flex flex-col items-center tablet:items-start gap-3">
                 <h3 className="text-prpl mb-4 !font-normal text-center">Поиск программы по названию</h3>
-                <input value={inputValue} onChange={(e) => setInputValue(e.target.value) } className="border border-gray-300 rounded p-2 w-[260px] xs:w-[300px]" placeholder="Введите название..." />
+                <div className="flex flex-col items-center gap-3 ">
+                    <input value={inputValue} onChange={(e) => setInputValue(e.target.value) } className="border border-gray-300 rounded p-2 w-[260px] xs:w-[300px]" placeholder="Введите название..." />
+                    <button className="button-more w-full" onClick={() => handleFindProgramm()}>Найти программу</button>
+                </div>
             </div>
 
             <div className="flex flex-col items-center tablet:items-end gap-3 mt-10 tablet:mt-0">
@@ -70,7 +75,7 @@ export default function InputPrograms({ programs }: { programs: any[] }) {
                 <div className="flex items-center gap-3">
                      {education !== "без образования" && (
                         <select name="specialization" value={specialization} onChange={(e) => setSpecialization(e.target.value)} required={education !== "без образования"}
-                            className="border border-zinc-400 p-2 max-w-[300px] rounded text-zinc-700">
+                            className="border border-zinc-400 p-2 max-w-[330px] rounded text-zinc-700">
 
                             <option value="">-- выберите специальность --</option>
                                 {(education === "Высшее" ? HIGHER_SPECIALTIES : SECONDARY_SPECIALTIES).map((spec) => (

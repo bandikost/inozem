@@ -40,7 +40,7 @@ export async function getProgram(id: number): Promise<ProgramRow | null> {
   } 
 
   const [rows] = await db.query<ProgramRow[]>(
-    `SELECT id, name, time, dates, education, specialization, description, video, price
+    `SELECT id, name, time, dates, education, specialization, description, price
      FROM programms
      WHERE id = ?`,
     [id]
@@ -92,4 +92,53 @@ export async function hasUserProgram(userId: number, programId: number): Promise
   )
 
   return (rows as any[]).length > 0
+}
+
+
+function groupData(rows: any[]) {
+  const map = new Map()
+
+  for (const row of rows) {
+    if (!map.has(row.section_id)) {
+      map.set(row.section_id, {
+        id: row.section_id,
+        title: row.section_title,
+        items: []
+      })
+    }
+
+    if (row.item_id) {
+      map.get(row.section_id).items.push({
+        id: row.item_id,
+        title: row.item_title,
+        type: row.type,
+        content: row.content
+      })
+    }
+  }
+
+  return Array.from(map.values())
+}
+
+export async function getProgramContent(programId: number) {
+  const [rows]: any = await db.query(
+    `
+    SELECT 
+      s.id AS section_id,
+      s.title AS section_title,
+      s.sort_order,
+      i.id AS item_id,
+      i.title AS item_title,
+      i.type,
+      i.content,
+      i.sort_order AS item_order
+    FROM programs_sections s
+    LEFT JOIN programs_items i ON i.section_id = s.id
+    WHERE s.program_id = ?
+    ORDER BY s.sort_order, i.sort_order
+    `,
+    [programId]
+  )
+
+  return groupData(rows)
 }

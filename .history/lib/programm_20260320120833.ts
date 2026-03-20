@@ -40,7 +40,7 @@ export async function getProgram(id: number): Promise<ProgramRow | null> {
   } 
 
   const [rows] = await db.query<ProgramRow[]>(
-    `SELECT id, name, time, dates, education, specialization, description, video, price
+    `SELECT id, name, time, dates, education, specialization, description, price
      FROM programms
      WHERE id = ?`,
     [id]

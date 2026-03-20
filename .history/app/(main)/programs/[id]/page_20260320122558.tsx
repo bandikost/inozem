@@ -70,7 +70,6 @@ console.log("PARSED:", videos)
 
       <div className="mt-6 program-description" dangerouslySetInnerHTML={{ __html: program.description }}/>
 
-<div className=" grid grid-cols-3 gap-6">
       {videos.map((video: any, i: number) => (
       <div key={i} className="mb-6">
         <iframe
@@ -80,7 +79,7 @@ console.log("PARSED:", videos)
         />
       </div>
     ))}
-</div>
+
       <time className="text-sm mt-4 block mb-10">
         <strong>Даты проведения:</strong> {program.dates}
       </time>

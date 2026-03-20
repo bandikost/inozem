@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
       amount: { value: item, currency: "RUB" },
       confirmation: {
         type: "redirect",
-        return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success`
+        return_url: `${process.env.CLIENT_URL}/success`
       },
       capture: true,
       description: name,

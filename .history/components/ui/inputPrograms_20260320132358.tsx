@@ -2,9 +2,8 @@
 
 import { Clock9 } from "lucide-react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { getHourWord } from "./GetHourWord";
-import { HIGHER_SPECIALTIES, SECONDARY_SPECIALTIES } from "@/data/specialties";
 
 
 export default function InputPrograms({ programs }: { programs: any[] }) {
@@ -12,50 +11,48 @@ export default function InputPrograms({ programs }: { programs: any[] }) {
     const [findTotal, setFindTotal] = useState(programs)
     const [visibleItems, setVisibleItems] = useState(12)
     const [education, setEducation] = useState("")
-    const [specialization, setSpecialization] = useState("")
 
-    const handleShowMore = () => setVisibleItems(prev => prev + 12)
+    const handleShowMore = () => {
+        setVisibleItems(prev => prev + 12)
+    }
 
-    useEffect(() => {
-        let filtered = programs
+    const handleFindProgramm = () => {
+        setFindTotal(programs.filter(p => p.name.toLowerCase().startsWith(inputValue.toLowerCase())))
+    } 
 
-        if (inputValue) {
-            filtered = filtered.filter(p =>
-                p.name.toLowerCase().includes(inputValue.toLowerCase())
-            )
-        }
+    const handleFindByEducation = (value: string) => {
+    setEducation(value)
 
-        if (education) {
-            filtered = filtered.filter(p =>
-                p.education?.toLowerCase() === education.toLowerCase()
-            )
-        }
+    if (!value) {
+        setFindTotal(programs)
+        return
+    }
 
-        if (specialization) {
-            filtered = filtered.filter(p =>
-                p.specialization?.toLowerCase().includes(specialization.toLowerCase())
-            )
-        }
-
-        setFindTotal(filtered)
-        setVisibleItems(12)
-    }, [inputValue, education, specialization, programs])
+    setFindTotal(
+        programs.filter(p =>
+            p.education?.toLowerCase() === value.toLowerCase()
+        )
+    )
+}
 
     
     return (
     <section>
     <div className="border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition">
             
-        <div className="flex flex-col tablet:flex-row justify-between gap-4 items-start">
+        <div className="flex flex-col tablet:flex-row justify-between gap-4 items-center">
             <div className="flex flex-col items-center tablet:items-start gap-3">
                 <h3 className="text-prpl mb-4 !font-normal text-center">Поиск программы по названию</h3>
-                <input value={inputValue} onChange={(e) => setInputValue(e.target.value) } className="border border-gray-300 rounded p-2 w-[260px] xs:w-[300px]" placeholder="Введите название..." />
+                <div className="flex flex-col items-center gap-3 ">
+                    <input value={inputValue} onChange={(e) => setInputValue(e.target.value) } className="border border-gray-300 rounded p-2 w-[260px] xs:w-[300px]" placeholder="Введите название..." />
+                    <button className="button-more w-full" onClick={() => handleFindProgramm()}>Найти программу</button>
+                </div>
             </div>
 
             <div className="flex flex-col items-center tablet:items-end gap-3 mt-10 tablet:mt-0">
                 <h3 className="text-prpl mb-4 !font-normal text-center">Поиск программы по образованию</h3>
                 <div className="flex items-center gap-3">
-                    <select value={education} onChange={(e) => setEducation(e.target.value)} name="education_level"  
+                    <select value={education} onChange={(e) => handleFindByEducation(e.target.value)} name="education_level"  
                         className="border border-zinc-400 p-2 rounded text-zinc-700 w-[260px] xs:w-[300px]">
                         <option value="">-- выберите образование --</option>
                         <option value="Среднее">Среднее</option>
@@ -66,20 +63,15 @@ export default function InputPrograms({ programs }: { programs: any[] }) {
             </div>
 
             <div className="flex flex-col items-center tablet:items-end gap-3 mt-10 tablet:mt-0">
-                <h3 className="text-prpl mb-4 !font-normal text-center">Поиск программы по направлению</h3>
+                <h3 className="text-prpl mb-4 !font-normal text-center">Поиск программы по образованию</h3>
                 <div className="flex items-center gap-3">
-                     {education !== "без образования" && (
-                        <select name="specialization" value={specialization} onChange={(e) => setSpecialization(e.target.value)} required={education !== "без образования"}
-                            className="border border-zinc-400 p-2 max-w-[300px] rounded text-zinc-700">
-
-                            <option value="">-- выберите специальность --</option>
-                                {(education === "Высшее" ? HIGHER_SPECIALTIES : SECONDARY_SPECIALTIES).map((spec) => (
-                                    <option key={spec} value={spec}>
-                                            {spec}
-                                    </option>
-                                ))}
-                        </select>
-                    )}
+                    <select value={education} onChange={(e) => handleFindByEducation(e.target.value)} name="education_level"  
+                        className="border border-zinc-400 p-2 rounded text-zinc-700 w-[260px] xs:w-[300px]">
+                        <option value="">-- выберите образование --</option>
+                        <option value="Среднее">Среднее</option>
+                        <option value="Высшее">Высшее</option>
+                        <option value="без образования">Без мед.образования</option>
+                    </select>
                 </div>
             </div>
         </div>

@@ -26,21 +26,17 @@ export default async function Page({ params }: ProgramsPageProps) {
   }
   if (!token) redirect("/login")
 
-let videos = []
-
-try {
-  videos = JSON.parse(program.video || "[]")
-} catch {
-  videos = []
-}
-
-let user
-
-try {
-  user = await getProfile(token)
-} catch {
-  redirect("/login")
-}
+  let user
+  let videos = []
+  
+  try {
+    user = await getProfile(token)
+    videos = JSON.parse(program.video || "[]")
+  } catch {
+    videos = []
+    redirect("/login")
+    
+  }
 
   const hasAccess = await hasUserProgram(user.id, Number(id))
   
@@ -70,7 +66,6 @@ console.log("PARSED:", videos)
 
       <div className="mt-6 program-description" dangerouslySetInnerHTML={{ __html: program.description }}/>
 
-<div className=" grid grid-cols-3 gap-6">
       {videos.map((video: any, i: number) => (
       <div key={i} className="mb-6">
         <iframe
@@ -80,7 +75,7 @@ console.log("PARSED:", videos)
         />
       </div>
     ))}
-</div>
+
       <time className="text-sm mt-4 block mb-10">
         <strong>Даты проведения:</strong> {program.dates}
       </time>
