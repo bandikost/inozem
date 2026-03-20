@@ -44,7 +44,7 @@ export default async function Page({ params }: ProgramsPageProps) {
   const hasAccess = await hasUserProgram(user.id, Number(id));
 
   return (
-    <section className="prose mx-auto px-6 mt-27">
+    <section className="prose mx-auto p-6 mt-27">
       <h1 className="text-3xl font-semibold text-prpl">{program.name}</h1>
 
       {!hasAccess ? ( 
