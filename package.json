@@ -27,6 +27,7 @@
     "react-dom": "19.2.3",
     "react-hot-toast": "^2.6.0",
     "react-phone-input-2": "^2.15.1",
+    "translit": "^0.1.0",
     "uuid": "^13.0.0",
     "yup": "^1.7.1"
   },

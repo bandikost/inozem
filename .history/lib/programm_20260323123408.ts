@@ -1,0 +1,128 @@
+import { db } from '@/lib/db'
+import { RowDataPacket } from 'mysql2'
+
+export interface ProgramRow extends RowDataPacket {
+  id: number
+  name: string
+  time: string
+  education: string
+  specialization: string
+  dates: string
+  isFavorite?: boolean
+  price: string
+  created_at: string
+}
+
+let cachedPrograms: ProgramRow[] | null = null
+let cacheTime = 0
+
+export async function getPrograms(): Promise<ProgramRow[]> {
+  const now = Date.now()
+
+  if (cachedPrograms && now - cacheTime < 30_000) {
+    return cachedPrograms
+  }
+
+  const [rows] = await db.query<ProgramRow[]>(
+    'SELECT id, name, time, dates, education, specialization, isFavorite, description, price FROM programms'
+  )
+
+  cachedPrograms = rows
+  cacheTime = now
+
+  return rows
+}
+
+
+export async function getProgram(id: number): Promise<ProgramRow | null> {
+
+  if (!Number.isInteger(id)) {
+    return null
+  } 
+
+  const [rows] = await db.query<ProgramRow[]>(
+    `SELECT id, name, time, dates, education, specialization, description, price
+     FROM programms
+     WHERE id = ?`,
+    [id]
+  )
+  
+  if (!rows.length) return null
+
+  return rows[0] || null
+}
+
+
+export async function getIndividProgram(userId: number): Promise<ProgramRow[]> {
+  await db.query(
+    `DELETE up FROM user_programs up
+     JOIN programms p ON p.id = up.programm_id
+     WHERE up.user_id = ? AND up.status = 'active' AND p.time < 71 AND up.created_at < NOW() - INTERVAL 1 MONTH`,
+    [userId]
+  )
+
+  await db.query(
+    `DELETE up FROM user_programs up
+     JOIN programms p ON p.id = up.programm_id
+     WHERE up.user_id = ? AND up.status = 'active' AND p.time >= 71 AND p.time < 143 AND up.created_at < NOW() - INTERVAL 2 MONTH`,
+    [userId]
+  )
+
+  await db.query(
+    `DELETE up FROM user_programs up
+     JOIN programms p ON p.id = up.programm_id
+     WHERE up.user_id = ? AND up.status = 'active' AND p.time >= 143 AND p.time < 287 AND up.created_at < NOW() - INTERVAL 3 MONTH`,
+    [userId]
+  )
+
+  await db.query(
+    `DELETE up FROM user_programs up
+     JOIN programms p ON p.id = up.programm_id
+     WHERE up.user_id = ? AND up.status = 'active' AND p.time >= 287 AND p.time < 500 AND up.created_at < NOW() - INTERVAL 12 MONTH`,
+    [userId]
+  )
+
+  const [rows] = await db.query<ProgramRow[]>(
+    `SELECT 
+       p.id,
+       p.name,
+       p.dates,
+       p.price,
+       p.time,
+       up.created_at
+     FROM user_programs up
+     JOIN programms p ON p.id = up.programm_id
+     WHERE up.user_id = ? AND up.status = 'active'
+     ORDER BY up.created_at DESC`,
+    [userId]
+  )
+
+  return rows
+}
+
+
+export async function hasUserProgram(userId: number, programId: number): Promise<boolean> {
+
+ const [rows]: any = await db.query(
+    `SELECT id
+     FROM user_programs
+     WHERE user_id = ?
+     AND programm_id = ?
+     AND status = 'active'
+     AND created_at >= NOW() - INTERVAL 1 MINUTE
+     LIMIT 1`,
+    [userId, programId]
+  )
+
+  await db.query(
+    `DELETE FROM user_programs
+     WHERE user_id = ?
+     AND programm_id = ?
+     AND created_at < NOW() - INTERVAL 1 MINUTE`,
+    [userId, programId]
+  )
+
+  return (rows as any[]).length > 0
+}
+
+
