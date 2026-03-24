@@ -8,6 +8,7 @@ export default function MainLayout({ children } : Readonly<{ children: React.Rea
     <>
       <Header />
       <main className="w-full max-w-[1200px] min-h-screen mx-auto ">
+ 
         {children}
       </main>
       <CookieBanner />

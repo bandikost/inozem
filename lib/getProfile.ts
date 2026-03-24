@@ -5,7 +5,6 @@ export async function getProfile(token: string): Promise<UserRow> {
     headers: {
       Cookie: `token=${token}`,
     },
-    cache: "no-store",
   })
 
   if (!res.ok) {

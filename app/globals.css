@@ -152,6 +152,15 @@ a {
   line-height: 1.6;
 }
 
+#nprogress .bar {
+  background: #7c3aed; 
+  height: 3px;
+}
+
+#nprogress .spinner {
+  display: none;
+}
+
 @media (min-width: 1024px) and (max-width: 1150px) {
   .md-custom-flex-col {
     flex-direction: column;

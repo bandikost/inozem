@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import InitialLoader from "@/components/ui/InitialLoader";
+import NavigationDone from "@/components/ui/LazyLoad/NavigationDone";
 
 const nunito = Nunito({
   variable: "--font-sans",
@@ -21,6 +22,7 @@ export default function RootLayout({ children } : Readonly<{ children: React.Rea
     <meta charSet="UTF-8" />
   </head>
   <body className={`${nunito.variable} antialiased`}>
+    <NavigationDone />
     <InitialLoader />
     {children}
   </body>

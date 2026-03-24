@@ -10,28 +10,29 @@ interface ProgramsPageProps {
 
 
 export default async function Page({ params }: ProgramsPageProps) {
- const { slug } = await params;
-
+  const { slug } = await params;
   const cookieStore = await cookies()
   const token = cookieStore.get("token")?.value
+  if (!token) redirect("/login")
 
-  const program = await getProgramBySlug(slug)
+  const programPromise = getProgramBySlug(slug)
+  const userPromise = getProfile(token)
+  const program = await programPromise
 
   if (!program) {
     return <div className="mt-20 text-center">Программа не найдена</div>;
   }
 
-  if (!token) redirect("/login")
-
   let user
+
   try { 
-    user = await getProfile(token) 
+    user = await userPromise 
   } catch {
     redirect("/login") 
   }
 
-  const dates = program.dates.split('\n').filter(Boolean);
-  const hasAccess = await hasUserProgram(user.id, program.id);
+  const hasAccess = await hasUserProgram(user.id, program.id)
+  const dates = program.dates.split('\n').filter(Boolean)
 
   return (
     <section className="prose mx-auto px-6 mt-27">
