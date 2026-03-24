@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import InitialLoader from "@/components/ui/InitialLoader";
-import NavigationDone from "@/components/ui/LazyLoad/NavigationDone";
+import NavigationDone from "@/components/ui/LazyLoad/NavigationProgress";
 
 const nunito = Nunito({
   variable: "--font-sans",

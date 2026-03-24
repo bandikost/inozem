@@ -1,6 +1,6 @@
 import CookieBanner from "@/components/ui/CookieBanner";
 import Footer from "@/components/Layouts/Footer";
-import NavigationDone from "@/components/ui/LazyLoad/NavigationDone";
+import NavigationDone from "@/components/ui/LazyLoad/NavigationProgress";
 
 
 export default function MainLayout({ children } : Readonly<{ children: React.ReactNode }>) {

@@ -1,45 +1,44 @@
 'use client'
 
 import { Clock9 } from "lucide-react";
-import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { getHourWord } from "./GetHourWord";
 import { HIGHER_SPECIALTIES, SECONDARY_SPECIALTIES } from "@/data/specialties";
+import AppLink from "./LazyLoad/AppLink";
+import { ProgramRow } from "@/lib/programm";
 
 
-export default function InputPrograms({ programs }: { programs: any[] }) {
+export default function InputPrograms({ programs }: { programs: ProgramRow[] }) {
     const [inputValue, setInputValue] = useState("")
-    const [findTotal, setFindTotal] = useState(programs)
     const [visibleItems, setVisibleItems] = useState(12)
     const [education, setEducation] = useState("")
     const [specialization, setSpecialization] = useState("")
 
     const handleShowMore = () => setVisibleItems(prev => prev + 12)
 
-    useEffect(() => {
-        let filtered = programs
+    const filteredPrograms = useMemo(() => {
+    let filtered = programs
 
-        if (inputValue) {
-            filtered = filtered.filter(p =>
-                p.name.toLowerCase().includes(inputValue.toLowerCase())
-            )
-        }
+    if (inputValue) {
+        filtered = filtered.filter(p =>
+            p.name.toLowerCase().startsWith(inputValue.toLowerCase())
+        )
+    }
 
-        if (education) {
-            filtered = filtered.filter(p =>
-                p.education?.toLowerCase() === education.toLowerCase()
-            )
-        }
+    if (education) {
+        filtered = filtered.filter(p =>
+            p.education?.toLowerCase() === education.toLowerCase()
+        )
+    }
 
-        if (specialization) {
-            filtered = filtered.filter(p =>
-                p.specialization?.toLowerCase().includes(specialization.toLowerCase())
-            )
-        }
+    if (specialization) {
+        filtered = filtered.filter(p =>
+            p.specialization?.toLowerCase().startsWith(specialization.toLowerCase())
+        )
+    }
 
-        setFindTotal(filtered)
-        setVisibleItems(12)
-    }, [inputValue, education, specialization, programs])
+    return filtered
+}, [inputValue, education, specialization, programs])
 
     
     return (
@@ -86,7 +85,7 @@ export default function InputPrograms({ programs }: { programs: any[] }) {
 
     </div>
 
-        {findTotal.length === 0 ? (
+        {filteredPrograms.length === 0 ? (
                 <p className="mt-10 text-zinc-700 !text-lg flex items-center justify-center">
                     Программ не найдено.
                 </p> 
@@ -97,7 +96,7 @@ export default function InputPrograms({ programs }: { programs: any[] }) {
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-10">
                 
             
-                {findTotal.slice(0, visibleItems).map(program => (
+                {filteredPrograms.slice(0, visibleItems).map(program => (
                     <div key={program.id} className="flex flex-col justify-between border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition bg-card">
                     <h3 className="text-lg !font-semibold text-prpl mb-4">
                     {program.name.length > 58 ? program.name.slice(0, 58) + "..." : program.name}
@@ -119,14 +118,14 @@ export default function InputPrograms({ programs }: { programs: any[] }) {
                            
                         </div>
 
-                    <Link href={`/programs/${program.slug}`} className="button-more ">Подробнее</Link>
+                    <AppLink href={`/programs/${program.slug}`} className="button-more ">Подробнее</AppLink>
                     </div>
                     </div>
                 ))}
 
             </div>
 
-            {visibleItems < findTotal.length && (
+            {visibleItems < filteredPrograms.length && (
                 <button className="button-more mt-6" onClick={handleShowMore}>
                     Показать ещё
                 </button>

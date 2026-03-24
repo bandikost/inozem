@@ -153,12 +153,18 @@ a {
 }
 
 #nprogress .bar {
-  background: #7c3aed; 
-  height: 3px;
+  background: #0a9688!important; 
+  height: 6px !important;        
+  top: 0 !important;           
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #0a9688, 0 0 5px #0a9688 !important;
+  height: 100% !important;    
 }
 
 #nprogress .spinner {
-  display: none;
+  display: none !important;   
 }
 
 @media (min-width: 1024px) and (max-width: 1150px) {
