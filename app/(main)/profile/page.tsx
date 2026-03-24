@@ -1,4 +1,3 @@
-import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { Book, HatGlasses } from "lucide-react"
 import LogoutButton from "@/components/ui/Buttons/LogoutButton"
@@ -7,14 +6,12 @@ import { getIndividProgram, ProgramRow } from "@/lib/programm"
 import Link from "next/link"
 import { getProfile } from "@/lib/getProfile"
 import { UserRow } from "@/app/types/user"
+import TokenCheck from "@/components/token/token"
 
 
 export default async function ProfilePage() {
 
-  const cookieStore = await cookies()
-  const token = cookieStore.get("token")?.value
-
-  if (!token) redirect("/login")
+  const token = await TokenCheck()
 
   let user: UserRow
   let programs: ProgramRow[] = []

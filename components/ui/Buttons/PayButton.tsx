@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 interface Props {
   price: string
@@ -9,7 +9,9 @@ interface Props {
 }
 
 export default function PayButton({ price, programId, userId, name, time }: Props) {
+
   const handleClick = async () => {
+    
     const res = await fetch("/api/yookassa/create-payment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -21,6 +23,11 @@ export default function PayButton({ price, programId, userId, name, time }: Prop
         time
       }),
     })
+
+    if (res.status === 401) {
+    window.location.href = "/login"
+    return
+  }
 
     const data = await res.json();
     window.location.assign(data.url);

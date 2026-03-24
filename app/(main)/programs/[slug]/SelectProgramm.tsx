@@ -6,7 +6,6 @@ import PayButton from "@/components/ui/Buttons/PayButton";
 import { ProgramRow } from "@/lib/programm";
 import { getHourWord } from "@/components/ui/GetHourWord";
 
-
 interface ProgramSelectProps {
   program: ProgramRow;
   userId: number;
@@ -58,7 +57,10 @@ export default function ProgramSelect({ program, userId, initialTime }: ProgramS
       <div className="flex items-center gap-4 mt-2">
         <p>Цена: {selectedPrice}₽</p>
 
-        <PayButton price={selectedPrice} programId={program.id} userId={userId} name={program.name} time={selectedTime} />
+      <PayButton price={selectedPrice} programId={program.id} userId={userId} name={program.name} time={selectedTime} />
+
+        
+
       </div>
     </div>
   );
