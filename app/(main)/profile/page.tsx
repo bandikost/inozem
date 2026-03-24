@@ -5,7 +5,8 @@ import LogoutButton from "@/components/ui/Buttons/LogoutButton"
 import ImageWithSkeleton from "@/components/ui/LazyLoad/ImageWithSkeleton"
 import { getIndividProgram, ProgramRow } from "@/lib/programm"
 import Link from "next/link"
-import { getProfile, User } from "@/lib/getProfile"
+import { getProfile } from "@/lib/getProfile"
+import { UserRow } from "@/app/types/user"
 
 
 export default async function ProfilePage() {
@@ -15,7 +16,7 @@ export default async function ProfilePage() {
 
   if (!token) redirect("/login")
 
-  let user: User
+  let user: UserRow
   let programs: ProgramRow[] = []
 
   try {
