@@ -1,6 +1,5 @@
 import { getProgramBySlug, hasUserProgram } from "@/lib/programm";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import ProgramSelect from "./SelectProgramm";
 import { getProfile } from "@/lib/getProfile";
 
@@ -11,21 +10,26 @@ interface ProgramsPageProps {
 
 export default async function Page({ params }: ProgramsPageProps) {
   const { slug } = await params;
-  const cookieStore = await cookies()
-  const token = cookieStore.get("token")?.value
-  if (!token) redirect("/login")
+const cookieStore = await cookies();
+const token = cookieStore.get("token")?.value;
 
-  
-  const programPromise = getProgramBySlug(slug)
-  const userPromise = getProfile(token)
-  const program = await programPromise
-  const user = await userPromise
+const program = await getProgramBySlug(slug);
 
-  if (!program) {
-    return <div className="mt-20 text-center">Программа не найдена</div>;
+if (!program) {
+  return <div className="mt-20 text-center">Программа не найдена</div>;
+}
+
+let user = null;
+let hasAccess = false;
+
+if (token) {
+  try {
+    user = await getProfile(token);
+    hasAccess = await hasUserProgram(user.id, program.id);
+  } catch (err) {
+    console.error("Не удалось загрузить профиль:", err);
   }
-
-  const hasAccess = await hasUserProgram(user.id, program.id)
+}
   const dates = program.dates.split('\n').filter(Boolean)
 
   return (
@@ -46,8 +50,8 @@ export default async function Page({ params }: ProgramsPageProps) {
           ))}
         </ul>
       </time>
-        
-       <ProgramSelect program={program} userId={user.id} /> 
+       <strong className="text-2xl">Если пользователь решит оплатить, то сначала проверять токен, если его нет - кидать на /login</strong> 
+       <ProgramSelect program={program} userId={user ? user.id : 0} /> 
 
         </>
       ) : (    
