@@ -1,18 +1,18 @@
 "use client"
 
-import { User } from '@/lib/getProfile'
+import { UserRow } from '@/app/types/user'
 import { ProgramRow } from '@/lib/programm'
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
 
 interface UsersClientProps {
-  users: User[]
+  users: UserRow[]
   programs: ProgramRow[]
 }
 
 export default function UsersClient({ users, programs }: UsersClientProps) {
 
-  const [ascending, setAscending] = useState(true)
+  const [ascending, ] = useState(true)
   const [value, setValue] = useState('')
   const [visibleItems, setVisbileItems] = useState(8)
   const [selectedPrograms, setSelectedPrograms] = useState<Record<number, number>>({})

@@ -1,6 +1,6 @@
 'use client'
 import { learning } from "@/data/learning"
-import { Link, MoveRight } from "lucide-react"
+import { MoveRight } from "lucide-react"
 import { useState } from "react"
 
 

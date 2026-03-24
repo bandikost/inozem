@@ -1,20 +1,6 @@
-export interface User {
-  id: number
-  name: string
-  last_name: string
-  patronymic: string | null
-  education_level: string
-  specialization?: string
-  email?: string
-  phone?: string
-  isTeacher: boolean
-  photo_url: string | null
-  created_at: string
-  isAdmin: boolean
-  program_name: string | null
-}
+import { UserRow } from "@/app/types/user"
 
-export async function getProfile(token: string): Promise<User> {
+export async function getProfile(token: string): Promise<UserRow> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/profile`, {
     headers: {
       Cookie: `token=${token}`,
