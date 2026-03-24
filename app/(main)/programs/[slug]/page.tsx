@@ -15,20 +15,14 @@ export default async function Page({ params }: ProgramsPageProps) {
   const token = cookieStore.get("token")?.value
   if (!token) redirect("/login")
 
+  
   const programPromise = getProgramBySlug(slug)
   const userPromise = getProfile(token)
   const program = await programPromise
+  const user = await userPromise
 
   if (!program) {
     return <div className="mt-20 text-center">Программа не найдена</div>;
-  }
-
-  let user
-
-  try { 
-    user = await userPromise 
-  } catch {
-    redirect("/login") 
   }
 
   const hasAccess = await hasUserProgram(user.id, program.id)
@@ -56,18 +50,12 @@ export default async function Page({ params }: ProgramsPageProps) {
        <ProgramSelect program={program} userId={user.id} /> 
 
         </>
-       
-      ) : (
-        
+      ) : (    
         <div className="mt-2">
           <h2>У вас есть доступ!</h2>
         </div>
       
-      )}
-
-      
-
-      
+      )}  
     </section>
   );
 }

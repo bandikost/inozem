@@ -4,8 +4,8 @@ import { Clock9 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { getHourWord } from "./GetHourWord";
 import { HIGHER_SPECIALTIES, SECONDARY_SPECIALTIES } from "@/data/specialties";
-import AppLink from "./LazyLoad/AppLink";
 import { ProgramRow } from "@/lib/programm";
+import Link from "next/link";
 
 
 export default function InputPrograms({ programs }: { programs: ProgramRow[] }) {
@@ -118,7 +118,7 @@ export default function InputPrograms({ programs }: { programs: ProgramRow[] }) 
                            
                         </div>
 
-                    <AppLink href={`/programs/${program.slug}`} className="button-more ">Подробнее</AppLink>
+                    <Link href={`/programs/${program.slug}`} className="button-more ">Подробнее</Link>
                     </div>
                     </div>
                 ))}

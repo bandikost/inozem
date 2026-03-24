@@ -13,7 +13,7 @@ export default async function Programms() {
         <section className="w-full flex flex-col gap-4 mt-20 px-4">
             <div className="flex flex-col items-center justify-center tablet:items-start">
                 <h2 className="text-prpl">Программы обучения</h2>
-                <p className="mt-2 text-center">Какая то информация защпшсгшподпкылжад asdasdasd</p>
+                <p className="mt-2 text-center">Проводим программы, подходящие вашему уровню образования и специализации.</p>
             </div> 
         
             <div className="flex flex-col items-center justify-center">
@@ -21,7 +21,11 @@ export default async function Programms() {
                 {favoritePrograms.length === 0 ? (
                     <p className="p-4 text-center text-zinc-500">Программы временно недоступны</p>
                 ) : (
+                    <div>
+                        <h2 className="mt-10 text-center text-prpl">Самые популярные 🔥</h2>
+                        
                     <div className="grid grid-cols-1 tablet:grid-cols-3 gap-4 mt-8">
+                        
                         {favoritePrograms.map((program) => (
                             <div key={program.id} className="flex flex-col justify-between gap-8 p-4 rounded-lg shadow-md border border-gray-300 bg-card">
                                     <h3 className="md:text-left text-center !font-semibold text-prpl">{program.name.length > 58 ? program.name.slice(0, 58) + "..." : program.name}</h3>
@@ -45,8 +49,10 @@ export default async function Programms() {
                             </div>
                         ))}
                     </div>
+                    </div>
                 )}
-                <Link href={"/programs"} className="!text-lg  mt-4 hover:opacity-80 hover:underline">Перейти в общий раздел обучения</Link>
+                <Link href={"/programs"} className="!text-lg !text-white bg-blue py-1.5 px-3 cursor-pointer rounded-md mt-8 hover:opacity-80 hover:underline">Перейти в общий раздел обучения</Link>
+
             </div>
             
         </section>

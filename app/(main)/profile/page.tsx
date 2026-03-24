@@ -55,10 +55,10 @@ export default async function ProfilePage() {
     else endDate.setFullYear(endDate.getFullYear() + 1)
 
     return (
-      <Link key={p.id} href={`/programs/${p.slug}`} className="hover:bg-gray-100">
+      <Link key={p.id} href={`/programs/${p.slug}`} className="hover:bg-[#be71cc] hover:!text-white transition-colors">
         <li className="px-4 border-y border-gray-300 py-8">
           <p className="font-semibold !text-xl ">{p.name}</p>
-          <p className="!text-sm text-gray-500">
+          <p className="!text-sm">
             До: {endDate.toLocaleDateString()}
           </p>
         </li>

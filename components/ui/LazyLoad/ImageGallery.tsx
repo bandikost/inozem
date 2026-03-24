@@ -1,7 +1,6 @@
 import ImageWithSkeleton from "./ImageWithSkeleton"
 import VideoPreview from "./VideoPreview"
 
-
 interface Media {
   type: "image" | "video"
   src: string
@@ -29,13 +28,8 @@ export default function MediaGallery({ items, cols = "" }: Props) {
           )
         }
 
-        return (
-          <VideoPreview
-            key={`${item.src}-${i}`}
-            src={item.src}
-            preview={item.preview!}
-          />
-        )
+        return <VideoPreview key={`${item.src}-${i}`} src={item.src} preview={item.preview!}/>
+        
       })}
     </div>
   )
