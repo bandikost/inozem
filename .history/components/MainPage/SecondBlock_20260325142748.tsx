@@ -1,12 +1,8 @@
 import Link from "next/link";
 import AnimatedNumber from "./components/AnimatedNumber";
-import { getAllTeachers, getAllUsers } from "@/lib/users";
 
 
 export default async function SecondBlock() {
-
-    const users = await getAllUsers()
-    const teacher = await getAllTeachers()
 
     return (
         <section className="w-full flex flex-col  gap-4 mt-20">
@@ -16,12 +12,12 @@ export default async function SecondBlock() {
                 <p className="mt-2 text-center">Более подробная информация об академии в разделе "<Link href={"/about"} className="hover:underline">О нас</Link>"</p>
             </div>
                  <div className="flex flex-col items-center">
-            <ul className="w-full max-w-full mt-4 text-center grid grid-cols-1 md:grid-cols-3 gap-8 items-center justify-center p-4">
+            <ul className="w-full max-w-full mt-4 text-center grid grid-cols-1 md:grid-cols-3 gap-5 items-center justify-center p-4">
 
                 <li className="w-full max-w-[300px] md:max-w-full mx-auto text-blue text-3xl border border-gray-300 py-10 tablet:py-8 rounded-xl shadow-xl">
-                    Более {users.length} <p className="text-default text-sm">Обучающихся</p>
+                    {`>`}15 000 <p className="text-default text-sm">Выпускников</p>
                 </li>
-
+            
                 <li className="w-full max-w-[300px] md:max-w-full mx-auto text-prpl text-3xl border border-gray-300 py-10 tablet:py-8 rounded-xl shadow-xl ">
                     <div className="flex items-center justify-center">
                         ~ <AnimatedNumber value={10}/> минут
@@ -46,12 +42,6 @@ export default async function SecondBlock() {
                         <AnimatedNumber value={84}/>%
                     </div>
                     <p className="text-default text-sm px-3">Трудоустройства после обучения</p>
-                </li>
-                 <li className="w-full max-w-[300px] md:max-w-full mx-auto text-3xl border border-gray-300 py-8 rounded-xl shadow-xl">
-                    <div className="flex items-center justify-center text-prpl">
-                       Свыше {teacher.length}
-                    </div>
-                    <p className="text-default text-sm px-3">Преподаваталей</p>
                 </li>
                         
             </ul>

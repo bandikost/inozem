@@ -27,6 +27,11 @@ export async function getTeachers(): Promise<UserRow[]> {
 
 
 export async function getAllTeachers(): Promise<UserRow[]> {
+  const now = Date.now();
+
+  if (cachedTeachers && now - cacheTime < 30_000) {
+    return cachedTeachers;
+  }
 
   const [rows] = await db.query<UserRow[] & RowDataPacket[]>(
     `SELECT id, name, last_name, education_level, specialization,
@@ -34,6 +39,9 @@ export async function getAllTeachers(): Promise<UserRow[]> {
      FROM users
      WHERE isTeacher = 1`
   );
+
+  cachedTeachers = rows;
+  cacheTime = now;
 
   return rows;
 }

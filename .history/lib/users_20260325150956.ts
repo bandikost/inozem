@@ -35,6 +35,8 @@ export async function getAllTeachers(): Promise<UserRow[]> {
      WHERE isTeacher = 1`
   );
 
+  cachedTeachers = rows;
+
   return rows;
 }
 

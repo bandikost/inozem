@@ -13,8 +13,9 @@ const pool: mysql.Pool = global._mysqlPool ?? mysql.createPool({
   decimalNumbers: true,
   timezone: "+00:00",
   waitForConnections: true,
-  connectionLimit: 10, 
-  queueLimit: 0
+  connectionLimit: 20, 
+  queueLimit: 0,
+  connectTimeout: 10000
 });
 
 if (!global._mysqlPool) {

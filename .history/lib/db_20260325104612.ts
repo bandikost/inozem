@@ -13,8 +13,8 @@ const pool: mysql.Pool = global._mysqlPool ?? mysql.createPool({
   decimalNumbers: true,
   timezone: "+00:00",
   waitForConnections: true,
-  connectionLimit: 10, 
-  queueLimit: 0
+  connectionLimit: 5, 
+  queueLimit: 0,
 });
 
 if (!global._mysqlPool) {
@@ -23,6 +23,7 @@ if (!global._mysqlPool) {
   pool.on("connection", async (conn) => {
     await conn.query("SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci");
   });
+  
 }
 
 export const db = pool;

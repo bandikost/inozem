@@ -1,12 +1,11 @@
 import Link from "next/link";
 import AnimatedNumber from "./components/AnimatedNumber";
-import { getAllTeachers, getAllUsers } from "@/lib/users";
+import { getAllUsers } from "@/lib/users";
 
 
 export default async function SecondBlock() {
 
     const users = await getAllUsers()
-    const teacher = await getAllTeachers()
 
     return (
         <section className="w-full flex flex-col  gap-4 mt-20">
@@ -49,7 +48,7 @@ export default async function SecondBlock() {
                 </li>
                  <li className="w-full max-w-[300px] md:max-w-full mx-auto text-3xl border border-gray-300 py-8 rounded-xl shadow-xl">
                     <div className="flex items-center justify-center text-prpl">
-                       Свыше {teacher.length}
+                       <p className="text-default text-sm">Свыше </p> <AnimatedNumber value={30}/>
                     </div>
                     <p className="text-default text-sm px-3">Преподаваталей</p>
                 </li>
