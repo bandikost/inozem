@@ -9,7 +9,7 @@ export default async function ThirdBlock() {
         <section className="w-full flex flex-col gap-4 mt-20 px-4 ">
                 <div className="flex flex-col items-center tablet:items-start">
                 <h2 className="text-center text-prpl">Преподаватель месяца</h2>
-                <p className="mt-2 text-center">Какая то информация защпшсгшподпкылжад asdasdasd</p>
+                <p className="mt-2 text-center">На основе взаимодействия с учащимися</p>
             </div>
                 {teachers.length === 0 ? (
                     <p className="p-4 text-center text-zinc-500 bg-white p-4 rounded-lg shadow-md border border-gray-300">Преподаватели временно недоступны</p>
@@ -19,7 +19,7 @@ export default async function ThirdBlock() {
                             <li key={teach.id}>
                                 <div className="flex flex-col tablet:flex-row gap-6 items-center py-2 ">
                                     
-                                    <ImageWithSkeleton src={teach.photo_url} alt="Преподаватель месяца" wrapperClassName="max-w-[300px] max-h-[300px] !border-2 border-prpl" aspect="1/1"/>
+                                    <ImageWithSkeleton src={teach.photo_url} alt="Преподаватель месяца" wrapperClassName="max-w-[360px] max-h-[360px] !border-2 border-prpl" aspect="1/1"/>
                                  
                                    <div className="flex flex-col items-center tablet:items-start px-8 bg-white p-4 rounded-lg shadow-md border border-gray-300 ">
                                         <p className="!font-semibold !text-lg text-center tablet:text-left">{teach.last_name} {teach.name} {teach.patronymic} </p>

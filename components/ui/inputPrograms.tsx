@@ -101,7 +101,21 @@ export default function InputPrograms({ programs }: { programs: ProgramRow[] }) 
                     <h3 className="text-lg !font-semibold text-prpl mb-4">
                     {program.name.length > 58 ? program.name.slice(0, 58) + "..." : program.name}
                     </h3>
-                    
+                    {program.bannerName && ( 
+                                    <div className="relative bg-red-500 text-white text-center p-1 w-1/3 rounded-r -left-7 my-6">
+                                    <p className="!text-sm">{program.bannerName}</p>
+                                        <span className="absolute left-[-6px] top-[0px] w-0 h-0 
+                                            border-t-[0px] border-t-transparent 
+                                            border-b-[20px] border-b-transparent 
+                                            border-r-[10px] border-r-red-500">
+                                        </span>
+                                        <span className="absolute left-[-6px] bottom-[0px] w-0 h-0 
+                                            border-t-[20px] border-t-transparent 
+                                            border-b-[0px] border-b-transparent 
+                                            border-r-[10px] border-r-red-500">
+                                        </span>
+                                    </div>
+                                )}
                     <div className="grid gap-1">
                         <p className=""><strong className="text-blue">Даты:</strong> {program.dates.length > 30 ? program.dates.slice(0, 23) + ` и...` : program.dates}</p>
                         <p className=""><strong className="text-blue">Образование:</strong> {program.education}</p>

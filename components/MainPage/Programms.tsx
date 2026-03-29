@@ -24,16 +24,33 @@ export default async function Programms() {
                     <div>
                         <h2 className="mt-10 text-center text-prpl">Самые популярные 🔥</h2>
                         
-                    <div className="grid grid-cols-1 tablet:grid-cols-3 gap-4 mt-8">
+                    <div className="grid grid-cols-1 tablet:grid-cols-3 gap-6 mt-8">
                         
                         {favoritePrograms.map((program) => (
                             <div key={program.id} className="flex flex-col justify-between gap-8 p-4 rounded-lg shadow-md border border-gray-300 bg-card">
-                                    <h3 className="md:text-left text-center !font-semibold text-prpl">{program.name.length > 58 ? program.name.slice(0, 58) + "..." : program.name}</h3>
-                                <div className="grid gap-1">
-                                    <p className=""><strong className="text-blue">Даты:</strong> {program.dates}</p>
-                                    <p className=""><strong className="text-blue">Образование:</strong> {program.education}</p>
-                                    <p className=""><strong className="text-blue">Направления:</strong> {program.specialization}</p>
-                                </div>
+                                <h3 className="md:text-left text-center !font-semibold text-prpl">{program.name.length > 58 ? program.name.slice(0, 58) + "..." : program.name}</h3>
+                        {program.bannerName && ( 
+                                    <div className="relative bg-red-500 text-white text-center p-1 w-1/3 rounded-r -left-6">
+                                    <p className="!text-sm">{program.bannerName}</p>
+                                        <span className="absolute left-[-6px] top-[0px] w-0 h-0 
+                                            border-t-[0px] border-t-transparent 
+                                            border-b-[20px] border-b-transparent 
+                                            border-r-[10px] border-r-red-500">
+                                        </span>
+                                        <span className="absolute left-[-6px] bottom-[0px] w-0 h-0 
+                                            border-t-[20px] border-t-transparent 
+                                            border-b-[0px] border-b-transparent 
+                                            border-r-[10px] border-r-red-500">
+                                        </span>
+                                    </div>
+                                )}
+                                    
+
+                            <div className="grid gap-1">
+                                <p className=""><strong className="text-blue">Даты:</strong> {program.dates}</p>
+                                <p className=""><strong className="text-blue">Образование:</strong> {program.education}</p>
+                                <p className=""><strong className="text-blue">Направления:</strong> {program.specialization.length > 40 ? program.specialization.slice(0, 40) + "..." : program.specialization}</p>
+                            </div>
 
                             <div className="flex items-center justify-between mt-6">
                                 <div className="flex flex-col"> 

@@ -9,6 +9,7 @@ export interface ProgramRow extends RowDataPacket {
   specialization: string
   dates: string
   isFavorite?: boolean
+  bannerName: string
   price: string
   created_at: string
   slug: string
@@ -25,7 +26,7 @@ export async function getPrograms(): Promise<ProgramRow[]> {
   }
 
   const [rows] = await db.query<ProgramRow[]>(
-    'SELECT id, name, slug, time, dates, education, specialization, isFavorite, description, price FROM programms'
+    'SELECT id, name, slug, time, dates, education, specialization, isFavorite, bannerName, description, price FROM programms'
   )
 
   cachedPrograms = rows
@@ -42,7 +43,7 @@ export async function getProgram(id: number): Promise<ProgramRow | null> {
   } 
 
   const [rows] = await db.query<ProgramRow[]>(
-    `SELECT id, name, time, dates, education, specialization, description, price, slug
+    `SELECT id, name, time, dates, education, specialization, description, price, slug, bannerName
      FROM programms
      WHERE id = ?`,
     [id]
@@ -55,7 +56,7 @@ export async function getProgram(id: number): Promise<ProgramRow | null> {
 
 export async function getProgramBySlug(slug: string): Promise<ProgramRow | null> {
   const [rows] = await db.query<ProgramRow[]>(
-    `SELECT id, name, slug, time, dates, education, specialization, description, price
+    `SELECT id, name, slug, time, dates, education, specialization, description, price, bannerName
      FROM programms
      WHERE slug = ?`,
     [slug]

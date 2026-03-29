@@ -13,7 +13,7 @@ export default async function SecondBlock() {
 
             <div className="flex flex-col items-center tablet:items-start px-4">
                 <h2 className="text-prpl">О нас</h2>
-                <p className="mt-2 text-center">Более подробная информация об академии в разделе "<Link href={"/about"} className="hover:underline">О нас</Link>"</p>
+                <p className="mt-2 text-center">Более подробная информация об академии <Link href={"/about"} className="hover:underline">в разделе </Link></p>
             </div>
                  <div className="flex flex-col items-center">
             <ul className="w-full max-w-full mt-4 text-center grid grid-cols-1 md:grid-cols-3 gap-8 items-center justify-center p-4">
