@@ -22,10 +22,10 @@ export default async function ThirdBlock() {
                                     <ImageWithSkeleton src={teach.photo_url} alt="Преподаватель месяца" wrapperClassName="max-w-[360px] max-h-[360px] !border-2 border-prpl" aspect="1/1"/>
                                  
                                    <div className="flex flex-col items-center tablet:items-start px-8 bg-white p-4 rounded-lg shadow-md border border-gray-300 ">
-                                        <p className="!font-semibold !text-lg text-center tablet:text-left">{teach.last_name} {teach.name} {teach.patronymic} </p>
-                                        <p className="py-2 !font-normal text-center tablet:text-left">{teach.education_level} - {teach.specialization}</p>
-                                        <p className="!text-md !font-normal my-4 text-center tablet:text-left">{teach.Teacher_text}</p>
-                                        <Link href={"/"} className="button-more">Перейти к программам</Link>
+                                        <p className="!font-medium !text-lg text-center tablet:text-left">{teach.last_name} {teach.name} {teach.patronymic} </p>
+                                        <p className="py-2 !font-base text-center tablet:text-left">{teach.education_level} - {teach.specialization}</p>
+                                        <p className="!text-md !font-base my-4 text-center tablet:text-left">{teach.Teacher_text}</p>
+                                        <Link href={"/programs"} className="button-more">Перейти к программам</Link>
                                    </div>
                                 </div>
                             </li>

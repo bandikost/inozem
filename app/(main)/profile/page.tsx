@@ -30,10 +30,10 @@ export default async function ProfilePage() {
         Личный кабинет
       </h1>
 
-      <div className="grid grid-cols-1 tablet:grid-cols-2 gap-8 mt-8">
+      <div className="grid grid-cols-1 tablet:grid-cols-3 gap-8 mt-8">
 
         <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white pt-3">
-          <h2 className="text-prpl font-semibold text-2xl p-4">Программы обучения</h2>
+          <h3 className="text-prpl font-semibold text-2xl p-4">Программы обучения</h3>
           {programs.length === 0 && (
             <p className="text-gray-500 px-5 pb-4">
               Вы пока не записаны ни на одну программу
@@ -65,6 +65,12 @@ export default async function ProfilePage() {
 </ul>
 
         </div>
+        <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white pt-3">
+        <h3 className="text-prpl font-semibold text-2xl p-4">Избранное</h3>
+          <ul>
+            <li className="px-4 border-y border-gray-300 py-8 text-default">Данная возможность находится в разработке </li>
+          </ul>
+      </div>
       {user.isTeacher ? ( 
         <div className="grid w-full items-center grid-cols-1 md:grid-cols-2 gap-4 border border-gray-300 mt-8 rounded shadow-2xl bg-white"> 
         {user.photo_url && ( 
@@ -83,7 +89,8 @@ export default async function ProfilePage() {
             <li> <strong>Отчество:</strong> <span className="ml-1">{user.patronymic ?? ""}</span> </li> 
           </ul> <LogoutButton /> 
         </div> 
-      </div> ) : (
+      </div> 
+      ) : (
 
         <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white">
           {!user.isTeacher && (

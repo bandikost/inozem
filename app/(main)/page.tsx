@@ -8,8 +8,9 @@ export default function Home() {
   return (
       <div className="flex flex-col w-full mt-28 mb-10 items-center justify-center ">
         <FirstBlock />
-        <SecondBlock />
+       
         <Programms />
+         <SecondBlock />
         <ThirdBlock />
       </div>
   );

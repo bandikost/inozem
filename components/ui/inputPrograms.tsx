@@ -1,6 +1,6 @@
 'use client'
 
-import { Clock9 } from "lucide-react";
+import { Clock9, HeartIcon } from "lucide-react";
 import { useMemo, useState } from "react";
 import { getHourWord } from "./GetHourWord";
 import { HIGHER_SPECIALTIES, SECONDARY_SPECIALTIES } from "@/data/specialties";
@@ -97,10 +97,11 @@ export default function InputPrograms({ programs }: { programs: ProgramRow[] }) 
                 
             
                 {filteredPrograms.slice(0, visibleItems).map(program => (
-                    <div key={program.id} className="flex flex-col justify-between border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition bg-card">
-                    <h3 className="text-lg !font-semibold text-prpl mb-4">
+                    <div key={program.id} className="flex flex-col justify-between border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition bg-card relative">
+                    <h3 className="md:text-left text-center !font-semibold text-prpl !text-xl">
                     {program.name.length > 58 ? program.name.slice(0, 58) + "..." : program.name}
                     </h3>
+                    <HeartIcon className="absolute top-4 right-4 cursor-pointer" size={27} fill="white" stroke="red" strokeWidth={1}/>
                     {program.bannerName && ( 
                                     <div className="relative bg-red-500 text-white text-center p-1 w-1/3 rounded-r -left-7 my-6">
                                     <p className="!text-sm">{program.bannerName}</p>
@@ -125,7 +126,7 @@ export default function InputPrograms({ programs }: { programs: ProgramRow[] }) 
                     <div className="flex items-center justify-between mt-6">
                         <div className="flex flex-col"> 
                             {program.time && (
-                                <p className="font-medium text-zinc-800 flex items-center">
+                                <p className="!font-normal text-zinc-800 flex items-center">
                                 <Clock9 className="w-4 h-4 mr-1 mt-0.1" />{program.time.length > 3 ? `от ${program.time.slice(0, 2)}` : program.time} академ. {getHourWord(Number(program.time))}
                                 </p>
                             )}
