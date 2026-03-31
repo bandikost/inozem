@@ -31,7 +31,7 @@ export default async function Programms() {
                                 
                                
                         {program.bannerName && ( 
-                                    <div className="relative bg-red-500 text-white text-center p-1 w-2/4 sm:w-1/3 rounded-r -left-6">
+                                    <div className="relative bg-red-500 text-white text-center p-1 w-1/3 rounded-r -left-6">
                                     <p className="!text-sm">{program.bannerName}</p>
                                         <span className="absolute left-[-6px] top-[0px] w-0 h-0 
                                             border-t-[0px] border-t-transparent 
@@ -56,7 +56,7 @@ export default async function Programms() {
                             <div className="flex items-center justify-between mt-6">
                                 <div className="flex flex-col"> 
                                     {program.time && (
-                                        <p className="!font-normal text-zinc-800 flex items-center !text-base">
+                                        <p className="!font-normal text-zinc-800 flex items-center">
                                         <Clock9 className="w-4 h-4 mr-1 mt-0.1" />{program.time.length > 3 ? `от ${program.time.slice(0, 2)}` : program.time} академ. {getHourWord(Number(program.time))}
                                         </p>
                                     )}

@@ -126,7 +126,7 @@ export default function InputPrograms({ programs }: { programs: ProgramRow[] }) 
                     <div className="flex items-center justify-between mt-6">
                         <div className="flex flex-col"> 
                             {program.time && (
-                                <p className="!font-normal text-zinc-800 flex items-center !text-base">
+                                <p className="!font-normal text-zinc-800 flex items-center">
                                 <Clock9 className="w-4 h-4 mr-1 mt-0.1" />{program.time.length > 3 ? `от ${program.time.slice(0, 2)}` : program.time} академ. {getHourWord(Number(program.time))}
                                 </p>
                             )}
