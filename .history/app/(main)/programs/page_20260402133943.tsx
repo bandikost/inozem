@@ -1,0 +1,16 @@
+import Content from "@/components/ui/Programs/Content";
+import { getPrograms } from "@/lib/programm";
+
+
+
+export default async function Page() {
+  const programs = await getPrograms()
+
+
+  return (
+    <>
+    <Content programs={programs} />
+    </>
+    
+  )
+}
