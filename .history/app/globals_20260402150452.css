@@ -168,10 +168,6 @@ a {
   display: none !important;   
 }
 
-.custom-text {
-  color: #612062;
-}
-
 @media (min-width: 1024px) and (max-width: 1150px) {
   .md-custom-flex-col {
     flex-direction: column;

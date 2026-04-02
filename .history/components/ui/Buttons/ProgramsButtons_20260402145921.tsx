@@ -36,7 +36,7 @@ export default function ProgramsButtons({ setActiveId, activeId }: ProgramsButto
   setTimeout(() => {
     setMenuOpen(false)
     setClosing(false)
-  }, 100)
+  }, 300)
 }
 
   return createPortal(
@@ -51,9 +51,17 @@ export default function ProgramsButtons({ setActiveId, activeId }: ProgramsButto
 
       {(menuOpen || closing) && (
         <div className="!fixed inset-0 z-50 2xl:hidden">
-          <div className={`absolute inset-0 transition-opacity duration-300 ${closing ? 'opacity-0' : 'opacity-100'} bg-black/40`} onClick={handleClose}/>
+          <div
+  className={`absolute inset-0 bg-black/40 transition-opacity duration-300
+  ${menuOpen ? 'opacity-100' : 'opacity-0'}`}
+  onClick={() => setMenuOpen(false)}
+/>
         
-          <div className={`fixed -left-1 top-10 translate-y-2/3 h-full w-72 bg-white shadow-xl p-4 rounded-md ${closing ? 'animate-slideOut' : 'animate-slideIn'}`}>
+          <div
+  className={`fixed top-0 left-0 h-full w-72 bg-white shadow-xl p-4 z-50
+  transform transition-transform duration-300 ease-out
+  ${menuOpen ? 'translate-x-0' : '-translate-x-full'}`}
+>
             <div className="flex flex-col border border-gray-300 rounded-md text-base">
               <li className='!text-[#212127] hover:bg-prpl hover:!text-white list-none rounded-md !text-lg'><ButtonItem id={1} icon={Files} text="Форма, Анкеты, Заявления" /></li>
               <hr className='border border-gray-300' />

@@ -36,7 +36,7 @@ export default function ProgramsButtons({ setActiveId, activeId }: ProgramsButto
   setTimeout(() => {
     setMenuOpen(false)
     setClosing(false)
-  }, 100)
+  }, 300)
 }
 
   return createPortal(

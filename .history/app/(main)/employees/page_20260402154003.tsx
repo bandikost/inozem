@@ -17,17 +17,17 @@ return (
             .map(teacher => (
                 <div key={teacher.id} className="flex list-none border border-gray-300  mt-8 rounded-md shadow-2xl bg-white">
                     {teacher.photo_url ? (
-                        <ImageWithSkeleton
-                            src={teacher.photo_url}
-                            alt={`Сотрудник ${teacher.last_name}`}
-                            wrapperClassName="mr-3 h-[200px] w-[200px] rounded-md object-cover"
-                            aspect="1/1"
-                        />
-                        ) : (
-                        <div className="mr-3 h-[200px] w-[200px] rounded-md bg-gray-200 flex items-center justify-center">
-                            Нет фото
-                        </div>
-                        )}
+  <ImageWithSkeleton
+    src={teacher.photo_url}
+    alt={`Сотрудник ${teacher.last_name}`}
+    wrapperClassName="mr-3 h-[200px] w-[200px] rounded-md object-cover"
+    aspect="1/1"
+  />
+) : (
+  <div className="mr-3 h-[200px] w-[200px] rounded-md bg-gray-200 flex items-center justify-center">
+    Нет фото
+  </div>
+)}
                     <ul className="pt-2">
                         <li className="!text-lg !font-medium text-prpl">{teacher.last_name} {teacher.name} {teacher.patronymic}</li>
                         <li className="my-2 max-w-[300px]">{teacher.Teacher_text}</li>
@@ -41,7 +41,7 @@ return (
             {filtredTeachers
             .slice(10, )
             .map(teacher => (
-                <div key={teacher.id} className="flex list-none border border-gray-300  mt-8 rounded-md shadow-2xl bg-white">
+                <div key={teacher.id} className="grid grid-cols-2 list-none border border-gray-300  mt-8 rounded shadow-2xl bg-white ">
                     {teacher.photo_url ? (
                         <ImageWithSkeleton
                             src={teacher.photo_url}
@@ -54,9 +54,9 @@ return (
                             Нет фото
                         </div>
                         )}
-                    <ul className="pt-2">
-                        <li className="!text-lg !font-medium text-prpl">{teacher.last_name} {teacher.name} {teacher.patronymic}</li>
-                        <li className="my-2 max-w-[300px]">{teacher.Teacher_text}</li>
+                    <ul>
+                        <li className="!text-lg !font-semibold">{teacher.last_name} {teacher.name} {teacher.patronymic}</li>
+                        <li className="my-2">{teacher.Teacher_text}</li>
                     </ul> 
                 </div>
             ))}

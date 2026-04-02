@@ -94,7 +94,7 @@ export default function InputPrograms({ programs }: { programs: ProgramRow[] }) 
             
                 {filteredPrograms.slice(0, visibleItems).map(program => (
                     <div key={program.id} className="flex flex-col justify-between border border-zinc-200 rounded-xl p-6 bg-white shadow-xl transition bg-card relative">
-                    <h3 className="text-left md:text-center !font-semibold custom-text">
+                    <h3 className="text-center !font-semibold text-prpl">
                     {program.name.length > 58 ? program.name.slice(0, 58) + "..." : program.name}
                     </h3>
                     

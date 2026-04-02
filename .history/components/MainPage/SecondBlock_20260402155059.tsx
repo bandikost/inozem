@@ -16,7 +16,7 @@ export default async function SecondBlock() {
             </div>
 
             <div className="flex flex-col items-center">
-                <ul className=" mt-4 text-center grid grid-cols-1 sm:grid-cols-2 computer:grid-cols-4 gap-8 items-center justify-center p-4">
+                <ul className=" mt-4 text-center grid grid-cols-1 ыь:grid-cols-2 computer:grid-cols-4 gap-8 items-center justify-center p-4">
 
                     <li className="bg-card w-[270px] h-[270px] text-center flex flex-col justify-center text-prpl text-3xl border border-gray-300 py-10 tablet:py-8 rounded-xl shadow-2xl">
                         Более {users.length} <p className="text-default  text-sm">Обучающихся</p>

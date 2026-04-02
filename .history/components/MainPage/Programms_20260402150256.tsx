@@ -27,7 +27,7 @@ export default async function Programms() {
                         
                         {favoritePrograms.map((program) => (
                             <div key={program.id} className="flex flex-col justify-between gap-8 p-4 rounded-lg shadow-md border border-gray-300 bg-card relative">
-                                <h3 className="md:text-left text-center !font-semibold custom-text">{program.name.length > 58 ? program.name.slice(0, 58) + "..." : program.name}</h3>
+                                <h3 className="md:text-left text-center !font-semibold text-default opacity-80 !text-xl">{program.name.length > 58 ? program.name.slice(0, 58) + "..." : program.name}</h3>
                                 
                                
                         {program.bannerName && ( 

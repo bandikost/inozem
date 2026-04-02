@@ -61,7 +61,7 @@ h2 {
 
 h3 {
   font-size: 1.25rem; 
-  line-height: 1.2rem; 
+  line-height: 1rem; 
 }
 
 p {
@@ -166,10 +166,6 @@ a {
 
 #nprogress .spinner {
   display: none !important;   
-}
-
-.custom-text {
-  color: #612062;
 }
 
 @media (min-width: 1024px) and (max-width: 1150px) {
