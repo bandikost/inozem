@@ -29,7 +29,7 @@ export default async function ThirdBlock() {
                                    </div>
                                 </div>
                             </li>
-                        ))}
+                         ))}
                     </ul>
                 )}
    

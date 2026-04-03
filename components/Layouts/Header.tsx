@@ -8,7 +8,7 @@ const Header = () => {
 
   const items = [
     {
-      label: "Компания",
+      label: "Академия",
       bgColor: "#754883",
       textColor: "#fff",
       links: [
