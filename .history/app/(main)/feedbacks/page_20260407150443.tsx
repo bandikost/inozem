@@ -3,6 +3,7 @@ import { Star } from "lucide-react";
 import { cookies } from "next/headers";
 import FeedbackForm from "./FeedbackForm";
 import { getProfile } from "@/lib/getProfile";
+import Feedbacks from "./Feedbacks";
 
 
 export const metadata = {
@@ -32,19 +33,7 @@ export default async function Page() {
       
       <div className="border border-gray-300 shadow-2xl rounded-md p-4 w-[460px]">
         <h2 className="text-prpl !text-xl text-center">Отзывы оставленные на сайте</h2>
-        {feedback.map(feed => (
-          <div key={feed.id} className="border border-gray-300 shadow rounded-md p-4 mt-5">
-            <p className="!text-xl mb-1">{feed.last_name} {feed.name} {feed.patronymic}</p>
-            <hr className="border border-gray-300" />
-            <p className="mt-2 mb-4 !text-lg">{feed.user_text}</p>
-
-            <div className="grid grid-cols-2 w-full mt-6">
-              <p className="text-left opacity-80">{new Date(feed.created_at).toLocaleDateString("ru-RU", {day: "2-digit", month: "long", year: "numeric"})}</p>
-              <p className="flex justify-end items-center opacity-80">{feed.rate} <Star className="-mt-1" fill="#FFCC00" stroke="none" size={18} /></p>
-            </div>
-
-          </div>
-        ))}
+          <Feedbacks />
       </div>
 
 </div>

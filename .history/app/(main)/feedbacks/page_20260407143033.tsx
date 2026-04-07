@@ -40,7 +40,7 @@ export default async function Page() {
 
             <div className="grid grid-cols-2 w-full mt-6">
               <p className="text-left opacity-80">{new Date(feed.created_at).toLocaleDateString("ru-RU", {day: "2-digit", month: "long", year: "numeric"})}</p>
-              <p className="flex justify-end items-center opacity-80">{feed.rate} <Star className="-mt-1" fill="#FFCC00" stroke="none" size={18} /></p>
+              <p className="flex justify-end items-center opacity-80">{feed.rate} <Star className="-mt-1" fill="#FFCC00" stroke="none" size={16} /></p>
             </div>
 
           </div>
