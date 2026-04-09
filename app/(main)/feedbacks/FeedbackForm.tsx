@@ -42,7 +42,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="Ваше имя" />
             <input required className="border py-1 px-2 border-gray-300 rounded-md w-[400px] text-default text-lg"
                 value={patronymic} onChange={e => setPatronymic(e.target.value)} placeholder="Ваше отчество" />
-            <textarea required maxLength={1000} className="border py-1 px-2 border-gray-300 rounded-md min-h-[200px] w-[400px] text-default text-lg"
+            <textarea required maxLength={500} className="border py-1 px-2 border-gray-300 rounded-md min-h-[300px] w-[400px] text-default text-lg"
                 value={text} onChange={e => setText(e.target.value)} placeholder="Ваш текст" />  
             <label className="!text-lg">Ваша оценка:</label>      
             <select required className="cursor-pointer border py-1 px-2 border-gray-300 rounded-md w-[400px] text-default text-lg -mt-1" value={rate} onChange={e => setRate(e.target.value)}>

@@ -12,6 +12,9 @@ export default async function Programms() {
     return (
         <section className="w-full flex flex-col gap-4 mt-20 px-4">
             <div className="flex flex-col items-center justify-center tablet:items-start">
+                <h1 className="mb-8">Последнее обновление: страница отзывов, страница мероприятий, страница обучения <br/>
+                <span className="!text-sm mt-4">Кнопки "скрыть фильтр" и "хочу оставить отзыв" - в процессе</span><br/>
+                <span className="!text-sm mt-4">Оптимизация всех загрузок и переход подгрузка</span></h1>
                 <h2 className="text-prpl">Программы обучения</h2>
                 <p className="mt-2 text-center">Проводим программы, подходящие вашему уровню образования и специализации.</p>
             </div> 

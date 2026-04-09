@@ -1,4 +1,4 @@
-import Content from "@/components/ui/Programs/Content";
+import InputPrograms from "@/components/ui/Programs/inputPrograms";
 import { getPrograms } from "@/lib/programm";
 
 export const metadata = {
@@ -8,7 +8,10 @@ export const metadata = {
 
 export default async function Page() {
   const programs = await getPrograms()
-  return  <Content programs={programs} />
+  return  (
+    <section className="flex flex-col justify-center px-4 mt-27 relative">
+        <InputPrograms programs={programs} />
+    </section>
+  )
  
-    
 }

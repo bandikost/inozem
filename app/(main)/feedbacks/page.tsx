@@ -3,6 +3,7 @@ import { Star } from "lucide-react";
 import { cookies } from "next/headers";
 import FeedbackForm from "./FeedbackForm";
 import { getProfile } from "@/lib/getProfile";
+import FeedbacksCarousel from "./Feedbacks";
 
 
 export const metadata = {
@@ -23,33 +24,21 @@ export default async function Page() {
       <h1 className="mt-27 text-prpl text-center">Отзывы об академии</h1>
 
 <div className="grid md:grid-cols-2 gap-6 mt-10 justify-items-center">
-    <div style={{ width: '460px', height: '600px', overflow: 'hidden', position: 'relative' }}>
-        <iframe style={{width: '100%', height: '100%', border: '1px solid #c5c3c3', borderRadius: '8px', boxSizing: 'border-box'}} src="https://yandex.ru/maps-reviews-widget/1135084160?comments"></iframe>
-        <a href="https://yandex.ru/maps/org/akademiya_meditsinskogo_obrazovaniya_im_f_i_inozemtseva/1135084160/" target="_blank" style={{ boxSizing: 'border-box', textDecoration: 'none', color: '#a7a4a4', fontSize: '10px', fontFamily: 'YS Text, sans-serif', padding: '0 16px', position: 'absolute', bottom: '8px', width: '100%', textAlign: 'center', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block', maxHeight: '14px', whiteSpace: 'nowrap',}}>
-          Академия медицинского образования им. Ф. И. Иноземцева на карте Санкт‑Петербурга
-        </a>
+
+    <div style={{ width: '460px', height: '675px', overflow: 'hidden', position: 'relative' }}>
+      <h2 className="text-prpl !text-xl text-center">Отзывы оставленные на картах</h2>
+        <iframe style={{width: '100%', height: '90%', border: '1px solid #c5c3c3', borderRadius: '8px', boxSizing: 'border-box', position: "relative", top: "15px" }} src="https://yandex.ru/maps-reviews-widget/1135084160?comments"></iframe>
+        <a href="https://yandex.ru/maps/org/akademiya_meditsinskogo_obrazovaniya_im_f_i_inozemtseva/1135084160/" target="_blank" style={{ boxSizing: 'border-box', textDecoration: 'none', color: '#a7a4a4', fontSize: '10px', fontFamily: 'YS Text, sans-serif', padding: '0 16px', position: 'absolute', bottom: '8px', width: '100%', textAlign: 'center', overflow: 'hidden', textOverflow: 'ellipsis', display: 'block', maxHeight: '14px', whiteSpace: 'nowrap',}}></a>
       </div>
       
-      <div className="border border-gray-300 shadow-2xl rounded-md p-4 w-[460px]">
+      <div className=" w-[480px]">
         <h2 className="text-prpl !text-xl text-center">Отзывы оставленные на сайте</h2>
-        {feedback.map(feed => (
-          <div key={feed.id} className="border border-gray-300 shadow rounded-md p-4 mt-5">
-            <p className="!text-xl mb-1">{feed.last_name} {feed.name} {feed.patronymic}</p>
-            <hr className="border border-gray-300" />
-            <p className="mt-2 mb-4 !text-lg">{feed.user_text}</p>
-
-            <div className="grid grid-cols-2 w-full mt-6">
-              <p className="text-left opacity-80">{new Date(feed.created_at).toLocaleDateString("ru-RU", {day: "2-digit", month: "long", year: "numeric"})}</p>
-              <p className="flex justify-end items-center opacity-80">{feed.rate} <Star className="-mt-1" fill="#FFCC00" stroke="none" size={18} /></p>
-            </div>
-
-          </div>
-        ))}
+        <FeedbacksCarousel feedback={feedback} />
       </div>
 
 </div>
 
-<div className="grid  justify-items-center rounded-md p-4">
+<div className="grid justify-items-center rounded-md p-4">
         
         {token ? (
   !hasUserFeedback ? (
