@@ -33,16 +33,11 @@ export default function FormApplication({ user, programs }: any) {
 }, [sitekey])
     
 
-const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault()
+    const handleSubmit = () => {
+        alert("Форма отправлена!")
+        redirect("/")
+    }
 
-  if (!captcha) {
-    alert("Подтвердите капчу")
-    return
-  }
-
-  alert("Форма отправлена!")
-}
     
 
     return (

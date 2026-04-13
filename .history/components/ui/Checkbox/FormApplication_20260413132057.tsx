@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import CheckBox152 from "./Checkbox"
 import { redirect } from "next/navigation"
 
@@ -13,36 +13,12 @@ export default function FormApplication({ user, programs }: any) {
     const [phone, setPhone] = useState(user?.phone || "")
     const [email, setEmail] = useState(user?.email || "")
     const [education_level, setEducation_level] = useState(user?.education_level || "")
-    const [captcha, setCaptcha] = useState<string>("")
 
-    useEffect(() => {
-  const init = () => {
-    if (!(window as any).smartCaptcha) return
-    if (!sitekey) return
+    const handleSubmit = () => {
+        alert("Форма отправлена!")
+        redirect("/")
+    }
 
-    ;(window as any).smartCaptcha.render("yandex-captcha", {
-      sitekey,
-      callback: (token: string) => {
-        setCaptcha(token)
-      },
-    })
-  }
-
-  const t = setTimeout(init, 300)
-  return () => clearTimeout(t)
-}, [sitekey])
-    
-
-const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault()
-
-  if (!captcha) {
-    alert("Подтвердите капчу")
-    return
-  }
-
-  alert("Форма отправлена!")
-}
     
 
     return (
@@ -77,7 +53,7 @@ const handleSubmit = (e: React.FormEvent) => {
                     </option>
                 ))}
             </select>
-            <div id="yandex-captcha" className="mt-2" />
+            
             <CheckBox152 />
         </form>
     )

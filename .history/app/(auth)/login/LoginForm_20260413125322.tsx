@@ -1,9 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Eye, EyeOff } from "lucide-react"
 
 interface LoginFormState {
   email: string
@@ -12,14 +11,33 @@ interface LoginFormState {
 
 export default function LoginForm() {
   const router = useRouter()
-  const [showPassword, setShowPassword] = useState(false)
+  const sitekey = process.env.NEXT_PUBLIC_YANDEX_CAPTCHA_SITEKEY
   const [form, setForm] = useState<LoginFormState>({
     email: "",
     password: "",
   })
-
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const init = () => {
+      if (!(window as any).smartCaptcha) return
+  
+      ;(window as any).smartCaptcha.render("yandex-captcha", {
+        sitekey,
+        callback: (token: string) => {
+          setForm((prev) => ({
+            ...prev,
+            captcha: token,
+          }))
+        },
+      })
+    }
+  
+    const t = setTimeout(init, 300)
+  
+    return () => clearTimeout(t)
+  }, [])
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target
@@ -39,6 +57,7 @@ export default function LoginForm() {
       })
 
       const data = await res.json()
+      
 
       if (!res.ok) {
         setError(data.message)
@@ -58,13 +77,9 @@ export default function LoginForm() {
         <h1 className="text-prpl font-semibold text-3xl text-center">Авторизация</h1>
         <p className="text-center mt-4 text-zinc-800 !text-xl ">ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»</p>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-4 mb-6 border border-zinc-400 rounded-xl p-4 shadow-2xl">
-        <input className="border border-zinc-400 p-1.5 rounded mt-4 text-zinc-700 text-lg !font-normal" name="email" type="email" placeholder="Почта" value={form.email} onChange={handleChange} required/>
-        <div className="relative">
-          <input className="border border-zinc-400 p-1.5 rounded text-zinc-700 w-full text-lg !font-normal" name="password" type={showPassword ? "text" : "password"} placeholder="Пароль" value={form.password} onChange={handleChange} required/>
-          <button type="button" onClick={() => setShowPassword((prev) => !prev)} className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-500 hover:opacity-80 cursor-pointer">
-            {showPassword ? <EyeOff size={18} className="!text-zinc-700" /> : <Eye size={18} className="!text-zinc-700" />}
-          </button>
-        </div>
+        <input className="border border-zinc-400 p-1.5 rounded mt-4 text-zinc-700" name="email" type="email" placeholder="Почта" value={form.email} onChange={handleChange} required/>
+        <input className="border border-zinc-400 p-1.5 rounded text-zinc-700" name="password" type="password" placeholder="Пароль" value={form.password} onChange={handleChange} required/>
+        <div id="yandex-captcha" className="mt-2" />
         <button type="submit" disabled={loading} className="flex items-center px-4 py-2 bg-prpl text-white text-center rounded flex cursor-pointer hover:opacity-80">
           {loading ? "Авторизация..." : "Авторизация"}
         </button>

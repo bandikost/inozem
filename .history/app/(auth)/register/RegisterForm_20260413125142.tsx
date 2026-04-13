@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css"
 import { HIGHER_SPECIALTIES, SECONDARY_SPECIALTIES } from "../../../data/specialties"
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
@@ -188,14 +187,24 @@ useEffect(() => {
         }} />
 
 
-   
-  <div className="relative">
-          <input type={showPassword ? "text" : "password"} name="password" placeholder="Пароль" value={form.password} onChange={handleChange} className="border border-zinc-400 p-2 w-full rounded text-zinc-700 pr-10"/>
-          <button type="button" onClick={() => setShowPassword((prev) => !prev)} className="absolute right-2 top-1/2 -translate-y-1/2  hover:opacity-80 cursor-pointer">
-            {showPassword ? <EyeOff size={18} className="!text-zinc-700" /> : <Eye size={18} className="!text-zinc-700" />}
-          </button>
-        </div>
+        <div className="relative">
+  <input
+    type={showPassword ? "text" : "password"}
+    name="password"
+    placeholder="Пароль"
+    value={form.password}
+    onChange={handleChange}
+    className="border border-zinc-400 p-2 w-full rounded text-zinc-700 pr-10"
+  />
 
+  <button
+    type="button"
+    onClick={() => setShowPassword((prev) => !prev)}
+    className="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-zinc-500"
+  >
+    {showPassword ? <EyeOff className="cursor-pointer hover:text-zinc-900" size={18} /> : <Eye className="cursor-pointer hover:text-zinc-900"  size={18} />}
+  </button>
+</div>
 
 
         <select name="education_level" value={form.education_level} onChange={handleChange} required className="border border-zinc-400 p-2 w-full rounded text-zinc-700">

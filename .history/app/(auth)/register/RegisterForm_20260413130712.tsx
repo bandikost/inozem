@@ -192,7 +192,7 @@ useEffect(() => {
   <div className="relative">
           <input type={showPassword ? "text" : "password"} name="password" placeholder="Пароль" value={form.password} onChange={handleChange} className="border border-zinc-400 p-2 w-full rounded text-zinc-700 pr-10"/>
           <button type="button" onClick={() => setShowPassword((prev) => !prev)} className="absolute right-2 top-1/2 -translate-y-1/2  hover:opacity-80 cursor-pointer">
-            {showPassword ? <EyeOff size={18} className="!text-zinc-700" /> : <Eye size={18} className="!text-zinc-700" />}
+            {showPassword ? <EyeOff size={18} className="!text-base" /> : <Eye size={18} className="!text-base" />}
           </button>
         </div>
 

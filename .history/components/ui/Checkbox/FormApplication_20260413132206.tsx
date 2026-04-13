@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import CheckBox152 from "./Checkbox"
 import { redirect } from "next/navigation"
 
@@ -14,35 +14,13 @@ export default function FormApplication({ user, programs }: any) {
     const [email, setEmail] = useState(user?.email || "")
     const [education_level, setEducation_level] = useState(user?.education_level || "")
     const [captcha, setCaptcha] = useState<string>("")
-
-    useEffect(() => {
-  const init = () => {
-    if (!(window as any).smartCaptcha) return
-    if (!sitekey) return
-
-    ;(window as any).smartCaptcha.render("yandex-captcha", {
-      sitekey,
-      callback: (token: string) => {
-        setCaptcha(token)
-      },
-    })
-  }
-
-  const t = setTimeout(init, 300)
-  return () => clearTimeout(t)
-}, [sitekey])
     
 
-const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault()
+    const handleSubmit = () => {
+        alert("Форма отправлена!")
+        redirect("/")
+    }
 
-  if (!captcha) {
-    alert("Подтвердите капчу")
-    return
-  }
-
-  alert("Форма отправлена!")
-}
     
 
     return (

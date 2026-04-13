@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Eye, EyeOff } from "lucide-react"
 
 interface LoginFormState {
   email: string
@@ -62,7 +61,7 @@ export default function LoginForm() {
         <div className="relative">
           <input className="border border-zinc-400 p-1.5 rounded text-zinc-700 w-full text-lg !font-normal" name="password" type={showPassword ? "text" : "password"} placeholder="Пароль" value={form.password} onChange={handleChange} required/>
           <button type="button" onClick={() => setShowPassword((prev) => !prev)} className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-500 hover:opacity-80 cursor-pointer">
-            {showPassword ? <EyeOff size={18} className="!text-zinc-700" /> : <Eye size={18} className="!text-zinc-700" />}
+            {showPassword ? "🙈" : "👁️"}
           </button>
         </div>
         <button type="submit" disabled={loading} className="flex items-center px-4 py-2 bg-prpl text-white text-center rounded flex cursor-pointer hover:opacity-80">
