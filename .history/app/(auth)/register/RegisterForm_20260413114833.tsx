@@ -26,7 +26,7 @@ export default function RegisterPage() {
   const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
   const [checked, setChecked] = useState(false)
-  const sitekey = process.env.NEXT_PUBLIC_YANDEX_CAPTCHA_SITEKEY
+
 
   const [form, setForm] = useState<RegisterForm>({
     name: "",
@@ -69,7 +69,7 @@ useEffect(() => {
     if (!(window as any).smartCaptcha) return
 
     ;(window as any).smartCaptcha.render("yandex-captcha", {
-      sitekey,
+      sitekey: process.env.NEXT_PUBLIC_YANDEX_CAPTCHA_SITEKEY,
       callback: (token: string) => {
         setForm((prev) => ({
           ...prev,
