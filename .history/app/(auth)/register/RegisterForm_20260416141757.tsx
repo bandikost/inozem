@@ -93,14 +93,12 @@ useEffect(() => {
     setLoading(true)
     setError(null)
 
-   
-
-    try {
-       if (!form.captcha) {
+    if (!form.captcha) {
   setError("Подтвердите капчу")
   return
 }
 
+    try {
       const res = await fetch("/api/register", {
         method: "POST",
         headers: {
