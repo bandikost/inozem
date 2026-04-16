@@ -60,7 +60,7 @@ const captchaRes = await fetch(
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: new URLSearchParams({
-      secret: process.env.NEXT_PUBLIC_YANDEX_CAPTCHA_SITEKEY!,
+      secret: process.env.YANDEX_CAPTCHA_SECRET!,
       token: captcha,
     }),
   }
