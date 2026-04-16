@@ -23,12 +23,10 @@ interface RegisterBody {
 }
 
 export async function POST(req: NextRequest) {
-  console.log("🚀 STEP 1: API HIT")
-
+  console.log("REGISTER API HIT")
   try {
     const body: RegisterBody = await req.json()
     console.log("📦 STEP 2: BODY PARSED")
-
     const {
       name,
       last_name,
@@ -40,72 +38,56 @@ export async function POST(req: NextRequest) {
       specialization,
       captcha
     } = body
-
-    console.log("🧾 STEP 3: DATA EXTRACTED", { email, phone })
-
+console.log("🧾 STEP 3: DATA EXTRACTED", { email, phone })
     if (!name || !last_name || !email || !phone || !password) {
       console.log("❌ STEP 4: VALIDATION FAIL")
-      return NextResponse.json({ message: "Вы заполнили не все поля" }, { status: 400 })
+      return NextResponse.json(
+        { message: "Вы заполнили не все поля" },
+        { status: 400 }
+      )
     }
 
     if (!captcha) {
       console.log("❌ STEP 5: CAPTCHA EMPTY")
-      return NextResponse.json({ message: "Подтвердите капчу" }, { status: 400 })
-    }
+  return NextResponse.json(
+    { message: "Подтвердите капчу" },
+    { status: 400 }
+  )
+}
+console.log("SECRET EXISTS:", !!process.env.YANDEX_CAPTCHA_SECRET)
+console.log("TOKEN:", captcha)
 
-    console.log("🔐 STEP 6: ENV CHECK", {
-      secretExists: !!process.env.YANDEX_CAPTCHA_SECRET,
-    })
+const captchaRes = await fetch(
+  "https://smartcaptcha.yandexcloud.net/validate",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams({
+      secret: process.env.YANDEX_CAPTCHA_SECRET!,
+      token: captcha,
+    }),
+  }
+)
 
-    console.log("🪪 STEP 7: TOKEN LENGTH", captcha.length)
+const text = await captchaRes.text()
+console.log("YANDEX RAW RESPONSE:", text)
+const isOk = text.includes("ok=1")
 
-    let captchaRes
-
-    try {
-      console.log("🌐 STEP 8: FETCH CAPTCHA START")
-
-      captchaRes = await fetch(
-        "https://smartcaptcha.yandexcloud.net/validate",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: new URLSearchParams({
-            secret: process.env.YANDEX_CAPTCHA_SECRET!,
-            token: captcha,
-          }),
-        }
-      )
-
-      console.log("🌐 STEP 9: FETCH DONE", captchaRes.status)
-
-    } catch (e) {
-      console.log("💥 STEP 8 ERROR: CAPTCHA FETCH FAILED", e)
-      throw e
-    }
-
-    const text = await captchaRes.text()
-    console.log("📨 STEP 10: YANDEX RESPONSE:", text)
-
-    const isOk = text.includes("ok=1")
-
-    if (!isOk) {
-      console.log("❌ STEP 11: CAPTCHA FAIL")
-      return NextResponse.json({ message: "Капча не пройдена" }, { status: 403 })
-    }
-
-    console.log("✅ STEP 12: CAPTCHA OK")
+if (!isOk) {
+  return NextResponse.json(
+    { message: "Капча не пройдена" },
+    { status: 403 }
+  )
+}
 
     const [existingUsers] = await db.query<ExistingUserRow[]>(
       "SELECT id FROM users WHERE email = ? OR phone = ?",
       [email, phone]
     )
 
-    console.log("🗄 STEP 13: DB CHECK DONE", existingUsers.length)
-
     if (existingUsers.length > 0) {
-      console.log("❌ STEP 14: USER EXISTS")
       return NextResponse.json(
         { message: "Данная почта или номер телефона уже зарегистрированы!" },
         { status: 409 }
@@ -113,7 +95,6 @@ export async function POST(req: NextRequest) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10)
-    console.log("🔑 STEP 15: PASSWORD HASHED")
 
     const [result] = await db.query<ResultSetHeader>(
       `INSERT INTO users 
@@ -131,15 +112,11 @@ export async function POST(req: NextRequest) {
       ]
     )
 
-    console.log("🆔 STEP 16: USER CREATED", result.insertId)
-
+    const userId = result.insertId
     setTimeout(() => {
-      console.log("📧 STEP 17: SENDING EMAIL")
-      sendWelcomeEmail(email, name)
-    }, 0)
-
-    const token = signToken({ id: result.insertId })
-    console.log("🎟 STEP 18: TOKEN CREATED")
+    sendWelcomeEmail(email, name)
+  }, 0)
+    const token = signToken({ id: userId })
 
     const cookieStore = await cookies()
     cookieStore.set("token", token, {
@@ -150,15 +127,12 @@ export async function POST(req: NextRequest) {
       maxAge: 60 * 60 * 24 * 182,
     })
 
-    console.log("🍪 STEP 19: COOKIE SET")
-
     return NextResponse.json(
       { message: "Пользователь успешно зарегистрировался" },
       { status: 201 }
     )
-
   } catch (error) {
-    console.error("💥 GLOBAL ERROR:", error)
+    console.error("Register error:", error)
 
     return NextResponse.json(
       { message: "Ошибка сервера" },
