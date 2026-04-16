@@ -6,7 +6,7 @@ import NavigationDone from "@/components/ui/LazyLoad/NavigationProgress";
 export default function MainLayout({ children } : Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <main className="w-full min-h-screen flex flex-col mx-auto">
+      <main className="w-full max-w-[1200px] min-h-screen flex flex-col mx-auto">
         <NavigationDone />
         {children}
       </main>

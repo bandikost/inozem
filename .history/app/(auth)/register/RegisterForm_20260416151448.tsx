@@ -7,8 +7,7 @@ import "react-phone-input-2/lib/style.css"
 import { HIGHER_SPECIALTIES, SECONDARY_SPECIALTIES } from "../../../data/specialties"
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
-import { delay } from "@/lib/delay"
-import LoadingOverlay from "@/components/ui/LoadingOverlay"
+
 
 
 interface RegisterForm {
@@ -42,7 +41,6 @@ export default function RegisterPage() {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-
 
 function handleChange(
   e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -91,9 +89,11 @@ useEffect(() => {
     e: React.FormEvent<HTMLFormElement>
   ) {
     e.preventDefault()
-    await delay(3000) 
+
     setLoading(true)
     setError(null)
+
+   
 
     try {
        if (!form.captcha) {
@@ -169,12 +169,11 @@ useEffect(() => {
           {loading ? "Регистрация..." : "Регистрация"}
         </button>
       </form>
-        <LoadingOverlay loading={loading} />
+
         <p className="ml-4 mt-4 text-zinc-700">У вас уже есть личный аккаунт? <Link className="text-blue hover:underline" href={"/login"}>Авторизация</Link></p>
         <p className="ml-4 mt-2 text-zinc-700 mb-10">Вернуться на <Link className="text-blue hover:underline" href={"/"}>главную</Link> </p>
 
       {error && <p className="text-red-600 mt-6 ml-4">{error}</p>}
-      
     </div>
   )
 }

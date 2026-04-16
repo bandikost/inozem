@@ -7,8 +7,7 @@ import "react-phone-input-2/lib/style.css"
 import { HIGHER_SPECIALTIES, SECONDARY_SPECIALTIES } from "../../../data/specialties"
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
-import { delay } from "@/lib/delay"
-import LoadingOverlay from "@/components/ui/LoadingOverlay"
+
 
 
 interface RegisterForm {
@@ -42,7 +41,20 @@ export default function RegisterPage() {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const delay = (ms: number) =>
+  new Promise((res) => setTimeout(res, ms))
 
+  useEffect(() => {
+  if (loading) {
+    document.body.style.overflow = "hidden"
+  } else {
+    document.body.style.overflow = "auto"
+  }
+
+  return () => {
+    document.body.style.overflow = "auto"
+  }
+}, [loading])
 
 function handleChange(
   e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -91,9 +103,11 @@ useEffect(() => {
     e: React.FormEvent<HTMLFormElement>
   ) {
     e.preventDefault()
-    await delay(3000) 
+    await delay(2000) 
     setLoading(true)
     setError(null)
+
+   
 
     try {
        if (!form.captcha) {
@@ -169,12 +183,21 @@ useEffect(() => {
           {loading ? "Регистрация..." : "Регистрация"}
         </button>
       </form>
-        <LoadingOverlay loading={loading} />
+
         <p className="ml-4 mt-4 text-zinc-700">У вас уже есть личный аккаунт? <Link className="text-blue hover:underline" href={"/login"}>Авторизация</Link></p>
         <p className="ml-4 mt-2 text-zinc-700 mb-10">Вернуться на <Link className="text-blue hover:underline" href={"/"}>главную</Link> </p>
 
       {error && <p className="text-red-600 mt-6 ml-4">{error}</p>}
-      
+      {loading && (
+  <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-10 w-full pointer-events-auto">
+    <div className="flex flex-col items-center gap-4">
+      <div className="w-12 h-12 border-4 border-white/30 border-t-[#0a9688] rounded-full animate-spin" />
+      <p className="text-white text-center !text-base">
+        Подождите немного, сейчас все откроется...
+      </p>
+    </div>
+  </div>
+)}
     </div>
   )
 }

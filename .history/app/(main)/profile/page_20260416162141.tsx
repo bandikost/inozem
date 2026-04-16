@@ -3,7 +3,6 @@ import { getIndividProgram, ProgramRow } from "@/lib/programm"
 import { getProfile } from "@/lib/getProfile"
 import { UserRow } from "@/app/types/user"
 import TokenCheck from "@/components/token/token"
-import ProfileClient from "./ProfileClient"
 
 
 export const metadata = {
@@ -26,6 +25,6 @@ export default async function Page() {
 
 
   return (
-   <ProfileClient programs={programs} user={user} />
+   <ProfilePage programs={programs} user={user} />
   )
 }

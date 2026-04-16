@@ -13,7 +13,7 @@ export default function LogoutButton() {
     setLoading(true) 
 
     try {
-      await delay(99990) 
+      await delay(2000) 
 
       const res = await fetch("/api/logout", {
         method: "POST",

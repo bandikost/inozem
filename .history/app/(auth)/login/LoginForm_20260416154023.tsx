@@ -1,11 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Eye, EyeOff } from "lucide-react"
-import { delay } from "@/lib/delay"
-import LoadingOverlay from "@/components/ui/LoadingOverlay"
 
 interface LoginFormState {
   email: string
@@ -18,6 +16,20 @@ export default function LoginForm() {
   const [form, setForm] = useState<LoginFormState>({ email: "", password: "" })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const delay = (ms: number) =>
+  new Promise((res) => setTimeout(res, ms))
+
+  useEffect(() => {
+  if (loading) {
+    document.body.style.overflow = "hidden"
+  } else {
+    document.body.style.overflow = "auto"
+  }
+
+  return () => {
+    document.body.style.overflow = "auto"
+  }
+}, [loading])
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target
@@ -28,7 +40,7 @@ export default function LoginForm() {
     e.preventDefault()
     setLoading(true)
     setError(null)
-    await delay(3000) 
+    await delay(99999) 
     try {
       const res = await fetch("/api/login", {
         method: "POST",
@@ -70,7 +82,16 @@ export default function LoginForm() {
         </button>
 
       </form>
-   <LoadingOverlay loading={loading} />
+   {loading && (
+  <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-10 w-full pointer-events-auto">
+    <div className="flex flex-col items-center gap-4">
+      <div className="w-12 h-12 border-4 border-white/30 border-t-[#0a9688] rounded-full animate-spin" />
+      <p className="text-white text-center !text-base">
+        Подождите немного, сейчас все откроется...
+      </p>
+    </div>
+  </div>
+)}
         <p className="ml-4 my-2 text-zinc-700 !font-normal !text-lg">У вас еще нет аккаунта? <Link className="text-blue-500 hover:underline" href={"/register"}>Регистрация</Link></p>
         <Link className="text-blue-500 hover:underline ml-4 !text-lg" href={"/register"}>Забыли пароль?</Link>
     
