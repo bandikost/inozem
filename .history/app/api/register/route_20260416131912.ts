@@ -66,11 +66,9 @@ const captchaRes = await fetch(
   }
 )
 
-const text = await captchaRes.text()
+const captchaData = await captchaRes.json()
 
-const isOk = text.includes("ok=1")
-
-if (!isOk) {
+if (captchaData.status !== "ok") {
   return NextResponse.json(
     { message: "Капча не пройдена" },
     { status: 403 }
