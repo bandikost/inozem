@@ -105,7 +105,8 @@ export default async function ProfilePage() {
                   <Link href={'/dashboard/manager'} className="text-xl hover:underline !text-white bg-prpl px-4 py-1 shadow-xl rounded-xs">Перейти в админку</Link>
                 </div>
               ) : (
-                <></>
+                <>
+                </>
               )}
 
               <ul className="text-xl p-4 border-y border-gray-300 rounded-md">

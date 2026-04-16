@@ -92,8 +92,8 @@ export default async function ProfilePage() {
       ) : (
         <div className="border border-gray-300 mt-8 mb-14 rounded shadow-2xl bg-white h-full flex flex-col ">
           {!user.isTeacher && (
-            <div className="flex flex-col justify-between h-full">
-              <div className="flex items-center p-4">
+            <div className="flex flex-col justify-between h-full bg-prpl">
+              <div className="flex items-center p-4 bg-white">
                 <Book className="text-prpl " />
                 <h3 className="text-prpl font-semibold !text-2xl p-4 -ml-2">{user.isAdmin ? `Администратор` : `Слушатель`}</h3>   
               </div>
@@ -105,7 +105,8 @@ export default async function ProfilePage() {
                   <Link href={'/dashboard/manager'} className="text-xl hover:underline !text-white bg-prpl px-4 py-1 shadow-xl rounded-xs">Перейти в админку</Link>
                 </div>
               ) : (
-                <></>
+                <>
+                </>
               )}
 
               <ul className="text-xl p-4 border-y border-gray-300 rounded-md">

@@ -4,7 +4,6 @@ import bcrypt from "bcrypt"
 import { ResultSetHeader, RowDataPacket } from "mysql2"
 import { signToken } from "@/lib/jwt"
 import { cookies } from "next/headers"
-import { sendWelcomeEmail } from "@/lib/mail"
 
 interface ExistingUserRow extends RowDataPacket {
   id: number
