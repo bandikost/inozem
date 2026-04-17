@@ -1,11 +1,12 @@
-import { NextResponse } from "next/server"
-import { getPromo } from "@/lib/promo"
 
-export async function GET() {
-  try {
-    const rows = await getPromo()
-    return NextResponse.json(rows)
-  } catch {
-    return NextResponse.json({ message: "Ошибка сервера" }, { status: 500 })
-  }
+import { Promo } from "@/app/interface/promo"
+import { db } from "@/lib/db"
+
+export async function getPromo(): Promise<Promo[]> {
+  const [rows] = await db.query<Promo[]>(`
+    SELECT id, name, promoname, procent, title, suptitle, text, clarification, created_at
+    FROM promo
+  `)
+
+  return rows
 }

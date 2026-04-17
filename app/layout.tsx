@@ -5,6 +5,7 @@ import InitialLoader from "@/components/ui/InitialLoader";
 import NavigationDone from "@/components/ui/LazyLoad/NavigationProgress";
 import QuestionButton from "@/components/ui/Buttons/questionButton";
 import Script from "next/script"
+import LoadingOverlay from "@/components/Load/LoadingOverlay";
 
 
 const nunito = Nunito({
@@ -22,18 +23,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children } : Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru">
-      <head>
-    <meta charSet="UTF-8" />
-  </head>
+    <head><meta charSet="UTF-8" /></head>
   <body className={`${nunito.variable} antialiased`}>
     <NavigationDone />
     <InitialLoader />
     <QuestionButton />
+    <LoadingOverlay />
     {children}
-    <Script
-  src="https://smartcaptcha.yandexcloud.net/captcha.js"
-  strategy="afterInteractive"
-/>
+    <Script src="https://smartcaptcha.yandexcloud.net/captcha.js" strategy="afterInteractive"/>
   </body>
 </html>
 

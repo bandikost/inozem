@@ -2,7 +2,16 @@
 
 import { useState } from "react"
 
-export default function FeedbackForm({ user }: any) {
+type User = {
+  id: number
+  name?: string
+  last_name?: string
+  patronymic?: string
+  user_text?: string
+  rate?: number
+}
+
+export default function FeedbackForm({ user }: { user: User | null}) {
     const [lastName, setLastName] = useState(user?.last_name || "")
     const [firstName, setFirstName] = useState(user?.name || "")
     const [patronymic, setPatronymic] = useState(user?.patronymic || "")
@@ -12,7 +21,7 @@ export default function FeedbackForm({ user }: any) {
     const handleShowFilter = () => setShowFilter(prev => !prev)
 
 const handleSubmit = async (e: React.FormEvent) => {
-
+    e.preventDefault()
     const res = await fetch("/api/feedbacks", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -21,6 +30,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         name: firstName,
         last_name: lastName,
         patronymic,
+        user_text: text,
         rate: Number(rate),
      
       })
@@ -30,6 +40,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     if (res.ok) {
       alert("Форма отправлена!")
+      window.location.reload()
     } else {
       alert(data.error || "Ошибка отправки")
     }
@@ -50,7 +61,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             <textarea required maxLength={500} className="border py-1 px-2 border-gray-300 rounded-md min-h-[300px] w-[400px] text-default text-lg"
                 value={text} onChange={e => setText(e.target.value)} placeholder="Ваш текст" />  
             <label className="!text-lg">Ваша оценка:</label>      
-            <select required className="cursor-pointer border py-1 px-2 border-gray-300 rounded-md w-[400px] text-default text-lg -mt-1" value={rate} onChange={e => setRate(e.target.value)}>
+            <select required className="cursor-pointer border py-1 px-2 border-gray-300 rounded-md w-[400px] text-default text-lg -mt-1" value={rate} onChange={e => setRate(Number(e.target.value))}>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>

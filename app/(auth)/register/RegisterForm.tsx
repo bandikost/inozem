@@ -8,7 +8,7 @@ import { HIGHER_SPECIALTIES, SECONDARY_SPECIALTIES } from "../../../data/special
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
 import { delay } from "@/lib/delay"
-import LoadingOverlay from "@/components/ui/LoadingOverlay"
+import { useLoadingStore } from "@/components/Load/loadingStore";
 
 
 interface RegisterForm {
@@ -28,49 +28,23 @@ export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [checked, setChecked] = useState(false)
   const sitekey = process.env.NEXT_PUBLIC_YANDEX_CAPTCHA_SITEKEY
-
-  const [form, setForm] = useState<RegisterForm>({
-    name: "",
-    last_name: "",
-    patronymic: "",
-    email: "",
-    phone: "",
-    password: "",
-    education_level: "",
-    specialization: "",
-  })
-
-  const [loading, setLoading] = useState(false)
+  const [form, setForm] = useState<RegisterForm>({ name: "", last_name: "", patronymic: "", email: "", phone: "", password: "", education_level: "", specialization: ""})
   const [error, setError] = useState<string | null>(null)
-
-
-function handleChange(
-  e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-) {
-  const { name, value } = e.target
-
-  if (name === "education_level") {
-    setForm((prev) => ({
-      ...prev,
-      education_level: value,
-      specialization: "",
-    }))
-    return
-  }
-
-  setForm((prev) => ({
-    ...prev,
-    [name]: value,
-  }))
-}
-
-
+  const show = useLoadingStore((s) => s.show)
+  const hide = useLoadingStore((s) => s.hide)
+  const loading = useLoadingStore((s) => s.loading)
+  
 
 useEffect(() => {
   const init = () => {
-    if (!(window as any).smartCaptcha) return
+    if (!window.smartCaptcha) return
 
-    ;(window as any).smartCaptcha.render("yandex-captcha", {
+    if (!sitekey) {
+      console.error("YANDEX CAPTCHA sitekey не найден")
+      return
+    }
+
+    window.smartCaptcha.render("yandex-captcha", {
       sitekey,
       callback: (token: string) => {
         setForm((prev) => ({
@@ -84,22 +58,30 @@ useEffect(() => {
   const t = setTimeout(init, 300)
 
   return () => clearTimeout(t)
-}, [])
+}, [sitekey])
 
 
-  async function handleSubmit(
-    e: React.FormEvent<HTMLFormElement>
-  ) {
+function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+  const { name, value } = e.target
+
+  if (name === "education_level") { setForm((prev) => ({...prev, education_level: value, specialization: "" })) 
+    return 
+  }
+
+  setForm((prev) => ({...prev, [name]: value}))
+}
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    await delay(3000) 
-    setLoading(true)
+    show()
     setError(null)
 
     try {
-       if (!form.captcha) {
-  setError("Подтвердите капчу")
-  return
-}
+      
+      if (!form.captcha) {
+      setError("Подтвердите капчу")
+      return
+    }
       const res = await fetch("/api/register", {
         method: "POST",
         headers: {
@@ -112,14 +94,16 @@ useEffect(() => {
 
       if (!res.ok) {
         setError(data.message)
-        setLoading(false)
+       await delay(1500) 
+       hide()
         return
       }
 
       router.push("/profile")
     } catch {
       setError("Проблема с интернетом")
-      setLoading(false)
+      await delay(1500) 
+      hide()
     }
   }
 
@@ -166,10 +150,11 @@ useEffect(() => {
         <div id="yandex-captcha" className="mt-2" />
 
         <button type="submit"  disabled={loading || !checked} className="flex items-center px-4 py-2 bg-prpl text-white text-center rounded flex cursor-pointer hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed">
-          {loading ? "Регистрация..." : "Регистрация"}
+          Регистрация
         </button>
+        
       </form>
-        <LoadingOverlay loading={loading} />
+        
         <p className="ml-4 mt-4 text-zinc-700">У вас уже есть личный аккаунт? <Link className="text-blue hover:underline" href={"/login"}>Авторизация</Link></p>
         <p className="ml-4 mt-2 text-zinc-700 mb-10">Вернуться на <Link className="text-blue hover:underline" href={"/"}>главную</Link> </p>
 

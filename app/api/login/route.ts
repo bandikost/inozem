@@ -3,7 +3,7 @@ import { db } from "@/lib/db"
 import bcrypt from "bcrypt"
 import { signToken } from "@/lib/jwt"
 import { cookies } from "next/headers"
-import { UserRow } from "@/app/types/user"
+import { UserRow } from "@/app/interface/user"
 
 
 interface LoginBody {

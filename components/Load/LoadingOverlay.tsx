@@ -1,21 +1,14 @@
 "use client"
 
-import { messages } from "@/lib/loading"
+import { messages } from "@/data/loading"
 import { useEffect, useState } from "react"
+import { createPortal } from "react-dom"
+import { useLoadingStore } from "./loadingStore"
 
 
-interface Props {
-  loading: boolean
-}
-
-export default function LoadingOverlay({ loading }: Props) {
+export default function LoadingOverlay() {
   const [textIndex, setTextIndex] = useState(0)
-
-  useEffect(() => {
-  if (loading) {
-    setTextIndex(0)
-  }
-}, [loading])
+  const loading = useLoadingStore((s) => s.loading)
 
   useEffect(() => {
     if (!loading) return
@@ -27,8 +20,9 @@ export default function LoadingOverlay({ loading }: Props) {
     return () => clearInterval(interval)
   }, [loading])
 
-  useEffect(() => {
+ useEffect(() => {
     document.body.style.overflow = loading ? "hidden" : "auto"
+
     return () => {
       document.body.style.overflow = "auto"
     }
@@ -36,7 +30,7 @@ export default function LoadingOverlay({ loading }: Props) {
 
   if (!loading) return null
 
-  return (
+  return createPortal (
     <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-[9999]">
       <div className="flex flex-col items-center gap-4">
         <div className="w-12 h-12 border-4 border-white/30 border-t-[#0a9688] rounded-full animate-spin" />
@@ -45,6 +39,7 @@ export default function LoadingOverlay({ loading }: Props) {
           {messages[textIndex]}
         </p>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }

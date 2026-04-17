@@ -1,6 +1,6 @@
 'use client'
 
-import { UserRow } from "@/app/types/user"
+import { UserRow } from "@/app/interface/user"
 import LogoutButton from "@/components/ui/Buttons/LogoutButton"
 import { ProgramRow } from "@/lib/programm"
 import { Book, HatGlasses } from "lucide-react"

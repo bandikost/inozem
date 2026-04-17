@@ -1,6 +1,6 @@
 import { RowDataPacket } from "mysql2"
 import { db } from "@/lib/db"
-import { UserRow } from "@/app/types/user"
+import { UserRow } from "@/app/interface/user"
 
 let cachedTeachers: UserRow[] | null = null;
 let cacheTime = 0;

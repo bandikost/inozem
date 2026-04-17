@@ -1,5 +1,5 @@
 'use client'
-import { FAQ } from "@/lib/faq";
+import { FAQ } from "@/data/faq";
 import { useState } from "react";
 
 

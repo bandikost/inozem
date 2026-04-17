@@ -1,4 +1,5 @@
-import { getPromo } from "@/lib/promo"
+import { getPromo } from "@/app/api/promo/route"
+
 
 export const metadata = {
   title: 'Акции | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»',

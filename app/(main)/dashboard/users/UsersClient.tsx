@@ -1,6 +1,6 @@
 "use client"
 
-import { UserRow } from '@/app/types/user'
+import { UserRow } from '@/app/interface/user'
 import { ProgramRow } from '@/lib/programm'
 import Link from 'next/link'
 import { useMemo, useState } from 'react'

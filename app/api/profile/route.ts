@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { verifyToken } from "@/lib/jwt"
 import { db } from "@/lib/db"
-import { UserRow } from "@/app/types/user"
+import { UserRow } from "@/app/interface/user"
 
 interface JwtPayload {
   id: number

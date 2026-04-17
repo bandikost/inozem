@@ -1,6 +1,6 @@
 import { RowDataPacket } from "mysql2"
 import { db } from "@/lib/db"
-import { Feedback } from "@/app/types/feedback"
+import { Feedback } from "@/app/interface/feedback"
 
 export async function getFeedback(): Promise<Feedback[]> {
     

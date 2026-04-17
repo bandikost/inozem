@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation"
 import { getIndividProgram, ProgramRow } from "@/lib/programm"
 import { getProfile } from "@/lib/getProfile"
-import { UserRow } from "@/app/types/user"
+import { UserRow } from "@/app/interface/user"
 import TokenCheck from "@/components/token/token"
 import ProfileClient from "./ProfileClient"
 

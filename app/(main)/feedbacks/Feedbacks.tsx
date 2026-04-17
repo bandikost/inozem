@@ -33,7 +33,7 @@ export default function FeedbacksCarousel({ feedback }: Props) {
       <p className="!text-xl mb-1">{feed.last_name} {feed.name} {feed.patronymic}</p>
       <hr className="border border-gray-300" />
       <p className="mt-2 mb-4 !text-lg">{feed.user_text}</p>
-      <div className="grid grid-cols-2 w-full  mt-6">
+      <div className="grid grid-cols-2 w-full items-center mt-6">
         <p className="text-left opacity-80 !font-normal">
           {new Date(feed.created_at).toLocaleDateString("ru-RU", {
             day: "2-digit",
