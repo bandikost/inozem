@@ -1,6 +1,7 @@
+import { RowDataPacket } from "mysql2"
 
 
-export interface UserRow {
+export interface UserRow extends RowDataPacket{
   id: number
   name: string
   last_name: string
