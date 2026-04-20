@@ -12,7 +12,6 @@ export default function FormActivity({ user, activity, programs }: any) {
     const [patronymic, setPatronymic] = useState(user?.patronymic || "")
     const [email, setEmail] = useState(user?.email || "")
     const [phone, setPhone] = useState(`${'+' + user?.phone}` || "")
-    const [city, setCity] = useState(user?.city || "")
     const [education_level, setEducation_level] = useState(user?.education_level || "")
     const [captcha, setCaptcha] = useState<string>("")
 
@@ -56,7 +55,7 @@ const handleSubmit = (e: React.FormEvent) => {
             <input required className="border py-1 px-2 border-gray-300 rounded-md w-[400px] text-default text-lg"
                 value={patronymic} onChange={e => setPatronymic(e.target.value)} placeholder="Ваше отчество" />
             <input className="border py-1 px-2 border-gray-300 rounded-md w-[400px] text-default text-lg"
-                value={city} onChange={e => setCity(e.target.value)} placeholder="Ваш город проживания (необязательное поле)" />
+                value={email} onChange={e => setEmail(e.target.value)} placeholder="Ваш город проживания (необязательное поле)" />
             <input required className="border py-1 px-2 border-gray-300 rounded-md w-[400px] text-default text-lg"
                 value={phone} onChange={e => setPhone(e.target.value)} placeholder="Ваш телефон" />
             <input required className="border py-1 px-2 border-gray-300 rounded-md w-[400px] text-default text-lg"

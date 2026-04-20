@@ -109,7 +109,7 @@ function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
 
   return (
     <div className="max-w-[400px] mx-auto h-full">
-      <h1 className="text-prpl !font-normal text-center mt-15">Регистрация</h1>
+      <h1 className="text-prpl !font-medium text-center mt-15">Регистрация</h1>
       <p className="text-center mt-4 text-zinc-800 text-lg">ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»</p>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-5 border border-zinc-400 rounded-xl p-4 shadow-2xl">
@@ -149,7 +149,7 @@ function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
         
         <div id="yandex-captcha" className="mt-2" />
 
-        <button type="submit"  disabled={loading || !checked} className="flex items-center px-4 py-2 bg-prpl text-white text-center rounded flex cursor-pointer hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed text-lg">
+        <button type="submit"  disabled={loading || !checked} className="flex items-center px-4 py-2 bg-prpl text-white text-center rounded flex cursor-pointer hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed">
           Регистрация
         </button>
         

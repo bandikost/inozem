@@ -12,7 +12,7 @@ export default function FormActivity({ user, activity, programs }: any) {
     const [patronymic, setPatronymic] = useState(user?.patronymic || "")
     const [email, setEmail] = useState(user?.email || "")
     const [phone, setPhone] = useState(`${'+' + user?.phone}` || "")
-    const [city, setCity] = useState(user?.city || "")
+    const [city, setCity] = useState(`${'+' + user?.city}` || "")
     const [education_level, setEducation_level] = useState(user?.education_level || "")
     const [captcha, setCaptcha] = useState<string>("")
 

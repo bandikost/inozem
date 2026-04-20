@@ -109,7 +109,7 @@ function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
 
   return (
     <div className="max-w-[400px] mx-auto h-full">
-      <h1 className="text-prpl !font-normal text-center mt-15">Регистрация</h1>
+      <h1 className="text-prpl font-semibold text-3xl text-center mt-15">Регистрация</h1>
       <p className="text-center mt-4 text-zinc-800 text-lg">ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»</p>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-5 border border-zinc-400 rounded-xl p-4 shadow-2xl">
@@ -120,13 +120,13 @@ function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
         <PhoneInput country={"ru"} value={form.phone} onChange={(phone) => setForm((prev) => ({ ...prev, phone,}))} enableSearch disableSearchIcon countryCodeEditable={false} inputClass="!h-[36px] !w-full !pl-[50px] !border-zinc-400 text-zinc-700" buttonClass="!border !text-zinc-500" inputProps={{ required: true, name: "phone" }} />
 
         <div className="relative">
-          <input type={showPassword ? "text" : "password"} name="password" placeholder="Пароль" value={form.password} onChange={handleChange} className="border border-zinc-400 p-2 w-full rounded text-zinc-700 pr-10 text-lg !font-normal"/>
+          <input type={showPassword ? "text" : "password"} name="password" placeholder="Пароль" value={form.password} onChange={handleChange} className="border border-zinc-400 p-2 w-full rounded text-zinc-700 pr-10"/>
           <button type="button" onClick={() => setShowPassword((prev) => !prev)} className="absolute right-2 top-1/2 -translate-y-1/2  hover:opacity-80 cursor-pointer">
             {showPassword ? <EyeOff size={18} className="!text-zinc-700" /> : <Eye size={18} className="!text-zinc-700" />}
           </button>
         </div>
 
-        <select name="education_level" value={form.education_level} onChange={handleChange} required className="border border-zinc-400 p-2 w-full rounded text-zinc-700 text-lg">
+        <select name="education_level" value={form.education_level} onChange={handleChange} required className="border border-zinc-400 p-2 w-full rounded text-zinc-700">
             <option value="">-- выберите образование --</option>
             <option value="Среднее">Среднее</option>
             <option value="Высшее">Высшее</option>
@@ -134,7 +134,7 @@ function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
         </select>
 
         {form.education_level !== "без образования" && (
-          <select name="specialization" value={form.specialization} onChange={handleChange} required={form.education_level !== "без образования"}  className="border border-zinc-400 p-2 w-full rounded text-zinc-700 text-lg">
+          <select name="specialization" value={form.specialization} onChange={handleChange} required={form.education_level !== "без образования"}  className="border border-zinc-400 p-2 w-full rounded text-zinc-700">
             <option value="">-- выберите специальность --</option>
               {(form.education_level === "Высшее" ? HIGHER_SPECIALTIES : SECONDARY_SPECIALTIES).map((spec) => (
                 <option key={spec} value={spec}>{spec}</option>
@@ -149,7 +149,7 @@ function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
         
         <div id="yandex-captcha" className="mt-2" />
 
-        <button type="submit"  disabled={loading || !checked} className="flex items-center px-4 py-2 bg-prpl text-white text-center rounded flex cursor-pointer hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed text-lg">
+        <button type="submit"  disabled={loading || !checked} className="flex items-center px-4 py-2 bg-prpl text-white text-center rounded flex cursor-pointer hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed">
           Регистрация
         </button>
         

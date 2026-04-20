@@ -16,7 +16,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
     let user = null
     if (token) user = await getProfile(token)
 
-    const programs = await getPrograms()
+    const programs = getPrograms()
     const params = await searchParams
     const activity = params.title || ""
 

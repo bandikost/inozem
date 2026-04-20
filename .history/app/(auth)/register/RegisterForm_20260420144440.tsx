@@ -149,7 +149,7 @@ function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
         
         <div id="yandex-captcha" className="mt-2" />
 
-        <button type="submit"  disabled={loading || !checked} className="flex items-center px-4 py-2 bg-prpl text-white text-center rounded flex cursor-pointer hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed text-lg">
+        <button type="submit"  disabled={loading || !checked} className="flex items-center px-4 py-2 bg-prpl text-white text-center rounded flex cursor-pointer hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed">
           Регистрация
         </button>
         

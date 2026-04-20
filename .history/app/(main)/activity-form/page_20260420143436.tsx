@@ -1,7 +1,7 @@
 
 import FormActivity from "@/components/forms/FormActivity"
 import { getProfile } from "@/lib/getProfile"
-import { getProgram, getPrograms } from "@/lib/programm"
+import { getProgram } from "@/lib/programm"
 import { cookies } from "next/headers"
 
 
@@ -16,7 +16,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
     let user = null
     if (token) user = await getProfile(token)
 
-    const programs = await getPrograms()
+    const programs = getProgram()
     const params = await searchParams
     const activity = params.title || ""
 
