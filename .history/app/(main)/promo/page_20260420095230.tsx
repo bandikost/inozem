@@ -1,4 +1,4 @@
-import { getPromo } from "@/lib/promo"
+import { getPromo } from "@/lib/route"
 
 
 export const metadata = {
