@@ -1,0 +1,89 @@
+import { getProgramBySlug, hasUserProgram } from "@/lib/programm";
+import ProgramSelect from "./SelectProgramm";
+import { getProfile } from "@/lib/getProfile";
+import Link from "next/link";
+import { cookies } from "next/headers";
+
+interface ProgramsPageProps { 
+   params: { slug: string } 
+}
+
+
+export default async function Page({ params }: ProgramsPageProps) {
+  const { slug } = await params
+  const program = await getProgramBySlug(slug)
+  if (!program) return <div className="mt-20 text-center">Программа не найдена</div>
+
+  const cookieStore = await cookies() 
+  const token = cookieStore.get("token")?.value 
+      
+
+  
+  let user = null;
+  let hasAccess = false;
+
+if (token) {
+  try {
+    user = await getProfile(token);
+    hasAccess = await hasUserProgram(user.id, program.id);
+  } catch (err) {
+    console.error("Не удалось загрузить профиль:", err);
+  }
+}
+  const dates = program.dates.split('\n').filter(Boolean)
+
+  return (
+    <section className="prose mx-auto px-6 mt-27">
+      <h1 className="text-3xl font-semibold text-prpl">{program.name}</h1>
+
+      {!hasAccess ? ( 
+        <>
+        <p className="mt-2"><strong className="text-blue">Направления:</strong> {program.specialization}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-15 mt-10">
+
+          <div className="h-full program-description border border-gray-300 rounded-md shadow-xl p-4" dangerouslySetInnerHTML={{ __html: program.description }}/>
+
+          <time className="h-full flex flex-col items-start border border-gray-300 rounded-md shadow-2xl p-4">
+            <strong className="mb-2 text-blue">Даты проведения:</strong>
+            <ul className="space-y-1 text-base grid">
+              {dates.map((date, i) => (
+                <li key={i} className="!text-default !font-normal">
+                  {date}
+                </li>
+              ))}
+            </ul>
+          </time>
+        </div>
+        
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="flex flex-col justify-between items-start border border-gray-300 rounded-md shadow-xl p-4">
+              <h3>Подайте заявку на обучение, если у вас появились/остались вопросы, и наши сотрудники ответят вам в ближайшее время!</h3> 
+              <div className="flex justify-between w-full mt-4">
+                <Link className="button-more" href={"/bid"}>Подать заявку на обучение</Link>
+                <Link className="button-more" href={"/contacts"}>Перейти в контакты</Link>
+              </div>
+              
+              
+            </div>
+
+            <div className="flex flex-col items-start border border-gray-300 rounded-md shadow-2xl p-4">
+              <h3>Если вы решили, что программа вам подходит, вы можете самостоятельно оплатить её и получить доступ к ближайшему старту.</h3>
+              <ProgramSelect program={program} userId={user ? user.id : 0} />
+            </div>
+          </div>
+      
+        
+         
+          
+
+        </>
+      ) : (    
+        <div className="mt-2">
+          <h2>У вас есть доступ!</h2>
+        </div>
+      
+      )}  
+    </section>
+  );
+}
