@@ -103,7 +103,7 @@ export default async function Page({ params }: PageProps) {
       
         <div className="grid grid-cols-2 gap-4 mt-10 px-2">
           <Link className="button-more-bulge !py-3" href={`/activity-form?title=${encodeURIComponent(activity.title)}`}> Подать заявку</Link>
-          {!activity.paylink && <Link className="button-more !py-3" href="">{!activity.paylink ? "Оплатить участие" : ""}</Link>}
+          {activity.paylink && <Link className="button-more !py-3" href="">{!activity.paylink ? "Оплатить участие" : ""}</Link>}
         </div>
       
     </section>

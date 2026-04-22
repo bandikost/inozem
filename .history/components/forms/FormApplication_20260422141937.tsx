@@ -17,7 +17,6 @@ export default function FormApplication({ user }: any) {
     const [email, setEmail] = useState(user?.email || "")
     const [education_level, setEducation_level] = useState(user?.education_level || "")
     const [captcha, setCaptcha] = useState<string>("")
-    const [notice, setNotice] = useState("")
     const show = useLoadingStore((s) => s.show)
     const hide = useLoadingStore((s) => s.hide)
 
@@ -51,24 +50,9 @@ const handleSubmit = async (e: React.FormEvent) => {
     show()
     await delay(1500)
 
-    const res = await fetch("/api/", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-
-        })
-    })
-
-    const data = await res.json()
-
-    if (!res.ok) {
-        hide()
-        setNotice(data.error || "Ошибка отправки формы")
-    }
-
   if (!captcha) {
     hide()
-    setNotice("Подтвердите капчу")
+    alert("Подтвердите капчу")
     return
   }
   hide()
@@ -77,8 +61,6 @@ const handleSubmit = async (e: React.FormEvent) => {
     
 
     return (
-        <>
-
         <form onSubmit={handleSubmit} className="border border-gray-300 py-4 px-6 rounded-md flex flex-col gap-4 w-[450px]">
             <h2 className="my-2 text-center text-prpl">Форма подачи заявки</h2>
             <input required className="border py-1 px-2 border-gray-300 rounded-md w-[400px] text-default text-lg"
@@ -109,7 +91,5 @@ const handleSubmit = async (e: React.FormEvent) => {
             <div id="yandex-captcha" className="mt-2" />
             <CheckBox152 />
         </form>
-        <p className="text-lg text-red-500">{notice}</p>
-        </>
     )
 }

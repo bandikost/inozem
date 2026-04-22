@@ -5,9 +5,6 @@ import CheckBox152 from "../ui/Checkbox/Checkbox"
 import Link from "next/link"
 import { HIGHER_SPECIALTIES, SECONDARY_SPECIALTIES } from "@/data/specialties"
 import { redirect } from "next/navigation"
-import { useLoadingStore } from "../Load/loadingStore"
-import { delay } from "@/lib/delay"
-
 
 
 
@@ -22,9 +19,8 @@ export default function FormActivity({ user, activity }: any) {
     const [education_level, setEducation_level] = useState(user?.education_level || "")
     const [captcha, setCaptcha] = useState<string>("")
     const [notice, setNotice] = useState("")
-    const show = useLoadingStore((s) => s.show)
-    const hide = useLoadingStore((s) => s.hide)
-    const allSpec = Array.from(new Set([...HIGHER_SPECIALTIES, ...SECONDARY_SPECIALTIES]))
+
+   const allSpec = Array.from(new Set([...HIGHER_SPECIALTIES, ...SECONDARY_SPECIALTIES]))
 
 useEffect(() => {
   const init = () => {
@@ -48,8 +44,6 @@ useEffect(() => {
 const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>, id: number) => {
   e.preventDefault()
 
-    show()
-    await delay(1500)
     const res = await fetch("/api/activity-users", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -69,23 +63,19 @@ const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>, id: number) =
     const data = await res.json()
 
     if (!res.ok) {
-        hide()
         setNotice(data.error || "Ошибка отправки")
     }
     
     
   if (!captcha) {
-    hide()
     setNotice("Подтвердите капчу")
     return
   }
   
   if (!activity) {
-    hide()
     setNotice("Вы не выбрали мероприятие")
   }
 
-    hide()
     alert("Форма отправлена!")
     redirect("/")
 }
@@ -108,10 +98,11 @@ const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>, id: number) =
             <input required className="border py-1 px-2 border-gray-300 rounded-md w-[400px] text-default text-lg"
                 value={email} onChange={e => setEmail(e.target.value)} placeholder="Ваша почта" />
            
-                     <select name="specialization" value={education_level} onChange={(e) => setEducation_level(e.target.value)} required className="border border-zinc-400 p-2 w-full rounded text-zinc-700 text-lg">
+                
+                     <select name="specialization" required className="border border-zinc-400 p-2 w-full rounded text-zinc-700 text-lg">
                        <option value="">-- выберите направление --</option>
                         {allSpec.map(spec => (
-                            <option key={spec} value={spec}>{spec}</option>
+                            <option key={spec} value={spec} onChange={() => setEducation_level(spec)}>{spec}</option>
                         ))}
                      </select>
                   

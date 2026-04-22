@@ -69,23 +69,19 @@ const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>, id: number) =
     const data = await res.json()
 
     if (!res.ok) {
-        hide()
         setNotice(data.error || "Ошибка отправки")
     }
     
     
   if (!captcha) {
-    hide()
     setNotice("Подтвердите капчу")
     return
   }
   
   if (!activity) {
-    hide()
     setNotice("Вы не выбрали мероприятие")
   }
 
-    hide()
     alert("Форма отправлена!")
     redirect("/")
 }

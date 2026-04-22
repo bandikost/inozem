@@ -5,8 +5,6 @@ import CheckBox152 from "../ui/Checkbox/Checkbox"
 import Link from "next/link"
 import { HIGHER_SPECIALTIES, SECONDARY_SPECIALTIES } from "@/data/specialties"
 import { redirect } from "next/navigation"
-import { useLoadingStore } from "../Load/loadingStore"
-import { delay } from "@/lib/delay"
 
 
 
@@ -22,8 +20,6 @@ export default function FormActivity({ user, activity }: any) {
     const [education_level, setEducation_level] = useState(user?.education_level || "")
     const [captcha, setCaptcha] = useState<string>("")
     const [notice, setNotice] = useState("")
-    const show = useLoadingStore((s) => s.show)
-    const hide = useLoadingStore((s) => s.hide)
     const allSpec = Array.from(new Set([...HIGHER_SPECIALTIES, ...SECONDARY_SPECIALTIES]))
 
 useEffect(() => {
@@ -48,8 +44,6 @@ useEffect(() => {
 const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>, id: number) => {
   e.preventDefault()
 
-    show()
-    await delay(1500)
     const res = await fetch("/api/activity-users", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -69,23 +63,19 @@ const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>, id: number) =
     const data = await res.json()
 
     if (!res.ok) {
-        hide()
         setNotice(data.error || "Ошибка отправки")
     }
     
     
   if (!captcha) {
-    hide()
     setNotice("Подтвердите капчу")
     return
   }
   
   if (!activity) {
-    hide()
     setNotice("Вы не выбрали мероприятие")
   }
 
-    hide()
     alert("Форма отправлена!")
     redirect("/")
 }
@@ -122,7 +112,7 @@ const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>, id: number) =
                     <p>Вам необходимо выбрать программу на странице <Link className="hover:underline" href="/activity">мероприятий</Link></p>
                 )}
             </div>
-            <div id="yandex-captcha" className="mt-2" />
+            
             <CheckBox152 />
         </form>
 

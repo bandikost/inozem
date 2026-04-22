@@ -74,11 +74,7 @@ const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>, id: number) =
     }
     
     
-  if (!captcha) {
-    hide()
-    setNotice("Подтвердите капчу")
-    return
-  }
+
   
   if (!activity) {
     hide()

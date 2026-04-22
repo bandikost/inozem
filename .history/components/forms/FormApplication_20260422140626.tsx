@@ -17,7 +17,6 @@ export default function FormApplication({ user }: any) {
     const [email, setEmail] = useState(user?.email || "")
     const [education_level, setEducation_level] = useState(user?.education_level || "")
     const [captcha, setCaptcha] = useState<string>("")
-    const [notice, setNotice] = useState("")
     const show = useLoadingStore((s) => s.show)
     const hide = useLoadingStore((s) => s.hide)
 
@@ -37,13 +36,7 @@ export default function FormApplication({ user }: any) {
   const t = setTimeout(init, 300)
   return () => clearTimeout(t)
 }, [sitekey])
-
-
     
-const handleEducationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  setEducation_level(e.target.value)
-  setSpecialization("")  
-}
 
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault()
@@ -51,24 +44,9 @@ const handleSubmit = async (e: React.FormEvent) => {
     show()
     await delay(1500)
 
-    const res = await fetch("/api/", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-
-        })
-    })
-
-    const data = await res.json()
-
-    if (!res.ok) {
-        hide()
-        setNotice(data.error || "Ошибка отправки формы")
-    }
-
   if (!captcha) {
     hide()
-    setNotice("Подтвердите капчу")
+    alert("Подтвердите капчу")
     return
   }
   hide()
@@ -77,8 +55,6 @@ const handleSubmit = async (e: React.FormEvent) => {
     
 
     return (
-        <>
-
         <form onSubmit={handleSubmit} className="border border-gray-300 py-4 px-6 rounded-md flex flex-col gap-4 w-[450px]">
             <h2 className="my-2 text-center text-prpl">Форма подачи заявки</h2>
             <input required className="border py-1 px-2 border-gray-300 rounded-md w-[400px] text-default text-lg"
@@ -91,7 +67,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 value={phone} onChange={e => setPhone(e.target.value)} placeholder="Ваш телефон" />
             <input required className="border py-1 px-2 border-gray-300 rounded-md w-[400px] text-default text-lg"
                 value={email} onChange={e => setEmail(e.target.value)} placeholder="Ваша почта" />
-            <select name="education_level" value={education_level} onChange={handleEducationChange} required className="border border-zinc-400 p-2 w-full rounded text-zinc-700 text-lg">
+            <select name="education_level" value={education_level} onChange={handleChange} required className="border border-zinc-400 p-2 w-full rounded text-zinc-700 text-lg">
                         <option value="">-- выберите образование --</option>
                         <option value="Среднее">Среднее</option>
                         <option value="Высшее">Высшее</option>
@@ -109,7 +85,5 @@ const handleSubmit = async (e: React.FormEvent) => {
             <div id="yandex-captcha" className="mt-2" />
             <CheckBox152 />
         </form>
-        <p className="text-lg text-red-500">{notice}</p>
-        </>
     )
 }

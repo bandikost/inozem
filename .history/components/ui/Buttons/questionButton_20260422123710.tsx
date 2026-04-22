@@ -11,11 +11,16 @@ export default function QuestionButton() {
     return (
         <section className="fixed -right-0.5 -bottom-1 z-10">
             
-            <div className={`bg-white border border-gray-300 rounded-md shadow-2xl relative transform transition-all duration-300 ease-in-out
-                    ${openMenu ? "opacity-100 scale-100 mr-5 mb-5" : "opacity-0 scale-75 pointer-events-none"}`}>
+            <div
+                className={`bg-white border border-gray-300 rounded-md shadow-2xl relative transform transition-all duration-300 ease-in-out
+                    ${openMenu ? "opacity-100 scale-100 mr-5 mb-5" : "opacity-0 scale-75 pointer-events-none"}
+                `}>
                 {openMenu && (
                     <>
-                        <button className="absolute -right-2 -top-2 hover:opacity-80" onClick={handleOpenMenu}>
+                        <button 
+                            className="absolute -right-2 -top-2 hover:opacity-80" 
+                            onClick={handleOpenMenu}
+                        >
                             <CircleX className="cursor-pointer" size={30} fill="red" />
                         </button>
 
