@@ -22,7 +22,7 @@ export default async function PromoPage() {
               <h2 className="text-blue text-2xl">{p.name}</h2>
               <p className="text-xl text-prpl mt-4">{p.promoname}</p>
               <p className="text-default py-4">Условия предоставления:</p>
-              <ul className="flex flex-col gap-4 text-default pb-8 !text-lg">
+              <ul className="flex flex-col gap-4 text-default pb-8">
                 <li>{p.title}</li>
                 <li>{p.suptitle}</li>
                 <li>{p.text}</li>

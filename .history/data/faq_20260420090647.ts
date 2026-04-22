@@ -6,4 +6,12 @@ export const FAQ = [
     {id: 3, question: "", answer: ""},
     {id: 4, question: "", answer: ""},
     {id: 5, question: "", answer: ""},
+    {id: 6, question: "", answer: ""},
+    {id: 7, question: "", answer: ""},
+    {id: 8, question: "", answer: ""},
+    {id: 9, question: "", answer: ""},
+    {id: 10, question: "", answer: ""},
+    {id: 11, question: "", answer: ""},
+    {id: 12, question: "", answer: ""},
+    {id: 13, question: "", answer: ""},
 ]

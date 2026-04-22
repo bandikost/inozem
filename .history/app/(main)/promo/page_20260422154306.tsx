@@ -16,13 +16,13 @@ export default async function PromoPage() {
       {promo.length === 0 ? (
         <p className="p-4 text-center text-zinc-500">Акции временно недоступны</p>
       ) : (
-        <div className="grid grid-cols-1 tablet:grid-cols-2 gap-8 mt-8 px-4">
+        <div className="grid grid-cols-2 gap-8 mt-8">
           {promo.map(p => (
             <div key={p.id} className="border-2 border-dotted border-zinc-300 rounded shadow-2xl bg-white p-6 relative">
               <h2 className="text-blue text-2xl">{p.name}</h2>
               <p className="text-xl text-prpl mt-4">{p.promoname}</p>
               <p className="text-default py-4">Условия предоставления:</p>
-              <ul className="flex flex-col gap-4 text-default pb-8 !text-lg">
+              <ul className="flex flex-col gap-4 text-default pb-8">
                 <li>{p.title}</li>
                 <li>{p.suptitle}</li>
                 <li>{p.text}</li>

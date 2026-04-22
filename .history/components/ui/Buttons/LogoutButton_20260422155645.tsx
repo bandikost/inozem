@@ -33,8 +33,8 @@ export default function LogoutButton() {
 
   return (
     <>
-      <button onClick={handleLogout} className="mt-1 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 cursor-pointer text-lg w-full flex items-center gap-2 justify-center">
-        Выйти <LogOut className="text-white" size={20} />
+      <button onClick={handleLogout} className="mt-1 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 cursor-pointer text-lg w-full flex">
+        Выйти <LogOut />
       </button>
 
      

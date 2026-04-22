@@ -1,6 +1,13 @@
+'use client'
+import { FAQ } from "@/data/faq";
+import { useState } from "react";
+
 
 export default function ContactsClient() {
-   
+    const [visibleAnswer, setVisibleAnswer] = useState<number | null>(null)
+    const handleSwitchVisible = (id: number) => {
+    setVisibleAnswer(prev => prev === id ? null : id)
+}
 
 return (
     <section className='flex flex-col justify-center pb-20 px-4'>
@@ -38,19 +45,12 @@ return (
                 </div>
             </div>
 
-            <div className='border border-gray-300 mt-8 rounded shadow-2xl bg-white pb-6 w-full max-w-[500px] mx-auto md:max-w-none md:mx-0'>
-                <div className="px-6 space-y-4 text-default">
-               <h2 className="text-prpl text-2xl py-6">Наши адреса</h2> 
-                <h3 className="text-prpl text-xl mt-4">Симуляционно-тренинговый центр</h3>
-                <p className="text-default text-base pb-6">Санкт-Петербург, Миллионная ул., д. 29</p>
-                <iframe className="rounded mt-6" src="https://yandex.ru/map-widget/v1/?um=constructor%3A6257a2039c7175badc4451c50308ebe2a4b551bc12a26400ab4ab43414238c9d&amp;lang=ru_RU" width="100%" height="380" allowFullScreen loading="lazy" ></iframe>
-                </div>
-            </div>
+            
 
         </div>
 
         
-        <div className="grid">
+        <div className="grid  grid-cols-1 md:grid-cols-2 gap-8 ">
 
             <div className='border border-gray-300 mt-8 rounded shadow-2xl bg-white pb-6 w-full max-w-[500px] mx-auto md:max-w-none md:mx-0'>
                 <div className="px-6  text-default">
@@ -67,7 +67,14 @@ return (
                 </ul>
             </div>
             </div>
-            
+<div className='border border-gray-300 mt-8 rounded shadow-2xl bg-white pb-6 w-full max-w-[500px] mx-auto md:max-w-none md:mx-0'>
+                <div className="px-6 space-y-4 text-default">
+               <h2 className="text-prpl text-2xl py-6">Наши адреса</h2> 
+                <h3 className="text-prpl text-xl mt-4">Симуляционно-тренинговый центр</h3>
+                <p className="text-default text-base pb-6">Санкт-Петербург, Миллионная ул., д. 29</p>
+                <iframe className="rounded mt-6" src="https://yandex.ru/map-widget/v1/?um=constructor%3A6257a2039c7175badc4451c50308ebe2a4b551bc12a26400ab4ab43414238c9d&amp;lang=ru_RU" width="100%" height="380" allowFullScreen loading="lazy" ></iframe>
+                </div>
+            </div>
         </div>
     </section>    
 )

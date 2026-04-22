@@ -50,7 +50,7 @@ return (
         </div>
 
         
-        <div className="grid">
+        <div className="grid  grid-cols-1 md:grid-cols-2 gap-8 ">
 
             <div className='border border-gray-300 mt-8 rounded shadow-2xl bg-white pb-6 w-full max-w-[500px] mx-auto md:max-w-none md:mx-0'>
                 <div className="px-6  text-default">
