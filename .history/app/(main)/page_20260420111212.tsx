@@ -1,0 +1,18 @@
+import FirstBlock from "@/components/MainPage/FirstBlock";
+import Programms from "@/components/MainPage/Programms";
+import SecondBlock from "@/components/MainPage/SecondBlock";
+import ThirdBlock from "@/components/MainPage/ThridBlock";
+
+
+export default async function Home() {
+  await new Promise((r) => setTimeout(r, 2000))
+  return (
+      <div className="flex flex-col w-full mt-28 mb-10 items-center justify-center ">
+        <FirstBlock />
+       
+        <Programms />
+         <SecondBlock />
+        <ThirdBlock />
+      </div>
+  );
+}
