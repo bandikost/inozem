@@ -2,7 +2,7 @@
 
 import { messages } from '@/data/loading'
 import { useEffect, useState } from 'react'
-import { useLoadingStore } from '../Load/loadingStore'
+import { useLoadingStore } from './loadingStore'
 
 export default function InitialLoader() {
   const [visible, setVisible] = useState(true)

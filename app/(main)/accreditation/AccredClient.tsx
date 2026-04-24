@@ -1,10 +1,10 @@
 "use client"
 
-import AccredTable from "@/components/accred/AccredTable"
+import AccredTable from "@/app/(main)/accreditation/AccredTable"
 import { items } from "@/data/accredNotice"
 import { MoveRight } from "lucide-react"
 import { useState } from "react"
-import AccredResult from "@/components/accred/AccredResult"
+import AccredResult from "./AccredResult"
 
 
 

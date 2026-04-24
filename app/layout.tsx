@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
-import InitialLoader from "@/components/ui/InitialLoader";
+import InitialLoader from "@/components/Load/InitialLoader";
 import NavigationDone from "@/components/ui/LazyLoad/NavigationProgress";
 import QuestionButton from "@/components/ui/Buttons/questionButton";
 import Script from "next/script"

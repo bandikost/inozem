@@ -33,7 +33,7 @@ export default function QuestionButton() {
                                 Если вы не нашли ответ на нужный вопрос - заполните заявку, и наши сотрудники ответят вам в ближайшее время!
                             </p>
                             <hr className="border border-gray-300 w-full" />
-                            <Link className="button-more mt-4" href={"/question"} onClick={handleOpenMenu}>Перейти к подаче заявки</Link>
+                            <Link className="button-more mt-4" href={"/question"} onClick={handleOpenMenu}>Задать вопрос</Link>
                         </div>
                     </>
                 )}

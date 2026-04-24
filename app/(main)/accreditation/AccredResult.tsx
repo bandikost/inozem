@@ -1,9 +1,9 @@
 "use client"
 
+import AccredButton from "@/components/ui/Buttons/accredButton"
 import { HIGHER_SPECIALTIES, SECONDARY_SPECIALTIES } from "@/data/specialties"
 import { Hourglass } from "lucide-react"
 import { useState, useEffect } from "react"
-import AccredButton from "../ui/Buttons/accredButton"
 
 export default function AccredResult() {
   const [selected, setSelected] = useState("")

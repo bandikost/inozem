@@ -1,39 +1,27 @@
-'use client'
+import FormQuestion from "@/components/forms/FormQuestion";
+import { getProfile } from "@/lib/getProfile";
+import { cookies } from "next/headers";
+import QuestionFaq from "./QuestionFaq";
 
-import { FAQ } from "@/data/faq";
-import { useState } from "react";
-
-
-
-export default function Page() {
-     const [visibleAnswer, setVisibleAnswer] = useState<number | null>(null)
-    const handleSwitchVisible = (id: number) => {
-    setVisibleAnswer(prev => prev === id ? null : id)
+export const metadata = {
+    title: "Задать вопрос | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»"
 }
 
+export default async function Page() {
+    const cookieStore = await cookies()
+    const token = cookieStore.get("token")?.value
+    let user = null
+    if (token) user = await getProfile(token)
+
 return (
-    <section className='flex flex-col justify-center pb-20 px-4'>
+    <section className='flex flex-col justify-center items-center pb-20 px-4'>
       <h1 className='mt-27 text-prpl text-center'>Задать вопрос</h1>
-        <div className="grid grid-cols-1 tablet:grid-cols-2 gap-4">
-            <div className="mt-10 border border-gray-300 rounded-md shadow-xl p-4">
-                <h2 className="text-blue">Часто задаваемые вопросы <br /><span className="!text-xl !font-normal text-default">- Теоретическая часть</span></h2>
-                <ul className="mt-4">
-                    <li>1</li>
-                </ul>
-            </div>
-            <div className="mt-10 border border-gray-300 rounded-md shadow-xl p-4">
-                <h2 className="text-blue">Часто задаваемые вопросы <br /><span className="!text-xl !font-normal text-default">- Техническая часть</span></h2>
-                    {FAQ.map(f => (
-                        <ul key={f.id} className="px-2 mt-4">
-                            <button className="!text-zinc-800 cursor-pointer text-lg" onClick={() => handleSwitchVisible(f.id)}>{f.id}. {f.question} <span className="text-blue">- Нажмите для ответа</span></button>
-                            {visibleAnswer === f.id && (
-                                <li className="mt-1 text-blue !font-medium border border-gray-300 rounded-md px-2 py-1 bg-gray-100">{f.answer}</li>
-                            )}
-                        </ul>
-                    ))}
-                    
-            </div>
-        </div>
+
+      <div className="grid grid-cols-1 tablet:grid-cols-2 gap-12 items-center justify-items-center tablet:items-start mt-10">
+        <QuestionFaq />
+        <FormQuestion user={user} />
+      </div>
+        
       </section>
     )
 }

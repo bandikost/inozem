@@ -1,5 +1,5 @@
 import ImageWithSkeleton from "@/components/ui/LazyLoad/ImageWithSkeleton"
-import { ToggleBlock } from "@/components/ui/ToggleBlock"
+import { ToggleBlock } from "@/components/ui/Buttons/ToggleBlock"
 import { clinics, documents, features, legalInfo, order, partners, prescript, regulations, smeta } from "@/data/partners"
 import { File, Info } from "lucide-react"
 import Link from "next/link"
