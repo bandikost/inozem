@@ -10,7 +10,7 @@ import { useSubmitWithCaptcha } from "@/hooks/useSubmitWithCaptcha"
 
 
 type Props = {
-  user?: UserRow
+  user?: UserRow | null
   activity?: string
 }
 
