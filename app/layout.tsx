@@ -7,7 +7,7 @@ import QuestionButton from "@/components/ui/Buttons/questionButton";
 import Script from "next/script"
 import LoadingOverlay from "@/components/Load/LoadingOverlay";
 import RouteLoader from "@/components/Load/RouteLoader";
-
+import { Analytics } from "@vercel/analytics/next"
 
 const nunito = Nunito({
   variable: "--font-sans",
@@ -31,6 +31,7 @@ export default function RootLayout({ children } : Readonly<{ children: React.Rea
     <QuestionButton />
     <LoadingOverlay />
     <RouteLoader />
+    <Analytics />
     {children}
     <Script src="https://smartcaptcha.yandexcloud.net/captcha.js" strategy="afterInteractive"/>
   </body>

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
+    "@vercel/analytics": "^2.0.1",
     "aws-sdk": "^2.1693.0",
     "axios": "^1.13.4",
     "bcrypt": "^6.0.0",
