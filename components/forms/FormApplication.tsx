@@ -4,7 +4,7 @@ import { useState } from "react"
 import CheckBox152 from "../ui/Checkbox/Checkbox"
 import { HIGHER_SPECIALTIES, SECONDARY_SPECIALTIES } from "@/data/specialties"
 import { useYandexCaptcha } from "@/hooks/useYandexCaptcha"
-import { UserRow } from "@/app/types/user"
+import { UserRow } from "@/app/interface/user"
 import { useSubmitWithCaptcha } from "@/hooks/useSubmitWithCaptcha"
 
 

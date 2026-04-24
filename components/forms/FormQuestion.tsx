@@ -3,7 +3,7 @@
 import { useState } from "react"
 import CheckBox152 from "../ui/Checkbox/Checkbox"
 import { useYandexCaptcha } from "@/hooks/useYandexCaptcha"
-import { UserRow } from "@/app/types/user"
+import { UserRow } from "@/app/interface/user"
 import { useSubmitWithCaptcha } from "@/hooks/useSubmitWithCaptcha"
 
 type Props = {
