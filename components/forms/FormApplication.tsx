@@ -9,7 +9,7 @@ import { useSubmitWithCaptcha } from "@/hooks/useSubmitWithCaptcha"
 
 
 type Props = {
-  user?: UserRow
+  user?: UserRow | null
 }
 
 export default function FormApplication({ user }: Props) {
