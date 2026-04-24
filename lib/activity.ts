@@ -1,6 +1,6 @@
 import { RowDataPacket } from "mysql2"
 import { db } from "@/lib/db"
-import { Activity } from "@/app/types/activity"
+import { Activity } from "@/app/interface/activity"
 
 export async function getActivity(): Promise<Activity[]> {
   const [rows] = await db.query<Activity[] & RowDataPacket[]>(`
