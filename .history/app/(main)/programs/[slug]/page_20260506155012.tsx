@@ -78,7 +78,7 @@ export default async function Page({ params }: ProgramsPageProps) {
           </div>
         </>
       ) : (    
-          program.time >= 288 && program.education === "Среднее" ? <BaseVideo /> : ""  
+          program.time > 17 && program.education === "Высшее" ? <BaseVideo /> : ""  
       )}  
     </section>
   );
