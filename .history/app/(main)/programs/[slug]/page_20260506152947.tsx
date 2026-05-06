@@ -29,11 +29,14 @@ export default async function Page({ params }: ProgramsPageProps) {
   let user = null
   let hasAccess = false
 
-  if (token) {
+if (token) {
+  try {
     user = await getProfile(token)
     hasAccess = await hasUserProgram(user.id, program.id)
+  } catch (err) {
+    console.error("Не удалось загрузить профиль:", err)
   }
-  
+}
   const dates = program.dates.split('\n').filter(Boolean)
 
   return (

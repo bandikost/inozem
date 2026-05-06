@@ -2,22 +2,11 @@ import { getProgramBySlug, hasUserProgram } from "@/lib/programm";
 import ProgramSelect from "./SelectProgramm";
 import { getProfile } from "@/lib/getProfile";
 import Link from "next/link";
+import { cookies } from "next/headers";
 import BaseVideo from "./VideoComponents/Basevideo";
-import TokenCheck from "@/components/token/token";
 
 interface ProgramsPageProps { 
    params: { slug: string } 
-}
-
-export async function generateMetadata({ params }: ProgramsPageProps) {
-  const { slug } = await params
-  const program = await getProgramBySlug(slug)
-
-  return {
-    title: program
-      ? `${program.name} | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»`
-      : "Программа не найдена",
-  }
 }
 
 export default async function Page({ params }: ProgramsPageProps) {
@@ -25,15 +14,19 @@ export default async function Page({ params }: ProgramsPageProps) {
   const program = await getProgramBySlug(slug)
   if (!program) return <div className="mt-20 text-center">Программа не найдена</div>
 
-  const token = await TokenCheck()
-  let user = null
-  let hasAccess = false
+  const cookieStore = await cookies() 
+  const token = cookieStore.get("token")?.value 
+  let user = null;
+  let hasAccess = false;
 
-  if (token) {
+if (token) {
+  try {
     user = await getProfile(token)
     hasAccess = await hasUserProgram(user.id, program.id)
+  } catch (err) {
+    console.error("Не удалось загрузить профиль:", err)
   }
-  
+}
   const dates = program.dates.split('\n').filter(Boolean)
 
   return (
@@ -83,4 +76,3 @@ export default async function Page({ params }: ProgramsPageProps) {
     </section>
   );
 }
-

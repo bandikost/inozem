@@ -2,6 +2,7 @@ import { getProgramBySlug, hasUserProgram } from "@/lib/programm";
 import ProgramSelect from "./SelectProgramm";
 import { getProfile } from "@/lib/getProfile";
 import Link from "next/link";
+import { cookies } from "next/headers";
 import BaseVideo from "./VideoComponents/Basevideo";
 import TokenCheck from "@/components/token/token";
 
@@ -29,11 +30,14 @@ export default async function Page({ params }: ProgramsPageProps) {
   let user = null
   let hasAccess = false
 
-  if (token) {
+if (token) {
+  try {
     user = await getProfile(token)
     hasAccess = await hasUserProgram(user.id, program.id)
+  } catch (err) {
+    console.error("Не удалось загрузить профиль:", err)
   }
-  
+}
   const dates = program.dates.split('\n').filter(Boolean)
 
   return (
