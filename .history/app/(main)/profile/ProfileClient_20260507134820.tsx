@@ -28,7 +28,7 @@ export default function ProfileClient({programs, user} : Props) {
           <ul className="flex flex-col">
               {programs.map(p => {
                 const endDate = new Date(p.created_at)
-                const time = (p.time, 10)
+                const time = parseInt(p.time, 10)
 
                 if (time < 71) endDate.setMonth(endDate.getMonth() + 1)
                 else if (time < 143) endDate.setMonth(endDate.getMonth() + 2)
