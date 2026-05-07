@@ -1,6 +1,5 @@
 import ResetPasswordClient from "./ResetPasswordClient";
 
-
 export default async function Page({
   searchParams,
 }: {
