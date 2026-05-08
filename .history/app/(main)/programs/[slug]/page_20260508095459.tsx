@@ -80,20 +80,20 @@ export default async function Page({ params }: ProgramsPageProps) {
       ) : (   
         <>
           {program.time >= 288 && program.education === "Среднее" && program.category === "pp" ? <BaseVideo /> : "" }
-          {program.time >= 288 && program.education === "Высшее"  && program.category === "pp" ? <div className="mt-20 "><h3>Ожидаются видео</h3></div> : ""}
-          <div className="mt-20 border border-gray-300 rounded-md shadow-2xl p-4">
+          {program.time >= 288 && program.education === "Высшее"  && program.category === "pp" ? "Ождиается информация" : ""}
+          <div className="mt-10">
             <h3>Текст</h3>
           </div>
 
-          <div className="mt-20 border border-gray-300 rounded-md shadow-2xl p-4">
+          <div className="mt-10">
             <h3>Лекции</h3>
           </div>
 
-          <div className="mt-20 border border-gray-300 rounded-md shadow-2xl p-4">
+          <div className="mt-10">
             <h3>Какие-нибудь файлы</h3>
           </div>
 
-         {program.category === "pp" && <div className="mt-20 border border-gray-300 rounded-md shadow-2xl p-4">
+         {program.category === "pp" && <div>
             <h3>Тест</h3>
           </div> }
         </> 
