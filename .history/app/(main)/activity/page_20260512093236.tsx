@@ -28,6 +28,10 @@ function parseDate(dates: string): Date | null {
   return new Date(year, months[monthStr], day)
 }
 
+export const metadata = {
+    title: "Мероприятия | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»"
+}
+
 export default async function Page() {
   const activity = await getActivity()
   const now = new Date()
@@ -54,13 +58,13 @@ export default async function Page() {
           <h2 className="text-prpl my-10 !text-3xl">
             Предстоящие мероприятия {upcomingYear ? `— ${upcomingYear} г.` : ''}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {upcomingActivities.map(act => (
-              <div key={act.id} className="border border-gray-300 shadow-2xl rounded-md p-4">
+              <div key={act.id} className="border border-gray-300 shadow-xl rounded-md p-4">
                 <div className="flex flex-col justify-between w-full h-full">
                 <h3 className="text-prpl !text-xl">{act.name}</h3>
-                <div className="flex items-center mt-2 gap-4">
-                  <div dangerouslySetInnerHTML={{ __html: act.dates }} />
+                <div className="flex items-center mt-5 gap-4">
+                  <div className="!font-normal" dangerouslySetInnerHTML={{ __html: act.dates }} />
                   <Link className="hover:underline !text-lg" href={`/activity/${act.slug}`}>Подробнее</Link>
                 </div>
                 </div>
@@ -75,15 +79,15 @@ export default async function Page() {
           <h2 className="text-prpl mb-10 mt-15 !text-3xl">
             Прошедшие мероприятия {pastYear ? `— ${pastYear} г.` : ''}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {pastActivities.map(act => (
-              <div key={act.id} className="border border-gray-300 shadow-2xl rounded-md p-4 opacity-70">
+              <div key={act.id} className="border border-gray-300 shadow-xl rounded-md p-4 opacity-70">
 
               <div className="flex flex-col justify-between w-full h-full">
                 
-                  <h3 className="text-prpl !text-xl">{act.name}</h3>
-                    <div className="flex items-center mt-2 gap-4">
-                      <div dangerouslySetInnerHTML={{ __html: act.dates }} />
+                  <h3 className="text-prpl !text-2xl">{act.name}</h3>
+                    <div className="flex items-center mt-5 gap-4">
+                      <div className="!font-normal opacity-60" dangerouslySetInnerHTML={{ __html: act.dates }} />
                       <Link className="hover:underline !text-lg" href={`/activity/${act.slug}`}>Подробнее</Link>
                     </div>
                   </div>

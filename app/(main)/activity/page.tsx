@@ -80,7 +80,16 @@ export default async function Page() {
             Прошедшие мероприятия {pastYear ? `— ${pastYear} г.` : ''}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {pastActivities.map(act => (
+            {pastActivities
+             .sort((a, b) => {
+              const dateA = parseDate(a.dates)
+              const dateB = parseDate(b.dates)
+
+              if (!dateA || !dateB) return 0
+
+              return dateB.getTime() - dateA.getTime()
+            })
+            .map(act => (
               <div key={act.id} className="border border-gray-300 shadow-xl rounded-md p-4 opacity-70">
 
               <div className="flex flex-col justify-between w-full h-full">
