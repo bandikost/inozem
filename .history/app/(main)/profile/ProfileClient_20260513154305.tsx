@@ -41,7 +41,7 @@ export default function ProfileClient({programs, user} : Props) {
                     <li className="px-4 border-y border-gray-300 py-8">
                       <p className="font-semibold !text-xl ">{p.name}</p>
                       <p className="!text-sm">
-                        Доступ открыт до: {endDate.toLocaleDateString()}
+                        До: {endDate.toLocaleDateString()}
                       </p>
                     </li>
                   </Link>

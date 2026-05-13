@@ -1,6 +1,32 @@
 import { getActivity } from "@/lib/activity"
-import parseDate from "@/lib/months"
 import Link from "next/link"
+
+function parseDate(dates: string): Date | null {
+  const match = dates.match(/(\d{1,2})\s+([а-яё]+)\s+(\d{4})/i)
+  if (!match) return null
+
+  const day = parseInt(match[1], 10)
+  const monthStr = match[2].toLowerCase()
+  const year = parseInt(match[3], 10)
+
+  const months: Record<string, number> = {
+    'января': 0,
+    'февраля': 1,
+    'марта': 2,
+    'апреля': 3,
+    'мая': 4,
+    'июня': 5,
+    'июля': 6,
+    'августа': 7,
+    'сентября': 8,
+    'октября': 9,
+    'ноября': 10,
+    'декабря': 11,
+  }
+
+  if (!(monthStr in months)) return null
+  return new Date(year, months[monthStr], day)
+}
 
 export const metadata = {
     title: "Мероприятия | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»"
@@ -48,9 +74,12 @@ export default async function Page() {
 
       {pastActivities.length > 0 && (
         <>
-          <h2 className="text-prpl mb-10 mt-15 !text-3xl">Прошедшие мероприятия {pastYear ? `— ${pastYear} г.` : ''}</h2>
+          <h2 className="text-prpl mb-10 mt-15 !text-3xl">
+            Прошедшие мероприятия {pastYear ? `— ${pastYear} г.` : ''}
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {pastActivities.sort((a, b) => {
+            {pastActivities
+             .sort((a, b) => {
               const dateA = parseDate(a.dates)
               const dateB = parseDate(b.dates)
 

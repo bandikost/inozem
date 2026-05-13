@@ -45,8 +45,6 @@ export default function InputPrograms({ programs }: { programs: ProgramRow[] }) 
 
     if (education) filtered = filtered.filter(p => p.education?.toLowerCase() === education.toLowerCase())
 
-    if (category) filtered = filtered.filter(p => p.category?.trim().toLowerCase() === category.trim().toLowerCase())
-
     if (time || timeSecondary) filtered = filtered.filter(p => (time && p.time === Number(time)) || (timeSecondary && p.time_secondary === Number(timeSecondary)))
     
     if (specialization)  filtered = filtered.filter(p =>  p.specialization?.toLowerCase().startsWith(specialization.toLowerCase()))
@@ -99,10 +97,10 @@ export default function InputPrograms({ programs }: { programs: ProgramRow[] }) 
 
                 <hr className="border border-gray-200 w-9/10" />
 
-                <div className="flex flex-col items-start px-6">
-                    <h3 className="text-prpl mb-4 !font-normal !text-2xl">Категория программы</h3>
+                <div className="flex flex-col items-start p-6 !-ml-8">
+                    <h3 className="text-prpl mb-4 !font-normal text-center !text-2xl">Категория программы</h3>
                     
-                        <div className="flex flex-col gap-1 ">            
+                        <div className="flex flex-col gap-1 px-6">            
                             <select name="category" value={category} onChange={(e) => {
                                 setCategory(e.target.value)
                                 setActiveTab("programs")

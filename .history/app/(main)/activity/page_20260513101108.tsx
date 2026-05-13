@@ -50,7 +50,8 @@ export default async function Page() {
         <>
           <h2 className="text-prpl mb-10 mt-15 !text-3xl">Прошедшие мероприятия {pastYear ? `— ${pastYear} г.` : ''}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {pastActivities.sort((a, b) => {
+            {pastActivities
+             .sort((a, b) => {
               const dateA = parseDate(a.dates)
               const dateB = parseDate(b.dates)
 

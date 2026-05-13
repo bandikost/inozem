@@ -2,6 +2,8 @@ import { getActivity } from "@/lib/activity"
 import parseDate from "@/lib/months"
 import Link from "next/link"
 
+
+
 export const metadata = {
     title: "Мероприятия | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»"
 }
@@ -48,13 +50,16 @@ export default async function Page() {
 
       {pastActivities.length > 0 && (
         <>
-          <h2 className="text-prpl mb-10 mt-15 !text-3xl">Прошедшие мероприятия {pastYear ? `— ${pastYear} г.` : ''}</h2>
+          <h2 className="text-prpl mb-10 mt-15 !text-3xl">
+            Прошедшие мероприятия {pastYear ? `— ${pastYear} г.` : ''}
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {pastActivities.sort((a, b) => {
+            {pastActivities
+             .sort((a, b) => {
               const dateA = parseDate(a.dates)
               const dateB = parseDate(b.dates)
 
-              if (!dateA || !dateB) return 0
+             if (!dateA || !dateB) return 0
 
               return dateB.getTime() - dateA.getTime()
             })

@@ -118,18 +118,21 @@ export async function getIndividProgram(userId: number): Promise<ProgramRow[]> {
 }
 
 
-export async function hasUserProgram(
-  userId: number,
-  programId: number
-): Promise<boolean> {
+export async function hasUserProgram(userId: number, programId: number): Promise<boolean> {
   const [rows]: any = await db.query(
-    `SELECT id
-     FROM user_programs
-     WHERE user_id = ?
-       AND programm_id = ?
-       AND status = 'active'
-       AND expires_at >= NOW()
-     ORDER BY created_at DESC
+    `SELECT up.id
+     FROM user_programs up
+     JOIN programms p ON p.id = up.programm_id
+     WHERE up.user_id = ?
+       AND up.programm_id = ?
+       AND up.status = 'active'
+       AND (
+         (p.time < 71 AND up.created_at >= NOW() - INTERVAL 1 MONTH) OR
+         (p.time >= 71 AND p.time < 143 AND up.created_at >= NOW() - INTERVAL 2 MONTH) OR
+         (p.time >= 143 AND p.time < 287 AND up.created_at >= NOW() - INTERVAL 3 MONTH) OR
+         (p.time >= 287 AND up.created_at >= NOW() - INTERVAL 12 MONTH)
+       )
+     ORDER BY up.created_at DESC
      LIMIT 1`,
     [userId, programId]
   )

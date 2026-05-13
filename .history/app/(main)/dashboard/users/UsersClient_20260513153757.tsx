@@ -52,7 +52,8 @@ const handleAssign = async (userId: number) => {
     if (!res.ok) {
       throw new Error("Ошибка назначения")
     }
-    
+    console.log("PROGRAM PAGE ID:", program.id)
+console.log("PROGRAM PAGE NAME:", program.name)
     alert("Программа назначена ✅")
     window.location.reload()
   } catch (e) {

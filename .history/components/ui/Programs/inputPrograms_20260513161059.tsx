@@ -45,7 +45,7 @@ export default function InputPrograms({ programs }: { programs: ProgramRow[] }) 
 
     if (education) filtered = filtered.filter(p => p.education?.toLowerCase() === education.toLowerCase())
 
-    if (category) filtered = filtered.filter(p => p.category?.trim().toLowerCase() === category.trim().toLowerCase())
+    if (category) filtered = filtered.filter(p => p.category?.toLowerCase() === category.toLowerCase())
 
     if (time || timeSecondary) filtered = filtered.filter(p => (time && p.time === Number(time)) || (timeSecondary && p.time_secondary === Number(timeSecondary)))
     
