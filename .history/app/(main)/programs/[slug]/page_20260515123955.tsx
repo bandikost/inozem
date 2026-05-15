@@ -4,11 +4,7 @@ import { getProfile } from "@/lib/getProfile";
 import Link from "next/link";
 import BaseVideo from "./VideoComponents/Basevideo";
 import TokenCheck from "@/components/token/token";
-import ProgramSlider from "./Components/ProgramSlider";
-import Main from "./Containers/Blocks/Main";
-import { title } from "@/lib/programs/titles";
-import Second from "./Containers/Blocks/Second";
-import Three from "./Containers/Blocks/Three";
+import Sestrinskoedelo from "./Containers/Sestrinskoedelo";
 
 interface ProgramsPageProps { 
    params: { slug: string } 
@@ -17,7 +13,6 @@ interface ProgramsPageProps {
 export async function generateMetadata({ params }: ProgramsPageProps) {
   const { slug } = await params
   const program = await getProgramBySlug(slug)
-  
 
   return {
     title: program
@@ -43,9 +38,6 @@ export default async function Page({ params }: ProgramsPageProps) {
   const dates = program.dates.split('\n').filter(Boolean)
 
   const blocks = []
-  const currentTitle = title.find((item) =>
-  program.specialization.startsWith(item.specialization)
-)
 
   if (
     program.time >= 288 &&
@@ -53,7 +45,7 @@ export default async function Page({ params }: ProgramsPageProps) {
     program.category === 'Профессиональная переподготовка'
   ) {
     blocks.push({
-      title: currentTitle?.blocks[0] || "",
+      title: 'Видео',
       component: <BaseVideo />,
     })
   }
@@ -63,23 +55,31 @@ export default async function Page({ params }: ProgramsPageProps) {
     program.category === 'Профессиональная переподготовка'
   ) {
     blocks.push({
-      title: currentTitle?.blocks[1],
-      component: <Main />,
+      title: 'Сестринское дело',
+      component: <Sestrinskoedelo />,
     })
   }
 
   blocks.push({
-    title: currentTitle?.blocks[2] || "",
-    component:  <Second program={program} />,
+    title: 'Текст',
+    component: (
+      <div>
+        <h3>Текст</h3>
+      </div>
+    ),
   })
 
   blocks.push({
-    title: currentTitle?.blocks[3] || "",
-    component: <Three program={program}/>,
+    title: 'Лекции',
+    component: (
+      <div>
+        <h3>Лекции</h3>
+      </div>
+    ),
   })
 
   blocks.push({
-    title: currentTitle?.blocks[4] || "",
+    title: 'Файлы',
     component: (
       <div>
         <h3>Какие-нибудь файлы</h3>
@@ -133,7 +133,36 @@ export default async function Page({ params }: ProgramsPageProps) {
         
         <>
         
-         <ProgramSlider blocks={blocks} />
+          <div className="flex items-center gap-4">
+
+            <div className="border border-gray-300 rounded-md">
+              <ul className="px-2 grid gap-1">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+              </ul>
+            </div>
+
+          {program.time >= 288 && program.education === "Среднее" && program.category === "Профессиональная переподготовка" ? <BaseVideo /> : "" }
+
+          <button></button>
+          </div>
+
+          {program.time >= 288 && program.education === "Высшее"  && program.category === "Профессиональная переподготовка" ? <div className="mt-20 "><h3>Ожидаются видео для вышки пп</h3></div> : ""}
+          {program.specialization.startsWith('Сестринское дело') && program.category === "Профессиональная переподготовка" && <Sestrinskoedelo/> }
+
+          <div className="mt-20 border border-gray-300 rounded-md shadow-2xl p-4">
+            <h3>Текст</h3>
+          </div>
+
+          <div className="mt-20 border border-gray-300 rounded-md shadow-2xl p-4">
+            <h3>Лекции</h3>
+          </div>
+
+          <div className="mt-20 border border-gray-300 rounded-md shadow-2xl p-4">
+            <h3>Какие-нибудь файлы</h3>
+          </div>
 
         
         </> 

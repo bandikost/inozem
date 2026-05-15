@@ -5,10 +5,7 @@ import Link from "next/link";
 import BaseVideo from "./VideoComponents/Basevideo";
 import TokenCheck from "@/components/token/token";
 import ProgramSlider from "./Components/ProgramSlider";
-import Main from "./Containers/Blocks/Main";
-import { title } from "@/lib/programs/titles";
-import Second from "./Containers/Blocks/Second";
-import Three from "./Containers/Blocks/Three";
+import Main from "./Containers/Sestrinskoedelo/Main";
 
 interface ProgramsPageProps { 
    params: { slug: string } 
@@ -53,7 +50,7 @@ export default async function Page({ params }: ProgramsPageProps) {
     program.category === 'Профессиональная переподготовка'
   ) {
     blocks.push({
-      title: currentTitle?.blocks[0] || "",
+      title: currentTitle?.name || "",
       component: <BaseVideo />,
     })
   }
@@ -63,23 +60,31 @@ export default async function Page({ params }: ProgramsPageProps) {
     program.category === 'Профессиональная переподготовка'
   ) {
     blocks.push({
-      title: currentTitle?.blocks[1],
+      title: currentTitle?.name,
       component: <Main />,
     })
   }
 
   blocks.push({
-    title: currentTitle?.blocks[2] || "",
-    component:  <Second program={program} />,
+    title: currentTitle?.name || "",
+    component: (
+      <div>
+        <h3>Текст</h3>
+      </div>
+    ),
   })
 
   blocks.push({
-    title: currentTitle?.blocks[3] || "",
-    component: <Three program={program}/>,
+    title: currentTitle?.name || "",
+    component: (
+      <div>
+        <h3>Лекции</h3>
+      </div>
+    ),
   })
 
   blocks.push({
-    title: currentTitle?.blocks[4] || "",
+    title: currentTitle?.name || "",
     component: (
       <div>
         <h3>Какие-нибудь файлы</h3>

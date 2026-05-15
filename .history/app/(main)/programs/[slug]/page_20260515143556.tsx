@@ -8,7 +8,6 @@ import ProgramSlider from "./Components/ProgramSlider";
 import Main from "./Containers/Blocks/Main";
 import { title } from "@/lib/programs/titles";
 import Second from "./Containers/Blocks/Second";
-import Three from "./Containers/Blocks/Three";
 
 interface ProgramsPageProps { 
    params: { slug: string } 
@@ -75,7 +74,11 @@ export default async function Page({ params }: ProgramsPageProps) {
 
   blocks.push({
     title: currentTitle?.blocks[3] || "",
-    component: <Three program={program}/>,
+    component: (
+      <div>
+        <h3>Лекции</h3>
+      </div>
+    ),
   })
 
   blocks.push({
