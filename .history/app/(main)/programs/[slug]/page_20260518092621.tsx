@@ -41,7 +41,7 @@ export default async function Page({ params }: ProgramsPageProps) {
   }
   
   const dates = program.dates.split('\n').filter(Boolean)
-  const specialization = program.specialization
+
   const blocks = []
   const currentTitle = title.find((item) =>
   program.specialization.startsWith(item.specialization)
@@ -70,12 +70,12 @@ export default async function Page({ params }: ProgramsPageProps) {
 
   blocks.push({
     title: currentTitle?.blocks[2] || "",
-    component:  <Second specialization={specialization} />,
+    component:  <Second program={program} />,
   })
 
   blocks.push({
     title: currentTitle?.blocks[3] || "",
-    component: <Three specialization={specialization}/>,
+    component: <Three program={program}/>,
   })
 
   blocks.push({

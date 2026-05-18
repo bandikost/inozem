@@ -2,17 +2,17 @@ import type { ProgramRow } from "@/lib/programm";
 import Vakcina from "../../VideoComponents/Vakcina";
 
 interface Props {
-    specialization: string
+    program: ProgramRow
 }
      
-export default function Second({specialization}: Props){
+export default function Second({program}: Props){
     
 
 
 return (
     <section className="relative">
         <div className="border border-gray-300 rounded-md shadow-2xl p-6">
-            {specialization.startsWith("Сестринское дело") && <Vakcina />}
+            {program.specialization.startsWith("Сестринское дело") && <Vakcina />}
         </div>
     </section>
     )
