@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { ResultSetHeader } from "mysql2";
+import { ResultSetHeader } from "mysql2/promise";
 
 export async function POST(req: NextRequest) {
   try {
