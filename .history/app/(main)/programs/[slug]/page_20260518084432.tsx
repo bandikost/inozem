@@ -14,20 +14,20 @@ interface ProgramsPageProps {
    params: { slug: string } 
 }
 
-export async function generateMetadata({ params }: ProgramsPageProps) {
-  const { slug } = await params
-  const program = await getProgramBySlug(slug)
+// export async function generateMetadata({ params }: ProgramsPageProps) {
+ // const { slug } = await params
+//  const program = await getProgramBySlug(slug)
   
 
-  return {
-    title: program
-      ? `${program.name} | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»`
-      : "Программа не найдена",
-  }
-}
+ // return {
+ //   title: program
+  //    ? `${program.name} | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»`
+  //    : "Программа не найдена",
+ // }
+// }
 
 export default async function Page({ params }: ProgramsPageProps) {
-  const { slug } = await params
+  const { slug } =  params
   const program = await getProgramBySlug(slug)
   if (!program) return <div className="mt-20 text-center">Программа не найдена</div>
 
@@ -75,7 +75,7 @@ export default async function Page({ params }: ProgramsPageProps) {
 
   blocks.push({
     title: currentTitle?.blocks[3] || "",
-    component: <Three program={program}/>,
+    component: <Three program={program} />,
   })
 
   blocks.push({
