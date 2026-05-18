@@ -1,4 +1,4 @@
-import type { ProgramRow } from "@/lib/programm";
+import { ProgramRow } from "@/lib/programm";
 import Vakcina from "../../VideoComponents/Vakcina";
 
 interface Props {

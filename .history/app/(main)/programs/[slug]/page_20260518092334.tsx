@@ -70,12 +70,12 @@ export default async function Page({ params }: ProgramsPageProps) {
 
   blocks.push({
     title: currentTitle?.blocks[2] || "",
-    component:  <Second program={program} />,
+    component:  <Second />,
   })
 
   blocks.push({
     title: currentTitle?.blocks[3] || "",
-    component: <Three program={program}/>,
+    component: <Three />,
   })
 
   blocks.push({

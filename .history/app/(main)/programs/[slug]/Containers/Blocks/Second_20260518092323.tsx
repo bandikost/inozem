@@ -1,18 +1,16 @@
-import type { ProgramRow } from "@/lib/programm";
+import { ProgramRow } from "@/lib/programm";
 import Vakcina from "../../VideoComponents/Vakcina";
 
-interface Props {
-    program: ProgramRow
-}
+
      
-export default function Three({program}: Props){
+export default function Second(){
     
 
 
 return (
     <section className="relative">
         <div className="border border-gray-300 rounded-md shadow-2xl p-6">
-            {program.specialization.startsWith("Сестринское дело") && <Vakcina />}
+           
         </div>
     </section>
     )
