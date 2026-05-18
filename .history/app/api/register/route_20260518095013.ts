@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import bcrypt from "bcrypt"
 import { ResultSetHeader, RowDataPacket } from 'mysql2/promise'
-import { signToken } from "@/lib/tokens/jwt"
+import { signToken } from "@/lib/token/jwt"
 import { cookies } from "next/headers"
 import { sendWelcomeEmail } from "@/lib/mails/mail"
 

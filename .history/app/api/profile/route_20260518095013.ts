@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { verifyToken } from "@/lib/tokens/jwt"
+import { verifyToken } from "@/lib/token/jwt"
 import { db } from "@/lib/db"
 import { UserRow } from "@/app/interface/user"
 

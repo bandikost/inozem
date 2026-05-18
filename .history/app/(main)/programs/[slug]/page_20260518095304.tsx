@@ -1,6 +1,5 @@
 import { getProgramBySlug, hasUserProgram } from "@/lib/programm";
 import ProgramSelect from "./SelectProgramm";
-import { getProfile } from "@/lib/getProfile";
 import Link from "next/link";
 import BaseVideo from "./VideoComponents/Basevideo";
 import TokenCheck from "@/components/token/token";
@@ -9,6 +8,7 @@ import Main from "./Containers/Blocks/Main";
 import { title } from "@/lib/programs/titles";
 import Second from "./Containers/Blocks/Second";
 import Three from "./Containers/Blocks/Three";
+import { getProfileByToken } from "@/lib/tokens/user";
 
 interface ProgramsPageProps { 
    params: { slug: string } 
@@ -36,8 +36,10 @@ export default async function Page({ params }: ProgramsPageProps) {
   let hasAccess = false
 
   if (token) {
-    user = await getProfile(token)
+    user = await getProfileByToken(token)
+    if (user) {
     hasAccess = await hasUserProgram(user.id, program.id)
+  }
   }
   
   const dates = program.dates.split('\n').filter(Boolean)
