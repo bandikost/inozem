@@ -1,19 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { ResultSetHeader } from "mysql2/promise";
+import { ResultSetHeader } from "mysql2";
 
 export async function POST(req: NextRequest) {
      try {
-        const { name, last_name, patronymic, email, phone, education_level, specialization } = await req.json()
+        const { last_name, patronymic, name, phone, email, question } = await req.json()
 
-        if (!last_name || !patronymic || !name || !phone || !email || !education_level || !specialization) {
+        if (!last_name || !patronymic || !name || !phone || !email || !question) {
           return NextResponse.json({ error: "Все поля обязательны" }, { status: 400 });
         }
 
     const [result] = await db.query<ResultSetHeader>(
-      `INSERT INTO application (last_name, patronymic, name, phone, email, education_level, specialization)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      [, name, last_name, patronymic, email, phone, education_level, specialization]
+      `INSERT INTO question (last_name, patronymic, name, phone, email, question)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      [last_name, patronymic, name, phone, email, question]
     )
         return NextResponse.json({ id: result.insertId }, { status: 201 })
      } catch (error) {

@@ -1,10 +1,11 @@
-import { RowDataPacket } from "mysql2"
+import { RowDataPacket } from "mysql2/promise"
 import { db } from "@/lib/db"
-import { Feedback } from "@/app/types/feedback"
+import { Feedback } from "@/app/interface/feedback"
 
 export async function getFeedback(): Promise<Feedback[]> {
+    
   const [rows] = await db.query<Feedback[] & RowDataPacket[]>(`
-    SELECT id, user_id, name, last_name, patronymic, rate, created_at
+    SELECT id, user_id, name, last_name, patronymic, rate, user_text, created_at, answer
     FROM feedbacks
     ORDER BY created_at DESC
   `)

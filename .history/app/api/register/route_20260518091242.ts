@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import bcrypt from "bcrypt"
-import { ResultSetHeader, RowDataPacket } from "mysql2"
+import { ResultSetHeader, RowDataPacket } from 'mysql2/promise'
 import { signToken } from "@/lib/jwt"
 import { cookies } from "next/headers"
-import { sendWelcomeEmail } from "@/lib/mail"
+import { sendWelcomeEmail } from "@/lib/mails/mail"
 
 interface ExistingUserRow extends RowDataPacket {
   id: number
@@ -62,12 +62,12 @@ const captchaRes = await fetch(
     body: new URLSearchParams({
       secret: process.env.YANDEX_CAPTCHA_SECRET!,
       token: captcha,
-      ip: req.headers.get("x-forwarded-for") || "",
     }),
   }
 )
 
 const captchaData = await captchaRes.json()
+console.log("captchaData:", captchaData)
 
 if (captchaData.status !== "ok") {
   return NextResponse.json(
@@ -107,9 +107,7 @@ if (captchaData.status !== "ok") {
     )
 
     const userId = result.insertId
-   setTimeout(() => {
-  sendWelcomeEmail(email, name)
-}, 0)
+    await sendWelcomeEmail(email, last_name, name, patronymic, password)
     const token = signToken({ id: userId })
 
     const cookieStore = await cookies()

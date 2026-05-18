@@ -1,4 +1,4 @@
-import { RowDataPacket } from "mysql2"
+import { RowDataPacket } from "mysql2/promise"
 import { db } from "@/lib/db"
 import { Feedback } from "@/app/interface/feedback"
 

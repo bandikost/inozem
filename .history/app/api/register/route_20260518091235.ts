@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import bcrypt from "bcrypt"
-import { ResultSetHeader, RowDataPacket } from "mysql2"
+import { ResultSetHeader, RowDataPacket } from 'mysql2/promise'
 import { signToken } from "@/lib/jwt"
 import { cookies } from "next/headers"
+import { sendWelcomeEmail } from "@/lib/mails/mail"
 
 interface ExistingUserRow extends RowDataPacket {
   id: number
@@ -106,7 +107,7 @@ if (captchaData.status !== "ok") {
     )
 
     const userId = result.insertId
-
+    await sendWelcomeEmail(email, last_name, name, patronymic, password)
     const token = signToken({ id: userId })
 
     const cookieStore = await cookies()
