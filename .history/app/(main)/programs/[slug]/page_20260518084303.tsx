@@ -27,7 +27,7 @@ interface ProgramsPageProps {
 // }
 
 export default async function Page({ params }: ProgramsPageProps) {
-  const { slug } =  params
+  const { slug } = await params
   const program = await getProgramBySlug(slug)
   if (!program) return <div className="mt-20 text-center">Программа не найдена</div>
 
