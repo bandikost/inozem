@@ -1,7 +1,7 @@
 import { getProgramBySlug, hasUserProgram } from "@/lib/programm";
 
 
-export default async function Page() {
+export default async function Page( ) {
   
 
 
