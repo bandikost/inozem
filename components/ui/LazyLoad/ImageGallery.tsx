@@ -16,7 +16,7 @@ interface Props {
 export default function MediaGallery({ items, cols = "" }: Props) {
   return (
     <div
-      className={`grid ${cols} gap-6 mt-10 items-start justify-center mb-6`}
+      className={`grid ${cols} gap-6 items-start justify-center mb-6`}
     >
       {items.map((item, i) => {
         if (item.type === "image") {

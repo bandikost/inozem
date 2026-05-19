@@ -37,7 +37,7 @@
 }
 
 body {
-  background: var(--background);
+  background: #ffffff;
   font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Nunito", sans-serif;
  font-weight: 350; 
 }
@@ -105,7 +105,7 @@ a {
 
 
 .button-more {
-  background-color: #533282;   
+  background-color: #a753b6;   
   color: white;               
   padding: 0.5rem 1rem;                 
   cursor: pointer;             
@@ -116,7 +116,7 @@ a {
 }
 
 .button-more:hover {
-  background: linear-gradient(to left, #533282, #3CA7B5); 
+  background: linear-gradient(to left, #a753b6, #3CA7B5); 
 }
 
 .button-active {
@@ -125,19 +125,19 @@ a {
 
 .button-more-bulge {
   background-color:  white;   
-  color: #533282;               
+  color: (var(--text-default));               
   padding: 0.5rem 1rem;                 
   cursor: pointer;             
   border-radius: 0.375rem;     
   display: inline-flex;        
   align-items: center;
   justify-content: center;
-  border: 1px solid #533282;
+  border: 1px solid #873096;
 }
 
 .button-more-bulge:hover {
   color: white;
-  background: linear-gradient(to left, #533282, #3CA7B5); 
+  background: linear-gradient(to left, #a753b6, #3CA7B5); 
 }
 
 .button-active {

@@ -10,7 +10,7 @@ export default function BaseVideo({education, category} : Props) {
 
     return (
       <>
-      {category === "Профессиональная переподготовка" && education === "Среднее" && (<MediaGallery cols="lg:grid-cols-3 grid-cols-1 xs:grid-cols-2 md:grid-cols-2" items={[
+      {category === "Профессиональная переподготовка" && education === "Среднее" && (<MediaGallery cols="lg:grid-cols-2 grid-cols-1 xs:grid-cols-2 md:grid-cols-2" items={[
             { type: "video", src: "https://rutube.ru/play/embed/879f7e12776b516439770ec35562a67a/?p=iYvp4YZsVWzsp157-St5FA", preview: "/Images/заглушка.png",
               subtitles: ["Инфекционная безопасность и инфекционный контроль"]}, 
             { type: "video", src: "https://rutube.ru/play/embed/677a8961b60e18b8157cbc8c0e1f55f8/?p=Irjso076mUsjY6y9PTJUAQ", preview: "/Images/заглушка.png",

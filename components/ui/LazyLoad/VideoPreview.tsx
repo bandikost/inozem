@@ -24,7 +24,7 @@ export default function VideoPreview({ src, preview, subtitles }: Props) {
   }
 
   return (
-    <div className="border border-gray-300 rounded-xl shadow-xl">
+    <div className="border border-gray-300 rounded-xl shadow-xl bg-white">
       <div onClick={() => setPlay(true)} className="relative cursor-pointer border-2 border-prpl rounded-xl overflow-hidden">
       <img src={preview} alt="Видео" className="w-full h-full object-cover aspect-square"/>
 
@@ -35,7 +35,7 @@ export default function VideoPreview({ src, preview, subtitles }: Props) {
       
     </div>
       {subtitles?.map((text, i) => (
-        <p key={i} className="!text-lg text-base leading-snug h-12 text-center flex justify-center items-center m-2">
+        <p key={i} className="!text-lg text-base  leading-snug h-20 text-center flex justify-center items-center m-2">
           {text}
         </p>
       ))}

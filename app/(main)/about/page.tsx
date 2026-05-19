@@ -108,8 +108,9 @@ export default function Page() {
              <Link className="mt-2 px-4 text-blue hover:underline" href={""}>Отчет о результатах самообследования за 2015 год</Link>
           </div>
 
-          <div className="border border-gray-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-3">
-              <img width={60} height={60}src="/Images/about/inozemtsev.png" className="mt-1 float-left w-36 h-36 mr-8 rounded object-cover [shape-outside:circle(50%)]"  alt="Федор Иванович Иноземцев"/>
+           <div className="border border-gray-300 pb-4 mt-8 rounded shadow-2xl bg-white px-6 py-3">
+                   
+  <img width={60} height={60}src="/Images/about/inozemtsev.png" className="mt-1 float-left w-36 h-36 mr-8 rounded object-cover [shape-outside:circle(50%)]"  alt="Федор Иванович Иноземцев"/>
               <p className="mt-1 mb-6 text-left text-default text-base">Академия носит имя Фёдора Ивановича Иноземцева, воплотившего в себе качества блестящего врача, учёного и замечательного педагога. Федор Иванович Иноземцев — русский врач-клиницист, педагог и общественный деятель. Родился 12 февраля 1802 года в деревне Белкино Боровского уезда Калужской губернии. Отец Федора, Иван Ильич, по одним источникам, был персиянин, по другим - турок, по третьим - кавказский горец. Достоверно известно лишь то, что его мальчиком в качестве пленного вывез с Кавказа граф П.А.Бутурлин.Отец умер, когда Федору исполнилось двенадцать лет. О матери ничего не известно. Всего у четы Иноземцевых родилось пять детей.</p>
           </div>
         </div>
@@ -153,7 +154,7 @@ export default function Page() {
 	  					<li>Устава Академии и иных локальных нормативных актов.</li>
             </ul>
       </div>
-
+{/*
       <div className="border border-gray-300 my-8 rounded shadow-2xl bg-white px-6 py-3">
         <h2 className="text-prpl font-semibold text-2xl mt-2">Наши партнеры</h2>
         <ul className="grid gap-6 grid-cols-6 mt-4">
@@ -183,6 +184,7 @@ export default function Page() {
         ))}
       </ul>
       </div>
+      */}
     </section>
   )
 }

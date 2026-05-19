@@ -27,43 +27,35 @@ export default function ProgramSlider({ blocks }: ProgramSliderProps) {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6 gap-4 mt-10">
+      <div className="flex items-center justify-between mb-6 gap-4 mt-20">
         <button onClick={prevSlide} className="px-4 py-2 rounded-md !text-blue-600 !text-lg hover:opacity-80 hover:underline cursor-pointer">
-          <span className='flex items-center gap-2'><ArrowLeft size={16}/>Прошлый блок</span>
+          <span className='flex items-center gap-2'><ArrowLeft size={16}/>Вернуться</span>
         </button>
 
-        <div className="text-lg font-semibold">
-          Блок {current + 1} из {blocks.length}
+        <h1 className="text-prpl text-center ">{blocks[current].title}</h1>
+    
+        <button onClick={nextSlide} className="px-4 py-2 rounded-md !text-blue-600 !text-lg hover:opacity-80 hover:underline cursor-pointer">
+          <span className='flex items-center gap-2'>Дальше <ArrowRight size={16}/></span>
+        </button>
+      </div>
+
+      
+      <div className="text-lg text-center font-normal text-blue my-4">Блок {current + 1} из {blocks.length}</div>
+
+      <div className="flex items-start mt-10">
+        <div className="flex flex-col items-start gap-2 flex-wrap px-6 items-center justify-center">
+          {blocks.map((block, index) => (
+            <button key={index} onClick={() => setCurrent(index)} className={`w-72 px-3 text-lg rounded-md border ${current === index ? 'button-more' : 'button-more-bulge'}`}>
+              {block.title}
+            </button>
+          ))}
         </div>
 
-        <button onClick={nextSlide} className="px-4 py-2 rounded-md !text-blue-600 !text-lg hover:opacity-80 hover:underline cursor-pointer">
-          <span className='flex items-center gap-2'>Следующий блок <ArrowRight size={16}/></span>
-        </button>
-      </div>
+        <div className='flex flex-col w-full h-full min-h-[400px] bg-white'>
+            {blocks[current].component}
+        </div>
 
-      <div className=" p-4 min-h-[300px]">
-        <h3 className="mb-4 !text-2xl text-prpl text-center">
-          {blocks[current].title}
-        </h3>
-
-        {blocks[current].component}
-      </div>
-
-        
-
-      <div className="flex flex-col items-start gap-2 mt-4 flex-wrap px-6 items-center justify-center">
-        {blocks.map((block, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrent(index)}
-            className={`w-72 px-3 rounded-md border ${
-              current === index ? 'button-more' : 'button-more-bulge'
-            }`}
-          >
-            {block.title}
-          </button>
-        ))}
-      </div>
+    </div>
     </div>
   )
 }

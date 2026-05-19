@@ -13,7 +13,7 @@ import Second from "./Blocks/Second"
 import Three from "./Blocks/Three"
 
 interface ProgramsPageProps { 
-   params: { slug: string } 
+   params: { slug: string } // типизируем что хотм получить slug из url
 }
 
 type ProgramSliderBlock = {
@@ -23,7 +23,7 @@ type ProgramSliderBlock = {
 
 
 export async function generateMetadata({ params }: ProgramsPageProps) {
-  const { slug } = await params
+  const { slug } = await params 
   const program = await getProgramBySlug(slug)
   
 
@@ -35,8 +35,8 @@ export async function generateMetadata({ params }: ProgramsPageProps) {
 }
 
 export default async function Page({ params }: ProgramsPageProps) {
-  const { slug } = await params
-  const program = await getProgramBySlug(slug)
+  const { slug } = await params // получаем slug из url, например, "urologiya" для /programs/urologiya
+  const program = await getProgramBySlug(slug) // получаем данные программы по этому slug из базы данных
   if (!program) return <div className="mt-20 text-center">Программа не найдена</div>
 
   const token = await TokenCheck()
@@ -55,7 +55,7 @@ export default async function Page({ params }: ProgramsPageProps) {
   const category = program.category
   const education = program.education
   
-  const currentTitle = title.find((item) => program.specialization.startsWith(item.specialization))
+  const currentTitle = title.find((item) => program.specialization.startsWith(item.specialization)) // находит первое соответствие по специальности из title и program, чтобы отобразить нужные блоки обучения
 
 const blocks: ProgramSliderBlock[] =
   (currentTitle?.blocks
@@ -85,7 +85,7 @@ const blocks: ProgramSliderBlock[] =
           return {
             title: block.title,
             component: (
-              <Second specialization={specialization} category={category} />
+              <Second specialization={specialization} />
             ),
           }
 
@@ -152,14 +152,7 @@ const blocks: ProgramSliderBlock[] =
           </div>
         </>
       ) : (   
-        
-        <>
-        
-         <ProgramSlider blocks={blocks} />
-
-        
-        </> 
-            
+         <ProgramSlider blocks={blocks} />   
       )}  
     </section>
   );

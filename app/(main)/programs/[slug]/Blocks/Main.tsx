@@ -33,18 +33,16 @@ export default function Main({
       <div className="border border-gray-300 rounded-md shadow-2xl p-6">
 
         {sources.map((src) => {
-          const data = dataSources[src.key];
+          const data = dataSources[src.key]
 
           return (
-            <div key={src.key} className="mt-6">
+            <div key={src.key} className="mb-10">
 
-              <h4 className="!text-2xl text-prpl">
-                {headline?.[src.headlineIndex]}
-              </h4>
+              <h4 className="!text-2xl text-prpl">{headline?.[src.headlineIndex]}</h4>
 
               <hr className="border border-gray-100 mt-2" />
 
-              <ul className="grid gap-1 mt-4">
+              <ul className="grid gap-2 mt-4">
                 {data.map((medic) => (
                   <li key={medic.id} className="hover:underline hover:opacity-80 text-lg">
                     <a href={medic.url} target="_blank">
@@ -55,13 +53,10 @@ export default function Main({
               </ul>
 
             </div>
-          );
+          )
         })}
 
-        {education === "Среднее" &&
-          category === "Профессиональная переподготовка" && (
-            <PrimaryMedicalVideo />
-        )}
+        {education === "Среднее" && category === "Профессиональная переподготовка" && ( <PrimaryMedicalVideo /> )}
 
       </div>
 

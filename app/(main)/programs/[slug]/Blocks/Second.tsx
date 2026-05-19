@@ -2,10 +2,10 @@ import Vakcina from "../VideoComponents/Vakcina";
 
 interface Props {
     specialization: string
-    category: string
+
 }
      
-export default function Second({specialization, category}: Props){
+export default function Second({specialization}: Props){
     
 
 

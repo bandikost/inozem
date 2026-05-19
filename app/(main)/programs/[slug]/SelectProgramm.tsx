@@ -9,10 +9,9 @@ import { ProgramRow } from "@/lib/programm";
 interface ProgramSelectProps {
   program: ProgramRow;
   userId: number;
-  initialTime?: string;
 }
 
-export default function ProgramSelect({ program, userId, initialTime }: ProgramSelectProps) {
+export default function ProgramSelect({ program, userId }: ProgramSelectProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
