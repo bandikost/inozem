@@ -1,0 +1,7 @@
+export async function GET() {
+  const [rows] = await db.query(`
+    SELECT id, name, slug FROM programms
+  `);
+
+  return Response.json(rows);
+}
