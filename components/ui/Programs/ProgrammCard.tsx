@@ -57,7 +57,7 @@ function ProgrammCard({filteredPrograms, visibleItems, handleShowMore}: Programm
 
                         <div className="flex"> 
                                 <p className="!font-normal text-zinc-800 flex items-center !text-lg">
-                                Цена: {program.price.length >= 6 ? `от ${program.price.slice(0, 5)}` : program.price} ₽
+                                Цена: {program.price} ₽
                                 </p>
                         </div>
 
