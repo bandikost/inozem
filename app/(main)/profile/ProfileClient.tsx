@@ -23,7 +23,7 @@ export default function ProfileClient({programs, user} : Props) {
 
     return (
          <section className="flex flex-col px-4 mb-20">
-          <div className="flex flex-col sm:flex-row text-center sm:text-left items-center mt-28 gap-2">
+          <div className="flex flex-col sm:flex-row text-center sm:text-left items-center mt-28 gap-2 ml-2">
             <CircleUserRound size={65} className="text-prpl" strokeWidth={1} />
             <div className="flex flex-col">
               <h1 className="text-prpl font-semibold">Личный кабинет </h1>

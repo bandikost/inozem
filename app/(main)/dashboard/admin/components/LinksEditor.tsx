@@ -1,29 +1,20 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 type LinkItem = {
-  name: string;
-  href: string;
-};
+  name: string
+  href: string
+}
 
 type LinkGroup = {
-  headlineId: string;
-  title: string;
-  items: LinkItem[];
+  headlineId: string
+  title: string
+  items: LinkItem[]
 };
 
 type LinksEditorProps = {
-  links: LinkGroup[];
-  onChange: (links: LinkGroup[]) => void;
-};
+  links: LinkGroup[]
+  onChange: (links: LinkGroup[]) => void
+}
 
-export default function LinksEditor({
-  links,
-  onChange,
-}: LinksEditorProps) {
-
-  
+export default function LinksEditor({ links, onChange }: LinksEditorProps) {
 
   const addGroup = () => {
     onChange([
@@ -33,52 +24,42 @@ export default function LinksEditor({
         headlineId: "",
         items: [],
       },
-    ]);
-  };
+    ])
+  }
 
   const updateGroup = (
     groupIndex: number,
     field: keyof LinkGroup,
     value: string
   ) => {
-    const copy = [...links];
+    const copy = [...links]
     copy[groupIndex] = {
       ...copy[groupIndex],
       [field]: value,
-    };
-    onChange(copy);
-  };
+    }
+    onChange(copy)
+  }
 
   const removeGroup = (groupIndex: number) => {
-    onChange(links.filter((_, i) => i !== groupIndex));
-  };
+    onChange(links.filter((_, i) => i !== groupIndex))
+  }
 
   const addItem = (groupIndex: number) => {
-    const copy = [...links];
-    copy[groupIndex].items.push({ name: "", href: "" });
-    onChange(copy);
-  };
+    const copy = [...links]
+    copy[groupIndex].items.push({ name: "", href: "" })
+    onChange(copy)
+  }
 
-  const updateItem = (
-    groupIndex: number,
-    itemIndex: number,
-    field: keyof LinkItem,
-    value: string
-  ) => {
-    const copy = [...links];
-    copy[groupIndex].items[itemIndex][field] = value;
-    onChange(copy);
-  };
+  const updateItem = ( groupIndex: number, itemIndex: number, field: keyof LinkItem, value: string ) => {
+    const copy = [...links]
+    copy[groupIndex].items[itemIndex][field] = value
+    onChange(copy)
+  }
 
-  const removeItem = (
-    groupIndex: number,
-    itemIndex: number
-  ) => {
-    const copy = [...links];
-    copy[groupIndex].items =
-      copy[groupIndex].items.filter((_, i) => i !== itemIndex);
-
-    onChange(copy);
+  const removeItem = (groupIndex: number, itemIndex: number) => {
+    const copy = [...links]
+    copy[groupIndex].items = copy[groupIndex].items.filter((_, i) => i !== itemIndex)
+    onChange(copy)
   }
 
 
@@ -86,23 +67,16 @@ export default function LinksEditor({
   return (
     <div className="p-4">
 
-      <h3 className="font-semibold text-lg mb-4">
-        Ссылки
-      </h3>
+      <h3 className="font-semibold text-lg mb-4">Ссылки</h3>
 
       <div className="flex flex-col gap-6">
 
         {links.map((group, groupIndex) => (
           <div key={groupIndex} className="border border-gray-400 rounded-md p-4">
 
-            
-            <input
-              type="text"
-              placeholder="Подзаголовок внутри блока"
+            <input type="text" placeholder="Подзаголовок внутри блока"
               value={group.title}
-              onChange={(e) =>
-                updateGroup(groupIndex, "title", e.target.value)
-              }
+              onChange={(e) => updateGroup(groupIndex, "title", e.target.value)}
               className="border border-gray-400 p-2 rounded-md w-full text-lg !text-default"
             />
 
@@ -111,28 +85,17 @@ export default function LinksEditor({
               {group.items.map((item, itemIndex) => (
                 <div key={itemIndex} className=" flex flex-col gap-3">
 
-                  <input
-                    placeholder="Имя ссылки"
-                    value={item.name}
-                    onChange={(e) =>
-                      updateItem(groupIndex, itemIndex, "name", e.target.value)
-                    }
+                  <input placeholder="Имя ссылки" value={item.name}
+                    onChange={(e) =>  updateItem(groupIndex, itemIndex, "name", e.target.value)}
                     className="border border-gray-400 text-lg !text-default p-2 rounded-md"
                   />
 
-                  <input
-                    placeholder="Ссылка url (полная)"
-                    value={item.href}
-                    onChange={(e) =>
-                      updateItem(groupIndex, itemIndex, "href", e.target.value)
-                    }
+                  <input placeholder="Ссылка url (полная)" value={item.href}
+                    onChange={(e) => updateItem(groupIndex, itemIndex, "href", e.target.value)}
                     className="border border-gray-400 text-lg !text-blue-600 p-2 rounded-md"
                   />
 
-                  <button
-                    onClick={() => removeItem(groupIndex, itemIndex)}
-                    className="border px-3 py-2 rounded-md button-more"
-                  >
+                  <button onClick={() => removeItem(groupIndex, itemIndex)} className="border px-3 py-2 rounded-md button-more">
                     Удалить ссылку
                   </button>
 
@@ -141,17 +104,11 @@ export default function LinksEditor({
 
             </div>
 
-            <button
-              onClick={() => addItem(groupIndex)}
-              className="mt-4 border px-3 py-2 rounded-md button-more"
-            >
+            <button onClick={() => addItem(groupIndex)} className="mt-4 border px-3 py-2 rounded-md button-more">
               + Добавить ссылку
             </button>
 
-            <button
-              onClick={() => removeGroup(groupIndex)}
-              className="mt-4 ml-4 border px-3 py-2 rounded-md button-more"
-            >
+            <button onClick={() => removeGroup(groupIndex)} className="mt-4 ml-4 border px-3 py-2 rounded-md button-more">
               Удалить группу
             </button>
 
@@ -160,12 +117,9 @@ export default function LinksEditor({
 
       </div>
 
-      <button
-        onClick={addGroup}
-        className="mt-6 border px-4 py-2 rounded-md button-more"
-      >
+      <button onClick={addGroup} className="mt-6 border px-4 py-2 rounded-md button-more">
         + Добавить группу
       </button>
     </div>
-  );
+  )
 }

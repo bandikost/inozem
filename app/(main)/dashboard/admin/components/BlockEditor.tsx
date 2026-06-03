@@ -57,7 +57,7 @@ const updateData = (field: keyof Block["data"], value: any) => {
         className="border border-gray-400 p-2 rounded-md"
       >
         <option>Выберите значение</option>
-        <option value="four" >Новый уникальный блок</option>
+        <option value="four">Новый уникальный блок</option>
       </select>
 
       {hasContent && (

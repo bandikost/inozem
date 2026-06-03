@@ -1,12 +1,5 @@
 import MediaGallery from "@/components/ui/LazyLoad/ImageGallery"
 
-type VideoItem = {
-  type: "video"
-  src: string
-  preview: string
-  subtitles: string[]
-}
-
 type LinkGroup = {
   title: string
   items: {
@@ -15,16 +8,55 @@ type LinkGroup = {
   }[]
 }
 
+type VideoItem = {
+  type: "video"
+  src: string
+  preview: string
+  subtitles: string[]
+}
+
+type VideoGroup = {
+  title: string
+  headlineId: string
+  items: VideoItem[]
+}
+
 interface Props {
-  sources?: VideoItem[]
+  sources?: VideoGroup[]
   links?: LinkGroup[]
 }
+
+function normalizeSources(
+  sources: VideoItem[] | VideoGroup[] = []
+): VideoGroup[] {
+
+  if (!sources.length) {
+    return [];
+  }
+
+  const first = sources[0] as any;
+
+  
+  if (first.items) {
+    return sources as VideoGroup[];
+  }
+
+  return [
+    {
+      title: "",
+      headlineId: "",
+      items: sources as VideoItem[],
+    },
+  ];
+}
+
 
 export default function Main({
   sources = [],
   links = [],
 }: Props) {
 
+  const normalizedSources = normalizeSources(sources)
   const hasVideos = sources.length > 0
   const hasLinks = links.length > 0
 
@@ -58,9 +90,24 @@ export default function Main({
 
         {hasVideos && ( 
           <div className="mt-8">
-            <h2 className="text-prpl mb-8 text-center text-xl md:!text-3xl">Видео</h2>
-            <hr className="border border-gray-200 mt-4 mb-8" />
-            <MediaGallery cols="lg:grid-cols-3 grid-cols-1 xs:grid-cols-2 md:grid-cols-2" items={sources} /> 
+            
+            
+            {normalizedSources.map((group, i) => (
+            <div key={i}>
+              {group.title && (
+                <>
+               
+                <h2 className="text-prpl mt-12  mb-8 text-center text-xl md:!text-3xl">
+                  {group.title}
+                </h2>
+                <hr className="border border-gray-200 mt-4 mb-8" />
+
+                 </>
+              )}
+
+              <MediaGallery cols="lg:grid-cols-3 grid-cols-1 xs:grid-cols-2 md:grid-cols-2" items={group.items} />
+            </div>
+          ))} 
           </div>
           )}
 

@@ -24,18 +24,22 @@ export default function VideoPreview({ src, preview, subtitles }: Props) {
   }
 
   return (
-    <div className="border border-gray-300 rounded-xl shadow-xl bg-white">
+    <div className="relative">
       <div onClick={() => setPlay(true)} className="relative cursor-pointer border-2 border-prpl rounded-xl overflow-hidden">
       <img src={preview} alt="Видео" className="w-full h-full object-cover aspect-square"/>
 
-      <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+      <div className="absolute inset-0 flex items-center justify-center bg-black/60">
         <Play size={50} className="text-white"/>
       </div>
 
       
     </div>
       {subtitles?.map((text, i) => (
-        <p key={i} className="!text-lg text-base  leading-snug h-20 text-center flex justify-center items-center m-2">
+        <p key={i} lang="ru" style={{
+          hyphens: "auto",
+          wordBreak: "normal",
+          overflowWrap: "break-word",
+        }} className="hyphens-auto break-words !text-xl text-white left-2 !font-semibold leading-snug absolute top-2  m-2">
           {text}
         </p>
       ))}

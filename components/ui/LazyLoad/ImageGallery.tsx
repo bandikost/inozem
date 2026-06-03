@@ -18,7 +18,7 @@ export default function MediaGallery({ items, cols = "" }: Props) {
     <div
       className={`grid ${cols} gap-6 items-start justify-center mb-6`}
     >
-      {items.map((item, i) => {
+      {(items || []).map((item, i) => {
         if (item.type === "image") {
           return (
             <ImageWithSkeleton
