@@ -34,7 +34,7 @@ export default async function Page() {
         redirect("/programs/org-sestrinskoe-delo-pp")
       }
   
-     const userIndex = leaderboard.findIndex(l => l.user_id === user.id)
+    const userIndex = leaderboard.findIndex(l => l.user_id === user.id)
     const userRank = userIndex >= 0 ? userIndex + 1 : null
 
   return (

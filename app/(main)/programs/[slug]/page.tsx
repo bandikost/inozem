@@ -34,15 +34,23 @@ export async function generateMetadata({ params }: ProgramsPageProps) {
 
 export default async function Page({ params }: ProgramsPageProps) {
   const { slug } = await params // получаем slug из url, например, "urologiya" для /programs/urologiya
-  const program = await getProgramBySlug(slug) // получаем данные программы по этому slug из базы данных
-  if (!program) return <div className="mt-20 text-center">Программа не найдена</div>
+   console.time("TOTAL_PAGE")
+
+  const programPromise = getProgramBySlug(slug)
 
   const token = await TokenCheck()
+
+  const program = await programPromise
+
+  if (!program) return <div>Программа не найдена</div>
+
   let user = null
   let hasAccess = false
 
   if (token) {
-    user = await getProfile(token)
+    const profilePromise = getProfile(token)
+    user = await profilePromise
+
     hasAccess = await hasUserProgram(user.id, program.id)
   }
   
@@ -59,6 +67,9 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
     />
   ),
 }))
+
+
+console.timeEnd("TOTAL_PAGE")
 
   return (
     <section className="prose mx-auto px-3 mt-27 mb-10">

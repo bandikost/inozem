@@ -1,5 +1,6 @@
-import { db } from '@/lib/db'
-import { RowDataPacket } from 'mysql2/promise'
+import { db } from "@/lib/db"
+import { RowDataPacket } from "mysql2/promise"
+
 
 export interface ProgramRow extends RowDataPacket {
   id: number
@@ -17,75 +18,101 @@ export interface ProgramRow extends RowDataPacket {
   slug: string
 }
 
-let cachedPrograms: ProgramRow[] | null = null
-let cacheTime = 0
+type ProgramStructureRow = RowDataPacket & {
+  blocks: string
+}
+
+
+const CACHE_TTL = 60_000
+
+
+let programsCache: ProgramRow[] | null = null
+let programsCacheTime = 0
 
 export async function getPrograms(): Promise<ProgramRow[]> {
   const now = Date.now()
 
-  if (cachedPrograms && now - cacheTime < 30_000) {
-    return cachedPrograms
+  if (programsCache && now - programsCacheTime < CACHE_TTL) {
+    return programsCache
   }
 
   const [rows] = await db.query<ProgramRow[]>(
-    'SELECT id, name, slug, time, time_secondary, dates, education, specialization, isFavorite, bannerName, description, price, category FROM programms'
+    `SELECT id, name, slug, time, time_secondary, dates, education,
+            specialization, isFavorite, bannerName, description, price, category
+     FROM programms`
   )
 
-  cachedPrograms = rows
-  cacheTime = now
+  programsCache = rows
+  programsCacheTime = now
 
   return rows
 }
 
-export async function getProgramBlocks(programId: number) {
-  const [rows]: any = await db.query(
-    `SELECT * FROM blocks WHERE program_id = ?`,
-    [programId]
-  )
 
-  return rows.map((row: any) => ({
-    title: row.title,
-    type: row.type,
-    data:
-      typeof row.data === "string"
-        ? JSON.parse(row.data)
-        : row.data,
-  }))
-}
-
+const programByIdCache = new Map<number, ProgramRow>()
+const programByIdTime = new Map<number, number>()
 
 export async function getProgram(id: number): Promise<ProgramRow | null> {
+  if (!Number.isInteger(id)) return null
 
-  if (!Number.isInteger(id)) {
-    return null
-  } 
+  const now = Date.now()
+
+  const cached = programByIdCache.get(id)
+  const cachedTime = programByIdTime.get(id) ?? 0
+
+  if (cached && now - cachedTime < CACHE_TTL) {
+    return cached
+  }
 
   const [rows] = await db.query<ProgramRow[]>(
-    `SELECT id, name, time, dates, education, specialization, description, price, category, slug, bannerName
+    `SELECT id, name, time, dates, education, specialization,
+            description, price, category, slug, bannerName
      FROM programms
      WHERE id = ?`,
     [id]
   )
-  
+
   if (!rows.length) return null
 
-  return rows[0] || null
+  programByIdCache.set(id, rows[0])
+  programByIdTime.set(id, now)
+
+  return rows[0]
 }
 
+
+const programBySlugCache = new Map<string, ProgramRow>()
+const programBySlugTime = new Map<string, number>()
+
 export async function getProgramBySlug(slug: string): Promise<ProgramRow | null> {
+  const now = Date.now()
+
+  const cached = programBySlugCache.get(slug)
+  const cachedTime = programBySlugTime.get(slug) ?? 0
+
+  if (cached && now - cachedTime < CACHE_TTL) {
+    return cached
+  }
+
   const [rows] = await db.query<ProgramRow[]>(
-    `SELECT id, name, slug, time, dates, education, specialization, description, price, category, bannerName
+    `SELECT id, name, slug, time, dates, education,
+            specialization, description, price, category, bannerName
      FROM programms
      WHERE slug = ?`,
     [slug]
   )
 
-   if (!rows.length) return null
-  return rows[0] || null
+  if (!rows.length) return null
+
+  programBySlugCache.set(slug, rows[0])
+  programBySlugTime.set(slug, now)
+
+  return rows[0]
 }
 
+
 export async function getProgramStructure(programId: number) {
-  const [rows] = await db.query<ProgramRow[]>(
+  const [rows] = await db.query<ProgramStructureRow[]>(
     `SELECT blocks FROM program_structure WHERE program_id = ?`,
     [programId]
   )
@@ -96,33 +123,54 @@ export async function getProgramStructure(programId: number) {
 }
 
 
+type IndividCacheEntry = {
+  data: ProgramRow[]
+  time: number
+}
+
+const individCache = new Map<number, IndividCacheEntry>()
 
 export async function getIndividProgram(userId: number): Promise<ProgramRow[]> {
+  const now = Date.now()
+
+  const cached = individCache.get(userId)
+
+  if (cached && now - cached.time < CACHE_TTL) {
+    return cached.data
+  }
+
   await db.query(
     `DELETE up FROM user_programs up
      JOIN programms p ON p.id = up.programm_id
-     WHERE up.user_id = ? AND up.status = 'active' AND p.time < 71 AND up.created_at < NOW() - INTERVAL 1 MONTH`,
+     WHERE up.user_id = ? AND up.status = 'active'
+     AND p.time < 71 AND up.created_at < NOW() - INTERVAL 1 MONTH`,
     [userId]
   )
 
   await db.query(
     `DELETE up FROM user_programs up
      JOIN programms p ON p.id = up.programm_id
-     WHERE up.user_id = ? AND up.status = 'active' AND p.time >= 71 AND p.time < 143 AND up.created_at < NOW() - INTERVAL 2 MONTH`,
+     WHERE up.user_id = ? AND up.status = 'active'
+     AND p.time >= 71 AND p.time < 143
+     AND up.created_at < NOW() - INTERVAL 2 MONTH`,
     [userId]
   )
 
   await db.query(
     `DELETE up FROM user_programs up
      JOIN programms p ON p.id = up.programm_id
-     WHERE up.user_id = ? AND up.status = 'active' AND p.time >= 143 AND p.time < 287 AND up.created_at < NOW() - INTERVAL 3 MONTH`,
+     WHERE up.user_id = ? AND up.status = 'active'
+     AND p.time >= 143 AND p.time < 287
+     AND up.created_at < NOW() - INTERVAL 3 MONTH`,
     [userId]
   )
 
   await db.query(
     `DELETE up FROM user_programs up
      JOIN programms p ON p.id = up.programm_id
-     WHERE up.user_id = ? AND up.status = 'active' AND p.time >= 287 AND p.time < 500 AND up.created_at < NOW() - INTERVAL 12 MONTH`,
+     WHERE up.user_id = ? AND up.status = 'active'
+     AND p.time >= 287
+     AND up.created_at < NOW() - INTERVAL 12 MONTH`,
     [userId]
   )
 
@@ -142,20 +190,34 @@ export async function getIndividProgram(userId: number): Promise<ProgramRow[]> {
     [userId]
   )
 
+  individCache.set(userId, {
+    data: rows,
+    time: now,
+  })
+
   return rows
 }
 
+export async function hasUserProgram(
+  userId: number,
+  programId: number
+): Promise<boolean> {
+  const [rows] = await db.query<RowDataPacket[]>(
+    `SELECT up.id
+     FROM user_programs up
+     JOIN programms p ON p.id = up.programm_id
+     WHERE up.user_id = ?
+     AND up.programm_id = ?
+     AND up.status = 'active'
+     AND (
+       (p.time < 71 AND up.created_at >= NOW() - INTERVAL 1 MONTH)
+       OR (p.time >= 71 AND p.time < 143 AND up.created_at >= NOW() - INTERVAL 2 MONTH)
+       OR (p.time >= 143 AND p.time < 287 AND up.created_at >= NOW() - INTERVAL 3 MONTH)
+       OR (p.time >= 287 AND up.created_at >= NOW() - INTERVAL 12 MONTH)
+     )
+     LIMIT 1`,
+    [userId, programId]
+  )
 
-export async function hasUserProgram(userId: number, programId: number): Promise<boolean> { 
-  const [rows]: any = await db.query(` 
-    SELECT up.id FROM user_programs up JOIN programms p ON p.id = up.programm_id WHERE up.user_id = ? 
-    AND up.programm_id = ? 
-    AND up.status = 'active' 
-    AND ( (p.time < 71 AND up.created_at >= NOW() - INTERVAL 1 MONTH) 
-    OR (p.time >= 71 AND p.time < 143 AND up.created_at >= NOW() - INTERVAL 2 MONTH) 
-    OR (p.time >= 143 AND p.time < 287 AND up.created_at >= NOW() - INTERVAL 3 MONTH) 
-    OR (p.time >= 287 AND up.created_at >= NOW() - INTERVAL 12 MONTH)) 
-    LIMIT 1`, [userId, programId] 
-  ) 
-  return rows.length > 0 
+  return rows.length > 0
 }

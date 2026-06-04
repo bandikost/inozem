@@ -5,12 +5,14 @@ import TokenCheck from "@/components/token/token"
 import ProfileClient from "./ProfileClient"
 import { UserRow } from "@/app/interface/user"
 
-
 export const metadata = {
-  title: 'Личный кабинет | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»',
+  title: "Личный кабинет | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»",
 }
 
+
+
 export default async function Page() {
+  console.time("TOTAL_PAGE")
 
   const token = await TokenCheck()
 
@@ -18,15 +20,21 @@ export default async function Page() {
   let programs: ProgramRow[] = []
 
   try {
+  
+    console.time("DB_profile")
     user = await getProfile(token)
+    console.timeEnd("DB_profile")
+
+    console.time("DB_programs")
     programs = await getIndividProgram(user.id)
-  } catch {
+    console.timeEnd("DB_programs")
+
+  } catch  {
+    console.timeEnd("TOTAL_PAGE")
     redirect("/login")
   }
 
-  
+  console.timeEnd("TOTAL_PAGE")
 
-  return (
-   <ProfileClient programs={programs} user={user} />
-  )
+  return <ProfileClient programs={programs} user={user} />
 }

@@ -1,10 +1,12 @@
+import { cache } from "react"
 import { UserRow } from "@/app/interface/user"
 
-export async function getProfile(token: string): Promise<UserRow> {
+export const getProfile = cache(async (token: string): Promise<UserRow> => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/profile`, {
     headers: {
       Cookie: `token=${token}`,
     },
+    cache: "no-store", 
   })
 
   if (!res.ok) {
@@ -12,4 +14,4 @@ export async function getProfile(token: string): Promise<UserRow> {
   }
 
   return res.json()
-}
+})
