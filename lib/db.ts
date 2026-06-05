@@ -15,7 +15,7 @@ const db = mysql.createPool ({
   decimalNumbers: true,
   timezone: "+00:00",
   waitForConnections: true,
-  connectionLimit: 30, 
+  connectionLimit: 2, 
   queueLimit: 0
 })
 
