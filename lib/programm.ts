@@ -110,6 +110,22 @@ export async function getProgramBySlug(slug: string): Promise<ProgramRow | null>
   return rows[0]
 }
 
+export async function getProgramBlocks(programId: number) {
+  const [rows]: any = await db.query(
+    `SELECT * FROM blocks WHERE program_id = ?`,
+    [programId]
+  )
+
+  return rows.map((row: any) => ({
+    title: row.title,
+    type: row.type,
+    data:
+      typeof row.data === "string"
+        ? JSON.parse(row.data)
+        : row.data,
+  }))
+}
+
 
 export async function getProgramStructure(programId: number) {
   const [rows] = await db.query<ProgramStructureRow[]>(
