@@ -6,7 +6,6 @@ import { redirect } from "next/navigation"
 import { getLeaderboard } from "@/lib/games/games"
 import TabsWrapper from "./Components/TabsWrapper"
 
-export const dynamic = "force-dynamic";
 
 export const metadata = {
     title: 'Виртуальное обучение | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»',
