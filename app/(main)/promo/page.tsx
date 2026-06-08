@@ -1,5 +1,6 @@
 import { getPromo } from "@/lib/promo"
 
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: 'Акции | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»',
