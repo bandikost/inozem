@@ -1,6 +1,8 @@
 import InputPrograms from "@/components/ui/Programs/inputPrograms";
 import { getPrograms } from "@/lib/programm";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: 'Программы обучения | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»',
 }
