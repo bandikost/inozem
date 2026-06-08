@@ -26,3 +26,4 @@ if (!global._mysqlPool) {
 }
 
 export const db = pool;
+
