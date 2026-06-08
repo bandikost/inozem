@@ -2,6 +2,8 @@ import { getActivity } from "@/lib/activity"
 import parseDate from "@/lib/months"
 import Link from "next/link"
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
     title: "Мероприятия | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»"
 }
