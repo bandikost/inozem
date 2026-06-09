@@ -15,7 +15,7 @@ export default async function Page() {
 return (
     
 <section className="flex flex-col px-4 mt-30">
-    <h1 className="text-prpl font-semibold text-center">Преподаватели ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h1>
+    <h1 className="text-prpl font-semibold text-center">Сотрудники ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h1>
 
         <div className="grid gap-4 grid-cols-2 mb-15 mt-5">
             {filtredTeachers

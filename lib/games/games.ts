@@ -14,3 +14,21 @@ export async function getLeaderboard(): Promise<Game[]> {
 
   return rows
 }
+
+export async function getAchievments(userId: number): Promise<Game[]> {
+  const [rows] = await db.query<Game[] & RowDataPacket[]>(`
+    SELECT
+      us.id,
+      us.user_id,
+      u.name,
+      u.last_name,
+      u.patronymic,
+      us.achievements,
+      us.experience
+  FROM user_stats us
+  JOIN users u ON u.id = us.user_id
+  WHERE us.user_id = ?
+  `, [userId])
+
+  return rows
+}

@@ -1,6 +1,9 @@
-export type Game = {
+export interface Game {
   id: number
   user_id: number
-  achivements: string
+  name: string
+  last_name: string
+  patronymic: string
+  achievements: string 
   experience: number
 }

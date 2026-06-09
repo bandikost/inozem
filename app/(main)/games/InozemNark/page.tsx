@@ -3,7 +3,7 @@ import TokenCheck from "@/components/token/token"
 import { getProfile } from "@/lib/getProfile"
 import { getProgramBySlug, hasUserProgram } from "@/lib/programm"
 import { redirect } from "next/navigation"
-import { getLeaderboard } from "@/lib/games/games"
+import { getLeaderboard, getAchievments } from "@/lib/games/games"
 import TabsWrapper from "./Components/TabsWrapper"
 
 export const dynamic = "force-dynamic";
@@ -16,16 +16,20 @@ export const metadata = {
 export default async function Page() {
     const leaderboard = await getLeaderboard()
     
+    
     const program = await getProgramBySlug("org-sestrinskoe-delo-pp")
     if (!program) return <div className="mt-20 text-center">Программа не найдена</div>
 
     const token = await TokenCheck()
       let user: UserRow
       let hasAccess = false
+     
+      
 
       try {
         user = await getProfile(token)
         hasAccess = await hasUserProgram(user.id, program.id)
+       
         
       } catch {
         redirect("/login")
@@ -34,7 +38,8 @@ export default async function Page() {
       if (!hasAccess) {
         redirect("/programs/org-sestrinskoe-delo-pp")
       }
-  
+
+    const achievements = await getAchievments(user.id)
     const userIndex = leaderboard.findIndex(l => l.user_id === user.id)
     const userRank = userIndex >= 0 ? userIndex + 1 : null
 
@@ -45,7 +50,7 @@ export default async function Page() {
         
       <h1 className='mt-27 text-prpl text-center'>Виртуальное обучение</h1>
 
-        <TabsWrapper leaderboard={leaderboard.slice(0, 10)} userRank={userRank} />
+        <TabsWrapper achievements={achievements} leaderboard={leaderboard.slice(0, 10)} userRank={userRank} />
 
         
         
