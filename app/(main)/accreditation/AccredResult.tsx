@@ -1,19 +1,19 @@
 'use client'
 
-import { useMemo, useState } from "react";
-import { Accred } from "@/app/interface/accred";
+import { useMemo, useState } from "react"
+import { Accred } from "@/app/interface/accred"
 
 interface Props {
   accred: Accred[]
 }
 
 export default function AccredResult({ accred }: Props) {
-  const [year, setYear] = useState("");
-  const [month, setMonth] = useState("");
-  const [education, setEducation] = useState("");
-  const [specialization, setSpecialization] = useState("");
+  const [year, setYear] = useState("")
+  const [month, setMonth] = useState("")
+  const [education, setEducation] = useState("")
+  const [specialization, setSpecialization] = useState("")
 
-  const years = [...new Set(accred.map(a => a.year))];
+  const years = [...new Set(accred.map(a => a.year))]
 
   const months = useMemo(() => {
     return [
@@ -22,8 +22,8 @@ export default function AccredResult({ accred }: Props) {
           .filter(a => String(a.year) === year)
           .map(a => a.month)
       )
-    ];
-  }, [year, accred]);
+    ]
+  }, [year, accred])
 
   const educations = useMemo(() => {
     return [
@@ -36,8 +36,8 @@ export default function AccredResult({ accred }: Props) {
           )
           .map(a => a.education)
       )
-    ];
-  }, [year, month, accred]);
+    ]
+  }, [year, month, accred])
 
   const specializations = useMemo(() => {
     return [
@@ -51,7 +51,7 @@ export default function AccredResult({ accred }: Props) {
           )
           .map(a => a.specialization)
       )
-    ];
+    ]
   }, [year, month, education, accred])
 
   const filteredAccred = accred.filter(a =>
@@ -59,128 +59,114 @@ export default function AccredResult({ accred }: Props) {
     String(a.month) === month &&
     a.education === education &&
     a.specialization === specialization
-)
+  )
 
   return (
-    <div className="flex flex-wrap gap-4 mt-4 items-center justify-center">
-   
-      <select className="select my-4 max-w-[280px]"
-        value={year}
-        onChange={(e) => {
-          setYear(e.target.value);
-          setMonth("");
-          setEducation("");
-          setSpecialization("");
-        }}
-      >
-        <option value="">Выберите год</option>
+    <div className="flex flex-col items-center justify-center">
 
-        {years.map(y => (
-          <option key={y} value={y}>
-            {y}
-          </option>
-        ))}
-      </select>
+      <div className="mt-10 mb-6 text-center">
+        <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+          Документы аккредитации
+        </h2>
+        <div className="mt-2 h-[2px] w-36 bg-gray-200 mx-auto" />
+      </div>
 
-      
-      {year && (
-        <select className="select"
-          value={month}
-          onChange={(e) => {
-            setMonth(e.target.value);
-            setEducation("");
-            setSpecialization("");
-          }}
-        >
-          <option value="">Выберите месяц</option>
+      <div className="w-full max-w-4xl flex flex-wrap gap-3 justify-center mb-6">
 
-          {months.map(m => (
-            <option key={m} value={m}>
-              {m}
-            </option>
-          ))}
+        <select className="select" value={year} onChange={(e) => {
+          setYear(e.target.value)
+          setMonth("")
+          setEducation("")
+          setSpecialization("")
+        }}>
+          <option value="">Год</option>
+          {years.map(y => <option key={y} value={y}>{y}</option>)}
         </select>
-      )}
 
-      
-      {month && (
-        <select className="select max-w-[280px]"
-          value={education}
-          onChange={(e) => {
-            setEducation(e.target.value);
-            setSpecialization("");
-          }}
-        >
-          <option value="">Выберите образование</option>
+        {year && (
+          <select className="select" value={month} onChange={(e) => {
+            setMonth(e.target.value)
+            setEducation("")
+            setSpecialization("")
+          }}>
+            <option value="">Месяц</option>
+            {months.map(m => <option key={m} value={m}>{m}</option>)}
+          </select>
+        )}
 
-          {educations.map(ed => (
-            <option key={ed} value={ed}>
-              {ed}
-            </option>
-          ))}
-        </select>
-      )}
+        {month && (
+          <select className="select" value={education} onChange={(e) => {
+            setEducation(e.target.value)
+            setSpecialization("")
+          }}>
+            <option value="">Образование</option>
+            {educations.map(ed => <option key={ed} value={ed}>{ed}</option>)}
+          </select>
+        )}
 
-     
-      {education && (
-        <select className="select max-w-[280px]"
-          value={specialization}
-          onChange={(e) => setSpecialization(e.target.value)}
-        >
-          <option value="">Выберите специализацию</option>
+        {education && (
+          <select className="select" value={specialization} onChange={(e) => {
+            setSpecialization(e.target.value)
+          }}>
+            <option value="">Специализация</option>
+            {specializations.map(sp => <option key={sp} value={sp}>{sp}</option>)}
+          </select>
+        )}
 
-          {specializations.map(sp => (
-            <option key={sp} value={sp}>
-              {sp}
-            </option>
-          ))}
-        </select>
-      )}
+      </div>
 
       {specialization && (
-  <div className="my-8 overflow-x-auto">
-    <table className="w-full border-collapse border border-gray-300">
-      <thead>
-        <tr className="bg-[#0a9688] text-white">
-          <th className="border border-gray-300 px-4 py-3 text-left text-2xl">
-            Этап
-          </th>
+        <div className="w-full max-w-4xl rounded-xl border border-gray-200 bg-white shadow-md overflow-hidden">
 
-          <th className="border border-gray-300 px-4 py-3 text-left text-2xl">
-            Документ
-          </th>
-        </tr>
-      </thead>
+          <div className="grid grid-cols-12 bg-gray-50 text-sm font-semibold text-gray-600 px-4 py-3">
+            <div className="col-span-2 text-lg">Этап</div>
+            <div className="col-span-7 text-center text-lg">Документ</div>
+            <div className="col-span-3 text-right text-lg">Итоги</div>
+          </div>
 
-      <tbody>
-        {filteredAccred.map((item) => (
-          <tr key={item.id} className="hover:bg-gray-50">
-            <td className="border border-gray-300 px-4 py-3 text-xl text-center text-default">
-              {item.stage}
-            </td>
+          <div className="divide-y divide-gray-100">
+            {filteredAccred.map((item) => (
+              <div key={item.id} className="grid grid-cols-12 items-center px-4 py-3 hover:bg-gray-50 transition">
 
-            <td className="border border-gray-300 px-4 py-3">
-              <a
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#0a9688] hover:underline font-medium text-xl p-1"
-              >
-                {item.name}
-              </a>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+                <div className="col-span-2 font-bold text-gray-700">
+                  {item.stage}
+                </div>
 
-    {filteredAccred.length === 0 && (
-      <p className="mt-4 text-center text-gray-500">
-        Документы не найдены
-      </p>
-    )}
-  </div>
-)}
+                <div className="col-span-7 text-center ">
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-teal-600 hover:text-teal-800 hover:underline font-medium"
+                  >
+                    {item.name}
+                  </a>
+                </div>
+
+                <div className="col-span-3 text-right">
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-teal-600 hover:text-teal-800 hover:underline font-medium"
+                  >
+                    {item.name}
+                  </a>
+                </div>
+
+              </div>
+            ))}
+          </div>
+
+          {filteredAccred.length === 0 && (
+            <div className="p-6 text-center text-gray-500">
+              Документы не найдены
+            </div>
+          )}
+
+        </div>
+      )}
+
     </div>
   )
 }

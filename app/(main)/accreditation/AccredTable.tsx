@@ -40,6 +40,7 @@ export default function AccredTable({ schedule }: Props) {
       </select>
 
       {specialization && (
+        <div className="my-8 overflow-x-auto">
         <table className="w-full mt-6 border-collapse border border-gray-300">
           <thead>
             <tr className="bg-[#0a9688] text-white">
@@ -67,6 +68,7 @@ export default function AccredTable({ schedule }: Props) {
             ))}
           </tbody>
         </table>
+        </div>
       )}
 
     </div>
