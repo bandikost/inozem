@@ -36,7 +36,7 @@ export default async function FirstBlock() {
                 <div className="border-2 border-zinc-300 mt-4 rounded-xl shadow-2xl bg-white">
                   <div className="relative w-full max-w-[520px] max-h-[520px] aspect-[16/9]">
                     <ImageWithSkeleton
-                      src="https://storage.yandexcloud.net/inozemstorage/main/banner/od.png"
+                      src="https://storage.yandexcloud.net/inozemstorage/main/banner/1.jpg"
                       alt="Изображение академии"
                       wrapperClassName="max-w-[520px] max-h-[520px] "
                       aspect="1/1"
