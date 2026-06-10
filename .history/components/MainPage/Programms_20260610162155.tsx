@@ -48,7 +48,7 @@ export default async function Programms() {
               )}
 
               {program.bannerName && (
-                <span className="relative text-sm px-3 py-1 rounded-full bg-rose-50 text-rose-600 border border-rose-100 top-3 max-w-40 text-center">
+                <span className="relative text-sm px-3 py-1 rounded-full bg-rose-50 text-rose-600 border border-rose-100 top-3">
                     {program.bannerName}
                 </span>
               )}

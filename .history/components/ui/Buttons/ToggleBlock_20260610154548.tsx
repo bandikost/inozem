@@ -38,7 +38,7 @@ export function ToggleBlock({
         cursor-pointer
         "
       >
-        <span className="font-medium text-slate-800 text-lg">
+        <span className="font-medium text-slate-800">
           {title}
         </span>
 

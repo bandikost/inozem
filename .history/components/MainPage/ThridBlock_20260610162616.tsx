@@ -8,7 +8,7 @@ export default async function ThirdBlock() {
 
   return (
     <section className="w-full mt-24 px-4">
-
+      {/* HEADER */}
       <div className="max-w-6xl mx-auto flex flex-col gap-2">
         <h2 className="text-2xl font-semibold text-prpl">
           Преподаватель месяца
@@ -18,7 +18,7 @@ export default async function ThirdBlock() {
         </p>
       </div>
 
-
+      {/* EMPTY */}
       {!teacher ? (
         <div className="max-w-6xl mx-auto mt-10 p-6 rounded-2xl border border-slate-200 bg-white text-slate-500 text-center">
           Преподаватели временно недоступны
@@ -31,10 +31,10 @@ export default async function ThirdBlock() {
                        shadow-sm hover:shadow-xl transition-all duration-300
                        overflow-hidden"
           >
-      
+            {/* decorative background */}
             <div className="absolute inset-0 bg-gradient-to-br from-violet-50 via-white to-indigo-50" />
 
-      
+            {/* IMAGE */}
             <div className="relative p-6 flex justify-center">
               <div className="relative w-[280px] h-[280px] md:w-[340px] md:h-[340px]">
                 <ImageWithSkeleton
@@ -44,14 +44,14 @@ export default async function ThirdBlock() {
                   aspect="1/1"
                 />
 
-          
-                <div className="absolute -top-3 -right-5 bg-prpl text-white text-sm px-3 py-1 rounded-full shadow">
+                {/* badge */}
+                <div className="absolute -top-3 -right-3 bg-prpl text-white text-xs px-3 py-1 rounded-full shadow">
                   ⭐ Лучший преподаватель
                 </div>
               </div>
             </div>
 
-   
+            {/* CONTENT */}
             <div className="relative p-8 flex flex-col justify-center">
               <h3 className="text-2xl font-semibold text-slate-900">
                 {teacher.last_name} {teacher.name} {teacher.patronymic}
@@ -61,12 +61,13 @@ export default async function ThirdBlock() {
                 {teacher.Teacher_text}
               </p>
 
+              {/* meta line */}
               <div className="mt-6 flex items-center gap-2 text-sm text-slate-500">
                 <span className="w-2 h-2 rounded-full bg-green-500" />
                 Активен в обучении студентов
               </div>
 
-       
+              {/* CTA */}
               <div className="mt-8">
                 <Link
                   href="/programs"

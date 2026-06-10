@@ -9,7 +9,7 @@ export default async function SecondBlock() {
   return (
     <section className="w-full mt-24 px-4">
 
-      <div className="flex flex-col items-left text-left">
+      <div className="flex flex-col items-center text-center">
         <h2 className="text-3xl font-bold text-prpl">
           Академия в цифрах
         </h2>

@@ -32,12 +32,16 @@ export default function Page() {
       <div className="container mx-auto px-4 py-24">
 
         <div className="text-center max-w-4xl mx-auto mb-14">
- 
-          <h1 className="mt-6 text-5xl font-semibold text-prpl">
+          <div className="inline-flex items-center gap-2 rounded-full bg-prpl/10 px-5 py-2 text-prpl font-medium">
+            <GraduationCap size={18} />
+            Академия медицинского образования
+          </div>
+
+          <h1 className="mt-6 text-5xl font-bold text-slate-900">
             О нашей Академии
           </h1>
 
-          <p className="mt-5 font-medium text-lg text-slate-600">
+          <p className="mt-5 text-lg text-slate-600">
             Более 15 лет мы занимаемся дополнительным профессиональным
             образованием медицинских специалистов по всей России.
           </p>
@@ -48,53 +52,28 @@ export default function Page() {
           <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
             <div className="flex items-center gap-3 mb-8">
               <Building2 className="text-prpl" />
-              <h2 className="text-2xl font-bold text-prpl">
+              <h2 className="text-2xl font-bold text-slate-900">
                 Наши преимущества
               </h2>
             </div>
 
-           <div className="grid gap-4">
-  {features.map((item, index) => (
-    <div
-      key={index}
-      className="
-        flex
-        items-center
-        gap-4
-        p-4
-        rounded-2xl
-        bg-slate-50
-        border border-slate-200
-        shadow
-        !text-lg
-      "
-    >
-      <div
-        className="
-          flex-shrink-0
-          w-10 h-10
-          rounded-full
-          bg-prpl
-          text-white
-          flex items-center justify-center
-          font-semibold
-        "
-      >
-        {index + 1}
-      </div>
+            <div className="grid gap-4">
+              {features.map((item, index) => (
+                <div key={index} className="flex gap-4 rounded-2xl bg-slate-50 border border-slate-100">
+                  <div className="w-10 h-10 rounded-full bg-prpl text-white flex items-center justify-center font-semibold">
+                    {index + 1}
+                  </div>
 
-      <p className="text-slate-600 leading-relaxed !text-lg">
-        {item}
-      </p>
-    </div>
-  ))}
-</div>
+                  <p className="text-slate-700 leading-relaxed">{item}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
             <div className="flex items-center gap-3 mb-6">
               <MapPinned className="text-prpl" />
-              <h2 className="text-2xl font-bold text-prpl">
+              <h2 className="text-2xl font-bold text-slate-900">
                 Наши слушатели по всей России
               </h2>
             </div>
@@ -111,7 +90,7 @@ export default function Page() {
         </div>
 
         <div className="mt-10 rounded-3xl border border-amber-200 bg-amber-50 p-6">
-          <p className="text-slate-600 leading-relaxed text-lg">
+          <p className="text-slate-700 leading-relaxed">
             Раздел подготовлен в соответствии с Правилами размещения информации
             на официальном сайте образовательной организации.
           </p>
@@ -122,7 +101,7 @@ export default function Page() {
           <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
             <div className="flex items-center gap-3 mb-8">
               <Info className="text-prpl" />
-              <h2 className="text-2xl font-bold text-prpl">
+              <h2 className="text-2xl font-bold">
                 Юридическая информация
               </h2>
             </div>
@@ -147,8 +126,8 @@ export default function Page() {
 
           <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
             <div className="flex items-center gap-3 mb-8">
-              <FileText className="text-blue" />
-              <h2 className="text-2xl font-bold text-blue">
+              <FileText className="text-blue-600" />
+              <h2 className="text-2xl font-bold">
                 Документы Академии
               </h2>
             </div>
@@ -170,8 +149,6 @@ export default function Page() {
                   hover:border-prpl
                   hover:bg-prpl/5
                   transition-all
-                  cursor-poiner
-                  text-lg
                   "
                 >
                   <span>{doc.name}</span>

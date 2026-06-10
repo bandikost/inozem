@@ -45,7 +45,7 @@ export default async function ThirdBlock() {
                 />
 
           
-                <div className="absolute -top-3 -right-5 bg-prpl text-white text-sm px-3 py-1 rounded-full shadow">
+                <div className="absolute -top-3 -right-3 bg-prpl text-white text-xs px-3 py-1 rounded-full shadow">
                   ⭐ Лучший преподаватель
                 </div>
               </div>

@@ -28,7 +28,7 @@ export default async function Programms() {
             <div
               key={program.id}
               className="group relative rounded-2xl border border-slate-200 bg-white p-6
-                         shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
+                         shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
             
 
@@ -48,12 +48,15 @@ export default async function Programms() {
               )}
 
               {program.bannerName && (
-                <span className="relative text-sm px-3 py-1 rounded-full bg-rose-50 text-rose-600 border border-rose-100 top-3 max-w-40 text-center">
+                <span className="text-sm px-3 py-1 rounded-full bg-rose-50 text-rose-600 border border-rose-100 mt-2">
                     {program.bannerName}
                 </span>
               )}
 
-             <div className="mt-5 space-y-2 text-lg text-slate-600">
+             <div className="mt-5 space-y-2 text-sm text-slate-600">
+                <p>
+                  <span className="text-slate-400">Даты:</span> {program.dates}
+                </p>
 
                 <p>
                   <span className="text-slate-400">Образование:</span>{" "}
@@ -69,7 +72,7 @@ export default async function Programms() {
               </div>
 
               <div className="mt-6 flex items-center justify-between">
-                <div className="flex items-center gap-1 text-slate-700 text-lg">
+                <div className="flex items-center gap-1 text-slate-700 text-sm">
                   <Clock9 className="w-4 h-4 text-slate-500" />
                   <span>
                     {program.time} ч. {getHourWord(program.time)}
@@ -78,7 +81,7 @@ export default async function Programms() {
 
                 <Link
                   href={`/programs/${program.slug}`}
-                  className="text-lg font-medium text-prpl hover:underline"
+                  className="text-sm font-medium text-prpl hover:underline"
                 >
                   Подробнее →
                 </Link>
@@ -87,6 +90,8 @@ export default async function Programms() {
           ))}
         </div>
       )}
+
+      {/* CTA */}
       <div className="max-w-6xl mx-auto mt-12 flex justify-center">
         <Link
           href="/programs"

@@ -9,12 +9,13 @@ export default async function SecondBlock() {
   return (
     <section className="w-full mt-24 px-4">
 
-      <div className="flex flex-col items-left text-left">
-        <h2 className="text-3xl font-bold text-prpl">
+      {/* HEADER */}
+      <div className="flex flex-col items-center text-center">
+        <h2 className="text-3xl font-bold text-slate-900">
           Академия в цифрах
         </h2>
 
-        <p className="mt-3 text-slate-600 !text-lg">
+        <p className="mt-3 text-slate-600">
           Более подробная информация об академии{" "}
           <Link href="/about" className="text-prpl hover:underline">
             в разделе
@@ -24,13 +25,13 @@ export default async function SecondBlock() {
 
       <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-        <div className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-lg transition">
+        <div className="group rounded-3xl border border-slate-200 bg-white p-6 hover:shadow-lg transition">
           <div className="flex items-center justify-between">
             <Users className="text-prpl" />
             <span className="text-xs text-slate-400">Обучение</span>
           </div>
 
-          <div className="mt-6 text-4xl font-bold text-prpl">
+          <div className="mt-6 text-4xl font-bold text-slate-900">
             <AnimatedNumber value={users.length} />
           </div>
 
@@ -39,13 +40,13 @@ export default async function SecondBlock() {
           </p>
         </div>
 
-        <div className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-lg transition">
+        <div className="group rounded-3xl border border-slate-200 bg-white p-6 hover:shadow-lg transition">
           <div className="flex items-center justify-between">
-            <BookOpen className="text-blue" />
+            <BookOpen className="text-blue-600" />
             <span className="text-xs text-slate-400">Программы</span>
           </div>
 
-          <div className="mt-6 text-4xl font-bold text-blue flex items-end gap-1">
+          <div className="mt-6 text-4xl font-bold text-slate-900 flex items-end gap-1">
             <AnimatedNumber value={120} />
             <span className="text-lg text-slate-500">+</span>
           </div>
@@ -56,13 +57,13 @@ export default async function SecondBlock() {
         </div>
 
 
-        <div className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-lg transition">
+        <div className="group rounded-3xl border border-slate-200 bg-white p-6 hover:shadow-lg transition">
           <div className="flex items-center justify-between">
             <Award className="text-prpl" />
             <span className="text-xs text-slate-400">Успех</span>
           </div>
 
-          <div className="mt-6 text-4xl font-bold text-prpl flex items-end gap-1">
+          <div className="mt-6 text-4xl font-bold text-slate-900 flex items-end gap-1">
             <AnimatedNumber value={96} />
             <span className="text-lg">%</span>
           </div>
@@ -72,13 +73,14 @@ export default async function SecondBlock() {
           </p>
         </div>
 
-        <div className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-lg transition">
+        {/* EMPLOYMENT */}
+        <div className="group rounded-3xl border border-slate-200 bg-white p-6 hover:shadow-lg transition">
           <div className="flex items-center justify-between">
-            <Briefcase className="text-blue" />
-            <span className="text-xs text-slate-400">Работа</span>
+            <Briefcase className="text-blue-600" />
+            <span className="text-xs text-slate-400">Work</span>
           </div>
 
-          <div className="mt-6 text-4xl font-bold text-blue flex items-end gap-1">
+          <div className="mt-6 text-4xl font-bold text-slate-900 flex items-end gap-1">
             <AnimatedNumber value={84} />
             <span className="text-lg">%</span>
           </div>

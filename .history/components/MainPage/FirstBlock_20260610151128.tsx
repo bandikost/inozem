@@ -14,19 +14,18 @@ const cards = [
     img: "/Images/main/icons/learn.jpg",
     link: "/programs"
   },
-   {
-    title: "Акции",
-    description: "Специальные предложения",
-    img: "/Images/main/icons/sale.jpg",
-    link: "/promo"
-  },
   {
     title: "Аккредитация",
     description: "Информация и итоги аккредитации",
     img: "/Images/main/icons/accred.jpg",
     link: "/accreditation"
   },
- 
+  {
+    title: "Акции",
+    description: "Специальные предложения",
+    img: "/Images/main/icons/sale.jpg",
+    link: "/promo"
+  },
 ];
 
 export default async function FirstBlock() {
@@ -48,11 +47,14 @@ export default async function FirstBlock() {
 
                 <div className="grid  gap-3 py-4">
 
-                   {cards.map((card, index) => (
+                   {cards
+                   .sort(0, 2)
+                   .map((card, index) => (
                     <div key={index} className={` rounded-xl shadow border border-gray-300 ${index >= 2 ? "md:col-span-1" : "lg:col-span-2 "}`}>
-                        <div className={`flex p-3 ${index >= 2 ? "flex-row md-custom-flex-col items-center" : ""}`}>
 
-                         {card.img && (
+                        <div className={`flex justify-between items-center p-3 ${index >= 2 ? "flex-row md-custom-flex-col items-center" : ""}`}>
+
+                        {card.img && (
                             <ImageWithSkeleton src={card.img} alt="Изображение академии" wrapperClassName="max-w-[120px] max-h-[120px]" aspect="1/1" />
                           )}
 
@@ -62,6 +64,7 @@ export default async function FirstBlock() {
 
                             <Link href={`${card.link}`} className="inline-flex items-center my-2 button-more">Подробнее</Link>
                         </div>
+                         
                         </div>
                     </div>
                     ))}

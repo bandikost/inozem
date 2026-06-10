@@ -9,12 +9,12 @@ export default async function SecondBlock() {
   return (
     <section className="w-full mt-24 px-4">
 
-      <div className="flex flex-col items-left text-left">
-        <h2 className="text-3xl font-bold text-prpl">
+      <div className="flex flex-col items-center text-center">
+        <h2 className="text-3xl font-bold text-slate-900">
           Академия в цифрах
         </h2>
 
-        <p className="mt-3 text-slate-600 !text-lg">
+        <p className="mt-3 text-slate-600">
           Более подробная информация об академии{" "}
           <Link href="/about" className="text-prpl hover:underline">
             в разделе

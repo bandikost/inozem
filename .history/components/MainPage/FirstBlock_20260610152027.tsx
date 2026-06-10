@@ -14,19 +14,18 @@ const cards = [
     img: "/Images/main/icons/learn.jpg",
     link: "/programs"
   },
-   {
-    title: "Акции",
-    description: "Специальные предложения",
-    img: "/Images/main/icons/sale.jpg",
-    link: "/promo"
-  },
   {
     title: "Аккредитация",
     description: "Информация и итоги аккредитации",
     img: "/Images/main/icons/accred.jpg",
     link: "/accreditation"
   },
- 
+  {
+    title: "Акции",
+    description: "Специальные предложения",
+    img: "/Images/main/icons/sale.jpg",
+    link: "/promo"
+  },
 ];
 
 export default async function FirstBlock() {

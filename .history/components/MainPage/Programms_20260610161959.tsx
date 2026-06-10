@@ -28,12 +28,12 @@ export default async function Programms() {
             <div
               key={program.id}
               className="group relative rounded-2xl border border-slate-200 bg-white p-6
-                         shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
+                         shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
             
 
         
-              <h3 className="text-lg font-semibold text-slate-900 pr-10">
+              <h3 className="!text-xl font-semibold text-slate-900 pr-10">
                 {program.name.length > 60
                   ? program.name.slice(0, 60) + "..."
                   : program.name}
@@ -48,12 +48,15 @@ export default async function Programms() {
               )}
 
               {program.bannerName && (
-                <span className="relative text-sm px-3 py-1 rounded-full bg-rose-50 text-rose-600 border border-rose-100 top-3 max-w-40 text-center">
+                <span className="relative text-sm px-3 py-1 rounded-full bg-rose-50 text-rose-600 border border-rose-100 top-3">
                     {program.bannerName}
                 </span>
               )}
 
              <div className="mt-5 space-y-2 text-lg text-slate-600">
+                <p>
+                  <span className="text-slate-400">Даты:</span> {program.dates}
+                </p>
 
                 <p>
                   <span className="text-slate-400">Образование:</span>{" "}

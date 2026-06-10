@@ -35,10 +35,9 @@ export function ToggleBlock({
         bg-slate-50
         hover:bg-slate-100
         transition-all
-        cursor-pointer
         "
       >
-        <span className="font-medium text-slate-800 text-lg">
+        <span className="font-medium text-slate-800">
           {title}
         </span>
 
