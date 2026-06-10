@@ -57,7 +57,7 @@ export default function FeedbackForm({
     <div className="w-full max-w-3xl mx-auto">
 
       <div className="flex justify-center">
-        <div
+        <button
           onClick={() => setShowForm((prev) => !prev)}
           className="
             rounded-2xl
@@ -67,10 +67,7 @@ export default function FeedbackForm({
             px-8
             py-4
             text-lg
-            border
-            border-gray-300
-            cursor-pointer
-            !text-default
+            text-default
             shadow-lg
             transition-all
             hover:scale-[1.02]
@@ -79,7 +76,7 @@ export default function FeedbackForm({
           {showForm
             ? "Скрыть форму отзыва"
             : "Поделиться впечатлением"}
-        </div>
+        </button>
       </div>
 
       {showForm && (
@@ -215,7 +212,17 @@ export default function FeedbackForm({
             <button
               type="submit"
               className="
-                button-more
+                w-full
+                rounded-2xl
+                bg-gradient-to-r
+                from-prpl
+                to-green
+                py-4
+                text-lg
+                text-white
+                shadow-md
+                transition-all
+                hover:scale-[1.01]
               "
             >
               Отправить отзыв

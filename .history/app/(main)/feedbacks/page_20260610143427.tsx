@@ -82,7 +82,7 @@ export default async function Page() {
 
       <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
 
-        <div className="mb-6 flex   items-center justify-between">
+        <div className="mb-6 flex items-center justify-between">
 
           <div>
             <h2 className="text-prpl !text-2xl">
@@ -94,7 +94,7 @@ export default async function Page() {
             </p>
           </div>
 
-          <div className="rounded-full bg-green/10 p-2 text-green flex">
+          <div className="rounded-full bg-green/10 px-4 py-2 text-green">
             ★ 4.9
           </div>
 
@@ -115,7 +115,7 @@ export default async function Page() {
 
       <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
 
-        <div className="mb-6 flex flex-col sm:flex-row text-center sm:text-left items-center justify-between">
+        <div className="mb-6 flex items-center justify-between">
 
           <div>
             <h2 className="text-prpl !text-2xl">
@@ -127,7 +127,7 @@ export default async function Page() {
             </p>
           </div>
 
-          <div className="rounded-full bg-prpl/10 px-4 py-2 text-prpl text-lg">
+          <div className="rounded-full bg-prpl/10 px-4 py-2 text-prpl">
             {feedback.length} отзывов
           </div>
 

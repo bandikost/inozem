@@ -67,9 +67,6 @@ export default function FeedbackForm({
             px-8
             py-4
             text-lg
-            border
-            border-gray-300
-            cursor-pointer
             !text-default
             shadow-lg
             transition-all
@@ -215,7 +212,17 @@ export default function FeedbackForm({
             <button
               type="submit"
               className="
-                button-more
+                w-full
+                rounded-2xl
+                bg-gradient-to-r
+                from-prpl
+                to-green
+                py-4
+                text-lg
+                text-white
+                shadow-md
+                transition-all
+                hover:scale-[1.01]
               "
             >
               Отправить отзыв

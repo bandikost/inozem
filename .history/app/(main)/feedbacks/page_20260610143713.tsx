@@ -94,7 +94,7 @@ export default async function Page() {
             </p>
           </div>
 
-          <div className="rounded-full bg-green/10 p-2 text-green flex">
+          <div className="rounded-full bg-green/10 px-2 py-2 text-green flex">
             ★ 4.9
           </div>
 

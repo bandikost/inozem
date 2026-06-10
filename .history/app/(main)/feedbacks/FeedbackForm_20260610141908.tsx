@@ -215,7 +215,21 @@ export default function FeedbackForm({
             <button
               type="submit"
               className="
-                button-more
+                w-full
+                rounded-2xl
+                bg-gradient-to-r
+                from-prpl
+                to-green
+                py-4
+                border
+                border-gray-300
+                text-lg
+                text-default
+                text-center
+                shadow-md
+                transition-all
+                hover:scale-[1.01]
+                cursor-pointer
               "
             >
               Отправить отзыв

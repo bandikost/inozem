@@ -87,9 +87,9 @@ export default function FeedbacksCarousel({ feedback, user }: Props) {
           </h3>
 
           {feed.patronymic && (
-            <h3 className="ml-1 text-xl font-semibold text-prpl">
+            <p className="text-zinc-500">
               {feed.patronymic}
-            </h3>
+            </p>
           )}
         </div>
 
@@ -117,7 +117,7 @@ export default function FeedbacksCarousel({ feedback, user }: Props) {
         )}
       </div>
 
-      <div className="h-px bg-gray-300 my-6" />
+      <div className="h-px bg-zinc-100 my-6" />
 
       <p className="flex-1 !text-lg leading-8 text-default">
         {feed.user_text}

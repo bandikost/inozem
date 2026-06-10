@@ -23,13 +23,19 @@ export default async function Page() {
   return (
     <section className="relative overflow-hidden pb-24">
   
+  {/* Декоративный фон */}
   <div className="absolute left-[-150px] top-0 h-[450px] w-[450px] rounded-full bg-prpl/5 blur-3xl" />
 
   <div className="absolute right-[-150px] top-[300px] h-[450px] w-[450px] rounded-full bg-green/5 blur-3xl" />
 
   <div className="relative z-10 max-w-7xl mx-auto px-4">
 
+    {/* Hero */}
     <div className="pt-28 text-center">
+
+      <div className="inline-flex items-center rounded-full bg-prpl/10 px-5 py-2 text-prpl">
+        Отзывы слушателей
+      </div>
 
       <h1 className="mt-6 text-prpl">
         Отзывы об академии
@@ -43,6 +49,7 @@ export default async function Page() {
 
     </div>
 
+    {/* Статистика */}
     <div className="mt-12 grid gap-4 md:grid-cols-3">
 
       <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
@@ -77,12 +84,13 @@ export default async function Page() {
 
     </div>
 
+    {/* Контент */}
     <div className="mt-14 grid gap-8 xl:grid-cols-2">
 
-
+      {/* Яндекс отзывы */}
       <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
 
-        <div className="mb-6 flex   items-center justify-between">
+        <div className="mb-6 flex items-center justify-between">
 
           <div>
             <h2 className="text-prpl !text-2xl">
@@ -94,7 +102,7 @@ export default async function Page() {
             </p>
           </div>
 
-          <div className="rounded-full bg-green/10 p-2 text-green flex">
+          <div className="rounded-full bg-green/10 px-4 py-2 text-green">
             ★ 4.9
           </div>
 
@@ -113,9 +121,10 @@ export default async function Page() {
 
       </div>
 
+      {/* Отзывы сайта */}
       <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
 
-        <div className="mb-6 flex flex-col sm:flex-row text-center sm:text-left items-center justify-between">
+        <div className="mb-6 flex items-center justify-between">
 
           <div>
             <h2 className="text-prpl !text-2xl">
@@ -127,7 +136,7 @@ export default async function Page() {
             </p>
           </div>
 
-          <div className="rounded-full bg-prpl/10 px-4 py-2 text-prpl text-lg">
+          <div className="rounded-full bg-prpl/10 px-4 py-2 text-prpl">
             {feedback.length} отзывов
           </div>
 
@@ -142,6 +151,7 @@ export default async function Page() {
 
     </div>
 
+    {/* Форма */}
     <div className="mt-20">
 
       {token ? (

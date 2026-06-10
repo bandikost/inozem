@@ -1,12 +1,9 @@
 'use client'
 
 import { useState } from "react"
+import { Star } from "lucide-react"
 import { UserRow } from "@/app/interface/user"
-import {
-  Star,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react"
+
 
 type Feedback = {
   id: number
@@ -76,20 +73,19 @@ export default function FeedbacksCarousel({ feedback, user }: Props) {
         min-h-[420px]
         flex
         flex-col
-        mt-8
       "
     >
-      <div className="flex flex-col sm:flex-row items-center text-center sm:items-start justify-between gap-4">
+      <div className="flex items-start justify-between gap-4">
 
-        <div className="flex items-start">
+        <div>
           <h3 className="text-xl font-semibold text-prpl">
             {feed.last_name} {feed.name}
           </h3>
 
           {feed.patronymic && (
-            <h3 className="ml-1 text-xl font-semibold text-prpl">
+            <p className="text-zinc-500">
               {feed.patronymic}
-            </h3>
+            </p>
           )}
         </div>
 
@@ -117,19 +113,19 @@ export default function FeedbacksCarousel({ feedback, user }: Props) {
         )}
       </div>
 
-      <div className="h-px bg-gray-300 my-6" />
+      <div className="h-px bg-zinc-100 my-6" />
 
-      <p className="flex-1 !text-lg leading-8 text-default">
+      <p className="flex-1 text-lg leading-8 text-zinc-700">
         {feed.user_text}
       </p>
 
       {feed.answer && (
-        <div className="mt-8 rounded-2xl border border-purple-800 bg-prpl/5 p-3">
+        <div className="mt-8 rounded-2xl border border-prpl/10 bg-prpl/5 p-5">
           <div className="font-semibold text-prpl mb-2">
             Ответ академии
           </div>
 
-          <p className="leading-7 text-default text-md">
+          <p className="leading-7 text-zinc-700">
             {feed.answer}
           </p>
         </div>
@@ -200,67 +196,13 @@ export default function FeedbacksCarousel({ feedback, user }: Props) {
     <div className="relative">
       <div className="grid grid-cols-1">{renderCard(first)}</div>
 
-      <button
-  onClick={prevSlide}
-  className="
-    absolute
-    left-[-24px]
-    top-1/2
-    -translate-y-1/2
+      <button onClick={prevSlide} className="absolute left-[-25px] top-1/2 -translate-y-1/2 mt-2 !text-black cursor-pointer border border-gray-300 px-2.5 py-1 bg-white shadow-md rounded-full hover:opacity-60">
+        <span className="relative -left-0.5">◀</span>
+      </button>
 
-    h-12
-    w-12
-
-    rounded-full
-    bg-white
-
-    border
-    border-zinc-200
-
-    shadow-lg
-
-    flex
-    items-center
-    justify-center
-
-    transition
-    hover:scale-110
-    cursor-pointer
-  "
->
-  <ChevronLeft size={22} />
-</button>
-
-<button
-  onClick={nextSlide}
-  className="
-    absolute
-    right-[-24px]
-    top-1/2
-    -translate-y-1/2
-
-    h-12
-    w-12
-
-    rounded-full
-    bg-white
-
-    border
-    border-zinc-200
-
-    shadow-lg
-
-    flex
-    items-center
-    justify-center
-
-    transition
-    hover:scale-110
-    cursor-pointer
-  "
->
-  <ChevronRight size={22} />
-</button>
+      <button onClick={nextSlide} className="absolute right-[-25px] top-1/2 -translate-y-1/2 mt-2 !text-black cursor-pointer border border-gray-300 px-2.5 py-1 bg-white shadow-md rounded-full hover:opacity-60">
+       <span className="relative -right-0.5">▶</span>
+      </button>
 
     </div>
   )

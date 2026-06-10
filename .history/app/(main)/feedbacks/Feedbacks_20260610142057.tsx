@@ -76,20 +76,19 @@ export default function FeedbacksCarousel({ feedback, user }: Props) {
         min-h-[420px]
         flex
         flex-col
-        mt-8
       "
     >
-      <div className="flex flex-col sm:flex-row items-center text-center sm:items-start justify-between gap-4">
+      <div className="flex items-start justify-between gap-4">
 
-        <div className="flex items-start">
+        <div>
           <h3 className="text-xl font-semibold text-prpl">
             {feed.last_name} {feed.name}
           </h3>
 
           {feed.patronymic && (
-            <h3 className="ml-1 text-xl font-semibold text-prpl">
+            <p className="text-zinc-500">
               {feed.patronymic}
-            </h3>
+            </p>
           )}
         </div>
 
@@ -117,19 +116,19 @@ export default function FeedbacksCarousel({ feedback, user }: Props) {
         )}
       </div>
 
-      <div className="h-px bg-gray-300 my-6" />
+      <div className="h-px bg-zinc-100 my-6" />
 
-      <p className="flex-1 !text-lg leading-8 text-default">
+      <p className="flex-1 text-lg leading-8 text-zinc-700">
         {feed.user_text}
       </p>
 
       {feed.answer && (
-        <div className="mt-8 rounded-2xl border border-purple-800 bg-prpl/5 p-3">
+        <div className="mt-8 rounded-2xl border border-prpl/10 bg-prpl/5 p-5">
           <div className="font-semibold text-prpl mb-2">
             Ответ академии
           </div>
 
-          <p className="leading-7 text-default text-md">
+          <p className="leading-7 text-zinc-700">
             {feed.answer}
           </p>
         </div>
@@ -225,7 +224,6 @@ export default function FeedbacksCarousel({ feedback, user }: Props) {
 
     transition
     hover:scale-110
-    cursor-pointer
   "
 >
   <ChevronLeft size={22} />
@@ -256,7 +254,6 @@ export default function FeedbacksCarousel({ feedback, user }: Props) {
 
     transition
     hover:scale-110
-    cursor-pointer
   "
 >
   <ChevronRight size={22} />

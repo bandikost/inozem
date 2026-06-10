@@ -81,15 +81,15 @@ export default function FeedbacksCarousel({ feedback, user }: Props) {
     >
       <div className="flex flex-col sm:flex-row items-center text-center sm:items-start justify-between gap-4">
 
-        <div className="flex items-start">
+        <div>
           <h3 className="text-xl font-semibold text-prpl">
             {feed.last_name} {feed.name}
           </h3>
 
           {feed.patronymic && (
-            <h3 className="ml-1 text-xl font-semibold text-prpl">
+            <p className="text-zinc-500">
               {feed.patronymic}
-            </h3>
+            </p>
           )}
         </div>
 
@@ -106,7 +106,7 @@ export default function FeedbacksCarousel({ feedback, user }: Props) {
 
       </div>
 
-      <div className="mt-2 text-sm text-zinc-500">
+      <div className="mt-2 text-sm text-zinc-500 text-left sm:text-center">
         {new Date(feed.created_at).toLocaleDateString(
           "ru-RU",
           {
@@ -117,7 +117,7 @@ export default function FeedbacksCarousel({ feedback, user }: Props) {
         )}
       </div>
 
-      <div className="h-px bg-gray-300 my-6" />
+      <div className="h-px bg-zinc-100 my-6" />
 
       <p className="flex-1 !text-lg leading-8 text-default">
         {feed.user_text}
