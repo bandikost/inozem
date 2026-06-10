@@ -5,7 +5,6 @@ const cards = [
   {
     title: "Образовательные мероприятия",
     description: "Семинары, мастер-классы и конференции",
-    img: "/Images/main/activity.jpg",
     link: "/activity"
   },
   {
@@ -17,13 +16,11 @@ const cards = [
   {
     title: "Аккредитация",
     description: "Информация и итоги аккредитации",
-    img: "/Images/main/accred.jpg",
     link: "/accreditation"
   },
   {
     title: "Акции",
     description: "Специальные предложения",
-    img: "/Images/main/sale.jpg",
     link: "/promo"
   },
 ];
@@ -51,14 +48,8 @@ export default async function FirstBlock() {
                     <div key={index} className={` rounded-xl shadow border border-gray-300 ${index >= 2 ? "md:col-span-1" : "lg:col-span-2 "}`}>
                         <div className={`flex p-3 ${index >= 2 ? "flex-row md-custom-flex-col items-center" : ""}`}>
 
-                         {card.img && (
-                            <ImageWithSkeleton
-                              src={card.img}
-                              alt="Изображение академии"
-                              wrapperClassName="max-w-[120px] max-h-[120px]"
-                              aspect="1/1"
-                            />
-                          )}
+                         <ImageWithSkeleton src="/Images/main/" alt="Изображение академии"
+                            wrapperClassName="max-w-[120px] max-h-[120px]" aspect="1/1"/> 
 
                         <div className={`flex flex-col justify-between px-3  ${index >= 2 ? "items-start md-custom-items-center" : "items-start"}`}>
                             <h3 className="mt-1 !font-semibold">{card.title}</h3>

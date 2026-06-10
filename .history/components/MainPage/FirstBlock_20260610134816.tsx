@@ -5,7 +5,6 @@ const cards = [
   {
     title: "Образовательные мероприятия",
     description: "Семинары, мастер-классы и конференции",
-    img: "/Images/main/activity.jpg",
     link: "/activity"
   },
   {
@@ -17,13 +16,11 @@ const cards = [
   {
     title: "Аккредитация",
     description: "Информация и итоги аккредитации",
-    img: "/Images/main/accred.jpg",
     link: "/accreditation"
   },
   {
     title: "Акции",
     description: "Специальные предложения",
-    img: "/Images/main/sale.jpg",
     link: "/promo"
   },
 ];
