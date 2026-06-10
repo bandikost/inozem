@@ -119,21 +119,37 @@ export default function AccredResult({ accred }: Props) {
 
           <div className="divide-y divide-gray-100">
             {filteredAccred.map((item) => (
-            <div key={item.id} className="grid grid-cols-12 items-center px-4 py-3 hover:bg-gray-50 transition">
-              <div className="col-span-2 font-bold text-gray-700 border-r border-gray-300 pr-4">{item.stage}</div>
+              <div key={item.id} className="grid grid-cols-12 items-center px-4 py-3 hover:bg-gray-50 transition">
 
-              <div className="col-span-7 text-center border-r border-gray-300 px-4">
-                <a href={item.link} target="_blank" rel="noopener noreferrer" className="!text-md !text-teal-600 hover:text-teal-800 hover:underline font-medium">
-                  {item.name}
-                </a>
+                <div className="col-span-2 font-bold text-gray-700">
+                  {item.stage}
+                </div>
+
+                <div className="col-span-7 text-center ">
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-teal-600 hover:text-teal-800 hover:underline font-medium"
+                  >
+                    {item.name}
+                  </a>
+                </div>
+
+               
+
+                <div className="col-span-3 text-right">
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-teal-600 hover:text-teal-800 hover:underline font-medium"
+                  >
+                    {item.name}
+                  </a>
+                </div>
+
               </div>
-
-            <div className="col-span-3 text-right pl-4">
-              <a href={item.link} target="_blank" rel="noopener noreferrer" className="!text-md !text-teal-700 hover:text-teal-800 hover:underline font-medium">
-                {item.name}
-              </a>
-            </div>
-          </div>
             ))}
           </div>
 

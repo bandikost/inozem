@@ -123,13 +123,13 @@ export default function AccredResult({ accred }: Props) {
               <div className="col-span-2 font-bold text-gray-700 border-r border-gray-300 pr-4">{item.stage}</div>
 
               <div className="col-span-7 text-center border-r border-gray-300 px-4">
-                <a href={item.link} target="_blank" rel="noopener noreferrer" className="!text-md !text-teal-600 hover:text-teal-800 hover:underline font-medium">
+                <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-800 hover:underline font-medium">
                   {item.name}
                 </a>
               </div>
 
             <div className="col-span-3 text-right pl-4">
-              <a href={item.link} target="_blank" rel="noopener noreferrer" className="!text-md !text-teal-700 hover:text-teal-800 hover:underline font-medium">
+              <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-lg text-teal-700 hover:text-teal-800 hover:underline font-medium">
                 {item.name}
               </a>
             </div>

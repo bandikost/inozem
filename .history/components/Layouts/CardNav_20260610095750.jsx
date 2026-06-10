@@ -62,7 +62,7 @@ const CardNav = ({
         return topBar + contentHeight + padding;
       }
     }
-    return 260;
+    return 300;
   };
 
   const createTimeline = () => {
@@ -147,10 +147,10 @@ const CardNav = ({
       <nav ref={navRef} className={`card-nav ${isExpanded ? 'open' : ''}`}>
         <div className="card-nav-top">
           <Link aria-label="Главная" className=" flex items-center gap-4 " href="/">
-              <Image src="/layouts/LogoCHOU.png" alt="Логотип CHOU — Академия медицинского образования" width={50} height={50} priority sizes="50px" className="h-auto w-auto"/>
+              <Image src="/layouts/LogoCHOU.png" alt="Логотип CHOU — Академия медицинского образования" width={50} height={50} priority  />
              
           </Link>
-          <h1 className='md:text-sm lg:text-base font-bold text-white'>Академия медицинского образования имени Ф.И.Иноземцева</h1>
+          <p className='!text-base tablet:!text-xl !text-white ml-2 md:ml-0 px-3 hidden xs:block'>Академия медицинского образования имени Ф.И.Иноземцева</p>
           <div
             className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''}`}
             onClick={toggleMenu}
@@ -181,7 +181,7 @@ const CardNav = ({
                   item.links.map((lnk, i) => (
                     <Link
                       key={`${lnk.label}-${i}`}
-                      className="nav-card-link "
+                      className="nav-card-link !text-white"
                       href={lnk.href}
                       aria-label={lnk.ariaLabel}
                       onClick={() => {

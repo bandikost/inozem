@@ -93,23 +93,23 @@ export default function TabsWrapper({ leaderboard, userRank, achievements }: Pro
                
                     <div className="divide-y divide-gray-200 ">
                         {leaderboard.map((l, index) => (
-                            <div key={l.id} className={`group grid grid-cols-12 items-center px-4 py-3 cursor-pointer hover:bg-gray-100 transition ${ userRank === index + 1 ? 'bg-prpl' : ''}`}>
-                                <div className={`col-span-2 font-bold text-gray-700 ${ userRank === index + 1 ? 'text-white group-hover:text-gray-700' : '' }`}>
-                                    #{index + 1}
-                                </div>
+                        <div key={l.id} className={`grid grid-cols-12 items-center px-4 py-3 hover:bg-gray-50 transition ${userRank === index + 1 ? 'bg-prpl' : ''}`}>
+                         
+                            <div className={`col-span-2 font-bold text-gray-700 ${userRank === index + 1 ? 'text-white' : ''}`}> #{index + 1}</div>
 
-                                <div className="col-span-7 flex flex-col">
-                                <span className={`font-medium text-default text-lg ${ userRank === index + 1 ? '!text-white group-hover:!text-gray-700' : '' }`}>
+                            <div className="col-span-7 flex flex-col">
+                                <span className={`font-medium text-default text-lg ${userRank === index + 1 ? '!text-white' : ''}`}>
                                     {l.last_name} {l.name} {l.patronymic}
                                 </span>
-                                </div>
-                                <div className="col-span-3 text-right">
-                                <span className="inline-flex items-center text-center gap-1 px-3 py-1 rounded-full bg-yellow-50 text-yellow-700 font-semibold text-sm">
-                                    ⭐ {l.experience}
-                                </span>
-                                </div>
                             </div>
-                            ))}
+
+                            <div className="col-span-3 text-right">
+                            <span className="inline-flex items-center text-center gap-1 px-3 py-1 rounded-full bg-yellow-50 text-yellow-700 font-semibold text-sm">
+                                ⭐ {l.experience}
+                            </span>
+                            </div>
+                        </div>
+                        ))}
                     </div>
                     </div>
                 </div>

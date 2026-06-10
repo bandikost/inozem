@@ -93,7 +93,7 @@ export default function TabsWrapper({ leaderboard, userRank, achievements }: Pro
                
                     <div className="divide-y divide-gray-200 ">
                         {leaderboard.map((l, index) => (
-                            <div key={l.id} className={`group grid grid-cols-12 items-center px-4 py-3 cursor-pointer hover:bg-gray-100 transition ${ userRank === index + 1 ? 'bg-prpl' : ''}`}>
+                            <div key={l.id} className={`group grid grid-cols-12 items-center px-4 py-3 hover:bg-gray-50 transition ${ userRank === index + 1 ? 'bg-prpl' : ''}`}>
                                 <div className={`col-span-2 font-bold text-gray-700 ${ userRank === index + 1 ? 'text-white group-hover:text-gray-700' : '' }`}>
                                     #{index + 1}
                                 </div>
