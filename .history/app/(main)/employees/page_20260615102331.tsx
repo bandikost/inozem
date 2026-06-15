@@ -17,26 +17,25 @@ return (
 <section className="flex flex-col px-4 mt-30">
     <h1 className="text-prpl font-semibold text-center">Сотрудники ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h1>
 
-        <div className="grid gap-4 grid-cols-1 lg:grid-cols-2 mb-15 mt-5">
+        <div className="grid gap-4 lg:grid-cols-2 mb-15 mt-5">
             {filtredTeachers
            
             .map(teacher => (
-                <div key={teacher.id} className="flex flex-col
-    w-fit
-    mx-auto
-    sm:w-full
-    sm:flex-row
-    overflow-hidden
-    border border-gray-300
-    rounded-xl
-    shadow-2xl
-    bg-white
-    mt-8">
+                <div key={teacher.id} className="mx-auto
+                    w-full
+                    max-w-md
+                    overflow-hidden
+                    rounded-2xl
+                    border border-gray-200
+                    bg-white
+                    shadow-lg
+                    sm:max-w-none
+                    sm:flex">
                     {teacher.photo_url ? (
                         <ImageWithSkeleton
                             src={teacher.photo_url}
                             alt={`Сотрудник ${teacher.last_name}`}
-                            wrapperClassName="mr-0 sm:mr-3 h-[350px] w-[300px] sm:h-[300px] sm:w-[250px] rounded object-cover p-0 m-0"
+                            wrapperClassName="mr-3 h-[300px] w-[250px] rounded object-cover p-0 m-0"
                             aspect="1/1"
                         />
                         ) : (
@@ -45,11 +44,11 @@ return (
                         </div>
                         )}
                         <ul className="pt-2 max-w-[300px]">
-                                <li className="!text-lg !font-medium text-prpl text-center sm:text-left px-4">
+                                <li className="!text-lg !font-medium text-prpl text-center">
                                     {teacher.last_name} {teacher.name} {teacher.patronymic}
                                 </li>
 
-                                <li className="my-2 break-words px-4">
+                                <li className="my-2 break-words">
                                     {teacher.Teacher_text}
                                 </li>
                             </ul> 

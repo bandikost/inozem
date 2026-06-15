@@ -9,8 +9,8 @@ export default async function ThirdBlock() {
   return (
     <section className="w-full mt-24 px-4">
 
-      <div className="max-w-6xl mx-auto flex flex-col gap-2 px-2">
-        <h2 className="text-2xl font-semibold text-prpl ">
+      <div className="max-w-6xl mx-auto flex flex-col gap-2">
+        <h2 className="text-2xl font-semibold text-prpl px-2">
           Преподаватель месяца
         </h2>
         <p className="text-slate-600">

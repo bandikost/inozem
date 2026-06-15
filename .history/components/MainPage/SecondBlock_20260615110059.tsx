@@ -7,9 +7,9 @@ export default async function SecondBlock() {
   const users = await getAllUsers();
 
   return (
-    <section className="w-full mt-24 px-4 ">
+    <section className="w-full mt-24 px-4 px-2">
 
-      <div className="flex flex-col items-left text-left px-2">
+      <div className="flex flex-col items-left text-left">
         <h2 className="text-3xl font-bold text-prpl">
           Академия в цифрах
         </h2>

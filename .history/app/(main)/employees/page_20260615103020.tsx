@@ -36,7 +36,7 @@ return (
                         <ImageWithSkeleton
                             src={teacher.photo_url}
                             alt={`Сотрудник ${teacher.last_name}`}
-                            wrapperClassName="mr-0 sm:mr-3 h-[350px] w-[300px] sm:h-[300px] sm:w-[250px] rounded object-cover p-0 m-0"
+                            wrapperClassName="mr-0 sm:mr-3 h-[350px] w-[300px] sm:h-[300px]sm:w-[250px] rounded object-cover p-0 m-0"
                             aspect="1/1"
                         />
                         ) : (
@@ -44,8 +44,8 @@ return (
                             Нет фото
                         </div>
                         )}
-                        <ul className="pt-2 max-w-[300px]">
-                                <li className="!text-lg !font-medium text-prpl text-center sm:text-left px-4">
+                        <ul className="pt-2 max-w-[300px] sm:max-w-[300px]">
+                                <li className="!text-lg !font-medium text-prpl text-center sm:text-left">
                                     {teacher.last_name} {teacher.name} {teacher.patronymic}
                                 </li>
 

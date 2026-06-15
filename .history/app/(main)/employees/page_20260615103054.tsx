@@ -36,7 +36,7 @@ return (
                         <ImageWithSkeleton
                             src={teacher.photo_url}
                             alt={`Сотрудник ${teacher.last_name}`}
-                            wrapperClassName="mr-0 sm:mr-3 h-[350px] w-[300px] sm:h-[300px] sm:w-[250px] rounded object-cover p-0 m-0"
+                            wrapperClassName="mr-0 sm:mr-3 h-[350px] w-[300px] sm:h-[300px]sm:w-[250px] rounded object-cover p-0 m-0"
                             aspect="1/1"
                         />
                         ) : (
