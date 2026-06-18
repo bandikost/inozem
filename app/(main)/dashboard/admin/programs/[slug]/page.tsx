@@ -4,6 +4,8 @@ import { getProgramBlocks, getProgramBySlug } from "@/lib/programm";
 import ProgramEditor from "../../components/ProgramEditor";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 
 interface ProgramsPageProps { 
@@ -15,12 +17,17 @@ export const metadata = {
 }
 
 export default async function AdminProgramsPage({params} : ProgramsPageProps) {
+    const cookieStore = await cookies()
+    const manager = cookieStore.get("manager")
+      
+    if (!manager) redirect("/dashboard")
+
     const {slug} = await params
     const program = await getProgramBySlug(slug)
     if (!program) return null
 
     const blocks = await getProgramBlocks(program.id)
-
+    
 
   return (
     <div style={{ padding: 20 }}>

@@ -38,6 +38,18 @@ export async function getAllTeachers(): Promise<UserRow[]> {
   return rows;
 }
 
+export async function getAllEmlployeer(): Promise<UserRow[]> {
+
+  const [rows] = await db.query<UserRow[] & RowDataPacket[]>(
+    `SELECT id, name, last_name, education_level, specialization,
+            patronymic, Teacher_text, photo_url, isEmployer, isAdmin, isRated
+     FROM users
+     WHERE isEmployer = 1`
+  );
+
+  return rows;
+}
+
 
 export async function getAllUsers(): Promise<UserRow[]> {
   const [rows] = await db.query<UserRow[]>(

@@ -9,7 +9,7 @@ export default function QuestionButton() {
     const handleOpenMenu = () => setOpenMenu(prev => !prev)
 
     return (
-        <section className="fixed bottom-4 right-2 z-50">
+        <section className="fixed bottom-2 right-2 z-50">
 
     <div
         className={`
@@ -85,16 +85,16 @@ export default function QuestionButton() {
                 flex
                 items-center
                 gap-2
-                rounded-full
+                !rounded-full
                 shadow-xl
                 hover:scale-105
                 transition
-                px-5
-                py-3
+                p-5
                 !text-white
+                w-20 sm:w-auto
             "
         >
-            <MessageCircleQuestionMark size={22} />
+            <MessageCircleQuestionMark size={26} />
 
             <span className="hidden sm:inline">
                 Задать вопрос

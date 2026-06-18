@@ -33,7 +33,7 @@ export default function LogoutButton() {
 
   return (
     <>
-      <button onClick={handleLogout} className="text-white cursor-pointer bg-red-500 flex p-8 justify-center text-lg sm:text-2xl rounded-md items-center gap-1 hover:opacity-70 shadow-2xl">
+      <button onClick={handleLogout} className="text-white cursor-pointer bg-red-500 flex p-2 justify-center text-lg  rounded-md items-center gap-1 hover:opacity-70 shadow-2xl">
         Выйти <LogOut className="text-white" size={20} />
       </button>
 

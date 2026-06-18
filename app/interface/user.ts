@@ -12,6 +12,7 @@ export interface UserRow extends RowDataPacket{
   education_level: string
   password: string
   isTeacher?: number
+  isEmployer?: boolean
   isAdmin: boolean
   photo_url: string 
   created_at: Date

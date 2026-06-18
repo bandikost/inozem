@@ -35,8 +35,9 @@ export default function ImageWithSkeleton({
         alt={alt}
         width={700}
         height={700}
+         unoptimized
         onLoad={() => setLoaded(true)}
-        className={`w-full h-full object-cover transition-opacity duration-500 ${
+        className={`w-full h-full object-cover transition-opacity duration-500 object-[center_10%]  ${
           loaded ? 'opacity-100' : 'opacity-0'
         } ${className}`}
       />

@@ -2,6 +2,8 @@ import { getPrograms } from "@/lib/programm"
 import ProgramList from "./components/Programlist"
 import Link from "next/link"
 import { MoveLeft } from "lucide-react"
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 
 export const dynamic = "force-dynamic";
@@ -13,6 +15,10 @@ export const metadata = {
 
 export default async function Page() {
     const program = await getPrograms()
+     const cookieStore = await cookies()
+      const manager = cookieStore.get("manager")
+    
+      if (!manager) redirect("/dashboard")
 
     return (
         <section className="flex flex-col px-4 mb-10">

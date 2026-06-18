@@ -23,20 +23,56 @@ export default function ProfileClient({programs, user} : Props) {
 
     return (
          <section className="flex flex-col px-4 mb-20">
-          <div className="flex flex-col sm:flex-row text-center sm:text-left items-center mt-28 gap-2 ml-2">
-            <CircleUserRound size={65} className="text-prpl" strokeWidth={1} />
+
             <div className="flex flex-col">
-              <h1 className="text-prpl font-semibold">Личный кабинет </h1>
-              <p className="opacity-70 !font-normal text-md">Добро пожаловать, {user.last_name} {user.name} {user.patronymic}!</p>
               
-            </div>
+              <div className="flex flex-row text-center sm:text-left items-center mt-28 gap-2 ml-2">
+                  <CircleUserRound size={65} className="text-prpl" strokeWidth={1} />
+                  <div className="flex flex-col">
+                    <h1 className="text-prpl font-semibold">Личный кабинет </h1>
+                    <p className="opacity-70 !font-normal text-md">Добро пожаловать, {user.last_name} {user.name} {user.patronymic}!</p>
+                  </div>
+              </div>
+              
+                <div className="grid gap-4 grid-cols-2 mt-8">
+                  <LogoutButton />
+
+                  {!!user.isAdmin && (
+                    <LoadingLink
+                      href="/dashboard/"
+                      className="flex items-center text-center justify-center gap-1 !text-white cursor-pointer bg-prpl p-3 text-lg rounded-md hover:opacity-70 shadow-2xl"
+                    >
+                      <LogOutIcon size={20} />
+                      Перейти в админку
+                    </LoadingLink>
+                  )}
+              
+              </div> 
+
+           
           </div>
       
-      <div className="grid grid-cols-1 tablet:grid-cols-2 items-start gap-8 mt-8 ">
+      <div className="grid grid-cols-1 tablet:grid-cols-2 items-stretch gap-8 mt-2">
 
-        <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white pt-3 flex flex-col">
+        <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white pt-3 flex flex-col h-full">
           <h3 className="text-prpl font-semibold !text-2xl p-4 flex gap-2 ml-2 flex-col sm:flex-row items-center text-center"><GraduationCap size={30} strokeWidth={1.5} /> Программы обучения</h3>
-          {programs.length === 0 && <p className="text-gray-500 px-5 pb-4"> Вы пока не записаны ни на одну программу</p>}
+          {programs.length === 0 && (
+            <div className="flex flex-col items-center justify-center flex-1 text-center px-6">
+              <GraduationCap
+                size={64}
+                strokeWidth={1.2}
+                className="text-gray-300 mb-4"
+              />
+
+              <p className="text-xl text-gray-600 !font-normal">
+                У вас пока нет программ обучения
+              </p>
+
+              <p className="text-gray-400 mt-2 !font-normal">
+                Посмотрите программы обучения в нашем <LoadingLink href="/programs" className="text-prpl hover:underline !font-normal">каталоге</LoadingLink> и запишитесь на интересующие вас курсы!
+              </p>
+            </div>
+          )}
 
           <ul className="flex flex-col p-6 gap-4">
               {visiblePrograms.map(p => {
@@ -78,22 +114,18 @@ export default function ProfileClient({programs, user} : Props) {
 
         </div>
 
-      <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white pt-3 flex flex-col h-[555px]">
-        <h3 className="text-prpl font-semibold !text-2xl p-4 flex gap-2 ml-2 text-center justify-center"><Star size={30} strokeWidth={1.5} /> Избранное</h3>
-          <ul className="flex flex-col justify-center items-center gap-2 mt-20">
+      <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white pt-3 flex flex-col h-full">
+        <h3 className="text-prpl font-semibold !text-2xl p-4 flex gap-2 ml-2 text-center justify-center"><Star size={30} strokeWidth={1.5} /> Персональные рекомендации</h3>
+          <ul className="flex flex-col justify-center items-center gap-2 mt-10">
             <Heart size={70} strokeWidth={1.5} className="bg-white border border-gray-300 shadow-xl p-2 rounded-full" fill="red" stroke="vinous" />
             <li className="px-4 text-gray-500 text-xl mt-3">Пока что тут пусто</li>
           </ul>
       </div>
       
-      </div>
+     
 
-      <div className="pt-3 grid gap-6 grid-cols-1 tablet:grid-cols-2 items-center my-10">
-        <LogoutButton /> 
-        <LoadingLink className="flex p-8 justify-center text-lg sm:text-2xl rounded-md items-center gap-1 hover:opacity-70 shadow-2xl bg-prpl !text-white" href="/dashboard/">
-          <LogOutIcon /> Перейти в админку
-        </LoadingLink>
-      </div>
+      
+    </div>
 
     </section>
     )

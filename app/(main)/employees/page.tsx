@@ -1,5 +1,5 @@
 import ImageWithSkeleton from "@/components/ui/LazyLoad/ImageWithSkeleton"
-import { getAllTeachers } from "@/lib/users"
+import { getAllEmlployeer, getAllTeachers } from "@/lib/users"
 
 export const dynamic = "force-dynamic";
 
@@ -9,80 +9,87 @@ export const metadata = {
 
 export default async function Page() {
     const teachers = await getAllTeachers()
+    const emloyeer = await getAllEmlployeer()
 
     const filtredTeachers = teachers.filter(t => t.isTeacher)
+    const filtredEmployeer = emloyeer.filter(e => e.isEmployer)
 
 return (
     
-<section className="flex flex-col px-4 mt-30">
-    <h1 className="text-prpl font-semibold text-center">Сотрудники ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h1>
+<section className="flex flex-col px-4 mt-30 mb-20">
+    <h2 className="text-prpl text-center">Сотрудники ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h2>
 
-        <div className="grid gap-4 grid-cols-1 lg:grid-cols-2 mb-15 mt-5">
-            {filtredTeachers
-           
-            .map(teacher => (
-                <div key={teacher.id} className="flex flex-col
-    w-fit
-    mx-auto
-    sm:w-full
-    sm:flex-row
-    overflow-hidden
-    border border-gray-300
-    rounded-xl
-    shadow-2xl
-    bg-white
-    mt-8">
-                    {teacher.photo_url ? (
+    <div className="grid gap-6 grid-cols-1 md:grid-cols-2 mt-8">
+  {filtredEmployeer.map((teacher) => (
+    <div
+      key={teacher.id}
+      className="flex flex-col md:flex-row overflow-hidden rounded-2xl bg-white border border-gray-200 shadow-md"
+    >
+      
+  
+      <div className="w-full md:w-[240px] h-auto shrink-0">
+        {teacher.photo_url ? (
+          <ImageWithSkeleton
+            src={teacher.photo_url}
+            alt={teacher.last_name}
+            wrapperClassName="w-full h-full object-cover"
+            aspect="1/1"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-100 flex items-center justify-center text-gray-400">
+            Нет фото
+          </div>
+        )}
+      </div>
+
+   
+                    <div className="p-5 md:p-6 flex flex-col gap-2 min-w-0">
+                        <h3 className="text-lg md:text-xl font-medium text-gray-700 leading-snug !font-normal">
+                        {teacher.last_name} {teacher.name} <br className="hidden sm:visible" />
+                        {teacher.patronymic}
+                        </h3>
+
+                        <p className="text-sm text-gray-500 line-clamp-4 !font-normal mt-2">
+                        {teacher.Teacher_text}
+                        </p>
+                    </div> 
+    </div>
+  ))}
+</div>
+
+        <h2 className="text-prpl font-semibold text-center mt-15">Преподаватели ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h2>
+
+        <div className="grid gap-6 grid-cols-1 lg:grid-cols-2 mt-8">
+            {filtredTeachers.map(teacher => (
+                <div key={teacher.id} className="flex flex-col w-fit mx-auto sm:w-full sm:flex-row overflow-hidden border border-gray-200 rounded-xl shadow-md bg-white mt-8">
+                    <div className="w-full md:w-[240px] h-auto shrink-0">
+                        {teacher.photo_url ? (
                         <ImageWithSkeleton
                             src={teacher.photo_url}
-                            alt={`Сотрудник ${teacher.last_name}`}
-                            wrapperClassName="mr-0 sm:mr-3 h-[350px] w-[300px] sm:h-[300px] sm:w-[250px] rounded object-cover p-0 m-0"
+                            alt={teacher.last_name}
+                            wrapperClassName="w-full h-full object-cover"
                             aspect="1/1"
                         />
                         ) : (
-                        <div className="mr-3 h-[200px] w-[200px] rounded-md bg-gray-200 flex items-center justify-center">
+                        <div className="h-[280px] w-[240px] bg-gray-100 flex items-center justify-center text-gray-400">
                             Нет фото
                         </div>
                         )}
-                        <ul className="pt-2 max-w-[300px]">
-                                <li className="!text-lg !font-medium text-prpl text-center sm:text-left px-4">
-                                    {teacher.last_name} {teacher.name} {teacher.patronymic}
-                                </li>
+                    </div>
 
-                                <li className="my-2 break-words px-4">
-                                    {teacher.Teacher_text}
-                                </li>
-                            </ul> 
+                    <div className="p-5 md:p-6 flex flex-col gap-2 min-w-0">
+                        <h3 className="text-lg md:text-xl font-medium text-gray-700 leading-snug !font-normal">
+                        {teacher.last_name} {teacher.name} <br className="hidden sm:visible" />
+                        {teacher.patronymic}
+                        </h3>
+
+                        <p className="text-sm text-gray-500 line-clamp-4 !font-normal mt-2">
+                        {teacher.Teacher_text}
+                        </p>
+                    </div>   
                 </div>
             ))}
         </div>
-
-     {/*    <h1 className="text-prpl font-semibold text-center">Профессорско-преподавательский состав</h1>
-        <div className="grid gap-3 grid-cols-2 mb-15 mt-5">
-            {filtredTeachers
-            .slice(10, )
-            .map(teacher => (
-                <div key={teacher.id} className="flex list-none border border-gray-300  mt-8 rounded-md shadow-2xl bg-white">
-                    {teacher.photo_url ? (
-                        <ImageWithSkeleton
-                            src={teacher.photo_url}
-                            alt={`Сотрудник ${teacher.last_name}`}
-                            wrapperClassName="mr-3 h-[200px] w-[200px] rounded-md object-cover"
-                            aspect="1/1"
-                        />
-                        ) : (
-                        <div className="mr-3 h-[200px] w-[200px] rounded-md bg-gray-200 flex items-center justify-center">
-                            Нет фото
-                        </div>
-                        )}
-                    <ul className="pt-2">
-                        <li className="!text-lg !font-medium text-prpl">{teacher.last_name} {teacher.name} {teacher.patronymic}</li>
-                        <li className="my-2 max-w-[300px]">{teacher.Teacher_text}</li>
-                    </ul> 
-                </div>
-            ))}
-        </div>
-        */}
 </section>
     )
 }
