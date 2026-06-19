@@ -74,7 +74,7 @@ export default function Page() {
       <button
         disabled={loading}
         className="mt-2 w-full rounded-lg bg-prpl py-2 text-white
-                   hover:opacity-90 active:scale-[0.99] transition text-lg !font-normal cursor-pointer"
+                   hover:opacity-90 active:scale-[0.99] transition text-lg !font-normal"
       >
         {loading ? "Авторизация..." : "Войти"}
       </button>

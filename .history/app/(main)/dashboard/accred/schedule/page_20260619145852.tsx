@@ -1,0 +1,17 @@
+import { getAccredShedule } from "@/lib/accred";
+import ScheduleEditor from "./components/ScheduleEditor";
+
+
+export default async function Page() {
+  const schedule = await getAccredShedule();
+
+  return (
+    <section className="max-w-6xl mx-auto px-6 py-10">
+      <h1 className="text-3xl font-bold text-prpl mb-8">
+        Редактирование расписания
+      </h1>
+
+      <ScheduleEditor schedule={schedule} />
+    </section>
+  );
+}
