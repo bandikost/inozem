@@ -1,10 +1,9 @@
 "use client";
 
-import { Accred } from "@/app/interface/accred";
 import { useState } from "react";
 
 interface Props {
-  schedule: Accred[]
+  schedule: Accred[];
 }
 
 const months = [
@@ -25,25 +24,15 @@ const months = [
 
 
 
-export default function ScheduleEditor({ schedule }: Props) {
-  const [rows, setRows] = useState<Accred[]>(schedule)
+export default function ScheduleEditor({ schedule }) {
+  const [rows, setRows] = useState(schedule);
 
- const handleChange = ( id: number, field: "day" | "month" | "year" | "time",
-    value: number | string
-  ) => {
-    setRows((prev) =>
-      prev.map((row) =>
-        row.id === id
-          ? {
-              ...row,
-              [field]: value,
-            }
-          : row
-      )
-    );
+  const handleChange = (id, field, value) => {setRows((prev) => 
+    prev.map((row) => row.id === id ? {...row, [field]: value} : row)
+    )
   }
 
-  async function save(row: Accred) {
+  async function save(row) {
     const res = await fetch(`/api/accred/schedule/${row.id}`, {
       method: "PATCH",
       headers: {

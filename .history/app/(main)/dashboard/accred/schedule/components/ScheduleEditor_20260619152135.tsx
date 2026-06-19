@@ -28,7 +28,9 @@ const months = [
 export default function ScheduleEditor({ schedule }: Props) {
   const [rows, setRows] = useState<Accred[]>(schedule)
 
- const handleChange = ( id: number, field: "day" | "month" | "year" | "time",
+ const handleChange = (
+    id: number,
+    field: "day" | "month" | "year" | "time",
     value: number | string
   ) => {
     setRows((prev) =>

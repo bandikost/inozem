@@ -25,25 +25,15 @@ const months = [
 
 
 
-export default function ScheduleEditor({ schedule }: Props) {
+export default function ScheduleEditor({ schedule }) {
   const [rows, setRows] = useState<Accred[]>(schedule)
 
- const handleChange = ( id: number, field: "day" | "month" | "year" | "time",
-    value: number | string
-  ) => {
-    setRows((prev) =>
-      prev.map((row) =>
-        row.id === id
-          ? {
-              ...row,
-              [field]: value,
-            }
-          : row
-      )
-    );
+  const handleChange = (id, field, value) => {setRows((prev) => 
+    prev.map((row) => row.id === id ? {...row, [field]: value} : row)
+    )
   }
 
-  async function save(row: Accred) {
+  async function save(row) {
     const res = await fetch(`/api/accred/schedule/${row.id}`, {
       method: "PATCH",
       headers: {
