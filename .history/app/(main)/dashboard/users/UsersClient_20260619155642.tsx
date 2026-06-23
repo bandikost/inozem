@@ -3,6 +3,7 @@
 
 import { UserRow } from '@/app/interface/user'
 import { ProgramRow } from '@/lib/programm'
+import { MoveLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
 
@@ -52,7 +53,7 @@ const handleAssign = async (userId: number) => {
     if (!res.ok) {
       throw new Error("Ошибка назначения")
     }
-
+    
     alert("Программа назначена ✅")
     window.location.reload()
   } catch (e) {
@@ -78,6 +79,7 @@ const handleAssign = async (userId: number) => {
 
   return (
     <section className="px-6 mb-20">
+      <Link href="/dashboard/manager" className="!text-lg !font-normal hover:underline flex items-center gap-1"><MoveLeft size={20} /> Вернуться в меню</Link>
       <h1 className="text-3xl mt-27 text-prpl">Пользователи</h1>
       <p className='text-gray-500 my-2'><sup>*</sup>Поиск работает только по фамилии</p>
       <input

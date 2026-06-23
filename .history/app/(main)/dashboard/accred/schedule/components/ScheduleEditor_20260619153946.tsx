@@ -87,7 +87,7 @@ export default function ScheduleEditor({ schedule }: Props) {
         <select
           value={selectedProgram}
           onChange={(e) => setSelectedProgram(e.target.value)}
-          className="w-full border rounded-xl p-3 text-xl text-zinc-700"
+          className="w-full border rounded-xl p-3 text-lg"
         >
           {programs.map((program) => (
             <option key={program} value={program}>
@@ -103,11 +103,11 @@ export default function ScheduleEditor({ schedule }: Props) {
             key={row.id}
             className="rounded-2xl bg-white border border-gray-200 shadow-lg p-6"
           >
-            <h2 className="text-2xl font-semibold text-prpl ">
+            <h2 className="text-2xl font-semibold text-prpl">
               {row.stage}
             </h2>
 
-            <p className="text-gray-400 mb-6 !text-lg !font-normal">
+            <p className="text-gray-500 mb-6">
               {row.specialization}
             </p>
 

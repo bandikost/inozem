@@ -1,4 +1,3 @@
-import { MoveLeft } from "lucide-react";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -13,12 +12,11 @@ export default async function Page() {
 
     return (
         <section className="max-w-6xl mx-auto px-6 mt-34">
-            <Link href="/dashboard/manager" className="!text-lg !font-normal hover:underline flex items-center gap-1"><MoveLeft size={20} /> Вернуться в меню</Link>
             <div className="text-center mb-12">
                 <h1 className="text-5xl font-bold text-prpl">
                 Панель аккредитации
                 </h1>
-                
+                <Link href="/dashboard/manager" className="!text-lg !font-normal hover:underline">Вернуться в меню</Link>
 
                 <p className="text-gray-500 mt-3 text-lg">
                     Управление расписанием и протоколов

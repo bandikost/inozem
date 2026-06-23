@@ -13,7 +13,7 @@ export default async function Page() {
 
     return (
         <section className="max-w-6xl mx-auto px-6 mt-34">
-            <Link href="/dashboard/manager" className="!text-lg !font-normal hover:underline flex items-center gap-1"><MoveLeft size={20} /> Вернуться в меню</Link>
+            <Link href="/dashboard/manager" className="!text-lg !font-normal hover:underline flex"><MoveLeft size={20} /> Вернуться в меню</Link>
             <div className="text-center mb-12">
                 <h1 className="text-5xl font-bold text-prpl">
                 Панель аккредитации

@@ -3,6 +3,7 @@
 
 import { UserRow } from '@/app/interface/user'
 import { ProgramRow } from '@/lib/programm'
+import { MoveLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
 
@@ -52,8 +53,7 @@ const handleAssign = async (userId: number) => {
     if (!res.ok) {
       throw new Error("Ошибка назначения")
     }
-    console.log("PROGRAM PAGE ID:", program.id)
-console.log("PROGRAM PAGE NAME:", program.name)
+    
     alert("Программа назначена ✅")
     window.location.reload()
   } catch (e) {
@@ -78,8 +78,9 @@ console.log("PROGRAM PAGE NAME:", program.name)
   if (!programs) return null
 
   return (
-    <section className="px-6 mb-20">
-      <h1 className="text-3xl mt-27 text-prpl">Пользователи</h1>
+    <section className="px-6 mb-20 mt-27">
+      <Link href="/dashboard/manager" className="!text-lg !font-normal hover:underline flex items-center gap-1"><MoveLeft size={20} /> Вернуться в меню</Link>
+      <h1 className="text-3xl  text-prpl">Пользователи</h1>
       <p className='text-gray-500 my-2'><sup>*</sup>Поиск работает только по фамилии</p>
       <input
         value={value}

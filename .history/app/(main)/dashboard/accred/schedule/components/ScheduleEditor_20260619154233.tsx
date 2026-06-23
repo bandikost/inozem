@@ -103,11 +103,11 @@ export default function ScheduleEditor({ schedule }: Props) {
             key={row.id}
             className="rounded-2xl bg-white border border-gray-200 shadow-lg p-6"
           >
-            <h2 className="text-2xl font-semibold text-prpl ">
+            <h2 className="text-2xl font-semibold text-prpl">
               {row.stage}
             </h2>
 
-            <p className="text-gray-400 mb-6 !text-lg !font-normal">
+            <p className="text-gray-500 mb-6 !text-lg !font-normal">
               {row.specialization}
             </p>
 
