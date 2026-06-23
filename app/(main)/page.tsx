@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic"
+export const revalidate = 3600
 
 import FirstBlock from "@/components/MainPage/FirstBlock";
 import Programms from "@/components/MainPage/Programms";
