@@ -1,12 +1,12 @@
 
 import { NextResponse } from 'next/server'
 import { db } from '@/lib/db'
-import { NewsDBRow } from '@/app/interface/newsDB'
+import { NewsRow } from '@/app/interface/news'
 
 
 export async function GET() {
   try {
-    const [rows] = await db.query<NewsDBRow[]>(
+    const [rows] = await db.query<NewsRow[]>(
       'SELECT id, slug, header, descript, text, date FROM news ORDER BY date DESC'
     )
 
