@@ -1,5 +1,3 @@
-export const revalidate = 3600
-
 import { NewsRow } from "@/app/interface/news"
 import LoadingLink from "@/components/Load/LoadingLink"
 import { safeFetch } from "@/lib/safeFetch"
