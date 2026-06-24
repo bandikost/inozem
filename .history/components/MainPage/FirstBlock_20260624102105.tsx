@@ -34,7 +34,7 @@ export default async function FirstBlock() {
 
     return (
         <section className=" mx-auto px-4 py-8">
-  <div className="grid gap-8 grid-cols-1 justify-center items-center lg:grid-cols-[1.5fr_1.4fr]">
+  <div className="grid gap-8 grid-cols-1 justify-center items-center lg:grid-cols-[1.1fr_1.4fr]">
 
    
       <div className="w-full max-w-[600px] aspect-square rounded-3xl overflow-hidden">
@@ -47,7 +47,7 @@ export default async function FirstBlock() {
       </div>
    
 
-    <div className="grid gap-3">
+    <div className="grid gap-3 content-start">
       {cards.map((card, index) => (
         <LoadingLink
           key={index}

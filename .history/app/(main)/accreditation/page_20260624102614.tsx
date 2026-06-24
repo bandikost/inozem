@@ -15,10 +15,10 @@ export default async function Page() {
   const schedule = await getAccredShedule();
 
   return (
-    <section className="min-h-screen px-4 py-16 mt-27">
+    <section className="min-h-screen bg-gradient-to-b from-white to-gray-50 px-4 py-16">
       <div className="mx-auto max-w-6xl">
 
-       
+        {/* HEADER */}
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight">
             Первичная специализированная аккредитация
@@ -29,12 +29,12 @@ export default async function Page() {
           </p>
         </div>
 
-    
+        {/* ACTION BUTTONS */}
         <div className="mb-10">
           <SideButtons />
         </div>
 
-     
+        {/* SCHEDULE CARD */}
         <div className="rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
           <div className="px-6 py-5 border-b border-gray-100">
             <h2 className="text-lg md:text-xl font-semibold text-gray-900">
@@ -50,7 +50,7 @@ export default async function Page() {
           </div>
         </div>
 
-        
+        {/* RESULTS CARD */}
         <div className="mt-10 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
           <div className="px-6 py-5 border-b border-gray-100">
             <h2 className="text-lg md:text-xl font-semibold text-gray-900">
@@ -66,7 +66,7 @@ export default async function Page() {
           </div>
         </div>
 
-       
+        {/* TEXT BLOCK */}
         <div className="mt-12 space-y-5 text-sm leading-7 text-gray-600">
           <p>
             Первичная специализированная аккредитация (ПСА) — это процедура оценки

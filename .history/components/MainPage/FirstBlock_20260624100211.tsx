@@ -34,17 +34,19 @@ export default async function FirstBlock() {
 
     return (
         <section className=" mx-auto px-4 py-8">
-  <div className="grid gap-8 grid-cols-1 justify-center items-center lg:grid-cols-[1.5fr_1.4fr]">
+  <div className="grid gap-8 grid-cols-1 justify-center items-center lg:grid-cols-[1.1fr_1.4fr]">
 
    
-      <div className="w-full max-w-[600px] aspect-square rounded-3xl overflow-hidden">
-        <ImageWithSkeleton
-          src="https://storage.yandexcloud.net/inozemstorage/main/banner/1.jpg"
-          alt="Изображение академии"
-          wrapperClassName="w-full h-full"
-          aspect="1/1"
-        />
-      </div>
+      <ImageWithSkeleton
+        src="https://storage.yandexcloud.net/inozemstorage/main/banner/1.jpg"
+        alt="Изображение академии"
+        wrapperClassName="max-h-[600px]
+          max-w-[600px]
+          
+          rounded-3xl
+          object-cover"
+        aspect="4/5"
+      />
    
 
     <div className="grid gap-3">
