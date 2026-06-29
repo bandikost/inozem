@@ -61,7 +61,7 @@ export default function Page() {
             </select>
 
 
-         <select className="input border border-gray-300 p-1 rounded-md text-lg" value={form.education} onChange={(e) => handleChange("education", e.target.value)}>
+         <select className="input border border-gray-300 p-1 rounded-md text-lg" value={form.specialization} onChange={(e) => handleChange("education", e.target.value)}>
             <option value="">Выберите уровень образования</option>
             {EDUCATION.map((specialty) => (
                 <option key={specialty} value={specialty}>

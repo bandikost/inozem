@@ -1,7 +1,7 @@
 "use client";
 
 
-import { EDUCATION, MONTH, SPECIALTIES } from "@/lib/accred/specialization";
+import { MONTH, SPECIALTIES } from "@/lib/accred/specialization";
 import { useState } from "react";
 
 export default function Page() {
@@ -51,19 +51,20 @@ export default function Page() {
         />
 
 
-        <select className="input border border-gray-300 p-1 rounded-md text-lg" value={form.month} onChange={(e) => handleChange("month", e.target.value)}>
+        <select className="input border border-gray-300 p-1 rounded-md text-lg" value={form.specialization} onChange={(e) => handleChange("month", e.target.value)}>
             <option value="">Выберите месяц</option>
-            {MONTH.map((month) => (
-                <option key={month} value={month}>
-                {month}
+            {MONTH.map((specialty) => (
+                <option key={specialty} value={specialty}>
+                    {specialty}
                 </option>
             ))}
-            </select>
+        </select>
 
+    
 
-         <select className="input border border-gray-300 p-1 rounded-md text-lg" value={form.education} onChange={(e) => handleChange("education", e.target.value)}>
+         <select className="input border border-gray-300 p-1 rounded-md text-lg" value={form.specialization} onChange={(e) => handleChange("education", e.target.value)}>
             <option value="">Выберите уровень образования</option>
-            {EDUCATION.map((specialty) => (
+            {MONTH.map((specialty) => (
                 <option key={specialty} value={specialty}>
                     {specialty}
                 </option>

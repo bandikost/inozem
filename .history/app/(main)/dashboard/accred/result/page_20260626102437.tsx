@@ -1,7 +1,6 @@
 "use client";
 
-
-import { EDUCATION, MONTH, SPECIALTIES } from "@/lib/accred/specialization";
+import { HIGHER_SPECIALTIES } from "@/data/specialties";
 import { useState } from "react";
 
 export default function Page() {
@@ -50,33 +49,29 @@ export default function Page() {
           onChange={(e) => handleChange("year", e.target.value)}
         />
 
+        <input
+          className="input border border-gray-300 p-1 rounded-md text-lg"
+          placeholder="Месяц"
+          value={form.month}
+          onChange={(e) => handleChange("month", e.target.value)}
+        />
 
-        <select className="input border border-gray-300 p-1 rounded-md text-lg" value={form.month} onChange={(e) => handleChange("month", e.target.value)}>
-            <option value="">Выберите месяц</option>
-            {MONTH.map((month) => (
-                <option key={month} value={month}>
-                {month}
-                </option>
-            ))}
-            </select>
+        <input
+          className="input border border-gray-300 p-1 rounded-md text-lg"
+          placeholder="Уровень образования"
+          value={form.education}
+          onChange={(e) => handleChange("education", e.target.value)}
+        />
 
-
-         <select className="input border border-gray-300 p-1 rounded-md text-lg" value={form.education} onChange={(e) => handleChange("education", e.target.value)}>
-            <option value="">Выберите уровень образования</option>
-            {EDUCATION.map((specialty) => (
-                <option key={specialty} value={specialty}>
-                    {specialty}
-                </option>
-            ))}
-        </select>
-
-        <select className="input border border-gray-300 p-1 rounded-md text-lg" value={form.specialization} onChange={(e) => handleChange("specialization", e.target.value)}>
-            <option value="">Выберите специализацию</option>
-            {SPECIALTIES.map((specialty) => (
-                <option key={specialty} value={specialty}>
-                    {specialty}
-                </option>
-            ))}
+        <input
+          className="input border border-gray-300 p-1 rounded-md text-lg"
+          placeholder="Специализация"
+          value={form.specialization}
+          onChange={(e) => handleChange("specialization", e.target.value)}
+        />
+        <select>
+            <option>Выберите специальность</option>
+            <option className="">{HIGHER_SPECIALTIES}</option>
         </select>
 
         <select

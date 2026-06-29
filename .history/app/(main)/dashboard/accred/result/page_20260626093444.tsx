@@ -1,7 +1,5 @@
 "use client";
 
-
-import { EDUCATION, MONTH, SPECIALTIES } from "@/lib/accred/specialization";
 import { useState } from "react";
 
 export default function Page() {
@@ -50,37 +48,29 @@ export default function Page() {
           onChange={(e) => handleChange("year", e.target.value)}
         />
 
+        <input
+          className="input border border-gray-300 p-1 rounded-md"
+          placeholder="Месяц"
+          value={form.month}
+          onChange={(e) => handleChange("month", e.target.value)}
+        />
 
-        <select className="input border border-gray-300 p-1 rounded-md text-lg" value={form.month} onChange={(e) => handleChange("month", e.target.value)}>
-            <option value="">Выберите месяц</option>
-            {MONTH.map((month) => (
-                <option key={month} value={month}>
-                {month}
-                </option>
-            ))}
-            </select>
+        <input
+          className="input border border-gray-300 p-1 rounded-md"
+          placeholder="Уровень образования"
+          value={form.education}
+          onChange={(e) => handleChange("education", e.target.value)}
+        />
 
-
-         <select className="input border border-gray-300 p-1 rounded-md text-lg" value={form.education} onChange={(e) => handleChange("education", e.target.value)}>
-            <option value="">Выберите уровень образования</option>
-            {EDUCATION.map((specialty) => (
-                <option key={specialty} value={specialty}>
-                    {specialty}
-                </option>
-            ))}
-        </select>
-
-        <select className="input border border-gray-300 p-1 rounded-md text-lg" value={form.specialization} onChange={(e) => handleChange("specialization", e.target.value)}>
-            <option value="">Выберите специализацию</option>
-            {SPECIALTIES.map((specialty) => (
-                <option key={specialty} value={specialty}>
-                    {specialty}
-                </option>
-            ))}
-        </select>
+        <input
+          className="input border border-gray-300 p-1 rounded-md"
+          placeholder="Специализация"
+          value={form.specialization}
+          onChange={(e) => handleChange("specialization", e.target.value)}
+        />
 
         <select
-          className="input col-span-2 border border-gray-300 p-1 rounded-md  text-lg"
+          className="input col-span-2 border border-gray-300 p-1 rounded-md"
           value={form.stage}
           onChange={(e) => handleChange("stage", e.target.value)}
         >
@@ -91,7 +81,7 @@ export default function Page() {
         </select>
 
         <input
-          className="input col-span-2 border border-gray-300 p-1 rounded-md text-lg"
+          className="input col-span-2 border border-gray-300 p-1 rounded-md"
           placeholder="Название документа"
           value={form.name}
           onChange={(e) => handleChange("name", e.target.value)}
@@ -99,7 +89,7 @@ export default function Page() {
 
         <input
           type="file"
-          className="col-span-2 border border-gray-300 p-1 rounded-md text-lg"
+          className="col-span-2"
           onChange={(e) =>
             handleChange("file", e.target.files?.[0] || null)
           }
