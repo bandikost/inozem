@@ -6,7 +6,7 @@ import LogoutButton from "@/components/ui/Buttons/LogoutButton"
 import { ProgramRow } from "@/lib/programm"
 import { CalendarDays, ChevronRight, CircleUserRound, GraduationCap, Heart, LogOutIcon, Star } from "lucide-react"
 import { useState } from "react"
-
+import { KeyRound } from "lucide-react"
 
 interface Props {
   programs: ProgramRow[]
@@ -26,7 +26,7 @@ export default function ProfileClient({programs, user} : Props) {
 
             <div className="flex flex-col">
               
-              <div className="flex flex-row text-center sm:text-left items-center mt-28 gap-2 ml-2">
+              <div className="flex flex-col sm:flex-row text-center sm:text-left items-center mt-28 gap-2 ml-2">
                   <CircleUserRound size={65} className="text-prpl" strokeWidth={1} />
                   <div className="flex flex-col">
                     <h1 className="text-prpl font-semibold">Личный кабинет </h1>
@@ -34,8 +34,10 @@ export default function ProfileClient({programs, user} : Props) {
                   </div>
               </div>
               
-                <div className="grid gap-4 grid-cols-2 mt-8">
+                <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 mt-8">
                   <LogoutButton />
+
+                  
 
                   {!!user.isAdmin && (
                     <LoadingLink
@@ -122,7 +124,26 @@ export default function ProfileClient({programs, user} : Props) {
           </ul>
       </div>
       
-     
+     <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white p-6">
+                <div className="flex flex-col text-center sm:text-left sm:flex-row items-center gap-3">
+                  <KeyRound className="text-prpl" size={30} />
+                  <div>
+                    <h3 className="text-2xl font-semibold text-prpl">
+                      Безопасность
+                    </h3>
+                    <p className="text-gray-500">
+                      Измените пароль для входа в личный кабинет.
+                    </p>
+                  </div>
+                </div>
+
+                <LoadingLink
+                  href="/profile/change-password"
+                  className="mt-6 flex items-center justify-center rounded-md bg-prpl !text-white py-3 hover:opacity-80 transition"
+                >
+                  Сменить пароль
+                </LoadingLink>
+              </div>
 
       
     </div>
