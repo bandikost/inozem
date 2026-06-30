@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
 
     cookieStore.set("token", token, {
       httpOnly: true,
-      secure: false,
+      secure: false, // process.env.NODE_ENV === "production"
       sameSite: "strict",
       path: "/",
       maxAge: 60 * 60 * 24 * 182,

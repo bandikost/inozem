@@ -2,20 +2,21 @@
 
 import { useState } from "react"
 import { Eye, EyeOff, KeyRound } from "lucide-react"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 export default function ChangePasswordClient() {
-  const [showOld, setShowOld] = useState(false)
-  const [showNew, setShowNew] = useState(false)
-  const [showRepeat, setShowRepeat] = useState(false)
+    const [showOld, setShowOld] = useState(false)
+    const [showNew, setShowNew] = useState(false)
+    const [showRepeat, setShowRepeat] = useState(false)
 
-  const [oldPassword, setOldPassword] = useState("")
-  const [newPassword, setNewPassword] = useState("")
-  const [repeatPassword, setRepeatPassword] = useState("")
+    const [oldPassword, setOldPassword] = useState("")
+    const [newPassword, setNewPassword] = useState("")
+    const [repeatPassword, setRepeatPassword] = useState("")
 
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
-  const [success, setSuccess] = useState("")
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState("")
+    const [success, setSuccess] = useState("")
+    const router = useRouter()
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -51,6 +52,7 @@ export default function ChangePasswordClient() {
 
       if (!res.ok) {
         setError(data.message)
+        setLoading(false)
         return
       }
 
@@ -59,7 +61,7 @@ export default function ChangePasswordClient() {
       setOldPassword("")
       setNewPassword("")
       setRepeatPassword("")
-      redirect("/profile")
+      router.push("/profile")
     } catch {
       setError("Ошибка сети")
     } finally {
