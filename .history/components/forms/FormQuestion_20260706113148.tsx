@@ -24,10 +24,10 @@ export default function FormActivity({ user }: Props) {
   const handleSubmit = useSubmitWithCaptcha()
 
   const inputClass =
-    "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-default transition-all duration-200 outline-none focus:border-prpl focus:ring-4 focus:ring-prpl/15 !font-normal"
+    "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-default transition-all duration-200 outline-none focus:border-prpl focus:ring-4 focus:ring-prpl/15"
 
   return (
-    <section className="flex justify-center">
+    <section className="flex justify-center py-10">
       <form
         onSubmit={(e) =>
           handleSubmit({
@@ -60,7 +60,7 @@ export default function FormActivity({ user }: Props) {
         <div className="grid gap-5 md:grid-cols-2">
 
           <div>
-            <label className="mb-2 block text-md font-medium text-gray-600">
+            <label className="mb-2 block text-sm font-medium text-gray-600">
               Фамилия
             </label>
             <input
@@ -73,7 +73,7 @@ export default function FormActivity({ user }: Props) {
           </div>
 
           <div>
-            <label className="mb-2 block text-md font-medium text-gray-600">
+            <label className="mb-2 block text-sm font-medium text-gray-600">
               Имя
             </label>
             <input
@@ -86,7 +86,7 @@ export default function FormActivity({ user }: Props) {
           </div>
 
           <div className="md:col-span-2">
-            <label className="mb-2 block text-md font-medium text-gray-600">
+            <label className="mb-2 block text-sm font-medium text-gray-600">
               Отчество
             </label>
             <input
@@ -99,7 +99,7 @@ export default function FormActivity({ user }: Props) {
           </div>
 
           <div>
-            <label className="mb-2 block text-md font-medium text-gray-600">
+            <label className="mb-2 block text-sm font-medium text-gray-600">
               Телефон
             </label>
             <input
@@ -112,7 +112,7 @@ export default function FormActivity({ user }: Props) {
           </div>
 
           <div>
-            <label className="mb-2 block text-md font-medium text-gray-600">
+            <label className="mb-2 block text-sm font-medium text-gray-600">
               Email
             </label>
             <input
@@ -126,7 +126,7 @@ export default function FormActivity({ user }: Props) {
           </div>
 
           <div className="md:col-span-2">
-            <label className="mb-2 block text-md font-medium text-gray-600">
+            <label className="mb-2 block text-sm font-medium text-gray-600">
               Ваш вопрос
             </label>
 
@@ -139,7 +139,7 @@ export default function FormActivity({ user }: Props) {
               placeholder="Опишите ваш вопрос..."
             />
 
-            <div className="mt-2 text-right text-md text-gray-400">
+            <div className="mt-2 text-right text-sm text-gray-400">
               {question.length}/300
             </div>
           </div>
@@ -153,7 +153,12 @@ export default function FormActivity({ user }: Props) {
           </div>
         </div>
 
-   
+        <button
+          type="submit"
+          className="mt-8 w-full rounded-xl bg-prpl py-3 text-lg font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0"
+        >
+          Отправить заявку
+        </button>
 
         {notice && (
           <div className="mt-6 rounded-xl border border-red-200 bg-red-50 p-3 text-center text-red-600">

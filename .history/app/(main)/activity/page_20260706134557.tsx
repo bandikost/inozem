@@ -2,7 +2,7 @@ import { getActivity } from "@/lib/activity"
 import parseDateActivity from "@/lib/dates/filterDate"
 import LoadingLink from "@/components/Load/LoadingLink"
 
-export const revalidate = 3600
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Мероприятия | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»"

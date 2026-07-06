@@ -35,13 +35,14 @@ export default async function Page() {
   
       <div className="grid gap-12 lg:grid-cols-[1.35fr_0.9fr] items-start">
 
-        <aside className="lg:sticky lg:top-28">
-          <FormQuestion user={user} />
-        </aside>
-
         <div>
           <QuestionFaq />
         </div>
+
+  
+        <aside className="lg:sticky lg:top-28">
+          <FormQuestion user={user} />
+        </aside>
 
       </div>
     </section>

@@ -89,8 +89,8 @@ export default async function ManagerPage() {
       </p>
     </LoadingLink>
 
-     <LoadingLink href="/dashboard/activity" className="group bg-white rounded-2xl border border-gray-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1">
-      <div className="text-4xl mb-4">🗓️</div>
+     <LoadingLink href="/dashboard/admin" className="group bg-white rounded-2xl border border-gray-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1">
+      <div className="text-4xl mb-4">⚙️</div>
 
       <h2 className="text-2xl font-semibold text-prpl">
         Мероприятия

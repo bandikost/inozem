@@ -24,10 +24,10 @@ export default function FormActivity({ user }: Props) {
   const handleSubmit = useSubmitWithCaptcha()
 
   const inputClass =
-    "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-default transition-all duration-200 outline-none focus:border-prpl focus:ring-4 focus:ring-prpl/15 !font-normal"
+    "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-default transition-all duration-200 outline-none focus:border-prpl focus:ring-4 focus:ring-prpl/15"
 
   return (
-    <section className="flex justify-center">
+    <section className="flex justify-center py-10">
       <form
         onSubmit={(e) =>
           handleSubmit({

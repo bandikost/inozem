@@ -1,13 +1,8 @@
 
 import LoadingLink from "@/components/Load/LoadingLink"
 import { cookies } from "next/headers"
+import LoadingLink from "next/LoadingLink"
 import { redirect } from "next/navigation"
-
-
-export const metadata = {
-  title:
-    "Редактор программ | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»",
-}
 
 export default async function ManagerPage() {
   const cookieStore = await cookies()
@@ -86,18 +81,6 @@ export default async function ManagerPage() {
 
       <p className="text-gray-500 mt-2">
         Наполнение и редактирование материалов.
-      </p>
-    </LoadingLink>
-
-     <LoadingLink href="/dashboard/activity" className="group bg-white rounded-2xl border border-gray-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1">
-      <div className="text-4xl mb-4">🗓️</div>
-
-      <h2 className="text-2xl font-semibold text-prpl">
-        Мероприятия
-      </h2>
-
-      <p className="text-gray-500 mt-2">
-        Создание и редактирование мероприятий
       </p>
     </LoadingLink>
   </div>
