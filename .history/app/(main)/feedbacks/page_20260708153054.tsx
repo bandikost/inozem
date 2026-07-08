@@ -163,13 +163,15 @@ export default async function Page() {
       {token ? (
         !hasUserFeedback ? (
 
+          <div className="rounded-[32px] bg-gradient-to-r from-prpl to-green p-8 md:p-12">
+
           
 
             <div className="mt-10 flex justify-center">
               <FeedbackForm user={user} />
             </div>
 
-       
+          </div>
 
         ) : (
 
