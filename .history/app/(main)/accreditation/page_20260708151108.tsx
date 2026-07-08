@@ -131,13 +131,13 @@ export default async function Page() {
                     text-xl
                     md:text-2xl
                     font-semibold
-                    text-white
+                    text-zinc-900
                 ">
                     Результаты аккредитации
                 </h2>
 
 
-                <p className="mt-2 text-sm text-white rounded-xl bg-green py-2">Архив опубликованных протоколов и итоговых документов</p>
+                <p className="mt-2 text-sm text-white rounded-xl bg-green p-2">Архив опубликованных протоколов и итоговых документов</p>
 
 
         </div>

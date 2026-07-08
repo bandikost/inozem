@@ -67,7 +67,7 @@ export default async function Page() {
 ">
 
     <div className="
-        bg-blue
+        bg-gradient-to-r
         from-green/10
         to-transparent
         px-6
@@ -82,12 +82,12 @@ export default async function Page() {
                     text-xl
                     md:text-2xl
                     font-semibold
-                    text-white
+                    text-zinc-900
                 ">
                     Расписание аккредитации
                 </h2>
 
-                <p className="mt-2 text-sm text-white rounded-xl bg-blue py-2">Ближайшие даты проведения аккредитационных мероприятий</p>
+                <p className="mt-2 text-sm text-white rounded-xl bg-blue p-2">Ближайшие даты проведения аккредитационных мероприятий</p>
 
     </div>
 </div>
@@ -116,7 +116,7 @@ export default async function Page() {
 
 
     <div className="
-        bg-green
+        bg-blue
         to-transparent
         px-6
         py-6
@@ -131,13 +131,13 @@ export default async function Page() {
                     text-xl
                     md:text-2xl
                     font-semibold
-                    text-white
+                    text-zinc-900
                 ">
                     Результаты аккредитации
                 </h2>
 
 
-                <p className="mt-2 text-sm text-white rounded-xl bg-green py-2">Архив опубликованных протоколов и итоговых документов</p>
+                <p className="mt-2 text-sm text-white rounded-xl bg-green p-2">Архив опубликованных протоколов и итоговых документов</p>
 
 
         </div>
