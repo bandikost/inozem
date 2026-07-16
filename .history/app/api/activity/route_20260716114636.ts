@@ -1,6 +1,7 @@
 import { Activity } from "@/app/interface/activity";
 import { db } from "@/lib/db";
 import { RowDataPacket } from "mysql2";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   const [rows] = await db.query<Activity[] & RowDataPacket[]>(`
