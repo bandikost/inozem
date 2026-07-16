@@ -1,5 +1,4 @@
-import { updateActivityBySlug } from "@/lib/activity";
-
+import { updateActivityBySlug } from "../route";
 
 export async function PATCH(
   req: Request,

@@ -157,8 +157,8 @@ export default function Page() {
                 Документы Академии
               </h2>
             </div>
+            
 
-              
             <div className="grid gap-3">
               {documents.map((doc, index) => (
                 <Link

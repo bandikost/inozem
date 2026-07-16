@@ -13,28 +13,27 @@ import { Calendar,
 
 interface ActivityEditorProps {
   initialSlug: string;
-  activity: any;
 }
 
 export default function ActivityEditor({
-  initialSlug, activity
+  initialSlug,
 }: ActivityEditorProps) {
 
-  const [name, setName] = useState(activity.name);
+  const [name, setName] = useState("");
   const [slug, setSlug] = useState(initialSlug);
-  const [title, setTitle] = useState(activity.title);
-  const [dates, setDates] = useState(activity.dates);
-  const [year, setYear] = useState(activity.year);
-  const [paylink, setPaylink] = useState(activity.paylink);
+  const [title, setTitle] = useState("");
+  const [dates, setDates] = useState("");
+  const [year, setYear] = useState("");
+  const [paylink, setPaylink] = useState("");
 
-  const [description, setDescription] = useState(activity.description);
-  const [teacher, setTeacher] = useState(activity.teacher);
-  const [purpose, setPurpose] = useState(activity.purpose);
-  const [audience, setAudience] = useState(activity.audience);
-  const [conditions, setConditions] = useState(activity.conditions);
+  const [description, setDescription] = useState("");
+  const [teacher, setTeacher] = useState("");
+  const [purpose, setPurpose] = useState("");
+  const [audience, setAudience] = useState("");
+  const [conditions, setConditions] = useState("");
 
   async function handleSubmit() {
-   const res = await fetch(`/api/activity/${initialSlug}`, {
+    const res = await fetch("/api/activity", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -52,21 +51,15 @@ export default function ActivityEditor({
         audience,
         conditions,
       }),
-    
-    })
+    });
 
-
-     if (!res.ok) { 
-      alert("Ошибка обновления мероприятия")
-      return 
+    if (!res.ok) {
+      alert("Ошибка создания мероприятия");
+      return;
     }
 
-    alert("Успешное обновление программы") // всплывающее окно как с модалкой было
-
+    alert("Мероприятие успешно создано");
   }
-
- 
-
 
   const inputClass =
     "w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-[15px] outline-none transition focus:border-black focus:ring-4 focus:ring-black/5";

@@ -20,18 +20,18 @@ export default function ActivityEditor({
   initialSlug, activity
 }: ActivityEditorProps) {
 
-  const [name, setName] = useState(activity.name);
+  const [name, setName] = useState("");
   const [slug, setSlug] = useState(initialSlug);
-  const [title, setTitle] = useState(activity.title);
-  const [dates, setDates] = useState(activity.dates);
-  const [year, setYear] = useState(activity.year);
-  const [paylink, setPaylink] = useState(activity.paylink);
+  const [title, setTitle] = useState(activity.name);
+  const [dates, setDates] = useState("");
+  const [year, setYear] = useState("");
+  const [paylink, setPaylink] = useState("");
 
-  const [description, setDescription] = useState(activity.description);
-  const [teacher, setTeacher] = useState(activity.teacher);
-  const [purpose, setPurpose] = useState(activity.purpose);
-  const [audience, setAudience] = useState(activity.audience);
-  const [conditions, setConditions] = useState(activity.conditions);
+  const [description, setDescription] = useState("");
+  const [teacher, setTeacher] = useState("");
+  const [purpose, setPurpose] = useState("");
+  const [audience, setAudience] = useState("");
+  const [conditions, setConditions] = useState("");
 
   async function handleSubmit() {
    const res = await fetch(`/api/activity/${initialSlug}`, {
@@ -60,8 +60,6 @@ export default function ActivityEditor({
       alert("Ошибка обновления мероприятия")
       return 
     }
-
-    alert("Успешное обновление программы") // всплывающее окно как с модалкой было
 
   }
 

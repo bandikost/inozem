@@ -61,8 +61,6 @@ export default function ActivityEditor({
       return 
     }
 
-    alert("Успешное обновление программы") // всплывающее окно как с модалкой было
-
   }
 
  

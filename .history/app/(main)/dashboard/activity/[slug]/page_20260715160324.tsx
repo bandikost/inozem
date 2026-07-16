@@ -1,4 +1,3 @@
-import { getActivityBySlug } from "@/lib/activity";
 import ActivityEditor from "./AcitivityComponent";
 
 interface PageProps {

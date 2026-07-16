@@ -1,7 +1,7 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import ActivityCreate from "./ActivityCreate";
+
 
 export default async function Page() {
   const cookieStore = await cookies();
