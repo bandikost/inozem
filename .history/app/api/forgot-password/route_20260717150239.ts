@@ -22,8 +22,6 @@ export async function POST(req: Request) {
 
   const link = `http://185.46.10.175:3000/reset-password?token=${token}`;
 
-  console.log("LINK:", link);
-
   await transporter.sendMail({
   from: `"Академия медицинского образования имени Ф.И.Иноземцева" <${process.env.EMAIL_USER}>`,
   to: email,
