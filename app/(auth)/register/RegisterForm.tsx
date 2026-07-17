@@ -113,8 +113,8 @@ function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
       <p className="text-center mt-4 text-zinc-800 text-lg">ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»</p>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-5 border border-zinc-400 rounded-xl p-4 shadow-2xl">
-        <input className="border border-zinc-400 p-1.5 rounded text-lg mt-4 text-zinc-700 !font-normal" name="name" placeholder="Имя" value={form.name} onChange={handleChange} required maxLength={30} />
         <input className="border border-zinc-400 p-1.5 rounded text-lg text-zinc-700 !font-normal" name="last_name" placeholder="Фамилия" value={form.last_name} onChange={handleChange} required maxLength={30} />
+        <input className="border border-zinc-400 p-1.5 rounded text-lg mt-4 text-zinc-700 !font-normal" name="name" placeholder="Имя" value={form.name} onChange={handleChange} required maxLength={30} />
         <input className={`${hasNoPatronymic && "hidden"} border border-zinc-400 p-1.5 rounded text-lg text-zinc-700 !font-normal`} name="patronymic" placeholder="Отчество" value={form.patronymic} onChange={handleChange} required={!hasNoPatronymic} maxLength={30} />
         <label className="flex gap-2">
           <input type="checkbox" className="cursor-pointer" checked={hasNoPatronymic} onChange={(e) => setHasNoPatronymic(e.target.checked)} />

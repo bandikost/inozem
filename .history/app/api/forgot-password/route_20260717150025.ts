@@ -20,10 +20,10 @@ export async function POST(req: Request) {
     [user[0].id, token, new Date(Date.now() + 1000 * 60 * 15)]
   );
 
-  const link = `http://localhost:3000/reset-password?token=${token}`;
+  const link = `http://185.46.10.175:3000/reset-password?token=${token}`;
 
   await transporter.sendMail({
-  from: `"Академия" <${process.env.EMAIL_USER}>`,
+  from: `"Академия медицинского образования имени Ф.И.Иноземцева" <${process.env.EMAIL_USER}>`,
   to: email,
   subject: "Восстановление пароля",
   html: `

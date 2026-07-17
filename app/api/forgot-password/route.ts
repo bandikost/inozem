@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     [user[0].id, token, new Date(Date.now() + 1000 * 60 * 15)]
   );
 
-  const link = `https://inozem.vercel.app/reset-password?token=${token}`;
+  const link = `http://185.46.10.175:3000/reset-password?token=${token}`;
 
   await transporter.sendMail({
   from: `"Академия медицинского образования имени Ф.И.Иноземцева" <${process.env.EMAIL_USER}>`,
