@@ -29,5 +29,5 @@ export async function POST(req: Request) {
 
   await db.query("DELETE FROM password_resets WHERE token = ?", [token]);
 
-  return NextResponse.json({ message: "Пароль обновлен" });
+  return NextResponse.redirect(new URL("/login", req.url), 302);
 }
