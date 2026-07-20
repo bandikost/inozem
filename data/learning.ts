@@ -3,12 +3,12 @@ export const learning = [
     links: [
         {name: "Образцы заявлений", url: "https://storage.yandexcloud.net/inozemstorage/doki/learning/forms/obrazcy.pdf" },
         {name: "Карточка слушателя", url: "https://storage.yandexcloud.net/inozemstorage/doki/learning/forms/card.pdf" },
+        {name: "Заявление на зачисление", url: "https://storage.yandexcloud.net/inozemstorage/doki/learning/forms/zach_slush.pdf" },
         {name: "Заявление на выдачу дубликата (утеря)", url: "https://storage.yandexcloud.net/inozemstorage/doki/learning/forms/dubl.pdf" },
         {name: "Заявление на выдачу дубликата (ошибка)", url: "https://storage.yandexcloud.net/inozemstorage/doki/learning/forms/dubl_error.pdf" },
-        {name: "Форма заявления о допуске к сдаче сертификационного экзамена", url: "https://storage.yandexcloud.net/inozemstorage/doki/learning/forms/dopusk.pdf" },
         {name: "Доверенность на получение документа об образовании", url: "https://storage.yandexcloud.net/inozemstorage/doki/learning/forms/dover.pdf" },
         {name: "Анкета обратной связи", url: "https://storage.yandexcloud.net/inozemstorage/doki/learning/forms/feedback.pdf" },
-        {name: "Заявление на зачисление", url: "https://storage.yandexcloud.net/inozemstorage/doki/learning/forms/zach_slush.pdf" },
+        
     ]},
 
     { id: 2, title: "Программы и прейскурант",

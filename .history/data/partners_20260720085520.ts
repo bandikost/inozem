@@ -108,58 +108,26 @@ export const smeta = [
 ]
 
 export const regulations = [
-  { name: "Положение об Общем собрании работников ЧОУ ДПО «Академия медицинского образования им. Ф.И. Иноземцева»", link: "/files/about/regulations/polozhenie-o-sobranii.pdf"},
-  { name: "Положение о Педагогическом совете", link: "/files/about/regulations/polozhenie-o-pedsovete.pdf" },
-  { name: "Положение об информационной открытости", link: "/files/about/regulations/polozhenie-inf-otkr.pdf" },
-  { name: "Положение по организации и осуществлению образовательной деятельности", link: "/files/about/regulations/polozhenie-obr-deyat.pdf" },
-  { name: "Положение об обработке и защите персональных данных", link: "/files/about/regulations/personal-data.pdf" },
-  { name: "Политика конфиденциальности", link: "/files/about/regulations/policon.pdf" },
-  { name: "Правила приема, отчисления и восстановления обучающихся", link: "/files/about/regulations/pravila-priema.pdf" },
-  { name: "Положение о порядке проведения сертификационного экзамена при реализации дополнительных профессиональных программ", link: "/files/about/regulations/se.pdf" },
-  { name: "Положение о формах, периодичности и порядке текущего контроля успеваемости", link: "/files/about/regulations/polozhenie-o-kontrole.pdf" },
-  { name: "Правила внутреннего распорядка обучающихся", link: "/files/about/regulations/pravila-vnut-rasporadka-uch.pdf" },
-  { name: "Режим занятий обучающихся", link: "/files/about/regulations/rezhim-zanyatiy.pdf" },
-  { name: "Правила внутреннего трудового распорядка", link: "/files/about/regulations/pravila-vnutr-rasporadka.pdf" },
+  { name: "Положение об Общем собрании работников ЧОУ ДПО «Академия медицинского образования им. Ф.И. Иноземцева»", link: "/files/about/regulations/obshchee_sobranie_rabotnikov.pdf"},
+  { name: "Положение о Педагогическом совете", link: "/files/about/regulations/pedagogicheskiy_sovet.pdf" },
+  { name: "Положение об информационной открытости", link: "/files/about/regulations/informatsionnaya_otkrytost.pdf" },
+  { name: "Положение по организации и осуществлению образовательной деятельности", link: "/files/about/regulations/organizatsiya_obrazovatelnoy_deyatelnosti.pdf" },
+  { name: "Положение об обработке и защите персональных данных", link: "/files/about/regulations/personalnye_dannye.pdf" },
+  { name: "Политика конфиденциальности", link: "/files/about/regulations/politika_konfidentsialnosti.pdf" },
+  { name: "Правила приема, отчисления и восстановления обучающихся", link: "/files/about/regulations/priemy_otchislenie_vosstanovlenie.pdf" },
+  { name: "Положение о порядке проведения сертификационного экзамена при реализации дополнительных профессиональных программ", link: "/files/about/regulations/sertifikatsionnyy_ekzamen.pdf" },
+  { name: "Положение о формах, периодичности и порядке текущего контроля успеваемости", link: "/files/about/regulations/tekushchiy_kontrol_uspevaemosti.pdf" },
+  { name: "Правила внутреннего распорядка обучающихся", link: "/files/about/regulations/vnutrenniy_rasporyadok_obuchayushchikhsya.pdf" },
+  { name: "Режим занятий обучающихся", link: "/files/about/regulations/rezhim_zanyatiy.pdf" },
+  { name: "Правила внутреннего трудового распорядка", link: "/files/about/regulations/trudovoy_rasporyadok.pdf" },
   { name: "Положение об электронной информационно-образовательной среде", link: "/files/about/regulations/eios.pdf" },
-  { name: "Сведения о научно-педагогическом совете", link: "/files/about/regulations/snes.pdf" },
+  { name: "Сведения о научно-педагогическом совете", link: "/files/about/regulations/nauchno_pedagogicheskiy_sovet.pdf" },
 ]
 
 export const order = [
-  {
-    name: "Положение о порядке предоставления платных образовательных услуг",
-    link: "/files/about/order/polozhenie-obr-usl.pdf",
-  },
-  {
-    name: "Положение о платных образовательных услугах",
-    link: "/files/about/order/polozhenie-o-platn-uslugah.pdf",
-  },
-  {
-    name: "Положение о платных образовательных услугах",
-    link: "/files/about/order/prikazi/36-АО-22_Приказ Положение о платных образовательных услугах.pdf",
-  },
-  {
-    name: "Договор на оказание образовательных услуг по повышению квалификации для физических лиц",
-    link: "/files/about/order/ФЛ_ПК.pdf",
-  },
-  {
-    name: "Договор на оказание образовательных услуг по профессиональной переподготовке для физических лиц",
-    link: "/files/about/order/ФЛ_ПП.pdf",
-  },
-  {
-    name: "Договор на оказание образовательных услуг по повышению квалификации для юридических лиц",
-    link: "/files/about/order/ЮЛ_ПК.pdf",
-  },
-  {
-    name: "Договор на оказание образовательных услуг по профессиональной переподготовке для юридических лиц",
-    link: "/files/about/order/ЮЛ_ПП.pdf",
-  },
-  {
-    name: "Договор-оферта на оказание образовательных услуг",
-    link: "/files/about/order/Договор_оферты_дистант.исмт.онлайн.pdf",
-  },
-];
+  {name: "", link: ""},
+]
 
 export const prescript = [
-  {name: "Санкт-Петербург ВО ЧОУ ДПО «Академия медицинского образования им. Ф.И. Иноземцева частные организации 1", link: "/files/about/prescript/БЕЗ ПРИЛОЖЕНИЕ(1).pdf"},
-  {name: "Санкт-Петербург ВО ЧОУ ДПО «Академия медицинского образования им. Ф.И. Иноземцева частные организации 2", link: "/files/about/prescript/БЕЗ ПРИЛОЖЕНИЕ(2).pdf"},
+  {name: "", link: ""},
 ]

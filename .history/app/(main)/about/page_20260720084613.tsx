@@ -9,17 +9,9 @@ import {
 } from "@/data/partners";
 
 import Link from "next/link";
-
-import {
-  FileText,
-  Info,
-  GraduationCap,
-  MapPinned,
-  Building2,
-  ChevronRight,
-} from "lucide-react";
-
+import { FileText, Info, MapPinned, Building2, ChevronRight } from "lucide-react";
 import { ToggleBlock } from "@/components/ui/Buttons/ToggleBlock";
+import LoadingLink from "@/components/Load/LoadingLink";
 
 export const metadata = {
   title:
@@ -29,8 +21,21 @@ export const metadata = {
 export default function Page() {
   return (
     <section className="min-h-screen">
-      <div className="container mx-auto px-4 py-24">
-
+     
+      <div className="container mx-auto px-4 py-27">
+       <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500 px-6">
+             
+                   <LoadingLink href="/" className="shrink-0 hover:text-blue transition hover:underline">
+                     Главная
+                   </LoadingLink>
+             
+                   <ChevronRight size={14} className="shrink-0" />
+             
+               <span className="min-w-0 flex-1 truncate text-zinc-800 opacity-70">
+                 О нас
+               </span>
+             
+             </nav>
         <div className="text-center max-w-4xl mx-auto mb-14">
  
           <h1 className="mt-6 text-5xl font-semibold text-prpl">
@@ -117,6 +122,8 @@ export default function Page() {
           </p>
         </div>
 
+        <h3 className="my-6 !text-5xl font-semibold text-prpl">Сведения об образовательной организации</h3>
+
         <div className="grid lg:grid-cols-2 gap-8 mt-10">
 
           <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
@@ -153,6 +160,7 @@ export default function Page() {
               </h2>
             </div>
 
+              
             <div className="grid gap-3">
               {documents.map((doc, index) => (
                 <Link
