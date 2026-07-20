@@ -1,7 +1,6 @@
 import FormApplication from "@/components/forms/FormApplication"
 import LoadingLink from "@/components/Load/LoadingLink"
 import { getProfile } from "@/lib/getProfile"
-import { getPrograms } from "@/lib/programm"
 import { ChevronRight } from "lucide-react"
 import { cookies } from "next/headers"
 
@@ -15,7 +14,6 @@ export const metadata = {
 export default async function Page() {
   const cookieStore = await cookies()
   const token = cookieStore.get("token")?.value
-  const programs = await getPrograms()
 
   let user = null
 
@@ -24,8 +22,7 @@ export default async function Page() {
   }
 
   return (
-    <section className="min-h-screen">
-    <div className="container mx-auto px-4 my-27">
+    <section className="flex flex-col px-4 pb-20">
       <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 px-6 text-md text-zinc-500">
         <LoadingLink
           href="/"
@@ -41,13 +38,12 @@ export default async function Page() {
         </span>
       </nav>
 
-      <h1 className="text-center text-prpl">
+      <h1 className="mt-27 text-center text-prpl">
         Подача заявки на обучение
       </h1>
 
       <div className="mx-auto mt-14 w-full max-w-3xl">
-        <FormApplication user={user} programs={programs} />
-      </div>
+        <FormApplication user={user} />
       </div>
     </section>
   )

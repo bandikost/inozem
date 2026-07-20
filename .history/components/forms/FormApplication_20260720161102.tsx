@@ -242,7 +242,7 @@ export default function FormApplication({ user, programs }: Props) {
                     key={program.id}
                     value={program.id}
                 >
-                    {program.name} - {program.time} {getHourWord(program.time)} - {program.category}
+                    {program.name} - {program.time} {getHourWord(program.time)} - {program.education}
                 </option>
                 ))}
             </select>

@@ -9,19 +9,12 @@ import {
 import { useYandexCaptcha } from "@/hooks/useYandexCaptcha"
 import { UserRow } from "@/app/interface/user"
 import { useSubmitWithCaptcha } from "@/hooks/useSubmitWithCaptcha"
-import { ProgramRow } from "@/lib/programm"
-import { getHourWord } from "../ui/GetHourWord"
 
 type Props = {
   user?: UserRow | null
-   programs: ProgramRow[]
 }
 
-export default function FormApplication({ user, programs }: Props) {
-    const [programmId, setProgrammId] = useState("")
-    const selectedProgram = programs.find((program) => String(program.id) === programmId)
-
-
+export default function FormApplication({ user }: Props) {
   const [specialization, setSpecialization] = useState("")
   const [lastName, setLastName] = useState(user?.last_name || "")
   const [firstName, setFirstName] = useState(user?.name || "")
@@ -68,7 +61,6 @@ export default function FormApplication({ user, programs }: Props) {
               email,
               education_level,
               specialization,
-              programm_name: selectedProgram?.name || ""
             },
           })
         }
@@ -220,33 +212,6 @@ export default function FormApplication({ user, programs }: Props) {
             </div>
           )}
         </div>
-
-        <div className="mt-5">
-            <label className="mb-2 block text-md font-medium text-gray-600">
-                Образовательная программа
-            </label>
-
-            <select
-                name="programm_id"
-                value={programmId}
-                onChange={(e) => setProgrammId(e.target.value)}
-                required
-                className={selectClass}
-            >
-                <option value="">
-                Выберите программу
-                </option>
-
-                {programs.map((program) => (
-                <option
-                    key={program.id}
-                    value={program.id}
-                >
-                    {program.name} - {program.time} {getHourWord(program.time)} - {program.category}
-                </option>
-                ))}
-            </select>
-            </div>
 
         <div className="mt-8">
           <div id={captchaId} />

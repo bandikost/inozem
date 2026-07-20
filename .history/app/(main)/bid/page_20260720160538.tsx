@@ -41,12 +41,12 @@ export default async function Page() {
         </span>
       </nav>
 
-      <h1 className="text-center text-prpl">
+      <h1 className="mt-27 text-center text-prpl">
         Подача заявки на обучение
       </h1>
 
       <div className="mx-auto mt-14 w-full max-w-3xl">
-        <FormApplication user={user} programs={programs} />
+        <FormApplication user={user} />
       </div>
       </div>
     </section>

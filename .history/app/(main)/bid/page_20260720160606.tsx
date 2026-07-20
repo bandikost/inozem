@@ -41,7 +41,7 @@ export default async function Page() {
         </span>
       </nav>
 
-      <h1 className="text-center text-prpl">
+      <h1 className="mt-27 text-center text-prpl">
         Подача заявки на обучение
       </h1>
 

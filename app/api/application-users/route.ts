@@ -5,17 +5,17 @@ import { sendApplicationEmail } from "@/lib/mails/application";
 
 export async function POST(req: NextRequest) {
      try {
-        const { last_name, patronymic, name, phone, email, education_level, specialization } = await req.json()
+        const { last_name, patronymic, name, phone, email, education_level, specialization, programm_name } = await req.json()
         const created_at = new Date()
 
-        if (!last_name || !patronymic || !name || !phone || !email || !education_level || !specialization) {
+        if (!last_name || !patronymic || !name || !phone || !email || !education_level || !programm_name || !specialization) {
           return NextResponse.json({ error: "Все поля обязательны" }, { status: 400 });
         }
 
     const [result] = await db.query<ResultSetHeader>(
-      `INSERT INTO application (last_name, patronymic, name, phone, email, education_level, specialization, created_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-      [last_name, patronymic, name, phone, email, education_level, specialization, created_at]
+      `INSERT INTO application (last_name, patronymic, name, phone, email, education_level, specialization, programm_name, created_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [last_name, patronymic, name, phone, email, education_level, specialization, programm_name, created_at]
     )
         await sendApplicationEmail(last_name, patronymic, name, phone, email, education_level, specialization, created_at)
         return NextResponse.json({ id: result.insertId }, { status: 201 })

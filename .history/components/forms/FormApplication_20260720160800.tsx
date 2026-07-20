@@ -10,7 +10,6 @@ import { useYandexCaptcha } from "@/hooks/useYandexCaptcha"
 import { UserRow } from "@/app/interface/user"
 import { useSubmitWithCaptcha } from "@/hooks/useSubmitWithCaptcha"
 import { ProgramRow } from "@/lib/programm"
-import { getHourWord } from "../ui/GetHourWord"
 
 type Props = {
   user?: UserRow | null
@@ -242,7 +241,7 @@ export default function FormApplication({ user, programs }: Props) {
                     key={program.id}
                     value={program.id}
                 >
-                    {program.name} - {program.time} {getHourWord(program.time)} - {program.category}
+                    {program.name}
                 </option>
                 ))}
             </select>
