@@ -14,7 +14,7 @@ import LoadingLink from "@/components/Load/LoadingLink";
 
 export const metadata = {
   title:
-    "Сведения об образовательной организации | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»",
+    "О нас | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»",
 };
 
 export default function Page() {
@@ -31,7 +31,7 @@ export default function Page() {
                    <ChevronRight size={14} className="shrink-0" />
              
                <span className="min-w-0 flex-1 truncate text-zinc-800 opacity-70">
-                 Сведения об образовательной организации
+                 О нас
                </span>
              
              </nav>

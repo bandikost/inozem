@@ -1,4 +1,5 @@
 import {
+  features,
   legalInfo,
   documents,
   regulations,
@@ -8,13 +9,13 @@ import {
 } from "@/data/partners";
 
 import Link from "next/link";
-import { FileText, Info, ChevronRight } from "lucide-react";
+import { FileText, Info, MapPinned, Building2, ChevronRight } from "lucide-react";
 import { ToggleBlock } from "@/components/ui/Buttons/ToggleBlock";
 import LoadingLink from "@/components/Load/LoadingLink";
 
 export const metadata = {
   title:
-    "Сведения об образовательной организации | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»",
+    "О нас | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»",
 };
 
 export default function Page() {
@@ -31,13 +32,32 @@ export default function Page() {
                    <ChevronRight size={14} className="shrink-0" />
              
                <span className="min-w-0 flex-1 truncate text-zinc-800 opacity-70">
-                 Сведения об образовательной организации
+                 О нас
                </span>
              
              </nav>
-      
+        <div className="text-center max-w-4xl mx-auto mb-14">
+ 
+          <h1 className="mt-6 text-5xl font-semibold text-prpl">
+            О нашей Академии
+          </h1>
 
-        <h1 className="my-6 !text-3xl font-semibold text-prpl text-center">Сведения об образовательной организации</h1>
+          <p className="mt-5 font-medium text-lg text-slate-600">
+            Более 15 лет мы занимаемся дополнительным профессиональным
+            образованием медицинских специалистов по всей России.
+          </p>
+        </div>
+
+        
+
+        <div className="mt-10 rounded-3xl border border-amber-200 bg-amber-50 p-6">
+          <p className="text-slate-600 leading-relaxed text-lg">
+            Раздел подготовлен в соответствии с Правилами размещения информации
+            на официальном сайте образовательной организации.
+          </p>
+        </div>
+
+        <h3 className="my-6 !text-3xl font-semibold text-prpl text-center">Сведения об образовательной организации</h3>
 
         <div className="grid lg:grid-cols-2 gap-8 mt-10">
 

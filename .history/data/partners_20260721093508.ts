@@ -91,6 +91,7 @@ export const documents = [
   { name: "Устав Академии от 2018 года", link: "/files/about/ustav_2017.pdf" },
   { name: "Лицензия на осуществление образовательной деятельности", link: "/files/about/litsenz.pdf" },
   { name: "Выписка из реестра лицензий", link: "/files/about/reester.pdf" },
+  { name: "Выписка из реестра", link: "/files/about/reester2026.pdf" },
   { name: "Свидетельство о гос. регистрации", link: "/files/about/svid_2016.pdf" },
   { name: "Санитарно-эпидемиологическое заключение", link: "/files/about/san_epid.png" },
   { name: "Заключение о соответствии требованиям пожарной безопасности", link: "/files/about/pozh_bez.png" },
