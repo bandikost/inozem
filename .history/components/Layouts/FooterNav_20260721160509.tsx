@@ -30,7 +30,7 @@ const FooterNav: React.FC<FooterNavProps> = ({ items }) => {
               {item.links.map((link, i) => (
                 <li key={`${link.label}-${i}`} className='flex items-center '>
                     <ChevronRight className='w-4 opacity-80 !text-white' />
-                  <Link href={link.href} aria-label={link.ariaLabel ?? link.label} className='!text-lg sm:!text-base'>
+                  <Link href={link.href} aria-label={link.ariaLabel ?? link.label} className='!text-lg sm:!text-base w-full'>
                     {link.label}
                   </Link>
                 </li>

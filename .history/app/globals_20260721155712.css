@@ -1,7 +1,30 @@
 @import "tailwindcss";
 
-html.accessibility-large {
-  zoom: 1.8;
+html.accessibility-large body {
+  font-size: 1.8em;
+}
+
+html.accessibility-large p,
+html.accessibility-large span,
+html.accessibility-large li,
+html.accessibility-large a,
+html.accessibility-large button,
+html.accessibility-large input,
+html.accessibility-large select,
+html.accessibility-large textarea {
+  font-size: 1.5em;
+}
+
+html.accessibility-large h1 {
+  font-size: 2.5em;
+}
+
+html.accessibility-large h2 {
+  font-size: 2em;
+}
+
+html.accessibility-large h3 {
+  font-size: 1.7em;
 }
 
 :root {

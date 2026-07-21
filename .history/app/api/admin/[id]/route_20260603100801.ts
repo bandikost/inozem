@@ -29,7 +29,6 @@ export async function PUT(
       category,
       diplom,
       time,
-      dates,
       blocks = [],
     } = body;
 
@@ -45,8 +44,7 @@ export async function PUT(
         education = ?,
         category = ?,
         diplom = ?,
-        time = ?,
-        dates = ?
+        time = ?
        WHERE id = ?`,
       [
         specialization,
@@ -57,7 +55,6 @@ export async function PUT(
         category,
         diplom,
         time,
-        dates,
         programId,
       ]
     );

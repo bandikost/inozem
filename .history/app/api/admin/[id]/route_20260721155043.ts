@@ -46,7 +46,7 @@ export async function PUT(
         category = ?,
         diplom = ?,
         time = ?,
-        dates = ?
+        dates = ?,
        WHERE id = ?`,
       [
         specialization,

@@ -49,16 +49,12 @@ const filteredPrograms = useMemo(() => {
   }
 
   if (education) {
-  filtered = filtered.filter((p) => {
-    const educations =
-      p.education
-        ?.split(",")
-        .map((e) => e.trim().toLowerCase())
-        .filter(Boolean) ?? [];
-
-    return educations.includes(education.trim().toLowerCase());
-  });
-}
+    filtered = filtered.filter(
+      (p) =>
+        p.education?.trim().toLowerCase() ===
+        education.trim().toLowerCase()
+    );
+  }
 
   if (category) {
     filtered = filtered.filter(
@@ -97,11 +93,7 @@ const filteredPrograms = useMemo(() => {
     });
   }
 
-  filtered.sort((a, b) => {
-  return (b.time ?? Infinity) - (a.time ?? Infinity);
-}) 
-
-return filtered
+  return filtered;
 }, [
   programs,
   inputValue,
@@ -381,7 +373,7 @@ return filtered
 
     <div className="grid grid-cols-3 gap-2">
 
-        {["576","504","144","72","36","18"].map((item)=>(
+        {["576","504","288","144","72","36","18"].map((item)=>(
 
             <button
 

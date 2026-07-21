@@ -52,10 +52,7 @@ const FooterNav: React.FC<FooterNavProps> = ({ items }) => {
         </a>
       </div>
 
-      <div className='flex items-center justify-center mt-8'>
       <AccessibilityButton />
-      </div>
-     
 
       <div className='text-start sm:text-center mt-8 flex items-center justify-center opacity-75 text-sm pb-6'>
             <p className='md:w-full lg:w-2/3 !text-white'>Симуляционно-тренинговый центр Академии: Санкт-Петербург, ул. Миллионная, 29

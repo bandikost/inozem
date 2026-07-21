@@ -39,78 +39,59 @@ export default function InputPrograms({ programs }: { programs: ProgramRow[] }) 
         hide()
     }, [])
 
-const filteredPrograms = useMemo(() => {
-  let filtered = programs;
+    const filteredPrograms = useMemo(() => {
+    let filtered = programs
 
-  if (inputValue) {
-    filtered = filtered.filter((p) =>
-      p.name.toLowerCase().startsWith(inputValue.toLowerCase())
-    );
-  }
+    if (inputValue) filtered = filtered.filter(p => p.name.toLowerCase().startsWith(inputValue.toLowerCase()))
 
-  if (education) {
+    if (education) filtered = filtered.filter(p => p.education?.toLowerCase() === education.toLowerCase())
+
+    if (category) filtered = filtered.filter(p => p.category?.trim().toLowerCase() === category.trim().toLowerCase())
+
+    if (time || timeSecondary) filtered = filtered.filter(p => (time && p.time === Number(time)) || (timeSecondary && p.time_secondary === Number(timeSecondary)))
+    
+    if (specialization) {
   filtered = filtered.filter((p) => {
-    const educations =
-      p.education
+    const specialties =
+      p.specialization
         ?.split(",")
-        .map((e) => e.trim().toLowerCase())
+        .map((s) => s.trim().toLowerCase())
         .filter(Boolean) ?? [];
 
-    return educations.includes(education.trim().toLowerCase());
+    const selectedSpecialty = specialization.trim().toLowerCase();
+    const selectedEducation = education.trim().toLowerCase();
+
+    // Если выбрано "Все специальности",
+    // показываем все программы выбранного уровня образования
+    if (selectedSpecialty === "все специальности") {
+      return true;
+    }
+
+    // Программа подходит для любой высшей специальности
+    if (
+      selectedEducation === "высшее" &&
+      specialties.includes("*all_higher*")
+    ) {
+      return true;
+    }
+
+    // Программа подходит для любой средней специальности
+    if (
+      selectedEducation === "среднее" &&
+      specialties.includes("*all_secondary*")
+    ) {
+      return true;
+    }
+
+    // Обычная проверка конкретной специальности
+    return specialties.includes(selectedSpecialty);
   });
 }
 
-  if (category) {
-    filtered = filtered.filter(
-      (p) =>
-        p.category?.trim().toLowerCase() ===
-        category.trim().toLowerCase()
-    );
-  }
+    
 
-  if (time || timeSecondary) {
-    filtered = filtered.filter(
-      (p) =>
-        (time && p.time === Number(time)) ||
-        (timeSecondary && p.time_secondary === Number(timeSecondary))
-    );
-  }
-
-  // Фильтр по специальности
-  if (
-    specialization &&
-    specialization.trim().toLowerCase() !== "все специальности"
-  ) {
-    const selectedSpecialty = specialization.trim().toLowerCase();
-
-    filtered = filtered.filter((p) => {
-      const programSpecialties =
-        p.specialization
-          ?.split(",")
-          .map((s) => s.trim().toLowerCase())
-          .filter(Boolean) ?? [];
-
-      return (
-        programSpecialties.includes("все специальности") ||
-        programSpecialties.includes(selectedSpecialty)
-      );
-    });
-  }
-
-  filtered.sort((a, b) => {
-  return (b.time ?? Infinity) - (a.time ?? Infinity);
-}) 
-
-return filtered
-}, [
-  programs,
-  inputValue,
-  education,
-  specialization,
-  timeSecondary,
-  time,
-  category,
-]);
+    return filtered
+}, [inputValue, education, specialization, timeSecondary, time, category])
 
     
     return (
@@ -327,10 +308,7 @@ return filtered
         🩺 Направление
     </h3>
 
-   
-
-    {education !== "Без мед.образования" && (
-
+    {education !== "без образования" && (
 
         <select
             value={specialization}
@@ -352,18 +330,22 @@ return filtered
             "
         >
 
-            
+            <option value="">
+                Все направления
+            </option>
 
             {(education === "Высшее"
                 ? HIGHER_SPECIALTIES
                 : SECONDARY_SPECIALTIES
             ).map((spec) => (
+
                 <option
                     key={spec}
                     value={spec}
                 >
                     {spec}
                 </option>
+
             ))}
 
         </select>
@@ -381,7 +363,7 @@ return filtered
 
     <div className="grid grid-cols-3 gap-2">
 
-        {["576","504","144","72","36","18"].map((item)=>(
+        {["576","504","288","144","72","36","18"].map((item)=>(
 
             <button
 

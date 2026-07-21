@@ -39,78 +39,41 @@ export default function InputPrograms({ programs }: { programs: ProgramRow[] }) 
         hide()
     }, [])
 
-const filteredPrograms = useMemo(() => {
-  let filtered = programs;
+    const filteredPrograms = useMemo(() => {
+    let filtered = programs
 
-  if (inputValue) {
-    filtered = filtered.filter((p) =>
-      p.name.toLowerCase().startsWith(inputValue.toLowerCase())
-    );
-  }
+    if (inputValue) filtered = filtered.filter(p => p.name.toLowerCase().startsWith(inputValue.toLowerCase()))
 
-  if (education) {
+    if (education) filtered = filtered.filter(p => p.education?.toLowerCase() === education.toLowerCase())
+
+    if (category) filtered = filtered.filter(p => p.category?.trim().toLowerCase() === category.trim().toLowerCase())
+
+    if (time || timeSecondary) filtered = filtered.filter(p => (time && p.time === Number(time)) || (timeSecondary && p.time_secondary === Number(timeSecondary)))
+    
+    if (specialization) {
   filtered = filtered.filter((p) => {
-    const educations =
-      p.education
+    const programSpecialties =
+      p.specialization
         ?.split(",")
-        .map((e) => e.trim().toLowerCase())
+        .map((s) => s.trim().toLowerCase())
         .filter(Boolean) ?? [];
 
-    return educations.includes(education.trim().toLowerCase());
+    const selectedSpecialty = specialization.trim().toLowerCase();
+
+    // Программа предназначена для всех специальностей
+    if (programSpecialties.includes("все специальности")) {
+      return true;
+    }
+
+    // Обычная проверка конкретной специальности
+    return programSpecialties.includes(selectedSpecialty);
   });
 }
 
-  if (category) {
-    filtered = filtered.filter(
-      (p) =>
-        p.category?.trim().toLowerCase() ===
-        category.trim().toLowerCase()
-    );
-  }
+    
 
-  if (time || timeSecondary) {
-    filtered = filtered.filter(
-      (p) =>
-        (time && p.time === Number(time)) ||
-        (timeSecondary && p.time_secondary === Number(timeSecondary))
-    );
-  }
-
-  // Фильтр по специальности
-  if (
-    specialization &&
-    specialization.trim().toLowerCase() !== "все специальности"
-  ) {
-    const selectedSpecialty = specialization.trim().toLowerCase();
-
-    filtered = filtered.filter((p) => {
-      const programSpecialties =
-        p.specialization
-          ?.split(",")
-          .map((s) => s.trim().toLowerCase())
-          .filter(Boolean) ?? [];
-
-      return (
-        programSpecialties.includes("все специальности") ||
-        programSpecialties.includes(selectedSpecialty)
-      );
-    });
-  }
-
-  filtered.sort((a, b) => {
-  return (b.time ?? Infinity) - (a.time ?? Infinity);
-}) 
-
-return filtered
-}, [
-  programs,
-  inputValue,
-  education,
-  specialization,
-  timeSecondary,
-  time,
-  category,
-]);
+    return filtered
+}, [inputValue, education, specialization, timeSecondary, time, category])
 
     
     return (
@@ -381,7 +344,7 @@ return filtered
 
     <div className="grid grid-cols-3 gap-2">
 
-        {["576","504","144","72","36","18"].map((item)=>(
+        {["576","504","288","144","72","36","18"].map((item)=>(
 
             <button
 

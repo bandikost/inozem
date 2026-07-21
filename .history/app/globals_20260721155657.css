@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 html.accessibility-large {
-  zoom: 1.8;
+  font-size: 180%;
 }
 
 :root {

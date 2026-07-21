@@ -381,7 +381,7 @@ return filtered
 
     <div className="grid grid-cols-3 gap-2">
 
-        {["576","504","144","72","36","18"].map((item)=>(
+        {["576","504","288","144","72","36","18"].map((item)=>(
 
             <button
 

@@ -28,7 +28,6 @@ type Program = {
   category: string;
   diplom: string;
   time: string;
-  dates: string;
   blocks: Block[];
 };
 
@@ -47,7 +46,6 @@ export default function ProgramEditor({
     category: initialProgram?.category || "",
     diplom: initialProgram?.diplom || "",
     time: initialProgram?.time || "",
-    dates: initialProgram?.date || "",
     blocks: initialProgram?.blocks || [],
   });
 
@@ -310,20 +308,26 @@ export default function ProgramEditor({
           </Field>
 
           <Field
-            label="Даты"
+            label="Продолжительность"
             icon={<Clock3 size={15} />}
           >
-            <input
-              value={program.dates}
-              onChange={(e) =>
-                setProgram({
-                  ...program,
-                  dates: e.target.value,
-                })
-              }
-              placeholder="06.07.2026 - 18.07.2026"
-              className="input-main"
-            />
+            <div className="relative">
+              <input
+                value={program.time}
+                onChange={(e) =>
+                  setProgram({
+                    ...program,
+                    time: e.target.value,
+                  })
+                }
+                placeholder="144"
+                className="input-main pr-20"
+              />
+
+              <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm text-gray-400">
+                акад. ч.
+              </span>
+            </div>
           </Field>
 
           <Field
