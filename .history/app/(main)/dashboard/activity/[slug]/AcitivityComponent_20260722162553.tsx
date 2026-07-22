@@ -26,21 +26,8 @@ interface ActivityEditorProps {
   };
 }
 
-type FormData = {
-  name: string;
-  slug: string;
-  title: string;
-  description: string;
-  teacher: string;
-  purpose: string;
-  conditions: string;
-  audience: string;
-  dates: string;
+type FormData = Omit<ActivityEditorProps["activity"], "id" | "year"> & {
   year: string;
-  paylink: string;
-  teacher_img: string;
-  title_bg: string;
-  content: string;
 };
 
 export default function ActivityEditor({

@@ -2,7 +2,6 @@
 
 import LoadingLink from "@/components/Load/LoadingLink"
 import { ChevronRight } from "lucide-react"
-import Link from "next/link"
 import { useState } from "react"
 
 export default function Page() {
@@ -369,13 +368,7 @@ export default function Page() {
                 className="input-main"
               />
             </Field>
-            <div className="border p-6 border-gray-300 shadow-md text-lg rounded-2xl flex bg-yellow-100">
-                <p>Изображения находятся</p>
-                <Link target="_blink" href="https://console.yandex.cloud/folders/b1gjd5dnmt6jjindolec/storage/buckets/inozemstorage?key=teachers%2F&versionsDisplay=false" className="ml-2 cursor-pointer hover:opacity-70">- На облаке академии</Link>
-                <br /> 
-                <p></p> 
-            </div>
-            
+            <p>Изображения находятся - На облаке академии</p>
 
             <Field
               label="Фоновое изображение заголовка"

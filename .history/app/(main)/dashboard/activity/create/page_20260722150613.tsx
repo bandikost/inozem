@@ -369,11 +369,9 @@ export default function Page() {
                 className="input-main"
               />
             </Field>
-            <div className="border p-6 border-gray-300 shadow-md text-lg rounded-2xl flex bg-yellow-100">
+            <div className="border p-6 border-gray-300 shadow-md text-lg">
                 <p>Изображения находятся</p>
-                <Link target="_blink" href="https://console.yandex.cloud/folders/b1gjd5dnmt6jjindolec/storage/buckets/inozemstorage?key=teachers%2F&versionsDisplay=false" className="ml-2 cursor-pointer hover:opacity-70">- На облаке академии</Link>
-                <br /> 
-                <p></p> 
+                <Link href="" className="">- На облаке академии</Link> 
             </div>
             
 

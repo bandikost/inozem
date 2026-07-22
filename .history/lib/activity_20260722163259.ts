@@ -1,4 +1,4 @@
-import { ResultSetHeader, RowDataPacket } from "mysql2/promise"
+import { RowDataPacket } from "mysql2/promise"
 import { db } from "@/lib/db"
 import { Activity } from "@/app/interface/activity"
 
