@@ -20,13 +20,13 @@ export const learning = [
         {name: "Приказ КТП_ПП", url: "https://storage.yandexcloud.net/inozemstorage/docs/Acts%26Price/%D0%9A%D0%A2%D0%9F_2026_%D0%9F%D0%9F.pdf" },
     ]},
 
-    { id: 3, title: "Образование",
+    { id: 3, title: "Обучение",
     links: [
-        {name: "Численность обучающихся по программам и источникам финансирования", url: "В разработке" },
-        {name: "Численность иностранных граждан", url: "В разработке" },
-        {name: "Языки образования", url: "В разработке" },
-        {name: "Результаты приема, перевода, восстановления и отчисления", url: "В разработке" },
-        {name: "Трудоустройство выпускников СПО", url: "В разработке" },
+        {name: "Прейскурант на 2025 ТФОМС", url: "https://storage.yandexcloud.net/inozemstorage/docs/Acts%26Price/11-%D0%90%D0%9E-25_%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9F%D1%80%D0%B5%D0%B9%D1%81%D0%BA%D1%83%D1%80%D0%B0%D0%BD%D1%82_%D0%A2%D0%A4%D0%9E%D0%9C%D0%A1.pdf" },
+        {name: "Прейскурант на 2026 год", url: "https://storage.yandexcloud.net/inozemstorage/docs/Acts%26Price/21-%D0%90%D0%9E-26_%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9F%D1%80%D0%B5%D0%B9%D1%81%D0%BA%D1%83%D1%80%D0%B0%D0%BD%D1%82_31_01_2026.pdf" },
+        {name: "Приказ КТП_ПК_ВМО", url: "https://storage.yandexcloud.net/inozemstorage/docs/Acts%26Price/%D0%9A%D0%A2%D0%9F_2026_%D0%9F%D0%9A-%D0%92%D0%9C%D0%9E.pdf" },
+        {name: "Приказ КТП_ПК_СМО", url: "https://storage.yandexcloud.net/inozemstorage/docs/Acts%26Price/%D0%9A%D0%A2%D0%9F_2026_%D0%9F%D0%9A_%D0%A1%D0%9C%D0%9E.pdf" },
+        {name: "Приказ КТП_ПП", url: "https://storage.yandexcloud.net/inozemstorage/docs/Acts%26Price/%D0%9A%D0%A2%D0%9F_2026_%D0%9F%D0%9F.pdf" },
     ]},
 ]
 

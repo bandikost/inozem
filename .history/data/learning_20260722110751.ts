@@ -20,7 +20,7 @@ export const learning = [
         {name: "Приказ КТП_ПП", url: "https://storage.yandexcloud.net/inozemstorage/docs/Acts%26Price/%D0%9A%D0%A2%D0%9F_2026_%D0%9F%D0%9F.pdf" },
     ]},
 
-    { id: 3, title: "Образование",
+    { id: 3, title: "Обучение",
     links: [
         {name: "Численность обучающихся по программам и источникам финансирования", url: "В разработке" },
         {name: "Численность иностранных граждан", url: "В разработке" },

@@ -79,7 +79,7 @@ return (
   ))}
 </div>
 
-        <h2 className="text-prpl font-semibold text-center mt-15">Педагогический состав ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h2>
+        <h2 className="text-prpl font-semibold text-center mt-15">Преподаватели ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h2>
 
         <div className="grid gap-6 grid-cols-1 lg:grid-cols-2 mt-8">
             {filtredTeachers

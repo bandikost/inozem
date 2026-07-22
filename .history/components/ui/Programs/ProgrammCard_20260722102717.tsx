@@ -192,7 +192,7 @@ function ProgrammCard({ filteredPrograms, visibleItems, handleShowMore }: Progra
                   </span>
                 </div>
                  <div className="flex items-center gap-2">
-                  <span className="text-sm !font-semibold text-default underline">
+                  <span className="text-2xl font-bold text-green-700">
                     Очная форма обучения
                   </span>
                 </div>

@@ -9,7 +9,6 @@ import FormsAndActs from "./FormsAndActs";
 import { useLoadingStore } from "@/components/Load/loadingStore";
 import { delay } from "@/lib/delay";
 import SearchInput from "./Components/SearchInput";
-import Learn from "./Learn";
 
 
 export default function InputPrograms({ programs }: { programs: ProgramRow[] }) {
@@ -488,8 +487,6 @@ return filtered
     {activeTab === "price" && <PriceList />}
 
     {activeTab === "forms" && <FormsAndActs />}
-
-    {activeTab === "learn" && <Learn />}
 
     {filteredPrograms.length === 0 &&
         activeTab === "programs" && (

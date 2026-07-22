@@ -153,7 +153,7 @@ const handleAssign = async (userId: number) => {
 
               {availablePrograms.map(programm => (
                 <option key={programm.id} value={programm.id}>
-                  {programm.name} - {programm.time} {getHourWord(programm.time)} - {programm.education}
+                  {programm.name} - {getHourWord(programm.time)} - {programm.education}
                 </option>
               ))}
 

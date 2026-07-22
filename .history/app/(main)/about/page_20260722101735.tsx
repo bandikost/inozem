@@ -161,10 +161,6 @@ export default function Page() {
                 <p>Не предусмотрено</p>
               </ToggleBlock>
 
-               <ToggleBlock title="Плата за присмотр и уход / содержание детей / группы продленного дня">
-                <p>Не предусмотрено</p>
-              </ToggleBlock>
-
               
 
               <ToggleBlock title="Предписания">
@@ -429,13 +425,6 @@ export default function Page() {
   </ToggleBlock>
 </div>
 
-        </div>
-
-        <div className="mt-10 rounded-3xl border border-amber-200 bg-amber-50 p-6">
-          <p className="text-slate-600 leading-relaxed text-lg">
-            Раздел подготовлен в соответствии с Правилами размещения информации
-            на официальном сайте образовательной организации.
-          </p>
         </div>
 
       </div>

@@ -6,7 +6,7 @@ import { ChevronRight } from "lucide-react"
 export const revalidate = 3600
 
 export const metadata = {
-  title: 'Руководство | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»',
+  title: 'Преподаватели | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»',
 }
 
 export default async function Page() {
@@ -29,11 +29,11 @@ return (
             <ChevronRight size={14} className="shrink-0" />
       
         <span className="min-w-0 flex-1 truncate text-zinc-800 opacity-70">
-          Руководство
+          Сотрудники
         </span>
       
       </nav>
-    <h2 className="text-prpl text-center">Руководство ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h2>
+    <h2 className="text-prpl text-center">Сотрудники ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h2>
 
     <div className="grid gap-6 grid-cols-1 md:grid-cols-2 mt-8">
   {filtredEmployeer
@@ -67,11 +67,7 @@ return (
                         {teacher.patronymic}
                         </h3>
 
-                        <p className="text-gray-500 line-clamp-4 !font-normal mt-2">
-                        {teacher.specialization}
-                        </p>
-
-                        <p className="!text-sm text-gray-500 line-clamp-4 !font-normal mt-2 whitespace-pre-wrap leading-4">
+                        <p className="text-sm text-gray-500 line-clamp-4 !font-normal mt-2">
                         {teacher.Teacher_text}
                         </p>
                     </div> 
@@ -79,12 +75,10 @@ return (
   ))}
 </div>
 
-        <h2 className="text-prpl font-semibold text-center mt-15">Педагогический состав ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h2>
+        <h2 className="text-prpl font-semibold text-center mt-15">Преподаватели ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h2>
 
         <div className="grid gap-6 grid-cols-1 lg:grid-cols-2 mt-8">
-            {filtredTeachers
-            .sort((a, b) => a.last_name.localeCompare(b.last_name))
-            .map(teacher => (
+            {filtredTeachers.map(teacher => (
                 <div key={teacher.id} className="flex flex-col w-fit mx-auto sm:w-full sm:flex-row overflow-hidden border border-gray-200 rounded-xl shadow-md bg-white mt-8">
                     <div className="w-full md:w-[240px] h-auto shrink-0">
                         {teacher.photo_url ? (

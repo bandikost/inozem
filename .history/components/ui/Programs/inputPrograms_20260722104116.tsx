@@ -9,7 +9,6 @@ import FormsAndActs from "./FormsAndActs";
 import { useLoadingStore } from "@/components/Load/loadingStore";
 import { delay } from "@/lib/delay";
 import SearchInput from "./Components/SearchInput";
-import Learn from "./Learn";
 
 
 export default function InputPrograms({ programs }: { programs: ProgramRow[] }) {
@@ -21,7 +20,7 @@ export default function InputPrograms({ programs }: { programs: ProgramRow[] }) 
     const [timeSecondary, setTimeSecondary] = useState("")
     const [specialization, setSpecialization] = useState("")
 
-    const [activeTab, setActiveTab] = useState<"programs" | "price" | "forms" | "learn">("programs")
+    const [activeTab, setActiveTab] = useState<"programs" | "price" | "forms">("programs")
     const [showFilter, setShowFilter] = useState(false)
 
     const show = useLoadingStore((s) => s.show)
@@ -144,8 +143,8 @@ return filtered
     </div>
 
   
-<div className="mt-8 flex  justify-center md:justify-end">
-  <div className="flex flex-col md:flex-row w-full overflow-x-auto border-b border-zinc-200">
+<div className="mt-8 flex justify-center md:justify-end">
+  <div className="flex w-full overflow-x-auto border-b border-zinc-200">
 
     <button
       onClick={() => setActiveTab("programs")}
@@ -193,28 +192,26 @@ return filtered
     </button>
 
     <button
-      onClick={() => setActiveTab("learn")}
+      onClick={() => setActiveTab("additional")}
       className={`relative whitespace-nowrap px-5 py-4 text-lg !font-normal transition cursor-pointer ${
-        activeTab === "learn"
+        activeTab === "additional"
           ? "text-blue"
           : "text-zinc-500 hover:text-zinc-900"
       }`}
     >
-      Образование
+      Дополнительная информация
 
-      {activeTab === "learn" && (
+      {activeTab === "additional" && (
         <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-blue" />
       )}
     </button>
-
-   
 
   </div>
 </div>
 
 
 
-    <div className="mt-10 flex flex-col xl:flex-row gap-8 items-center sm:items-start">
+    <div className="mt-10 flex flex-col xl:flex-row gap-8 items-start">
        
        
 
@@ -488,8 +485,6 @@ return filtered
     {activeTab === "price" && <PriceList />}
 
     {activeTab === "forms" && <FormsAndActs />}
-
-    {activeTab === "learn" && <Learn />}
 
     {filteredPrograms.length === 0 &&
         activeTab === "programs" && (

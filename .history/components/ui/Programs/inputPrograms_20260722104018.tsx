@@ -9,7 +9,6 @@ import FormsAndActs from "./FormsAndActs";
 import { useLoadingStore } from "@/components/Load/loadingStore";
 import { delay } from "@/lib/delay";
 import SearchInput from "./Components/SearchInput";
-import Learn from "./Learn";
 
 
 export default function InputPrograms({ programs }: { programs: ProgramRow[] }) {
@@ -21,7 +20,7 @@ export default function InputPrograms({ programs }: { programs: ProgramRow[] }) 
     const [timeSecondary, setTimeSecondary] = useState("")
     const [specialization, setSpecialization] = useState("")
 
-    const [activeTab, setActiveTab] = useState<"programs" | "price" | "forms" | "learn">("programs")
+    const [activeTab, setActiveTab] = useState<"programs" | "price" | "forms">("programs")
     const [showFilter, setShowFilter] = useState(false)
 
     const show = useLoadingStore((s) => s.show)
@@ -144,77 +143,64 @@ return filtered
     </div>
 
   
-<div className="mt-8 flex  justify-center md:justify-end">
-  <div className="flex flex-col md:flex-row w-full overflow-x-auto border-b border-zinc-200">
 
-    <button
-      onClick={() => setActiveTab("programs")}
-      className={`relative whitespace-nowrap px-5 py-4 text-lg !font-normal transition cursor-pointer ${
-        activeTab === "programs"
-          ? "text-blue"
-          : "text-zinc-500 hover:text-zinc-900"
-      }`}
-    >
-      Каталог
+    <div className="mt-8 flex justify-center md:justify-end">
 
-      {activeTab === "programs" && (
-        <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-blue" />
-      )}
-    </button>
+        <div className="grid grid-cols-1 w-full sm:grid-cols-4 rounded-2xl bg-zinc-100 p-1">
 
-    <button
-      onClick={() => setActiveTab("price")}
-      className={`relative whitespace-nowrap px-5 py-4 text-lg !font-normal transition cursor-pointer ${
-        activeTab === "price"
-          ? "text-blue"
-          : "text-zinc-500 hover:text-zinc-900"
-      }`}
-    >
-      Прейскурант
+            <button
+                onClick={() => setActiveTab("programs")}
+                className={`px-6 py-3 transition !font-normal cursor-pointer text-xl border-b border-zinc-300 sm:border-b-0  ${
+                    activeTab === "programs"
+                        ? "bg-white shadow text-black rounded-none rounded-xl"
+                        : "text-zinc-600 hover:text-black "
+                }`}
+            >
+                Каталог
+            </button>
 
-      {activeTab === "price" && (
-        <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-blue" />
-      )}
-    </button>
+            <button
+                onClick={() => setActiveTab("price")}
+                className={`px-6 py-3 transition !font-normal cursor-pointer text-xl border-b border-zinc-300 sm:border-b-0  ${
+                    activeTab === "price"
+                        ? "bg-white shadow text-black rounded-none rounded-xl"
+                        : "text-zinc-600 hover:text-black border-x-none xs:border-x border-zinc-300 "
+                }`}
+            >
+                Прейскурант
+            </button>
 
-    <button
-      onClick={() => setActiveTab("forms")}
-      className={`relative whitespace-nowrap px-5 py-4 text-lg !font-normal transition cursor-pointer ${
-        activeTab === "forms"
-          ? "text-blue"
-          : "text-zinc-500 hover:text-zinc-900"
-      }`}
-    >
-      Формы и анкеты
+             
 
-      {activeTab === "forms" && (
-        <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-blue" />
-      )}
-    </button>
+            <button
+                onClick={() => setActiveTab("forms")}
+                className={`px-6 py-3 transition !font-normal cursor-pointer text-xl border-b border-zinc-300 sm:border-b-0 ${
+                    activeTab === "forms"
+                        ? "bg-white shadow text-black rounded-none rounded-xl"
+                        : "text-zinc-600 hover:text-black"
+                }`}
+            >
+                Формы и анкеты
+            </button>
 
-    <button
-      onClick={() => setActiveTab("learn")}
-      className={`relative whitespace-nowrap px-5 py-4 text-lg !font-normal transition cursor-pointer ${
-        activeTab === "learn"
-          ? "text-blue"
-          : "text-zinc-500 hover:text-zinc-900"
-      }`}
-    >
-      Образование
+            <button
+                onClick={() => setActiveTab("forms")}
+                className={`px-6 py-3 transition !font-normal cursor-pointer text-xl border-zinc-300 border-b-0 ${
+                    activeTab === "forms"
+                        ? "bg-white shadow text-black rounded-none rounded-xl"
+                        : "text-zinc-600 hover:text-black"
+                }`}
+            >
+                Дополнительная информация
+            </button>
 
-      {activeTab === "learn" && (
-        <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-blue" />
-      )}
-    </button>
+        </div>
 
-   
-
-  </div>
-</div>
+    </div>
 
 
 
-    <div className="mt-10 flex flex-col xl:flex-row gap-8 items-center sm:items-start">
+    <div className="mt-10 flex flex-col xl:flex-row gap-8 items-start">
        
        
 
@@ -488,8 +474,6 @@ return filtered
     {activeTab === "price" && <PriceList />}
 
     {activeTab === "forms" && <FormsAndActs />}
-
-    {activeTab === "learn" && <Learn />}
 
     {filteredPrograms.length === 0 &&
         activeTab === "programs" && (

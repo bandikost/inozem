@@ -14,13 +14,13 @@ export default function PriceList() {
   return (
     <div className="mb-12 flex justify-center">
 
-      <div className="w-full max-w-6xl ">
+      <div className="w-full max-w-6xl flex justify-center">
 
         <h2 className="mb-8 text-center text-2xl font-semibold text-green">
           {activeItem.title}
         </h2>
 
-        <div className="grid gap-4 sm:grid-cols-2 justify-center">
+        <div className="grid gap-4 sm:grid-cols-2">
 
           {activeItem.links.map((link, index) => (
 

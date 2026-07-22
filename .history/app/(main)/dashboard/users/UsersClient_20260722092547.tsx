@@ -3,7 +3,6 @@
 
 import { UserRow } from '@/app/interface/user'
 import LoadingLink from '@/components/Load/LoadingLink'
-import { getHourWord } from '@/components/ui/GetHourWord'
 import { ProgramRow } from '@/lib/programm'
 import { ChevronRight, MoveLeft } from 'lucide-react'
 import Link from 'next/link'
@@ -153,7 +152,7 @@ const handleAssign = async (userId: number) => {
 
               {availablePrograms.map(programm => (
                 <option key={programm.id} value={programm.id}>
-                  {programm.name} - {programm.time} {getHourWord(programm.time)} - {programm.education}
+                  {programm.name} - {programm.time} - {programm.category}
                 </option>
               ))}
 

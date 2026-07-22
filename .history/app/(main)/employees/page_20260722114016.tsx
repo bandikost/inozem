@@ -67,11 +67,7 @@ return (
                         {teacher.patronymic}
                         </h3>
 
-                        <p className="text-gray-500 line-clamp-4 !font-normal mt-2">
-                        {teacher.specialization}
-                        </p>
-
-                        <p className="!text-sm text-gray-500 line-clamp-4 !font-normal mt-2 whitespace-pre-wrap leading-4">
+                        <p className="text-sm text-gray-500 line-clamp-4 !font-normal mt-2 whitespace-pre-wrap leading-8">
                         {teacher.Teacher_text}
                         </p>
                     </div> 
@@ -79,7 +75,7 @@ return (
   ))}
 </div>
 
-        <h2 className="text-prpl font-semibold text-center mt-15">Педагогический состав ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h2>
+        <h2 className="text-prpl font-semibold text-center mt-15">Преподаватели ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h2>
 
         <div className="grid gap-6 grid-cols-1 lg:grid-cols-2 mt-8">
             {filtredTeachers

@@ -431,13 +431,6 @@ export default function Page() {
 
         </div>
 
-        <div className="mt-10 rounded-3xl border border-amber-200 bg-amber-50 p-6">
-          <p className="text-slate-600 leading-relaxed text-lg">
-            Раздел подготовлен в соответствии с Правилами размещения информации
-            на официальном сайте образовательной организации.
-          </p>
-        </div>
-
       </div>
     </section>
   );

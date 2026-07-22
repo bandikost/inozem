@@ -1,6 +1,5 @@
 import { features } from "@/data/partners";
 import { Building2 } from "lucide-react";
-import LoadingLink from "../Load/LoadingLink";
 
 
 
@@ -17,9 +16,9 @@ export default function Advantages() {
               </h2>
             </div>
 
-           
-
-          
+            <LoadLink href={"/about"} className="bg-yellow-100 border border-gray-200 shadow-md rounded-2xl p-6 text-center hover:scale-110 transition duration-300 cursor-pointer">
+              <span className="text-default text-xl">Для проверки сведений об образовательной организации - перейдите в раздел</span>
+            </LoadLink>
 
            <div className="grid gap-4">
   {features.map((item, index) => (
@@ -57,12 +56,6 @@ export default function Advantages() {
     </div>
   ))}
 </div>
-
- <LoadingLink href={"/about"} className="rounded-3xl border border-amber-200 bg-amber-50 p-6 text-center hover:scale-110 transition duration-300 cursor-pointer">
-              <span className="text-slate-600 leading-relaxed text-lg">Для проверки сведений об образовательной организации - перейдите в раздел</span>
-              <br />
-              <span className="!text-sm">Нажмите, чтобы перейти</span>
-            </LoadingLink>
           
 
           
