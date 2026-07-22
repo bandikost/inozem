@@ -29,14 +29,18 @@ export async function sendApplicationEmail(
   email: string,
   education_level: string,
   specialization: string,
+   programm_name: string,
    created_at: Date
 ) {
   const fullName = `${last_name} ${name} ${patronymic}`
 
     
-    const date = created_at.toLocaleDateString("ru-RU")
+    const date = created_at.toLocaleDateString("ru-RU", {
+    timeZone: "Europe/Moscow",
+  })
 
     const time = created_at.toLocaleTimeString("ru-RU", {
+      timeZone: "Europe/Moscow",
     hour: "2-digit",
     minute: "2-digit",
     })
@@ -70,6 +74,7 @@ export async function sendApplicationEmail(
         <p><strong>Телефон:</strong> ${phone}</p>
         <p><strong>Уровень образования:</strong> ${education_level}</p>
         <p><strong>Специальность:</strong> ${specialization}</p>
+        <p><strong>Программа:</strong> ${specialization}</p>
         <p><strong>Дата:</strong> ${date}</p>
         <p><strong>Время:</strong> ${time}</p>
       </div>

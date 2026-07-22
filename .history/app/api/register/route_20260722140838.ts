@@ -107,7 +107,12 @@ if (captchaData.status !== "ok") {
     )
 
     const userId = result.insertId
-    await sendWelcomeEmail(email, last_name, name, patronymic, password)
+    await sendWelcomeEmail(email, name, last_name, patronymic, password)
+
+    await db.query(
+      `INSERT INTO user_stats (user_id, achievements, experience) VALUES (?, ?, ?)`, 
+    [userId, "", 0]
+  )
     const token = signToken({ id: userId })
 
     const cookieStore = await cookies()

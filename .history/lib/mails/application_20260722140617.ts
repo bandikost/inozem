@@ -25,21 +25,25 @@ export async function sendApplicationEmail(
   last_name: string,
   patronymic: string,
   name: string,
-  email: string,
   phone: string,
+  email: string,
   education_level: string,
   specialization: string,
-   created_at: string
+   programm_name: string,
+   created_at: Date
 ) {
   const fullName = `${last_name} ${name} ${patronymic}`
 
-  const createdDate = new Date(created_at);
+    
+    const date = created_at.toLocaleDateString("ru-RU", {
+    timeZone: "Europe/Moscow",
+  })
 
-const date = createdDate.toLocaleDateString("ru-RU");
-const time = createdDate.toLocaleTimeString("ru-RU", {
-  hour: "2-digit",
-  minute: "2-digit",
-})
+    const time = created_at.toLocaleTimeString("ru-RU", {
+      timeZone: "Europe/Moscow",
+    hour: "2-digit",
+    minute: "2-digit",
+    })
 
   await transporter.sendMail({
     from: `"Академия медицинского образования имени Ф.И. Иноземцева" <${EMAIL_USER}>`,
@@ -70,6 +74,7 @@ const time = createdDate.toLocaleTimeString("ru-RU", {
         <p><strong>Телефон:</strong> ${phone}</p>
         <p><strong>Уровень образования:</strong> ${education_level}</p>
         <p><strong>Специальность:</strong> ${specialization}</p>
+        <p><strong>Программа:</strong> ${specialization}</p>
         <p><strong>Дата:</strong> ${date}</p>
         <p><strong>Время:</strong> ${time}</p>
       </div>

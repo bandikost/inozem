@@ -18,18 +18,29 @@ export const transporter = nodemailer.createTransport({
     user: EMAIL_USER,
     pass: EMAIL_PASS,
   },
-});
+})
+
 
 export async function sendApplicationEmail(
   last_name: string,
   patronymic: string,
   name: string,
-  email: string,
   phone: string,
+  email: string,
   education_level: string,
-  specialization: string
+  specialization: string,
+   programm_name: string,
+   created_at: Date
 ) {
-  const fullName = `${last_name} ${name} ${patronymic}`;
+  const fullName = `${last_name} ${name} ${patronymic}`
+
+    
+    const date = created_at.toLocaleDateString("ru-RU")
+
+    const time = created_at.toLocaleTimeString("ru-RU", {
+    hour: "2-digit",
+    minute: "2-digit",
+    })
 
   await transporter.sendMail({
     from: `"Академия медицинского образования имени Ф.И. Иноземцева" <${EMAIL_USER}>`,
@@ -37,20 +48,18 @@ export async function sendApplicationEmail(
     subject: "Ваша заявка на обучение принята",
     html: `
       <div>
-        <h2>Здравствуйте, ${name}!</h2>
+        <h2>Здравствуйте, ${fullName}!</h2>
 
-        <p>Ваша заявка успешно принята.</p>
-
-        <p><strong>Специальность:</strong> ${specialization}</p>
+        <p>Вы подали заявку на обучение</p>
+        <p><strong>По специальности:</strong> ${specialization}</p>
         <p><strong>Уровень образования:</strong> ${education_level}</p>
-
-        <p>С вами свяжется сотрудник академии.</p>
+        <p>В ближайшее время с вами свяжется сотрудник академии.</p>
       </div>
     `,
   });
 
   await transporter.sendMail({
-    from: `"Новая заявка" <${EMAIL_USER}>`,
+    from: `"Обучение" <${EMAIL_USER}>`,
     to: EMAIL_RECIP,
     subject: "Новая заявка на обучение",
     html: `
@@ -62,6 +71,9 @@ export async function sendApplicationEmail(
         <p><strong>Телефон:</strong> ${phone}</p>
         <p><strong>Уровень образования:</strong> ${education_level}</p>
         <p><strong>Специальность:</strong> ${specialization}</p>
+        <p><strong>Программа:</strong> ${specialization}</p>
+        <p><strong>Дата:</strong> ${date}</p>
+        <p><strong>Время:</strong> ${time}</p>
       </div>
     `,
   });
