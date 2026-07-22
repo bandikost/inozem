@@ -10,7 +10,7 @@ const cards = [
     link: "/activity"
   },
   {
-    title: "Обучение",
+    title: "Образование",
     description: "Подбор программы обучения",
     img: "/Images/main/icons/learn.jpg",
     link: "/programs"
