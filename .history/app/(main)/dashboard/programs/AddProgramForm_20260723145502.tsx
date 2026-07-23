@@ -319,35 +319,46 @@ export default function AddProgramForm() {
         }
       `}</style>
 
-       <Toast.Root
-              open={toastOpen}
-              onOpenChange={setToastOpen}
-              className="
-                fixed
-                bottom-6
-                right-6
-                z-[100]
-                w-[360px]
-                rounded-2xl
-                border
-                border-green-500
-                bg-green-300
-                
-                p-5
-                shadow-[0_15px_50px_rgba(0,0,0,0.15)]
-                data-[state=open]:animate-in
-                data-[state=closed]:animate-out
-                data-[state=closed]:fade-out-80
-                data-[state=open]:fade-in-0
-                data-[state=open]:slide-in-from-right-5
-                data-[state=closed]:slide-out-to-right-5
-              "
-            >
-              <Toast.Title className="font-semibold !text-green-900">
-                {toastMessage}
-              </Toast.Title>
-            
-            </Toast.Root>
+      <Toast.Root
+  open={toastOpen}
+  onOpenChange={setToastOpen}
+  className="
+    fixed
+    bottom-6
+    right-6
+    z-[100]
+    w-[360px]
+    rounded-2xl
+    border
+    border-gray-200
+    bg-white
+    p-5
+    shadow-[0_15px_50px_rgba(0,0,0,0.15)]
+    data-[state=open]:animate-in
+    data-[state=closed]:animate-out
+    data-[state=closed]:fade-out-80
+    data-[state=open]:fade-in-0
+    data-[state=open]:slide-in-from-right-5
+    data-[state=closed]:slide-out-to-right-5
+  "
+>
+  <Toast.Title className="font-semibold text-gray-900">
+    {toastMessage}
+  </Toast.Title>
+
+  <Toast.Close
+    className="
+      absolute
+      right-4
+      top-4
+      text-gray-400
+      transition
+      hover:text-gray-700
+    "
+  >
+    ×
+  </Toast.Close>
+</Toast.Root>
 
     </section>
   );

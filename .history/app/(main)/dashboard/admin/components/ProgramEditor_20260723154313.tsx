@@ -54,9 +54,7 @@ export default function ProgramEditor({
     blocks: initialProgram?.blocks || [],
   });
 
-  const [collapsed, setCollapsed] = useState<Record<number, boolean>>({})
-    const [toastOpen, setToastOpen] = useState(false)
-  const [toastMessage, setToastMessage] = useState("");
+  const [collapsed, setCollapsed] = useState<Record<number, boolean>>({});
 
   const toggleBlock = (index: number) => {
     setCollapsed((prev) => ({
@@ -115,19 +113,17 @@ export default function ProgramEditor({
     const text = await res.text();
 
     if (!res.ok) {
-      setToastOpen(true);
-      setToastMessage(text)
+      console.error("Save failed raw response:", text);
       return;
     }
 
-    
-    setToastOpen(true)
+    console.log("SUCCESS:", text);
 
-    
+    alert(
       isEdit
-        ? setToastMessage("Программа успешно обновлена!")
-        : setToastMessage("Программа успешно создана!")
-    
+        ? "Программа обновлена"
+        : "Программа создана"
+    );
   };
 
   const removeBlock = (index: number) => {

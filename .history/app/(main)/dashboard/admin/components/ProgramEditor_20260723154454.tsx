@@ -121,13 +121,13 @@ export default function ProgramEditor({
     }
 
     
-    setToastOpen(true)
+    setToastOpen(true);
 
-    
+    alert(
       isEdit
         ? setToastMessage("Программа успешно обновлена!")
         : setToastMessage("Программа успешно создана!")
-    
+    );
   };
 
   const removeBlock = (index: number) => {

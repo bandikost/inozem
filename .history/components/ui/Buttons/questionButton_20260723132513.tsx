@@ -21,7 +21,7 @@ export default function QuestionButton() {
           justify-center
           overflow-hidden
           rounded-full
-          bg-prpl
+          bg-blue
           !text-white
           shadow-xl
           transition-all

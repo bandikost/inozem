@@ -115,19 +115,17 @@ export default function ProgramEditor({
     const text = await res.text();
 
     if (!res.ok) {
-      setToastOpen(true);
-      setToastMessage(text)
+      console.error("Save failed raw response:", text);
       return;
     }
 
-    
-    setToastOpen(true)
+    console.log("SUCCESS:", text);
 
-    
+    alert(
       isEdit
-        ? setToastMessage("Программа успешно обновлена!")
-        : setToastMessage("Программа успешно создана!")
-    
+        ? "Программа обновлена"
+        : "Программа создана"
+    );
   };
 
   const removeBlock = (index: number) => {

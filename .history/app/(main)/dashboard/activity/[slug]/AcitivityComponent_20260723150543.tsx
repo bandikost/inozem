@@ -102,7 +102,7 @@ export default function ActivityEditor({
         throw new Error(data.error || "Ошибка обновления мероприятия");
       }
 
-      setToastMessage("Мероприятие успешно обновлено!");
+      setToastMessage("Программа успешно создана!");
       setToastOpen(true);
     } catch (error) {
       console.error(error);
@@ -412,9 +412,8 @@ export default function ActivityEditor({
           w-[360px]
           rounded-2xl
           border
-          border-green-500
-          bg-green-300
-          
+          border-gray-200
+          bg-white
           p-5
           shadow-[0_15px_50px_rgba(0,0,0,0.15)]
           data-[state=open]:animate-in
@@ -425,10 +424,22 @@ export default function ActivityEditor({
           data-[state=closed]:slide-out-to-right-5
         "
       >
-        <Toast.Title className="font-semibold !text-green-900">
+        <Toast.Title className="font-semibold text-gray-900">
           {toastMessage}
         </Toast.Title>
       
+        <Toast.Close
+          className="
+            absolute
+            right-4
+            top-4
+            text-gray-400
+            transition
+            hover:text-gray-700
+          "
+        >
+          ×
+        </Toast.Close>
       </Toast.Root>
     </section>
   );

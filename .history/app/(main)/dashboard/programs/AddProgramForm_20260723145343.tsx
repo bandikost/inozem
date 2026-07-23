@@ -6,7 +6,6 @@ import { useState } from "react";
 
 export default function AddProgramForm() {
   const [toastOpen, setToastOpen] = useState(false)
-  const [toastMessage, setToastMessage] = useState("");
   const [name, setName] = useState("");
   const [time, setTime] = useState("");
   const [dates, setDates] = useState("");
@@ -52,7 +51,6 @@ export default function AddProgramForm() {
         );
       }
 
-      setToastMessage("Программа успешно создана!");
       setToastOpen(true);
 
       setTimeout(() => {
@@ -61,7 +59,6 @@ export default function AddProgramForm() {
       
     } catch (err) {
       console.error(err);
-      setToastMessage("Ошибка сервера");
       setToastOpen(true);
       setLoading(false);
     }
@@ -318,36 +315,6 @@ export default function AddProgramForm() {
           box-shadow: 0 0 0 3px rgb(37 99 235 / 0.1);
         }
       `}</style>
-
-       <Toast.Root
-              open={toastOpen}
-              onOpenChange={setToastOpen}
-              className="
-                fixed
-                bottom-6
-                right-6
-                z-[100]
-                w-[360px]
-                rounded-2xl
-                border
-                border-green-500
-                bg-green-300
-                
-                p-5
-                shadow-[0_15px_50px_rgba(0,0,0,0.15)]
-                data-[state=open]:animate-in
-                data-[state=closed]:animate-out
-                data-[state=closed]:fade-out-80
-                data-[state=open]:fade-in-0
-                data-[state=open]:slide-in-from-right-5
-                data-[state=closed]:slide-out-to-right-5
-              "
-            >
-              <Toast.Title className="font-semibold !text-green-900">
-                {toastMessage}
-              </Toast.Title>
-            
-            </Toast.Root>
 
     </section>
   );

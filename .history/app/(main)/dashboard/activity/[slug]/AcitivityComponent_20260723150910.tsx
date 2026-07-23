@@ -412,7 +412,7 @@ export default function ActivityEditor({
           w-[360px]
           rounded-2xl
           border
-          border-green-500
+          border-gray-200
           bg-green-300
           
           p-5
@@ -425,7 +425,7 @@ export default function ActivityEditor({
           data-[state=closed]:slide-out-to-right-5
         "
       >
-        <Toast.Title className="font-semibold !text-green-900">
+        <Toast.Title className="font-semibold !text-white">
           {toastMessage}
         </Toast.Title>
       

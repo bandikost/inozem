@@ -64,12 +64,14 @@ export async function PUT(
       ]
     );
 
+    // DELETE OLD BLOCKS
 
     await db.query(
       `DELETE FROM blocks WHERE program_id = ?`,
       [programId]
     );
 
+    // INSERT NEW BLOCKS
 
     for (const block of blocks) {
 

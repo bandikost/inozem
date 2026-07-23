@@ -17,7 +17,6 @@ import {
 
 import BlockEditor from "./BlockEditor";
 import { Block } from "@/lib/Block/Block";
-import * as Toast from "@radix-ui/react-toast";
 
 type Program = {
   specialization: string;
@@ -54,9 +53,7 @@ export default function ProgramEditor({
     blocks: initialProgram?.blocks || [],
   });
 
-  const [collapsed, setCollapsed] = useState<Record<number, boolean>>({})
-    const [toastOpen, setToastOpen] = useState(false)
-  const [toastMessage, setToastMessage] = useState("");
+  const [collapsed, setCollapsed] = useState<Record<number, boolean>>({});
 
   const toggleBlock = (index: number) => {
     setCollapsed((prev) => ({
@@ -115,19 +112,17 @@ export default function ProgramEditor({
     const text = await res.text();
 
     if (!res.ok) {
-      setToastOpen(true);
-      setToastMessage(text)
+      console.error("Save failed raw response:", text);
       return;
     }
 
-    
-    setToastOpen(true)
+    console.log("SUCCESS:", text);
 
-    
+    alert(
       isEdit
-        ? setToastMessage("Программа успешно обновлена!")
-        : setToastMessage("Программа успешно создана!")
-    
+        ? "Программа обновлена"
+        : "Программа создана"
+    );
   };
 
   const removeBlock = (index: number) => {
@@ -383,26 +378,24 @@ export default function ProgramEditor({
           <br />
 
           <Field
-            label="Описание программы"
-            hint="Используется при ознакомлении с программой">
-            <div className="relative">
-              <textarea
-                value={program.description}
-                onChange={(e) =>
-                  setProgram((prev) => ({
-                    ...prev,
-                    description: e.target.value,
-                  }))
-                }
-                maxLength={2000}
-                rows={6}
-                placeholder="Введите описание программы..."
-                className="input-main min-h-[160px] resize-y pr-20"
-              />
-
-              <span className="pointer-events-none absolute bottom-3 right-3 text-xs text-gray-400">
-                {program.description.length} / 2000
+            label="Slug программы"
+            hint="Используется в URL"
+          >
+            <div className="flex overflow-hidden rounded-xl border border-gray-200 bg-gray-50">
+              <span className="flex items-center border-r border-gray-200 px-3 text-sm text-gray-400">
+               Описание программы
               </span>
+
+              <input
+                value={program.slug}
+                onChange={(e) =>
+                  setProgram({
+                    ...program,
+                    slug: e.target.value,
+                  })
+                }
+                className="w-full bg-transparent px-4 py-3.5 text-sm outline-none"
+              />
             </div>
           </Field>
 
@@ -563,38 +556,6 @@ export default function ProgramEditor({
           box-shadow: 0 0 0 3px rgb(37 99 235 / 0.1);
         }
       `}</style>
-
-<Toast.Root
-        open={toastOpen}
-        onOpenChange={setToastOpen}
-        className="
-          fixed
-          bottom-6
-          right-6
-          z-[100]
-          w-[360px]
-          rounded-2xl
-          border
-          border-green-500
-          bg-green-300
-          
-          p-5
-          shadow-[0_15px_50px_rgba(0,0,0,0.15)]
-          data-[state=open]:animate-in
-          data-[state=closed]:animate-out
-          data-[state=closed]:fade-out-80
-          data-[state=open]:fade-in-0
-          data-[state=open]:slide-in-from-right-5
-          data-[state=closed]:slide-out-to-right-5
-        "
-      >
-        <Toast.Title className="font-semibold !text-green-900">
-          {toastMessage}
-        </Toast.Title>
-      
-      </Toast.Root>
-
-
     </div>
   );
 }
