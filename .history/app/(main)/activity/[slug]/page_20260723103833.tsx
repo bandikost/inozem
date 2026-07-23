@@ -1,4 +1,4 @@
-import { getActivity, getActivityBySlug } from "@/lib/activity"
+import { getActivity } from "@/lib/activity"
 import { notFound } from "next/navigation"
 import parse, { domToReact, Element, DOMNode } from "html-react-parser"
 import ImageWithSkeleton from "@/components/ui/LazyLoad/ImageWithSkeleton"
@@ -9,23 +9,6 @@ interface PageProps {
   params: { slug: string }
 }
 
-interface ProgramsPageProps { 
-   params: { slug: string } // типизируем что хотм получить slug из url
-}
-
-export async function generateMetadata({ params }: ProgramsPageProps) {
-  const { slug } = await params 
-  const program = await getActivityBySlug(slug)
-  
-
-  return {
-    title: program
-      ? `${program.name} | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»`
-      : "Программа не найдена",
-  }
-}
-
-
 export default async function Page({ params }: PageProps) {
   const { slug } = await params
 
@@ -35,7 +18,7 @@ export default async function Page({ params }: PageProps) {
   if (!activity) return notFound()
 
   return (
-    <section className="min-h-screen mb-20">
+    <section className="min-h-screen">
     <div className="container mx-auto px-4 mt-27">
 
      <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500 px-6">
@@ -60,7 +43,7 @@ export default async function Page({ params }: PageProps) {
 
       {activity.title_bg ? (
         <div
-          className="relative min-h-[550px] flex items-center justify-center overflow-hidden rounded-2xl px-4"
+          className="relative min-h-[550px] flex items-center justify-center overflow-hidden"
           style={{
             backgroundImage: `url(${activity.title_bg})`,
             backgroundSize: "cover",
@@ -91,42 +74,25 @@ export default async function Page({ params }: PageProps) {
           </div>
         </div>
       ) : (
-        <div className="mx-auto mt-8 max-w-6xl px-4">
-          <div className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-white px-6 py-12 text-center shadow-sm md:px-12 md:py-16">
+        <div className="max-w-6xl mx-auto px-4 mt-6 text-center">
+          <h1 className="text-prpl !text-2xl">{activity.name}</h1>
 
-            <div className="absolute left-1/2 top-0 h-1 w-32 -translate-x-1/2 rounded-b-full bg-prpl" />
+          {activity.title && (
+            <div
+              className="mt-6 text-3xl text-gray-600 font-light"
+              dangerouslySetInnerHTML={{ __html: activity.title }}
+            />
+          )}
 
-            <div className="mx-auto max-w-4xl">
-
-              <div className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-prpl/70">
-                Образовательное мероприятие
-              </div>
-
-              <h1 className="!text-3xl font-bold leading-tight text-prpl md:!text-5xl">
-                {activity.name}
-              </h1>
-
-              {activity.title && (
-                <div
-                  className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-zinc-500 md:text-xl"
-                  dangerouslySetInnerHTML={{ __html: activity.title }}
-                />
-              )}
-
-              {activity.dates && (
-                <div className="mt-8 inline-flex items-center rounded-2xl bg-prpl/10 px-6 py-3 text-lg font-semibold text-prpl">
-                  {activity.dates}
-                </div>
-              )}
-
-            </div>
-
-          </div>
+          <div
+            className="mt-6 text-2xl text-prpl"
+            dangerouslySetInnerHTML={{ __html: activity.dates }}
+          />
         </div>
       )}
 
 
-      <div className="max-w-6xl mx-auto mt-14">
+      <div className="max-w-6xl mx-auto px-4 mt-14">
 
         <div className="rounded-3xl border border-zinc-200 bg-white p-8 md:p-10 shadow-sm text-lg text-default">
           {activity.description &&
@@ -136,7 +102,7 @@ export default async function Page({ params }: PageProps) {
                 if (domNode instanceof Element) {
                   if (domNode.name === "h2") {
                     return (
-                      <h2 className="text-prpl mb-5 !text-2xl">
+                      <h2 className="text-prpl mt-8 mb-5 !text-2xl">
                         {domToReact(
                           domNode.children as unknown as DOMNode[]
                         )}
@@ -222,121 +188,67 @@ export default async function Page({ params }: PageProps) {
           </div>
         )}
 
-       <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="grid md:grid-cols-2 gap-6 mt-10">
+          {activity.purpose && (
+            <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
+              <h2 className="text-prpl mb-4">Цель мероприятия</h2>
 
-  {activity.purpose && (
-    <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: activity.purpose,
+                }}
+              />
+            </div>
+          )}
 
-      <h2 className="mb-4 text-prpl">
-        Цель мероприятия
-      </h2>
+          {activity.audience && (
+            <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
+              <h2 className="text-prpl mb-4">Аудитория</h2>
 
-      <div
-        dangerouslySetInnerHTML={{
-          __html: activity.purpose,
-        }}
-      />
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: activity.audience,
+                }}
+              />
+            </div>
+          )}
 
-    </div>
-  )}
+          {activity.conditions && (
+            <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm md:col-span-2">
+              <h2 className="text-prpl mb-4">Условия участия</h2>
 
-  {activity.audience && (
-    <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: activity.conditions,
+                }}
+              />
+            </div>
+          )}
+        </div>
 
-      <h2 className="mb-4 text-prpl">
-        Аудитория
-      </h2>
+        {activity.description && (
+       
+            <div className="rounded-3xl bg-gradient-to-r from-green to-prpl p-8 text-center text-white">
 
-      <div
-        dangerouslySetInnerHTML={{
-          __html: activity.audience,
-        }}
-      />
+              <p className="mt-3 opacity-90">
+                Подайте заявку на участие или оплатите мероприятие онлайн.
+              </p>
 
-    </div>
-  )}
+              <div className="flex flex-col md:flex-row justify-center gap-4">
+                <LoadingLink href={`/activity-form?title=${encodeURIComponent(activity.title || activity.name)}`} className="!text-lg button-more">
+                  Подать заявку
+                </LoadingLink>
 
-</div>
-
-
-
-{(activity.conditions || activity.paylink) && (
-  <div className="mt-6 grid grid-cols-1 items-stretch gap-6 md:grid-cols-2">
-
-  
-    {activity.conditions && (
-      <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
-
-        <h2 className="mb-4 text-prpl">
-          Условия участия
-        </h2>
-
-        <div
-          dangerouslySetInnerHTML={{
-            __html: activity.conditions,
-          }}
-        />
-
-      </div>
-    )}
-
-
-
-    <div className="flex flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm">
-
-      <div className="flex flex-1 flex-col items-start bg-gradient-to-r from-green to-prpl px-8 py-10 text-left">
-
-        <h2 className="!text-2xl font-semibold text-prpl">
-          Примите участие
-        </h2>
-
-        <p className="text-default/80 text-left mt-1 !text-md">
-          Подайте заявку или зарегистрируйтесь на мероприятие.
-        </p>
-
-      </div>
-
-      <div className="flex flex-col gap-3 p-6 sm:flex-row">
-
-        <LoadingLink href={`/activity-form?title=${encodeURIComponent(activity.name)}`}
-          className="button-more w-full !p-4 !text-base"
-        >
-          Подать заявку
-        </LoadingLink>
-
-        {activity.paylink && (
-          <LoadingLink
-            href={activity.paylink}
-            className="
-              inline-flex
-              w-full
-              items-center
-              justify-center
-              rounded-2xl
-              border
-              border-prpl
-              px-5
-              py-3.5
-              text-base
-              font-medium
-              text-prpl
-              transition
-              hover:bg-prpl
-              hover:text-white
-            "
-          >
-            Оплатить
-          </LoadingLink>
+                {activity.paylink && (
+                  <LoadingLink href={activity.paylink} className="rounded-2xl button-more-bulge border border-white px-8 py-4 text-lg hover:bg-white hover:text-prpl transition">
+                    Оплатить участие
+                  </LoadingLink>
+                )}
+              </div>
+            </div>
+       
         )}
-
       </div>
-
-    </div>
-
-  </div>
-)}
-</div>
-      
       </div>
     </section>
   )

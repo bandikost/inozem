@@ -106,15 +106,15 @@ export default async function Programms() {
 
                   </div>
 
-                  <div className="mt-auto flex items-center justify-between border-t border-zinc-100 pt-5">
+                  <div className="mt-auto pt-6 border-zinc-200 flex items-center justify-between">
 
-                    <div className="flex items-center gap-2 text-sm text-zinc-600">
+                    <div className="flex items-center gap-2">
                       <Clock3
-                        size={17}
+                        size={18}
                         className="text-blue"
                       />
 
-                      <span>
+                      <span className="text-zinc-700">
                         {program.time} акад.{" "}
                         {getHourWord(program.time)}
                       </span>
@@ -123,21 +123,20 @@ export default async function Programms() {
                     <LoadingLink
                       href={`/programs/${program.slug}`}
                       className="
-                        group
                         inline-flex
                         items-center
                         gap-2
-                        font-medium
-                        text-blue
-                        transition-colors
-                        hover:text-prpl
+                        rounded-xl
+                        bg-blue
+                        px-5
+                        py-3
+                        !text-white
+                        hover:opacity-90
+                        transition
                       "
                     >
                       Подробнее
-                      <ArrowRight
-                        size={18}
-                        className="transition-transform duration-200 group-hover:translate-x-1"
-                      />
+                      <ArrowRight size={18} />
                     </LoadingLink>
 
                   </div>
@@ -165,7 +164,7 @@ export default async function Programms() {
       transition-all
       duration-200
       hover:bg-blue
-      hover:!text-white
+      group-hover:text-white
     "
   >
     Все программы образования

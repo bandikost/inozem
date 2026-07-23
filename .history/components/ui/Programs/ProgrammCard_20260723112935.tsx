@@ -170,17 +170,13 @@ function ProgrammCard({ filteredPrograms, visibleItems, handleShowMore }: Progra
 
             </div>
 
-           <div className="mt-8 flex flex-col gap-5 border-t border-zinc-100 pt-5 lg:flex-row lg:items-center lg:justify-between">
+            <div className="mt-8 border-t pt-6 border-gray-400 flex flex-col lg:flex-row justify-between lg:items-center gap-6">
 
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <div className="flex flex-wrap gap-6">
 
-                <div className="flex items-center gap-2 text-sm text-zinc-600">
-                  <Clock3
-                    className="text-blue"
-                    size={18}
-                  />
-
-                  <span className="!font-normal">
+                <div className="flex items-center gap-2">
+                  <Clock3 className="text-blue" size={20} />
+                  <span className="!font-normal text-zinc-800">
                     {program.time}
                     {program.time_secondary
                       ? ` / ${program.time_secondary}`
@@ -190,40 +186,73 @@ function ProgrammCard({ filteredPrograms, visibleItems, handleShowMore }: Progra
                   </span>
                 </div>
 
-                <div className="text-lg font-semibold text-green-700">
-                  {program.price} ₽
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-bold text-green-700">
+                    {program.price} ₽
+                  </span>
                 </div>
+                 
+<div className="mt-auto flex items-center justify-between border-t border-zinc-100 pt-5">
 
-                <div className="text-sm font-medium text-zinc-500">
-                  Очная форма обучения
-                </div>
+  <div className="flex items-center gap-2 text-sm text-zinc-600">
+    <Clock3
+      size={17}
+      className="text-blue"
+    />
+
+    <span>
+      {program.time} акад.{" "}
+      {getHourWord(program.time)}
+    </span>
+  </div>
+  
+
+  <LoadingLink
+    href={`/programs/${program.slug}`}
+    className="
+      group
+      inline-flex
+      items-center
+      gap-2
+      font-medium
+      text-blue
+      transition-colors
+      hover:text-prpl
+    "
+  >
+    Подробнее
+    <ArrowRight
+      size={18}
+      className="transition-transform duration-200 group-hover:translate-x-1"
+    />
+  </LoadingLink>
+
+</div>
+
 
               </div>
 
               <LoadingLink
                 href={`/programs/${program.slug}`}
                 className="
-                  group
-                  inline-flex
-                  items-center
-                  gap-2
-                  font-medium
-                  text-blue
-                  transition-colors
-                  hover:text-prpl
+                inline-flex
+                items-center
+                gap-2
+                rounded-xl
+                bg-blue
+                px-6
+                py-3
+                !text-white
+                font-medium
+                hover:opacity-90
+                transition
                 "
               >
                 Подробнее
-
-                <ArrowRight
-                  size={18}
-                  className="transition-transform duration-200 group-hover:translate-x-1"
-                />
+                <ArrowRight size={18} />
               </LoadingLink>
 
             </div>
-
-              
 
           </div>
         </article>

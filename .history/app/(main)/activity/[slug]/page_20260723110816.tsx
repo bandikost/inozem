@@ -284,13 +284,13 @@ export default async function Page({ params }: PageProps) {
 
     <div className="flex flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm">
 
-      <div className="flex flex-1 flex-col items-start bg-gradient-to-r from-green to-prpl px-8 py-10 text-left">
+      <div className="flex flex-1 flex-col justify-center bg-gradient-to-r from-green to-prpl px-8 py-10 text-center">
 
         <h2 className="!text-2xl font-semibold text-prpl">
           Примите участие
         </h2>
 
-        <p className="text-default/80 text-left mt-1 !text-md">
+        <p className="mx-auto mt-3 max-w-sm text-white/80">
           Подайте заявку или зарегистрируйтесь на мероприятие.
         </p>
 
@@ -298,7 +298,10 @@ export default async function Page({ params }: PageProps) {
 
       <div className="flex flex-col gap-3 p-6 sm:flex-row">
 
-        <LoadingLink href={`/activity-form?title=${encodeURIComponent(activity.name)}`}
+        <LoadingLink
+          href={`/activity-form?title=${encodeURIComponent(
+            activity.title || activity.name
+          )}`}
           className="button-more w-full !p-4 !text-base"
         >
           Подать заявку

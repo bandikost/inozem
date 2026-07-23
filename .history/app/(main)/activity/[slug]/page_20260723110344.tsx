@@ -222,121 +222,103 @@ export default async function Page({ params }: PageProps) {
           </div>
         )}
 
-       <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="grid md:grid-cols-2 gap-6 mt-10">
+          {activity.purpose && (
+            <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
+              <h2 className="text-prpl mb-4">Цель мероприятия</h2>
 
-  {activity.purpose && (
-    <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: activity.purpose,
+                }}
+              />
+            </div>
+          )}
 
-      <h2 className="mb-4 text-prpl">
-        Цель мероприятия
+          {activity.audience && (
+            <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
+              <h2 className="text-prpl mb-4">Аудитория</h2>
+
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: activity.audience,
+                }}
+              />
+            </div>
+          )}
+
+          {activity.conditions && (
+            <div className="grid grid-cols-1 md:grid-cols-2">
+            <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm md:col-span-2 ">
+              <h2 className="text-prpl mb-4">Условия участия</h2>
+
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: activity.conditions,
+                }}
+              />
+
+               {activity.description && (
+  <div className="mt-10 overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm">
+
+    <div className="bg-gradient-to-r from-green to-prpl px-8 py-10 text-center text-white md:px-12">
+
+      <h2 className="!text-2xl font-semibold text-prpl">
+        Примите участие в мероприятии
       </h2>
 
-      <div
-        dangerouslySetInnerHTML={{
-          __html: activity.purpose,
-        }}
-      />
+      <p className="mx-auto mt-3 max-w-2xl text-white/80 text-default">
+        Подайте заявку на участие или зарегистрируйтесь на мероприятие.
+      </p>
 
     </div>
-  )}
 
-  {activity.audience && (
-    <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
+    <div className="flex flex-col items-center justify-center gap-4 px-8 py-8 sm:flex-row ">
 
-      <h2 className="mb-4 text-prpl">
-        Аудитория
-      </h2>
+      <LoadingLink
+        href={`/activity-form?title=${encodeURIComponent(
+          activity.title || activity.name
+        )}`}
+        className="button-more !p-4 !text-xl !text-base w-full"
+      >
+        Подать заявку
+      </LoadingLink>
 
-      <div
-        dangerouslySetInnerHTML={{
-          __html: activity.audience,
-        }}
-      />
-
-    </div>
-  )}
-
-</div>
-
-
-
-{(activity.conditions || activity.paylink) && (
-  <div className="mt-6 grid grid-cols-1 items-stretch gap-6 md:grid-cols-2">
-
-  
-    {activity.conditions && (
-      <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
-
-        <h2 className="mb-4 text-prpl">
-          Условия участия
-        </h2>
-
-        <div
-          dangerouslySetInnerHTML={{
-            __html: activity.conditions,
-          }}
-        />
-
-      </div>
-    )}
-
-
-
-    <div className="flex flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm">
-
-      <div className="flex flex-1 flex-col items-start bg-gradient-to-r from-green to-prpl px-8 py-10 text-left">
-
-        <h2 className="!text-2xl font-semibold text-prpl">
-          Примите участие
-        </h2>
-
-        <p className="text-default/80 text-left mt-1 !text-md">
-          Подайте заявку или зарегистрируйтесь на мероприятие.
-        </p>
-
-      </div>
-
-      <div className="flex flex-col gap-3 p-6 sm:flex-row">
-
-        <LoadingLink href={`/activity-form?title=${encodeURIComponent(activity.name)}`}
-          className="button-more w-full !p-4 !text-base"
+      {activity.paylink && (
+        <LoadingLink
+          href={activity.paylink}
+          className="
+            inline-flex
+            items-center
+            justify-center
+            rounded-2xl
+            border
+            border-prpl
+            px-7
+            py-3.5
+            text-base
+            font-medium
+            text-prpl
+            transition
+            hover:bg-prpl
+            hover:text-white
+          "
         >
-          Подать заявку
+          Оплатить участие
         </LoadingLink>
-
-        {activity.paylink && (
-          <LoadingLink
-            href={activity.paylink}
-            className="
-              inline-flex
-              w-full
-              items-center
-              justify-center
-              rounded-2xl
-              border
-              border-prpl
-              px-5
-              py-3.5
-              text-base
-              font-medium
-              text-prpl
-              transition
-              hover:bg-prpl
-              hover:text-white
-            "
-          >
-            Оплатить
-          </LoadingLink>
-        )}
-
-      </div>
+      )}
 
     </div>
 
   </div>
 )}
-</div>
+            </div>
+            </div>
+          )}
+        </div>
+
       
+      </div>
       </div>
     </section>
   )

@@ -91,7 +91,20 @@ export default function FormActivity({
             },
           })
         }
-        className="w-full max-w-3xl rounded-3xl border border-gray-200 bg-white p-8 shadow-2xl">
+        className="w-full max-w-3xl rounded-3xl border border-gray-200 bg-white p-8 shadow-2xl"
+      >
+
+        <div className="mb-8 text-center">
+
+          <h2 className="text-3xl font-bold text-prpl">
+            Форма подачи заявки
+          </h2>
+
+          <p className="mt-2 text-gray-500">
+            Заполните контактные данные, и мы зарегистрируем вашу заявку.
+          </p>
+
+        </div>
 
 
         <div className="mb-8 rounded-2xl border border-prpl/15 bg-prpl/5 p-5">

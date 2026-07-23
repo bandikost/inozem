@@ -85,7 +85,7 @@ console.timeEnd("TOTAL_PAGE")
             <ChevronRight size={14} className="shrink-0" />
 
             <LoadingLink href="/programs" className="shrink-0 hover:text-blue transition hover:underline">
-              Образование
+              Программы обучения
             </LoadingLink>
       
             <ChevronRight size={14} className="shrink-0" />

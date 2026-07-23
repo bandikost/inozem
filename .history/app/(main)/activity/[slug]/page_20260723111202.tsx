@@ -290,7 +290,7 @@ export default async function Page({ params }: PageProps) {
           Примите участие
         </h2>
 
-        <p className="text-default/80 text-left mt-1 !text-md">
+        <p className="text-default/80 text-left mt-1">
           Подайте заявку или зарегистрируйтесь на мероприятие.
         </p>
 
@@ -298,7 +298,10 @@ export default async function Page({ params }: PageProps) {
 
       <div className="flex flex-col gap-3 p-6 sm:flex-row">
 
-        <LoadingLink href={`/activity-form?title=${encodeURIComponent(activity.name)}`}
+        <LoadingLink
+          href={`/activity-form?title=${encodeURIComponent(
+            activity.title || activity.name
+          )}`}
           className="button-more w-full !p-4 !text-base"
         >
           Подать заявку
