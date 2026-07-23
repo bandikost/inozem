@@ -33,7 +33,46 @@ export default function ProgramList({ program }: Props) {
   }, [program, value])
 
   return (
-    <section className="mx-auto mt-27 max-w-7xl pb-16">
+    <section className="mx-auto mt-27 max-w-7xl px-6 pb-16">
+
+      <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
+
+        <Link
+          href="/dashboard/manager"
+          className="
+            shrink-0
+            transition
+            hover:text-blue
+            hover:underline
+          "
+        >
+          Главная страница Админки
+        </Link>
+
+        <ChevronRight
+          size={14}
+          className="shrink-0"
+        />
+
+        <span className="min-w-0 flex-1 truncate text-zinc-800 opacity-70">
+          Программы
+        </span>
+
+      </nav>
+
+
+
+      <div className="mb-10">
+
+        <h1 className="text-4xl font-bold">
+          Каталог программ
+        </h1>
+
+        <p className="mt-2 text-zinc-500">
+          Редактирование содержимого образовательных программ.
+        </p>
+
+      </div>
 
 
       <div className="mb-8">

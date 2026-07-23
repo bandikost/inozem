@@ -92,19 +92,20 @@ export default function UsersClient({
       <div className="mx-auto max-w-6xl">
 
     
-        <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
-              
-                        <LoadingLink href="/dashboard/manager" className="shrink-0 hover:text-blue transition hover:underline">
-                            Главная страница Админки
-                        </LoadingLink>
-                    
-                        <ChevronRight size={14} className="shrink-0" />
-                    
-                        <span className="min-w-0 flex-1 truncate text-zinc-800 opacity-70">
-                            Пользователи
-                        </span>
-                    
-                    </nav>
+        <nav className="mb-8 flex items-center gap-2 text-sm text-zinc-500">
+          <LoadingLink
+            href="/dashboard/manager"
+            className="transition hover:text-prpl"
+          >
+            Главная страница админки
+          </LoadingLink>
+
+          <ChevronRight size={15} />
+
+          <span className="text-zinc-800">
+            Пользователи
+          </span>
+        </nav>
 
    
         <div className="mb-8">
@@ -299,16 +300,13 @@ export default function UsersClient({
                                     href={`/programs/${program.slug}`}
                                     className="
                                       rounded-lg
-                                      bg-blue
-                                      border
-                                      border-gray-200
-                                      p-3
+                                      bg-prpl/8
                                       px-3
                                       py-2
                                       text-sm
-                                      !text-white
+                                      text-prpl
                                       transition
-                                      hover:opacity-70
+                                      hover:bg-prpl/15
                                     "
                                   >
                                     {program.name}
@@ -330,7 +328,7 @@ export default function UsersClient({
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
 
                       <div className="flex-1">
-                        <label className="mb-2 block text-md font-medium text-zinc-800">
+                        <label className="mb-2 block text-sm font-medium text-zinc-800">
                           Добавить программу
                         </label>
 
@@ -350,7 +348,7 @@ export default function UsersClient({
                             border-zinc-200
                             bg-white
                             px-3
-                            text-md
+                            text-sm
                             text-zinc-700
                             outline-none
                             transition
@@ -455,7 +453,7 @@ function InfoItem({
       </div>
 
       <div className="min-w-0">
-        <p className="text-xs text-blue">
+        <p className="text-xs text-zinc-400">
           {label}
         </p>
 

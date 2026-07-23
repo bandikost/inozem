@@ -33,7 +33,19 @@ export default function ProgramList({ program }: Props) {
   }, [program, value])
 
   return (
-    <section className="mx-auto mt-27 max-w-7xl pb-16">
+    <section className="mx-auto mt-27 max-w-7xl px-6 pb-16">
+
+      <div className="mb-10">
+
+        <h1 className="text-4xl font-bold">
+          Каталог программ
+        </h1>
+
+        <p className="mt-2 text-zinc-500">
+          Редактирование содержимого образовательных программ.
+        </p>
+
+      </div>
 
 
       <div className="mb-8">

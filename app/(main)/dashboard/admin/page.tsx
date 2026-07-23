@@ -38,7 +38,7 @@ export default async function Page() {
                 </span>
             
             </nav>
-                <h1 className="text-prpl font-semibold  text-center ">Редактирование / Добавление программы</h1>
+                <h1 className="text-prpl font-semibold  text-right ">Редактирование / Добавление программы</h1>
             </div>
 
             <ProgramList program={program} />

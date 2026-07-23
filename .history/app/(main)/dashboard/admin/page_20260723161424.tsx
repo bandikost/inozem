@@ -1,9 +1,10 @@
 import { getPrograms } from "@/lib/programm"
 import ProgramList from "./components/Programlist"
 import Link from "next/link"
-import { MoveLeft } from "lucide-react"
+import { ChevronRight, MoveLeft } from "lucide-react"
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import LoadingLink from "@/components/Load/LoadingLink";
 
 
 export const dynamic = "force-dynamic";
@@ -24,8 +25,20 @@ export default async function Page() {
         <section className="flex flex-col px-4 mb-10">
 
             <div className="flex items-center justify-between mt-27">
-                <Link href="/dashboard/manager" className="!text-lg !font-normal hover:underline flex items-center gap-1"><MoveLeft size={20} /> Вернуться в меню</Link>
-                <h1 className="text-prpl font-semibold  text-center ">Редактирование / Добавление программы</h1>
+                <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
+      
+                <LoadingLink href="/dashboard/manager" className="shrink-0 hover:text-blue transition hover:underline">
+                    Главная страница Админки
+                </LoadingLink>
+            
+                <ChevronRight size={14} className="shrink-0" />
+            
+                <span className="min-w-0 flex-1 truncate text-zinc-800 opacity-70">
+                    Редактор программ
+                </span>
+            
+            </nav>
+                <h1 className="text-prpl font-semibold  text-right ">Редактирование / Добавление программы</h1>
             </div>
 
             <ProgramList program={program} />
