@@ -11,6 +11,7 @@ import { getProgramBlocks } from "@/lib/programs/structure";
 import Main from "./Blocks/Main";
 import LoadingLink from "@/components/Load/LoadingLink";
 import { ChevronRight } from "lucide-react";
+import { cookies } from "next/headers";
 
 interface ProgramsPageProps { 
    params: { slug: string } // типизируем что хотм получить slug из url
@@ -35,12 +36,11 @@ export async function generateMetadata({ params }: ProgramsPageProps) {
 }
 
 export default async function Page({ params }: ProgramsPageProps) {
-  const { slug } = await params // получаем slug из url, например, "urologiya" для /programs/urologiya
-   console.time("TOTAL_PAGE")
+  const { slug } = await params 
 
   const programPromise = getProgramBySlug(slug)
-
-  const token = await TokenCheck()
+  const cookieStore = await cookies() 
+  const token = cookieStore.get("token")?.value 
 
   const program = await programPromise
 
@@ -70,8 +70,6 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
   ),
 }))
 
-
-console.timeEnd("TOTAL_PAGE")
 
   return (
    <section className="min-h-screen">
