@@ -150,7 +150,7 @@ export default async function Activity() {
               hover:!text-white
             "
           >
-            Все ближайшие мероприятия
+            Все мероприятия
         
             <ArrowRight
               size={18}

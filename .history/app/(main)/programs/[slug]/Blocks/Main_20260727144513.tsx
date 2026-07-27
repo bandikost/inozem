@@ -63,7 +63,7 @@ export default function Main({ sources = [], links = [] }: Props) {
     <section className="relative py-6">
       <div className="mx-auto max-w-6xl">
         <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.10)]">
-          <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
+          <div className="h-1 bg-gradient-to-r from-violet-500 via-fuchsia-500 to-sky-500" />
 
           <div className="space-y-12 p-5 md:p-8">
             {hasLinks &&
@@ -81,7 +81,7 @@ export default function Main({ sources = [], links = [] }: Props) {
                         className="group flex itwms-start xs:items-center justify-between flex-col xs:flex-row rounded-2xl border border-slate-200 bg-white px-4 py-4 text-base text-slate-800 shadow-sm transition-all hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-md md:text-lg"
                       >
                         <span className="pr-4 leading-snug">{link.name}</span>
-                        <span className="shrink-0 rounded-full bg-violet-50 px-3 py-1 text-sm font-medium text-violet-700 transition-colors group-hover:bg-violet-100 mt-4 xs:mt-0">
+                        <span className="shrink-0 rounded-full bg-violet-50 px-3 py-1 text-xs font-medium text-violet-700 transition-colors group-hover:bg-violet-100 mt-4 xs:mt-0">
                           открыть
                         </span>
                       </a>

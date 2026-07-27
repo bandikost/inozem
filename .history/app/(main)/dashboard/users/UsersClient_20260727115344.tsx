@@ -1,6 +1,5 @@
 "use client"
 
-import * as Toast from "@radix-ui/react-toast";
 import { UserRow } from "@/app/interface/user"
 import LoadingLink from "@/components/Load/LoadingLink"
 import { getHourWord } from "@/components/ui/GetHourWord"
@@ -27,8 +26,6 @@ export default function UsersClient({
   users,
   programs,
 }: UsersClientProps) {
-  const [toastOpen, setToastOpen] = useState(false)
-  const [toastMessage, setToastMessage] = useState("");
   const [value, setValue] = useState("")
   const [visibleItems, setVisibleItems] = useState(8)
   const [selectedPrograms, setSelectedPrograms] = useState<
@@ -50,8 +47,7 @@ export default function UsersClient({
     const programId = selectedPrograms[userId]
 
     if (!programId) {
-      setToastMessage("Выберите программу!");
-      setToastOpen(true);
+      alert("Выберите программу")
       return
     }
 
@@ -71,13 +67,11 @@ export default function UsersClient({
         throw new Error("Ошибка назначения")
       }
 
-      setToastMessage("Программа назначена ✅");
-      setToastOpen(true);
+      alert("Программа назначена ✅")
       window.location.reload()
     } catch (error) {
       console.error(error)
-      setToastMessage(`Ошибка: ${error}`);
-      setToastOpen(true);
+      alert("Ошибка сервера")
     }
   }
 

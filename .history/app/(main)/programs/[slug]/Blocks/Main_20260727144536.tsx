@@ -63,7 +63,7 @@ export default function Main({ sources = [], links = [] }: Props) {
     <section className="relative py-6">
       <div className="mx-auto max-w-6xl">
         <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.10)]">
-          <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
+          <div className="h-1 bg-gradient-to-r from-violet-500 via-fuchsia-500 to-sky-500" />
 
           <div className="space-y-12 p-5 md:p-8">
             {hasLinks &&

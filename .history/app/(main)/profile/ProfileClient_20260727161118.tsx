@@ -174,7 +174,7 @@ export default function ProfileClient({programs, user} : Props) {
       <div className="mt-8 rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] overflow-hidden">
   <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
 
-  <div className="p-6 md:p-8 flex h-full flex-col">
+  <div className="p-6 md:p-8 flex flex-col justify-between">
     <div className="flex items-center gap-3">
       <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 ring-1 ring-violet-100">
         <Star size={22} strokeWidth={1.8} />

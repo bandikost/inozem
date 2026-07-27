@@ -171,10 +171,10 @@ export default function ProfileClient({programs, user} : Props) {
   </div>
 
 
-      <div className="mt-8 rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] overflow-hidden">
-  <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
+      <div className="mt-8 flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
+  <div className="h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
 
-  <div className="p-6 md:p-8 flex h-full flex-col">
+  <div className="flex h-full flex-1 flex-col p-6 md:p-8">
     <div className="flex items-center gap-3">
       <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 ring-1 ring-violet-100">
         <Star size={22} strokeWidth={1.8} />
@@ -184,23 +184,28 @@ export default function ProfileClient({programs, user} : Props) {
         <h3 className="text-xl font-semibold tracking-tight text-prpl md:text-2xl">
           Впечатления
         </h3>
+
         <p className="mt-1 text-sm text-slate-500">
           Помогите нам стать лучше
         </p>
       </div>
     </div>
 
-    <div className="mt-6 rounded-2xl border border-dashed border-slate-200 bg-slate-50/70 px-4 py-5 ">
+    <div className="mt-6 rounded-2xl border border-dashed border-slate-200 bg-slate-50/70 px-4 py-5">
       <p className="text-sm leading-relaxed text-slate-500">
-     Мы будем благодарны вам за ваши впечатления и предложения по нашему новому сайту.
+        Мы будем благодарны вам за ваши впечатления и предложения по нашему новому сайту.
       </p>
-     
     </div>
-     <LoadingLink className="w-full button-more mt-8" href="/proposition" aria-label="Переход к форме предложения">Перейти к форме</LoadingLink>
+
+    <LoadingLink
+      className="button-more mt-auto w-full"
+      href="/proposition"
+      aria-label="Переход к форме предложения"
+    >
+      Перейти к форме
+    </LoadingLink>
   </div>
-
-
-      </div> 
+</div>
       
      <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white p-6">
                 <div className="flex flex-col text-center sm:text-left sm:flex-row items-center gap-3">
