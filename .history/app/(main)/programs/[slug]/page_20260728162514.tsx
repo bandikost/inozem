@@ -185,7 +185,7 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
           >
             Контакты
           </LoadingLink>
-        
+          <br />
          
         </div>
       </div>

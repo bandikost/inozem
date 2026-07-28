@@ -185,7 +185,7 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
           >
             Контакты
           </LoadingLink>
-        
+          <br />
          
         </div>
       </div>
@@ -215,14 +215,13 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
           />
         </div> 
         <PayButton programId={program.id} />  */}
-        <LoadingLink
+      </div>
+ <LoadingLink
             className="button-more w-full"
             href="/question"
           >
             Задать вопрос
           </LoadingLink>
-      </div>
- 
     </div>
   </section>
 </>
