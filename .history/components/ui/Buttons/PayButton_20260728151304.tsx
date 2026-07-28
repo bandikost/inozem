@@ -1,0 +1,53 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
+type Props = {
+  programId: number;
+};
+
+export default function PayButton({ programId }: Props) {
+  const router = useRouter();
+
+  const pay = async () => {
+
+    // проверяем авторизацию
+    const userRes = await fetch("/api/profile");
+
+    const user = await userRes.json();
+
+
+    if (!user) {
+      router.push("/login");
+      return;
+    }
+
+
+    // если пользователь есть - запускаем оплату
+    const res = await fetch("/api/payment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        programId,
+        userId: user.id,
+      }),
+    });
+
+
+    const data = await res.json();
+
+
+    if (data.Success) {
+      window.location.href = data.PaymentURL;
+    }
+  };
+
+
+  return (
+    <button onClick={pay}>
+      Оплатить онлайн
+    </button>
+  );
+}

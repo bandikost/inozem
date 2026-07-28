@@ -1,5 +1,6 @@
 import { getProgramBySlug, hasUserProgram } from "@/lib/programm";
 import { getProfile } from "@/lib/getProfile";
+import { redirect } from "next/navigation";
 import ProgramSlider from "./Components/ProgramSlider";
 
 // Блоки обучения
@@ -53,7 +54,6 @@ export default async function Page({ params }: ProgramsPageProps) {
 
     hasAccess = await hasUserProgram(user.id, program.id)
   }
-  
   
   const dates = program.dates?.split("\n").filter(Boolean) ?? []
   
@@ -212,7 +212,7 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
             userId={user ? user.id : 0}
           />
         </div> */} 
-        <PayButton programId={program.id} />
+        <PayButton programId={program.id} userId={user.id} />
       </div>
 
     </div>

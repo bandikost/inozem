@@ -1,5 +1,8 @@
 import { getProgramBySlug, hasUserProgram } from "@/lib/programm";
+import ProgramSelect from "./SelectProgramm";
 import { getProfile } from "@/lib/getProfile";
+import Link from "next/link";
+import TokenCheck from "@/components/token/token";
 import ProgramSlider from "./Components/ProgramSlider";
 
 // Блоки обучения
@@ -9,7 +12,6 @@ import Main from "./Blocks/Main";
 import LoadingLink from "@/components/Load/LoadingLink";
 import { ChevronRight } from "lucide-react";
 import { cookies } from "next/headers";
-import PayButton from "@/components/ui/Buttons/PayButton";
 
 interface ProgramsPageProps { 
    params: { slug: string } // типизируем что хотм получить slug из url
@@ -53,7 +55,6 @@ export default async function Page({ params }: ProgramsPageProps) {
 
     hasAccess = await hasUserProgram(user.id, program.id)
   }
-  
   
   const dates = program.dates?.split("\n").filter(Boolean) ?? []
   
@@ -212,7 +213,12 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
             userId={user ? user.id : 0}
           />
         </div> */} 
-        <PayButton programId={program.id} />
+        <LoadingLink
+            className="button-more"
+            href="/bid"
+          >
+            Подать заявку
+          </LoadingLink>
       </div>
 
     </div>

@@ -1,0 +1,9 @@
+
+
+export default function Page() {
+
+  
+
+
+  return <h1>Оплата прошла успешно!</h1>
+}

@@ -207,9 +207,7 @@ export default function ProfileClient({programs, user} : Props) {
           <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
           <div className="p-6 md:p-8 flex flex-col h-full">
         <div className="flex flex-col text-center sm:text-left sm:flex-row items-center gap-3">
-           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 ring-1 ring-violet-100">
-            <KeyRound size={22} strokeWidth={1.8}  />
-          </div>
+          <KeyRound className="text-prpl" size={30} />
             <div>
               <h3 className="text-2xl font-semibold text-prpl">Безопасность</h3>
               <p className="text-gray-500">Измените пароль для входа</p>
@@ -226,7 +224,7 @@ export default function ProfileClient({programs, user} : Props) {
             <div className="p-6 md:p-8 flex flex-col h-full">
         <div className="flex flex-col text-center sm:text-left sm:flex-row items-center gap-3">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 ring-1 ring-violet-100">
-            <Pencil size={22} strokeWidth={1.8}  />
+            <Pencil className="text-prpl" size={30} />
           </div>
           
             <div>

@@ -4,7 +4,7 @@ import { UserRow } from "@/app/interface/user"
 import LoadingLink from "@/components/Load/LoadingLink"
 import LogoutButton from "@/components/ui/Buttons/LogoutButton"
 import { ProgramRow } from "@/lib/programm"
-import { CalendarDays, ChevronRight, CircleUserRound, GraduationCap, Handshake, Heart, LogOutIcon, Pencil, Star } from "lucide-react"
+import { CalendarDays, ChevronRight, CircleUserRound, GraduationCap, Heart, LogOutIcon, Star } from "lucide-react"
 import { useState } from "react"
 import { KeyRound } from "lucide-react"
 
@@ -22,7 +22,7 @@ export default function ProfileClient({programs, user} : Props) {
     : programs.slice(0, 2)
 
     return (
-         <section className="min-h-screen pb-10">
+         <section className="min-h-screen">
     <div className="container max-w-6xl px-4 my-27">
            <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500 px-6">
       
@@ -177,7 +177,7 @@ export default function ProfileClient({programs, user} : Props) {
   <div className="p-6 md:p-8 flex h-full flex-col">
     <div className="flex items-center gap-3">
       <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 ring-1 ring-violet-100">
-        <Handshake size={22} strokeWidth={1.8} />
+        <Star size={22} strokeWidth={1.8} />
       </div>
 
       <div>
@@ -202,43 +202,21 @@ export default function ProfileClient({programs, user} : Props) {
 
       </div> 
 
-      
-        <div className="mt-8 flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
-          <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
-          <div className="p-6 md:p-8 flex flex-col h-full">
+      <div className="grid grid-cols-2 gap-3">
+        
+      <div className="border border-gray-300 mt-8 rounded shadow-2xl bg-white p-6">
         <div className="flex flex-col text-center sm:text-left sm:flex-row items-center gap-3">
-           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 ring-1 ring-violet-100">
-            <KeyRound size={22} strokeWidth={1.8}  />
-          </div>
+          <KeyRound className="text-prpl" size={30} />
             <div>
               <h3 className="text-2xl font-semibold text-prpl">Безопасность</h3>
-              <p className="text-gray-500">Измените пароль для входа</p>
+              <p className="text-gray-500">Измените пароль для входа в личный кабинет.</p>
             </div>
         </div>
 
         <LoadingLink href="/profile/change-password" className="w-full mt-6 button-more">Сменить пароль</LoadingLink>
-        </div>
       </div>
 
-      {!user.isTeacher && (
-        <div className="mt-8 flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
-          <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
-            <div className="p-6 md:p-8 flex flex-col h-full">
-        <div className="flex flex-col text-center sm:text-left sm:flex-row items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 ring-1 ring-violet-100">
-            <Pencil size={22} strokeWidth={1.8}  />
-          </div>
-          
-            <div>
-              <h3 className="text-2xl font-semibold text-prpl">Информация о вас</h3>
-              <p className="text-gray-500">Измените или дополните ее </p>
-            </div>
-        </div>
-
-        <LoadingLink href="/profile/change-password" className="w-full mt-6 button-more">Сменить пароль</LoadingLink>
-        </div>
       </div>
-      )}
       
      
 

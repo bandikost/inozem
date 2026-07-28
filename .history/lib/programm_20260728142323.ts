@@ -168,9 +168,9 @@ const programBySlugCache = new Map<string, ProgramRow>()
 const programBySlugTime = new Map<string, number>()
 
 
-export async function getProgramById(id:number) {
+export default async function getProgramById(id:number) {
 
-  const [rows] = await db.query<ProgramRow[]>( 
+  const [rows] = await db.query( 
     "Select * from programms where id = ?", [id]
   )
 
