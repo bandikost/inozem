@@ -22,7 +22,6 @@ function makeToken(data: Record<string, any>, password: string) {
 }
 
 export async function POST(request: Request) {
-  try {
   const { programId, userId } = await request.json();
 
   const program = await getProgramById(programId);
@@ -105,21 +104,5 @@ if (tinkoffResponse.Success && tinkoffResponse.PaymentId) {
 }
 
 
-  return NextResponse.json(await res.json())
-
-}
-
-catch (error) {
-    console.error("PAYMENT ERROR:", error);
-
-    return NextResponse.json(
-      {
-        error: "Payment init failed",
-        details: String(error)
-      },
-      {
-        status: 500
-      }
-    );
-  }
+  return NextResponse.json(await res.json());
 }
