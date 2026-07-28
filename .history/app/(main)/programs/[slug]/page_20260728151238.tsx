@@ -211,8 +211,8 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
             program={program}
             userId={user ? user.id : 0}
           />
-        </div> 
-       {/*  <PayButton programId={program.id} />*/}  
+        </div> */} 
+        <PayButton programId={program.id} />
       </div>
 
     </div>
