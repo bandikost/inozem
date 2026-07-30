@@ -93,15 +93,10 @@ export default function ActivityEditor({
         headers: {
           "Content-Type": "application/json",
         },
-         body: JSON.stringify({
-        ...form,
-        price: form.price
-          ? Number(form.price)
-          : 0,
-        year: form.year
-          ? Number(form.year)
-          : null,
-      }),
+        body: JSON.stringify({
+          ...form,
+          year: form.year ? Number(form.year) : null,
+        }),
       });
 
       const data = await response.json();

@@ -300,9 +300,9 @@ export default async function Page({ params }: PageProps) {
 
       </div>
 
-      <div className="flex flex-col gap-3 p-6 ">
+      <div className="flex flex-col gap-3 p-6 sm:flex-row">
         {activity.price > 0 && (
-              <p className="mt-10 !text-lg text-zinc-500 !font-semibold">Стоимость участия: {activity.price} ₽</p>
+              <p className="mt-10 text-lg text-green-300">Стоимость участия: {activity.price} ₽</p>
             )}
 
         <LoadingLink href={`/activity-form?title=${encodeURIComponent(activity.name)}`}

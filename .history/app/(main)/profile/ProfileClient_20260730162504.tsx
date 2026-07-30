@@ -231,16 +231,16 @@ export default function ProfileClient({programs, user, tests} : Props) {
           tests.map((test)=>(
           <div
           key={test.id}
-        
+          className="rounded-xl p-4"
           >
 
-          <p className="font-semibold border border-gray-200 p-2 bg-violet-100 rounded-2xl">
+          <p className="font-semibold">
           {test.name_test}
           </p>
 
 
           <p className="mt-2 text-gray-600">
-          Результат: <span className="underline !font-semibold">{test.result}</span>
+          Результат: {test.result}
           </p>
 
 

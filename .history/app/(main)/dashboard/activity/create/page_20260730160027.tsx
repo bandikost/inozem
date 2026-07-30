@@ -52,14 +52,11 @@ export default function Page() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-        ...form,
-        price: form.price
-          ? Number(form.price)
-          : 0,
-        year: form.year
-          ? Number(form.year)
-          : null,
-      }),
+          ...form,
+          year: form.year
+            ? Number(form.year)
+            : null,
+        }),
       })
 
       const data = await response.json()

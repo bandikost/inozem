@@ -8,7 +8,7 @@ import { useState } from "react"
 export default function Page() {
   const [form, setForm] = useState({
     name: "",
-    price: "",
+    price: Number,
     slug: "",
     title: "",
     description: "",
@@ -52,14 +52,11 @@ export default function Page() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-        ...form,
-        price: form.price
-          ? Number(form.price)
-          : 0,
-        year: form.year
-          ? Number(form.year)
-          : null,
-      }),
+          ...form,
+          year: form.year
+            ? Number(form.year)
+            : null,
+        }),
       })
 
       const data = await response.json()

@@ -12,7 +12,6 @@ interface ActivityEditorProps {
     id: number;
     name: string;
     slug: string;
-    price: number;
     title: string | null;
     description: string | null;
     teacher: string | null;
@@ -31,7 +30,6 @@ interface ActivityEditorProps {
 type FormData = {
   name: string;
   slug: string;
-  price: number
   title: string;
   description: string;
   teacher: string;
@@ -53,7 +51,6 @@ export default function ActivityEditor({
   const [form, setForm] = useState<FormData>({
     name: activity.name ?? "",
     slug: activity.slug ?? initialSlug,
-    price: activity.price ?? initialSlug,
     title: activity.title ?? "",
     description: activity.description ?? "",
     teacher: activity.teacher ?? "",
@@ -93,15 +90,10 @@ export default function ActivityEditor({
         headers: {
           "Content-Type": "application/json",
         },
-         body: JSON.stringify({
-        ...form,
-        price: form.price
-          ? Number(form.price)
-          : 0,
-        year: form.year
-          ? Number(form.year)
-          : null,
-      }),
+        body: JSON.stringify({
+          ...form,
+          year: form.year ? Number(form.year) : null,
+        }),
       });
 
       const data = await response.json();
@@ -186,17 +178,6 @@ export default function ActivityEditor({
               className="input-main"
             />
           </Field>
-
-          <Field label="Стоимость участия">
-              <input
-                type="number"
-                name="price"
-                value={form.price}
-                onChange={handleChange}
-                placeholder="1000"
-                className="input-main"
-              />
-            </Field>
 
           <Field
             label="URL мероприятия"

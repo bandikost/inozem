@@ -71,7 +71,7 @@ export default function ProfileClient({programs, user, tests} : Props) {
 
       
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch gap-8 mt-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch auto-rows-fr gap-8 mt-2">
   <div className="mt-8 flex min-h-[300px] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
     <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
 
@@ -205,11 +205,11 @@ export default function ProfileClient({programs, user, tests} : Props) {
 
       </div> 
       
-      <div className=" mt-8 rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] overflow-hidden max-h-[200px]">
+      <div className=" mt-8 rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] overflow-hidden">
 
       <div className="h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
 
-          <div className="p-6 md:p-8 flex flex-col justify-center ">
+          <div className="p-6 md:p-8 flex flex-col justify-center min-h-[300px]">
 
           <h3 className="text-2xl font-semibold text-prpl">
           Мои тестирования
@@ -231,16 +231,16 @@ export default function ProfileClient({programs, user, tests} : Props) {
           tests.map((test)=>(
           <div
           key={test.id}
-        
+          className="rounded-xl bg-slate-50 p-4"
           >
 
-          <p className="font-semibold border border-gray-200 p-2 bg-violet-100 rounded-2xl">
+          <p className="font-semibold">
           {test.name_test}
           </p>
 
 
           <p className="mt-2 text-gray-600">
-          Результат: <span className="underline !font-semibold">{test.result}</span>
+          Результат: {test.result}
           </p>
 
 
@@ -263,7 +263,7 @@ export default function ProfileClient({programs, user, tests} : Props) {
       </div>
 
       
-        <div className="mt-8 flex max-h-[200px] justify-center  flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
+        <div className="mt-8 flex min-h-[300px] justify-center  flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
           <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
           <div className="p-6 md:p-8 flex flex-col h-full justify-center">
         <div className="flex flex-col text-center sm:text-left sm:flex-row items-center gap-3">
@@ -271,7 +271,7 @@ export default function ProfileClient({programs, user, tests} : Props) {
             <KeyRound size={22} strokeWidth={1.8}  />
           </div>
             <div>
-              <h3 className="text-2xl font-semibold text-prpl">Безопасность</h3>
+              <h3 className="!text-4xl font-semibold text-prpl">Безопасность</h3>
               <p className="text-gray-500">Измените пароль для входа</p>
             </div>
         </div>
@@ -281,7 +281,7 @@ export default function ProfileClient({programs, user, tests} : Props) {
       </div>
 
       {!user.isTeacher && (
-        <div className="mt-8 flex max-h-[200px]  flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
+        <div className="mt-8 flex min-h-[300px]  flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
           <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
             <div className="p-6 md:p-8 flex flex-col h-full justify-center">
         <div className="flex flex-col text-center sm:text-left sm:flex-row items-center gap-3">

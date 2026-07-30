@@ -90,7 +90,7 @@ export default async function Page({ params }: PageProps) {
             </div>
 
             {activity.price > 0 && (
-              <p className="mt-10 text-lg text-green-300">Стоимость участия: {activity.price} ₽</p>
+              <p className="mt-10 text-lg text-green-300">Стоимость мероприятия: {activity.price} ₽</p>
             )}
           </div>
         </div>
@@ -300,10 +300,7 @@ export default async function Page({ params }: PageProps) {
 
       </div>
 
-      <div className="flex flex-col gap-3 p-6 ">
-        {activity.price > 0 && (
-              <p className="mt-10 !text-lg text-zinc-500 !font-semibold">Стоимость участия: {activity.price} ₽</p>
-            )}
+      <div className="flex flex-col gap-3 p-6 sm:flex-row">
 
         <LoadingLink href={`/activity-form?title=${encodeURIComponent(activity.name)}`}
           className="button-more w-full !p-4 !text-base"
