@@ -11,11 +11,10 @@ import { KeyRound } from "lucide-react"
 interface Props {
   programs: ProgramRow[]
   user: UserRow
-  tests:any[]
 }
 
 
-export default function ProfileClient({programs, user, tests} : Props) {
+export default function ProfileClient({programs, user} : Props) {
     const [showAll, setShowAll] = useState(false)
 
     const visiblePrograms = showAll
@@ -68,14 +67,12 @@ export default function ProfileClient({programs, user, tests} : Props) {
 
            
           </div>
-
       
-      
-      <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch auto-rows-fr gap-8 mt-2">
-  <div className="mt-8 flex min-h-[300px] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch gap-8 mt-2">
+  <div className="mt-8 flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
     <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
 
-    <div className="p-6 md:p-8 flex flex-col h-full justify-center">
+    <div className="p-6 md:p-8 flex flex-col h-full">
       <div className="flex items-center gap-3">
         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 ring-1 ring-violet-100">
           <GraduationCap size={22} strokeWidth={1.8} />
@@ -204,68 +201,11 @@ export default function ProfileClient({programs, user, tests} : Props) {
 
 
       </div> 
-      
-      <div className=" mt-8 rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] overflow-hidden">
-
-      <div className="h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
-
-          <div className="p-6 md:p-8 flex flex-col justify-center min-h-[300px]">
-
-          <h3 className="text-2xl font-semibold text-prpl">
-          Мои тестирования
-          </h3>
-
-
-          {
-          tests.length === 0 ? (
-
-          <p className="mt-4 text-gray-500">
-          Вы еще не проходили тестирование
-          </p>
-
-          ) : (
-
-          <div className="mt-6 space-y-4">
-
-          {
-          tests.map((test)=>(
-          <div
-          key={test.id}
-          className="rounded-xl bg-slate-50 p-4"
-          >
-
-          <p className="font-semibold">
-          {test.name_test}
-          </p>
-
-
-          <p className="mt-2 text-gray-600">
-          Результат: {test.result}
-          </p>
-
-
-          <p className="text-sm text-gray-400">
-          {new Date(test.created_at).toLocaleDateString("ru-RU")}
-          </p>
-
-
-          </div>
-          ))
-          }
-
-          </div>
-
-          )
-          }
-
-          </div>
-
-      </div>
 
       
-        <div className="mt-8 flex min-h-[300px] justify-center  flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
+        <div className="mt-8 flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
           <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
-          <div className="p-6 md:p-8 flex flex-col h-full justify-center">
+          <div className="p-6 md:p-8 flex flex-col h-full">
         <div className="flex flex-col text-center sm:text-left sm:flex-row items-center gap-3">
            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 ring-1 ring-violet-100">
             <KeyRound size={22} strokeWidth={1.8}  />
@@ -281,9 +221,9 @@ export default function ProfileClient({programs, user, tests} : Props) {
       </div>
 
       {!user.isTeacher && (
-        <div className="mt-8 flex min-h-[300px]  flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
+        <div className="mt-8 flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
           <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
-            <div className="p-6 md:p-8 flex flex-col h-full justify-center">
+            <div className="p-6 md:p-8 flex flex-col h-full">
         <div className="flex flex-col text-center sm:text-left sm:flex-row items-center gap-3">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 ring-1 ring-violet-100">
             <Pencil size={22} strokeWidth={1.8}  />

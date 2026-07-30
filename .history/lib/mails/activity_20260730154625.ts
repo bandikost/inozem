@@ -39,7 +39,7 @@ export async function sendActivityEmail({
   educationLevel,
   activityName,
 }: ActivityEmailData) {
-
+  // Письмо пользователю
   await transporter.sendMail({
     from: `"Академия медицинского образования имени Ф.И. Иноземцева" <${EMAIL_USER}>`,
     to: email,
@@ -57,14 +57,14 @@ export async function sendActivityEmail({
     `,
   })
 
-
+  // Письмо администрации
   await transporter.sendMail({
     from: `"Мероприятие" <${EMAIL_USER}>`,
     to: EMAIL_RECIP,
-    subject: "Мероприятие",
+    subject: "Новая регистрация на мероприятие",
     html: `
       <div>
-        <h2>Новая заявка на мероприятие</h2>
+        <h2>Новая регистрация на мероприятие</h2>
 
         <p>
           <strong>ФИО:</strong>

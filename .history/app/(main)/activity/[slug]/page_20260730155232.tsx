@@ -89,8 +89,8 @@ export default async function Page({ params }: PageProps) {
               <span dangerouslySetInnerHTML={{ __html: activity.dates }} />
             </div>
 
-            {activity.price > 0 && (
-              <p className="mt-10 text-lg text-green-300">Стоимость мероприятия: {activity.price} ₽</p>
+            {activity.price >= 0 && (
+              <p>{activity.price} ₽</p>
             )}
           </div>
         </div>

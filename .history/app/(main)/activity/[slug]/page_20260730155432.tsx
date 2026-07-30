@@ -90,7 +90,7 @@ export default async function Page({ params }: PageProps) {
             </div>
 
             {activity.price > 0 && (
-              <p className="mt-10 text-lg text-green-300">Стоимость мероприятия: {activity.price} ₽</p>
+              <p className="mt-10 rounded-2xl bg-white px-8 py-4 text-prpl text-xl shadow-xl">Стоимость мероприятия: {activity.price} ₽</p>
             )}
           </div>
         </div>

@@ -4,7 +4,7 @@ import { getProfile } from "@/lib/getProfile"
 import TokenCheck from "@/components/token/token"
 import ProfileClient from "./ProfileClient"
 import { UserRow } from "@/app/interface/user"
-import { getUserTests } from "@/lib/test"
+import { getUserTests } from "@/lib/tests"
 
 export const metadata = {
   title: "Личный кабинет | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»",

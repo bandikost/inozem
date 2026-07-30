@@ -1,0 +1,19 @@
+import { NextResponse } from "next/server";
+import { db } from "@/lib/db"
+import { ResultSetHeader } from "mysql2/promise"
+
+export async function POST(req: Request) {
+  const { name_test, name, patronymic, last_name, result, exp } = await req.json()
+
+  const [rows] = await db.query<ResultSetHeader>(
+    `
+    INSERT INTO tests 
+    (name_test, name, patronymic, last_name, result, exp)
+    VALUES (?, ?, ?, ?, ?, ?)
+    `,
+    [name_test, name, patronymic, last_name, result, exp]
+  )
+
+
+  return NextResponse.json({ id: rows.insertId },{ status: 201 })
+}

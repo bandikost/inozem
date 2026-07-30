@@ -17,7 +17,6 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { useMemo, useState } from "react"
-import { useRouter } from "next/navigation";
 
 interface UsersClientProps {
   users: UserRow[]
@@ -28,7 +27,6 @@ export default function UsersClient({
   users,
   programs,
 }: UsersClientProps) {
-  const router = useRouter()
   const [toastOpen, setToastOpen] = useState(false)
   const [toastMessage, setToastMessage] = useState("");
   const [value, setValue] = useState("")
@@ -74,11 +72,7 @@ export default function UsersClient({
       }
 
       setToastMessage("Программа назначена ✅");
-      setToastOpen(true)
-
-      setTimeout(() => {
-        router.push("/dashboard/manager");
-      }, 1500);
+      setToastOpen(true);
     
     } catch (error) {
       console.error(error)
