@@ -78,17 +78,13 @@ export default function TestPageClient({user} : Props) {
       throw new Error(data.error || "Ошибка сохранения результата");
     }
 
-      setToastMessage("Вы успешно разместили запись в личном кабинете!");
-      setToastOpen(true);
-
     setTimeout(() => {
       redirect("/profile")
     }, 1500)
     
 
   } catch (error) {
-    setToastMessage("Ошибка получения результата");
-      setToastOpen(true);
+    console.error(error);
   }
 }
 

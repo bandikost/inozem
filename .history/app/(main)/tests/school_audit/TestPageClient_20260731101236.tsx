@@ -8,7 +8,6 @@ import { redirect } from "next/navigation";
 import { useState } from "react";
 import * as Toast from "@radix-ui/react-toast";
 
-
 const answers = [
   { label: "Нет", value: 0 },
   { label: "Скорее нет, чем да", value: 1 },
@@ -48,8 +47,6 @@ export default function TestPageClient({user} : Props) {
 
   const [selected, setSelected] = useState<Record<number,number>>({});
   const [result,setResult] = useState<any>(null)
-  const [toastOpen, setToastOpen] = useState(false)
-  const [toastMessage, setToastMessage] = useState("");
 
    const handleSendResult = async () => {
   try {
@@ -78,17 +75,13 @@ export default function TestPageClient({user} : Props) {
       throw new Error(data.error || "Ошибка сохранения результата");
     }
 
-      setToastMessage("Вы успешно разместили запись в личном кабинете!");
-      setToastOpen(true);
-
     setTimeout(() => {
       redirect("/profile")
     }, 1500)
     
 
   } catch (error) {
-    setToastMessage("Ошибка получения результата");
-      setToastOpen(true);
+    console.error(error);
   }
 }
 

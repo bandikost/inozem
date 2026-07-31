@@ -78,7 +78,7 @@ export default function TestPageClient({user} : Props) {
       throw new Error(data.error || "Ошибка сохранения результата");
     }
 
-      setToastMessage("Вы успешно разместили запись в личном кабинете!");
+      setToastMessage("ВЫ успешно разместили запись в личном кабинете!");
       setToastOpen(true);
 
     setTimeout(() => {
@@ -87,8 +87,7 @@ export default function TestPageClient({user} : Props) {
     
 
   } catch (error) {
-    setToastMessage("Ошибка получения результата");
-      setToastOpen(true);
+    console.error(error);
   }
 }
 
