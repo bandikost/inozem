@@ -1,6 +1,5 @@
 "use client"
 
-import * as Toast from "@radix-ui/react-toast";
 import { UserRow } from "@/app/interface/user"
 import LoadingLink from "@/components/Load/LoadingLink"
 import { getHourWord } from "@/components/ui/GetHourWord"
@@ -18,6 +17,8 @@ import {
 import Link from "next/link"
 import { useMemo, useState } from "react"
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/Toast/ToastProvider"
+
 
 interface UsersClientProps {
   users: UserRow[]
@@ -29,8 +30,7 @@ export default function UsersClient({
   programs,
 }: UsersClientProps) {
   const router = useRouter()
-  const [toastOpen, setToastOpen] = useState(false)
-  const [toastMessage, setToastMessage] = useState("");
+  const toast = useToast()
   const [value, setValue] = useState("")
   const [visibleItems, setVisibleItems] = useState(8)
   const [selectedPrograms, setSelectedPrograms] = useState<
@@ -52,8 +52,7 @@ export default function UsersClient({
     const programId = selectedPrograms[userId]
 
     if (!programId) {
-      setToastMessage("Выберите программу!");
-      setToastOpen(true);
+      toast.error("Выберите программу!");
       return
     }
 
@@ -73,17 +72,14 @@ export default function UsersClient({
         throw new Error("Ошибка назначения")
       }
 
-      setToastMessage("Программа назначена ✅");
-      setToastOpen(true)
+      toast.success("Программа назначена ✅")
 
       setTimeout(() => {
         router.push("/dashboard/manager");
       }, 1500);
     
     } catch (error) {
-      console.error(error)
-      setToastMessage(`Ошибка: ${error}`);
-      setToastOpen(true);
+      toast.error(`Ошибка: ${error}`);
     }
   }
 
@@ -448,36 +444,6 @@ export default function UsersClient({
 
       </div>
 
-
-      <Toast.Root
-                    open={toastOpen}
-                    onOpenChange={setToastOpen}
-                    className="
-                      fixed
-                      bottom-6
-                      right-6
-                      z-[100]
-                      w-[360px]
-                      rounded-2xl
-                      border
-                      border-green-500
-                      bg-green-300
-                      
-                      p-5
-                      shadow-[0_15px_50px_rgba(0,0,0,0.15)]
-                      data-[state=open]:animate-in
-                      data-[state=closed]:animate-out
-                      data-[state=closed]:fade-out-80
-                      data-[state=open]:fade-in-0
-                      data-[state=open]:slide-in-from-right-5
-                      data-[state=closed]:slide-out-to-right-5
-                    "
-                  >
-                    <Toast.Title className="font-semibold !text-green-900">
-                      {toastMessage}
-                    </Toast.Title>
-                  
-                  </Toast.Root>
     </section>
   )
 }

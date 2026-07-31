@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import LoadingLink from "@/components/Load/LoadingLink";
 import { ChevronRight } from "lucide-react";
+import { useToast } from "@/components/ui/Toast/ToastProvider";
 
 interface ActivityEditorProps {
   initialSlug: string;
@@ -69,8 +70,7 @@ export default function ActivityEditor({
   });
 
   const [loading, setLoading] = useState(false)
-  const [toastOpen, setToastOpen] = useState(false)
-  const [toastMessage, setToastMessage] = useState("");
+  const toast = useToast()
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -110,8 +110,7 @@ export default function ActivityEditor({
         throw new Error(data.error || "Ошибка обновления мероприятия");
       }
 
-      setToastMessage("Мероприятие успешно обновлено!");
-      setToastOpen(true);
+      toast.success("Мероприятие успешно обновлено!");
     } catch (error) {
       console.error(error);
 
@@ -119,7 +118,7 @@ export default function ActivityEditor({
         error instanceof Error
           ? error.message
           : 
-          setToastMessage("Ошибка сервера")
+          toast.error("Ошибка сервера")
       );
     } finally {
       setLoading(false);
@@ -419,38 +418,8 @@ export default function ActivityEditor({
         }
       `}</style>
 
-
-      <Toast.Root
-        open={toastOpen}
-        onOpenChange={setToastOpen}
-        className="
-          fixed
-          bottom-6
-          right-6
-          z-[100]
-          w-[360px]
-          rounded-2xl
-          border
-          border-green-500
-          bg-green-300
-          
-          p-5
-          shadow-[0_15px_50px_rgba(0,0,0,0.15)]
-          data-[state=open]:animate-in
-          data-[state=closed]:animate-out
-          data-[state=closed]:fade-out-80
-          data-[state=open]:fade-in-0
-          data-[state=open]:slide-in-from-right-5
-          data-[state=closed]:slide-out-to-right-5
-        "
-      >
-        <Toast.Title className="font-semibold !text-green-900">
-          {toastMessage}
-        </Toast.Title>
-      
-      </Toast.Root>
     </section>
-  );
+  )
 }
 
 function FormSection({

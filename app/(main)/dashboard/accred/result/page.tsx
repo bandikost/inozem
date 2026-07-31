@@ -1,6 +1,7 @@
 "use client";
 
 
+import { useToast } from "@/components/ui/Toast/ToastProvider";
 import { EDUCATION, MONTH, SPECIALTIES } from "@/lib/accred/specialization";
 import { useState } from "react";
 
@@ -13,7 +14,8 @@ export default function Page() {
     stage: "",
     name: "",
     file: null as File | null,
-  });
+  })
+  const toast = useToast()
 
   const handleChange = (key: string, value: any) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -31,7 +33,7 @@ export default function Page() {
       body: data,
     });
 
-    alert("Протокол загружен");
+    toast.success("Протокол загружен");
   };
 
   return (

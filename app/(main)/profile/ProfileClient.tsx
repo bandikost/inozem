@@ -7,6 +7,7 @@ import { ProgramRow } from "@/lib/programm"
 import { CalendarDays, ChevronRight, CircleUserRound, GraduationCap, Handshake, Heart, LogOutIcon, Pencil, Star } from "lucide-react"
 import { useState } from "react"
 import { KeyRound } from "lucide-react"
+import { getHourWord } from "@/components/ui/GetHourWord"
 
 interface Props {
   programs: ProgramRow[]
@@ -136,11 +137,13 @@ export default function ProfileClient({programs, user, tests} : Props) {
                           {p.name}
                         </p>
 
-                        {p.time >= 432 && (
-                          <p className="mt-1 text-sm text-slate-500">
-                            Профессиональная переподготовка
+                        {p.time >= 432 ? (
+                          <p className="mt-1 !text-sm text-slate-500">
+                            Профессиональная переподготовка - <span className="underline !font-semibold">{p.time} {getHourWord(p.time)}</span>
                           </p>
-                        )}
+                        ) : <p className="mt-1 !text-sm text-slate-500">
+                            Повышение квалификации - <span className="underline !font-semibold">{p.time} {getHourWord(p.time)}</span>
+                          </p>}
                       </div>
 
                       <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-400 transition-colors group-hover:bg-violet-50 group-hover:text-violet-600">

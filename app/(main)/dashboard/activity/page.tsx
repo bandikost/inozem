@@ -25,8 +25,6 @@ export default async function Page() {
   return (
     <section className="mx-auto mt-27 max-w-7xl px-6 pb-16">
 
-      {/* Навигация */}
-
       <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
 
         <LoadingLink
@@ -52,8 +50,6 @@ export default async function Page() {
 
       </nav>
 
-
-      {/* Заголовок */}
 
       <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
 
@@ -85,9 +81,6 @@ export default async function Page() {
         </LoadingLink>
 
       </div>
-
-
-      {/* Список мероприятий */}
 
       <div className="grid gap-5">
 
@@ -121,8 +114,6 @@ export default async function Page() {
             ">
 
 
-              {/* Информация */}
-
               <div className="min-w-0">
 
                 <h2 className="
@@ -150,9 +141,6 @@ export default async function Page() {
 
                 <div className="mt-5 flex flex-wrap gap-3">
 
-
-                  {/* Дата */}
-
                   <div className="
                     inline-flex
                     items-center
@@ -171,9 +159,6 @@ export default async function Page() {
 
                   </div>
 
-
-                  {/* Год */}
-
                   <div className="
                     rounded-xl
                     bg-zinc-100
@@ -186,9 +171,6 @@ export default async function Page() {
                     {item.year ?? "Без года"}
 
                   </div>
-
-
-                  {/* Slug */}
 
                   <div className="
                     max-w-full
@@ -208,9 +190,6 @@ export default async function Page() {
                 </div>
 
               </div>
-
-
-              {/* Действие */}
 
               <div className="
                 flex

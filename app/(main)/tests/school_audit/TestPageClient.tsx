@@ -5,8 +5,8 @@ import LoadingLink from "@/components/Load/LoadingLink";
 import { questions } from "@/lib/test_result/school_audit/test";
 import { ChevronRight } from "lucide-react";
 import { redirect } from "next/navigation";
-import { useState } from "react";
-import * as Toast from "@radix-ui/react-toast";
+import { useEffect, useState } from "react";
+import { useToast } from "@/components/ui/Toast/ToastProvider";
 
 
 const answers = [
@@ -48,8 +48,72 @@ export default function TestPageClient({user} : Props) {
 
   const [selected, setSelected] = useState<Record<number,number>>({});
   const [result,setResult] = useState<any>(null)
-  const [toastOpen, setToastOpen] = useState(false)
-  const [toastMessage, setToastMessage] = useState("");
+  const toast = useToast()
+  const [completed, setCompleted] = useState(false);
+  const [savedResult, setSavedResult] = useState(null);
+
+useEffect(() => {
+  async function check() {
+    const res = await fetch(
+      `/api/tests_results/check?userId=${user.id}&nameTest=${encodeURIComponent(
+        "Тест жизнестойкости С. Мадди"
+      )}`
+    );
+
+    const data = await res.json();
+
+    setCompleted(data.completed);
+    setSavedResult(data.result);
+  }
+
+  check();
+}, [user.id]);
+
+  if (completed) {
+  return (
+    <section className="min-h-screen">
+    <div className="container mx-auto px-4 my-27">
+       <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
+      
+            <LoadingLink href="/" className="shrink-0 hover:text-blue transition hover:underline">
+              Главная
+            </LoadingLink>
+      
+            <ChevronRight size={14} className="shrink-0" />
+
+             <LoadingLink href="/programs" className="shrink-0 hover:text-blue transition hover:underline">
+              Образование
+            </LoadingLink>
+
+            <ChevronRight size={14} className="shrink-0" />
+      
+        <span className="min-w-0 flex-1 truncate text-zinc-800 opacity-70">
+          Тестирование "Школа аудита"
+        </span>
+      
+      </nav>
+      <h1>Тест жизнестойкости С. Мадди</h1>
+
+      <div className="rounded-xl border border-gray-200 shadow-2xl p-6 mt-8">
+        <h2 className="text-xl font-semibold">
+          ✅ Вы уже прошли этот тест
+        </h2>
+
+        <p className="mt-3">
+          Посмотреть результат можно в личном кабинете.
+        </p>
+
+        <LoadingLink
+          href="/profile"
+          className="button-more mt-5"
+        >
+          Перейти в профиль
+        </LoadingLink>
+      </div>
+      </div>
+    </section>
+  );
+}
 
    const handleSendResult = async () => {
   try {
@@ -74,12 +138,11 @@ export default function TestPageClient({user} : Props) {
 
 
     if (!response.ok) {
-      console.log("Ошибка API:", data);
+       toast.error("Ошибка сохранения результата");
       throw new Error(data.error || "Ошибка сохранения результата");
     }
 
-      setToastMessage("Вы успешно разместили запись в личном кабинете!");
-      setToastOpen(true);
+      toast.success("Вы успешно разместили запись в личном кабинете!");
 
     setTimeout(() => {
       redirect("/profile")
@@ -87,8 +150,7 @@ export default function TestPageClient({user} : Props) {
     
 
   } catch (error) {
-    setToastMessage("Ошибка получения результата");
-      setToastOpen(true);
+    toast.error("Ошибка получения результата");
   }
 }
 

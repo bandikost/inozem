@@ -1,6 +1,7 @@
 "use client";
 
 import { Accred } from "@/app/interface/accred";
+import { useToast } from "@/components/ui/Toast/ToastProvider";
 import { useMemo, useState } from "react";
 
 interface Props {
@@ -24,17 +25,14 @@ const months = [
 
 export default function ScheduleEditor({ schedule }: Props) {
   const [rows, setRows] = useState<Accred[]>(schedule);
-
-  // Все программы без повторений
+  const toast = useToast()
   const programs = useMemo(
     () => [...new Set(schedule.map((item) => item.specialization))],
     [schedule]
   );
 
-  // Выбранная программа
   const [selectedProgram, setSelectedProgram] = useState(programs[0]);
 
-  // Показываем только выбранную программу
   const filteredRows = rows.filter(
     (row) => row.specialization === selectedProgram
   );
@@ -71,9 +69,9 @@ export default function ScheduleEditor({ schedule }: Props) {
     });
 
     if (res.ok) {
-      alert("Сохранено");
+      toast.success("Сохранено");
     } else {
-      alert("Ошибка");
+      toast.error("Ошибка");
     }
   }
 

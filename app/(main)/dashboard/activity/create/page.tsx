@@ -1,6 +1,7 @@
 "use client"
 
 import LoadingLink from "@/components/Load/LoadingLink"
+import { useToast } from "@/components/ui/Toast/ToastProvider"
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
@@ -25,6 +26,7 @@ export default function Page() {
   })
 
   const [loading, setLoading] = useState(false)
+  const toast = useToast()
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -70,11 +72,11 @@ export default function Page() {
         )
       }
 
-      alert("Программа успешно создана!")
+      toast.success("Программа успешно создана!")
 
     } catch (error) {
       console.error(error)
-      alert("Ошибка сервера")
+      toast.error("Ошибка сервера")
     } finally {
       setLoading(false)
     }

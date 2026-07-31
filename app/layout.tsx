@@ -9,7 +9,8 @@ import LoadingOverlay from "@/components/Load/LoadingOverlay";
 import RouteLoader from "@/components/Load/RouteLoader";
 import { Analytics } from "@vercel/analytics/next"
 import ScrollToTop from "@/components/ScrollToTop";
-import { ToastProvider } from "@/components/ui/toast";
+import { ToastProvider } from "@/components/ui/Toast/ToastProvider";
+
 
 const nunito = Nunito({
   variable: "--font-sans",
