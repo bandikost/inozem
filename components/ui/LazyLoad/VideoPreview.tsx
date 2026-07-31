@@ -14,7 +14,7 @@ export default function VideoPreview({ src, preview, subtitles }: Props) {
 
   if (play) {
     return (
-      <div className="aspect-video w-full overflow-hidden bg-black">
+      <div className="aspect-square w-full overflow-hidden bg-black">
         <iframe
           src={src}
           className="h-full w-full"
