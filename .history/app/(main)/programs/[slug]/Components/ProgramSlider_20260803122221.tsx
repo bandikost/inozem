@@ -8,13 +8,11 @@ interface ProgramSliderProps {
     title: string | undefined
     component: React.ReactNode
     
-  }[],
-  name: string
-  suptitle: string
+  }[]
 
 }
 
-export default function ProgramSlider({ blocks, name, suptitle }: ProgramSliderProps) {
+export default function ProgramSlider({ blocks }: ProgramSliderProps) {
   const [current, setCurrent] = useState(0)
 
   if (!blocks.length) return null
@@ -29,12 +27,9 @@ export default function ProgramSlider({ blocks, name, suptitle }: ProgramSliderP
 
   return (
     <div>
-      <h1 className="!text-3xl font-semibold text-prpl text-center">{name}</h1>
-      {suptitle &&
-        <p className="!text-md text-default !font-normal text-center mt-4">{suptitle}</p>
-      }
-      <h2 className="text-prpl text-center mt-20">{blocks[current].title}</h2>
-      
+
+      <h1 className="text-prpl text-center mt-20">{blocks[current].title}</h1>
+      <p>askhdgvashkj</p>
 
     <div className="mt-10 flex flex-col gap-6">
 

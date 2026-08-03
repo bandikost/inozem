@@ -5,13 +5,13 @@ export async function POST(req: Request) {
   try {
     const program = await req.json();
 
-    const { name, time, dates, education, specialization, isFavorite, description, price } = program;
+    const { name, time, dates, category, education, specialization, isFavorite, description, price, slug } = program;
 
     const [result] = await db.query<ResultSetHeader>(
       `INSERT INTO programms 
-        (name, time, dates, education, specialization, isFavorite, description, price)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-      [name, time, dates, education, specialization, isFavorite, description, price]
+        (name, time, dates, category, education, specialization, isFavorite, description, price, slug)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [name, time, dates, category, education, specialization, isFavorite, description, price, slug]
     );
 
     return new Response(JSON.stringify({ success: true, id: result.insertId }), { status: 200 });

@@ -126,20 +126,14 @@ useEffect(() => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-      user_id: user.id,
-      name_test: "Тест жизнестойкости С. Мадди",
-
-      name: user.name,
-      patronymic: user.patronymic,
-      last_name: user.last_name,
-
-      education_level: educationLevel,
-      age: Number(age),
-      gender,
-
-      result: result.type,
-      exp: result.total,
-    }),
+        user_id: user.id,
+        name_test: "Тест жизнестойкости С. Мадди",
+        name: user.name,
+        patronymic: user.patronymic,
+        last_name: user.last_name,
+        result: result.type,
+        exp: result.total,
+      }),
     });
 
 
@@ -450,18 +444,10 @@ onChange={()=>setSelected({
 </div>
 
 
-<button
-  onClick={calculate}
-  disabled={
-    Object.keys(selected).length !== 45 ||
-    !educationLevel ||
-    !age ||
-    !gender
-  }
-  className="mt-8 px-6 py-3 rounded-xl bg-black text-white disabled:cursor-not-allowed disabled:opacity-40"
->
-  Рассчитать результат
+<button onClick={calculate} disabled={Object.keys(selected).length!==45} className="mt-8 px-6 py-3 rounded-xl bg-black text-white disabled:opacity-40">
+Рассчитать результат
 </button>
+
 
 {result && 
     <div className="mt-10 p-6 rounded-xl bg-gray-100">

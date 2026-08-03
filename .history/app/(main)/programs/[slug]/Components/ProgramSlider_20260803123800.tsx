@@ -30,9 +30,7 @@ export default function ProgramSlider({ blocks, name, suptitle }: ProgramSliderP
   return (
     <div>
       <h1 className="!text-3xl font-semibold text-prpl text-center">{name}</h1>
-      {suptitle &&
-        <p className="!text-md text-default !font-normal text-center mt-4">{suptitle}</p>
-      }
+      {suptitle &&<p className="!text-md text-default !font-normal ">{suptitle}</p>}
       <h2 className="text-prpl text-center mt-20">{blocks[current].title}</h2>
       
 

@@ -126,20 +126,14 @@ useEffect(() => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-      user_id: user.id,
-      name_test: "Тест жизнестойкости С. Мадди",
-
-      name: user.name,
-      patronymic: user.patronymic,
-      last_name: user.last_name,
-
-      education_level: educationLevel,
-      age: Number(age),
-      gender,
-
-      result: result.type,
-      exp: result.total,
-    }),
+        user_id: user.id,
+        name_test: "Тест жизнестойкости С. Мадди",
+        name: user.name,
+        patronymic: user.patronymic,
+        last_name: user.last_name,
+        result: result.type,
+        exp: result.total,
+      }),
     });
 
 

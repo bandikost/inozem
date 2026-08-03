@@ -92,12 +92,11 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
         </span>
       
       </nav>
-      
-      
+      <h1 className="!text-3xl font-semibold text-prpl text-center">{program.name}</h1>
 
       {!hasAccess ? ( 
       <>
-<h1 className="!text-3xl font-semibold text-prpl text-center">{program.name}</h1>
+
   <div className="grid grid-cols-1 tablet:grid-cols-[1.4fr_0.6fr] gap-8 mt-12 mb-16">
 
     <section className="program-description">
@@ -228,7 +227,7 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
   </section>
 </>
       ) : (   
-        <ProgramSlider blocks={blocks} name={program.name} suptitle={program.suptitle} />       
+        <ProgramSlider blocks={blocks} />       
       )}  
       </div>
     </section>

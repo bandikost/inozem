@@ -32,6 +32,7 @@ export default function AddProgramForm() {
         body: JSON.stringify({
           name,
           time: Number(time),
+          dates,
           category,
           education,
           specialization,
@@ -152,6 +153,15 @@ export default function AddProgramForm() {
                     ₽
                   </span>
                 </div>
+              </Field>
+
+              <Field label="Даты проведения">
+                <input
+                  value={dates}
+                  onChange={(e) => setDates(e.target.value)}
+                  placeholder="15–30 сентября"
+                  className="input-main"
+                />
               </Field>
 
               <Field label="Категория">

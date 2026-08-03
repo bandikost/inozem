@@ -23,7 +23,7 @@ export async function POST(req: Request) {
 
    const [rows] = await db.query<ResultSetHeader>(
   `
-    INSERT INTO tests (
+    INSERT INTO tests_results (
       user_id,
       name_test,
       name,

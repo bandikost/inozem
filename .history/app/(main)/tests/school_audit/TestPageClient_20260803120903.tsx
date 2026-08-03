@@ -126,20 +126,14 @@ useEffect(() => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-      user_id: user.id,
-      name_test: "Тест жизнестойкости С. Мадди",
-
-      name: user.name,
-      patronymic: user.patronymic,
-      last_name: user.last_name,
-
-      education_level: educationLevel,
-      age: Number(age),
-      gender,
-
-      result: result.type,
-      exp: result.total,
-    }),
+        user_id: user.id,
+        name_test: "Тест жизнестойкости С. Мадди",
+        name: user.name,
+        patronymic: user.patronymic,
+        last_name: user.last_name,
+        result: result.type,
+        exp: result.total,
+      }),
     });
 
 
@@ -292,110 +286,6 @@ return (
 
 <div className="space-y-6">
 
-  <div className="mb-10 rounded-xl border p-6">
-
-  <h2 className="text-xl font-bold mb-6">
-    Информация о респонденте
-  </h2>
-
-  <div className="grid gap-6">
-
-    {/* Уровень образования */}
-    <div>
-      <label
-        htmlFor="education"
-        className="mb-2 block font-medium"
-      >
-        1. Уровень образования
-      </label>
-
-      <select
-        id="education"
-        value={educationLevel}
-        onChange={(e) => setEducationLevel(e.target.value)}
-        className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3"
-      >
-        <option value="">
-          Выберите уровень образования
-        </option>
-
-        <option value="Высшее медицинское">
-          Высшее медицинское
-        </option>
-
-        <option value="Среднее профессиональное">
-          Среднее профессиональное
-        </option>
-
-        <option value="Без медицинского образования">
-          Без медицинского образования
-        </option>
-      </select>
-    </div>
-
-
-    {/* Возраст */}
-    <div>
-      <label
-        htmlFor="age"
-        className="mb-2 block font-medium"
-      >
-        2. Возраст (полных лет)
-      </label>
-
-      <input
-        id="age"
-        type="number"
-        min="1"
-        max="120"
-        value={age}
-        onChange={(e) => setAge(e.target.value)}
-        placeholder="Введите возраст"
-        className="w-full rounded-lg border border-gray-300 px-4 py-3"
-      />
-    </div>
-
-
-    {/* Пол */}
-    <div>
-      <p className="mb-3 font-medium">
-        3. Пол респондента
-      </p>
-
-      <div className="flex flex-wrap gap-5">
-
-        <label className="flex cursor-pointer items-center gap-2">
-          <input
-            type="radio"
-            name="gender"
-            value="Мужской"
-            checked={gender === "Мужской"}
-            onChange={(e) => setGender(e.target.value)}
-          />
-
-          <span>Мужской</span>
-        </label>
-
-
-        <label className="flex cursor-pointer items-center gap-2">
-          <input
-            type="radio"
-            name="gender"
-            value="Женский"
-            checked={gender === "Женский"}
-            onChange={(e) => setGender(e.target.value)}
-          />
-
-          <span>Женский</span>
-        </label>
-
-      </div>
-    </div>
-
-  </div>
-
-</div>
-
 {
 questions.map((q,index)=>(
 
@@ -450,18 +340,10 @@ onChange={()=>setSelected({
 </div>
 
 
-<button
-  onClick={calculate}
-  disabled={
-    Object.keys(selected).length !== 45 ||
-    !educationLevel ||
-    !age ||
-    !gender
-  }
-  className="mt-8 px-6 py-3 rounded-xl bg-black text-white disabled:cursor-not-allowed disabled:opacity-40"
->
-  Рассчитать результат
+<button onClick={calculate} disabled={Object.keys(selected).length!==45} className="mt-8 px-6 py-3 rounded-xl bg-black text-white disabled:opacity-40">
+Рассчитать результат
 </button>
+
 
 {result && 
     <div className="mt-10 p-6 rounded-xl bg-gray-100">

@@ -21,21 +21,18 @@ export async function POST(req: Request) {
     } = await req.json();
 
 
-   const [rows] = await db.query<ResultSetHeader>(
+    const [rows] = await db.query<ResultSetHeader>(
   `
-    INSERT INTO tests (
+    INSERT INTO tests_results (
       user_id,
       name_test,
       name,
       patronymic,
       last_name,
-      education_level,
-      age,
-      gender,
       result,
       exp
     )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
   `,
   [
     user_id,
@@ -43,9 +40,6 @@ export async function POST(req: Request) {
     name,
     patronymic,
     last_name,
-    education_level,
-    age,
-    gender,
     result,
     exp,
   ]

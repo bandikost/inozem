@@ -228,7 +228,7 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
   </section>
 </>
       ) : (   
-        <ProgramSlider blocks={blocks} name={program.name} suptitle={program.suptitle} />       
+        <ProgramSlider blocks={blocks} suptitle={program.suptitle} />       
       )}  
       </div>
     </section>
