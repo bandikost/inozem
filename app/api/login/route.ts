@@ -51,12 +51,12 @@ export async function POST(req: NextRequest) {
     const cookieStore = await cookies()
 
     cookieStore.set("token", token, {
-      httpOnly: true,
-      secure: false, // process.env.NODE_ENV === "production"
-      sameSite: "strict",
-      path: "/",
-      maxAge: 60 * 60 * 24 * 182,
-    })
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 182,
+  })
 
     return NextResponse.json(
       { message: "Пользователь авторизирован!" },
