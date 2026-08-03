@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: ProgramsPageProps) {
 export default async function Page({ params }: ProgramsPageProps) {
   const { slug } = await params 
 
-  const programPromise =  await getProgramBySlug(slug)
+  const programPromise = getProgramBySlug(slug)
   const cookieStore = await cookies() 
   const token = cookieStore.get("token")?.value 
 
