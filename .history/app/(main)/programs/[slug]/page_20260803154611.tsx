@@ -215,7 +215,6 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
             userId={user ? user.id : 0}
           />
         </div> */}
-        asjddjaksbjd
         <PayButton programId={program.id} />  
         <LoadingLink
             className="button-more w-full"
