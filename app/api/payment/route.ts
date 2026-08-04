@@ -108,16 +108,26 @@ return NextResponse.json(tinkoffResponse);
 }
 
 catch (error) {
-    console.error("PAYMENT ERROR:", error);
+  console.error("PAYMENT ERROR:", error);
 
-    return NextResponse.json(
-      {
-        error: "Payment init failed",
-        details: String(error)
-      },
-      {
-        status: 500
-      }
-    );
+  if (error instanceof Error) {
+    console.error("MESSAGE:", error.message);
+    console.error("CAUSE:", error.cause);
+    console.error("STACK:", error.stack);
   }
+
+  return NextResponse.json(
+    {
+      error: "Payment init failed",
+      details: error instanceof Error ? error.message : String(error),
+      cause:
+        error instanceof Error
+          ? String(error.cause)
+          : null,
+    },
+    {
+      status: 500,
+    }
+  );
+}
 }
