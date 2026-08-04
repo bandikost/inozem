@@ -75,7 +75,7 @@ useEffect(() => {
   if (completed) {
   return (
     <section className="min-h-screen">
-    <div className="container mx-auto px-4 my-27">
+    <div className="container mx-auto px-2 my-27">
        <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
       
             <LoadingLink href="/" className="shrink-0 hover:text-blue transition hover:underline">
@@ -292,19 +292,18 @@ return (
 
 <div className="space-y-6">
 
-  <div className="mb-10 rounded-xl border p-6">
+  <div className="mb-10 border border-gray-300 shadow-md rounded-xl p-6">
 
-  <h2 className="text-xl font-bold mb-6">
+  <h2 className="text-xl text-prpl mb-6">
     Информация о респонденте
   </h2>
 
   <div className="grid gap-6">
 
-    {/* Уровень образования */}
     <div>
       <label
         htmlFor="education"
-        className="mb-2 block font-medium"
+        className="mb-2 block !font-medium"
       >
         1. Уровень образования
       </label>
@@ -333,8 +332,6 @@ return (
       </select>
     </div>
 
-
-    {/* Возраст */}
     <div>
       <label
         htmlFor="age"
@@ -355,8 +352,6 @@ return (
       />
     </div>
 
-
-    {/* Пол */}
     <div>
       <p className="mb-3 font-medium">
         3. Пол респондента
@@ -396,56 +391,25 @@ return (
 
 </div>
 
-{
-questions.map((q,index)=>(
+{questions.map((q,index)=>(
 
-<div 
-key={index}
-className="border rounded-xl p-5"
->
+  <div key={index} className="border border-gray-300 shadow-md rounded-xl p-5">
+    <p className="!font-medium mb-1 text-prpl">{index + 1}. {q}</p>
+    <hr className="border border-gray-200" />
 
-<p className="font-medium mb-4">
-{index+1}. {q}
-</p>
+    <div className="grid gap-2 mt-4">
+      {answers.map(answer=>(
+        <label key={answer.value} className="flex gap-3 items-center cursor-pointer">
+          <input type="radio" name={`q-${index + 1}`} value={answer.value} checked={selected[index + 1]===answer.value} onChange={()=>setSelected({...selected, [index + 1]:answer.value })} />
+          <span>{answer.label}</span>
+        </label>
+      ))
+    }
 
-
-<div className="grid gap-2">
-
-{
-answers.map(answer=>(
-
-<label
-key={answer.value}
-className="flex gap-3 items-center cursor-pointer"
->
-
-<input
-type="radio"
-name={`q-${index+1}`}
-value={answer.value}
-checked={
-selected[index+1]===answer.value
-}
-onChange={()=>setSelected({
-...selected,
-[index+1]:answer.value
-})}
-/>
-
-<span>{answer.label}</span>
-
-</label>
-
-))
-}
+  </div>
 
 </div>
-
-</div>
-
-
-))
-}
+))}
 
 </div>
 

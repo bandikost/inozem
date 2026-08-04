@@ -44,7 +44,7 @@ export default function PayButton({ programId }: Props) {
 
 
   return (
-    <button onClick={pay}>
+    <button onClick={pay} className="button-more">
       Оплатить онлайн
     </button>
   );

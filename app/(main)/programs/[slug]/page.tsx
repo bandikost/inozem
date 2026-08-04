@@ -72,7 +72,7 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
 
   return (
    <section className="min-h-screen">
-    <div className="container mx-auto px-4 my-27">
+    <div className="container mx-auto px-2 my-27">
        <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
       
             <LoadingLink href="/" className="shrink-0 hover:text-blue transition hover:underline">
@@ -179,15 +179,10 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
 
         <div className="flex flex-wrap gap-3 mt-8">
           
-
-          <LoadingLink
-            className="button-more w-full"
-            href="/question"
-          >
-            Задать вопрос
+          <LoadingLink className="button-more w-full" href="/bid">
+            Подать заявку
           </LoadingLink>
-        
-         
+
         </div>
       </div>
 
@@ -204,7 +199,7 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
           </h3>
 
           <p className="mt-3 text-default/60 leading-relaxed">
-            Выберите программу и оплатите обучение онлайн,
+            Оплатите обучение онлайн,
             чтобы получить доступ к ближайшему старту.
           </p>
         </div>
@@ -215,14 +210,8 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
             userId={user ? user.id : 0}
           />
         </div> */}
-        asjddjaksbjd
         <PayButton programId={program.id} />  
-        <LoadingLink
-            className="button-more w-full"
-            href="/bid"
-          >
-            Подать заявку
-          </LoadingLink>
+        
       </div>
  
     </div>

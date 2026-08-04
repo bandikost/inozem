@@ -25,7 +25,7 @@ export default function ProfileClient({programs, user, tests} : Props) {
 
     return (
          <section className="min-h-screen pb-10">
-    <div className="container max-w-6xl px-4 my-27">
+    <div className="container max-w-6xl px-2 my-27">
            <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500 px-6">
       
             <LoadingLink href="/" className="shrink-0 hover:text-blue transition hover:underline">

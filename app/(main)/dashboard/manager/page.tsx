@@ -16,7 +16,7 @@ export default async function ManagerPage() {
   if (!manager) redirect("/dashboard")
 
   return (
-     <section className="max-w-6xl mx-auto px-6 mt-30">
+     <section className="max-w-6xl mx-auto px-2 mt-30 mb-10">
   <div className="text-center mb-12">
     <h1 className="text-5xl font-bold text-prpl">
       Панель администратора

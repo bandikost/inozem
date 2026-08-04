@@ -21,7 +21,7 @@ export default async function Page() {
 
   return (
    <section className="min-h-screen">
-    <div className="container mx-auto px-4 my-27">
+    <div className="container mx-auto px-2 my-27">
        <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
       
             <LoadingLink href="/" className="shrink-0 hover:text-blue transition hover:underline">

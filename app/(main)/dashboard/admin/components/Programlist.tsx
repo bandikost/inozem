@@ -33,12 +33,12 @@ export default function ProgramList({ program }: Props) {
   }, [program, value])
 
   return (
-    <section className="mx-auto mt-27 max-w-7xl pb-16">
+    <section className=" mt-27 pb-16">
 
 
       <div className="mb-8">
 
-        <div className="relative max-w-2xl">
+        <div className="relative">
 
           <Search
             size={19}
@@ -55,9 +55,7 @@ export default function ProgramList({ program }: Props) {
             value={value}
             onChange={(e) => setValue(e.target.value)}
             placeholder="Введите название программы..."
-            className="
-              h-13
-              w-full
+            className="h-13 w-full
               rounded-2xl
               border
               border-zinc-200
@@ -194,10 +192,12 @@ export default function ProgramList({ program }: Props) {
 
 
               <div className="
-                flex
+                
                 shrink-0
                 items-center
                 gap-3
+                hidden
+                lg:flex
               ">
 
                 <div className="

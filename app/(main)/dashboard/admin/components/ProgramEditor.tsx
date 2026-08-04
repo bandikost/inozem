@@ -148,7 +148,7 @@ export default function ProgramEditor({
             Редактор образовательной программы
           </div>
 
-          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
+          <h1 className="!text-lg sm:text-2xl font-semibold tracking-tight text-gray-900">
             {program.name || "Новая программа"}
           </h1>
 

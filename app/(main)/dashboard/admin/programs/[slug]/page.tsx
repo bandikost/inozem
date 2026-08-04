@@ -30,8 +30,8 @@ export default async function AdminProgramsPage({params} : ProgramsPageProps) {
     
 
   return (
-    <section className="mx-auto mt-27 max-w-7xl px-6 pb-16">
-      <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
+    <section className="mx-auto mt-27 max-w-7xl px-2 pb-16">
+      <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 px-4 text-md text-zinc-500">
             
                   <LoadingLink href="/dashboard/manager" className="shrink-0 hover:text-blue transition hover:underline">
                     Главная страница Админки

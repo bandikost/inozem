@@ -46,7 +46,7 @@ export default async function Page() {
   return (
     <>
     {hasAccess && (
-    <section className='flex flex-col justify-center pb-20 px-4'>
+    <section className='flex flex-col justify-center pb-20 px-2'>
         
       <h1 className='mt-27 text-prpl text-center'>Виртуальное обучение</h1>
 

@@ -28,7 +28,7 @@ export default async function Page({
 
   return (
     <section className="min-h-screen">
-      <div className="container mx-auto my-27 px-4">
+      <div className="container mx-auto my-27 px-2">
 
         <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
 

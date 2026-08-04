@@ -5,9 +5,11 @@ import AnimatedNumber from "./components/AnimatedNumber";
 import { getAllUsers } from "@/lib/users";
 import { Users, BookOpen, Award, Briefcase } from "lucide-react";
 import LoadingLink from "../Load/LoadingLink"
+import { getPrograms } from "@/lib/programm";
 
 export default async function SecondBlock() {
-  const users = await getAllUsers();
+  const users = await getAllUsers()
+  const programs = await getPrograms()
 
   return (
     <section className="w-full mt-24 px-4 ">
@@ -49,7 +51,7 @@ export default async function SecondBlock() {
           </div>
 
           <div className="mt-6 text-4xl font-bold text-blue flex items-end gap-1">
-            <AnimatedNumber value={120} />
+            <AnimatedNumber value={programs.length} />
             <span className="text-lg text-slate-500">+</span>
           </div>
 
