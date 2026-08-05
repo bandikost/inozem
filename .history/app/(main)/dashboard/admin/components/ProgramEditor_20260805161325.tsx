@@ -304,74 +304,49 @@ export default function ProgramEditor({
             </div>
           </Field>
           <Field
-          label="Важная программа"
-          hint="Отображается как рекомендуемая"
-        >
-          <button
-            type="button"
-            onClick={() =>
-              setProgram((prev) => ({
-                ...prev,
-                isFavorite: !prev.isFavorite,
-              }))
-            }
-            className={`
-              flex items-center gap-3 rounded-xl border px-4 py-3 transition
-              ${
-                program.isFavorite
-                  ? "border-yellow-300 bg-yellow-50 text-yellow-700"
-                  : "border-gray-200 bg-white text-gray-500"
-              }
-            `}
-          >
-            <div
-              className={`
-                flex h-6 w-6 items-center justify-center rounded-full
-                ${
-                  program.isFavorite
-                    ? "bg-yellow-400 text-white"
-                    : "bg-gray-100"
-                }
-              `}
-            >
-              <Star
-                size={14}
-                fill={program.isFavorite ? "currentColor" : "none"}
-              />
-            </div>
+  label="Важная программа"
+  hint="Отображается как рекомендуемая"
+>
+  <button
+    type="button"
+    onClick={() =>
+      setProgram((prev) => ({
+        ...prev,
+        isFavorite: !prev.isFavorite,
+      }))
+    }
+    className={`
+      flex items-center gap-3 rounded-xl border px-4 py-3 transition
+      ${
+        program.isFavorite
+          ? "border-yellow-300 bg-yellow-50 text-yellow-700"
+          : "border-gray-200 bg-white text-gray-500"
+      }
+    `}
+  >
+    <div
+      className={`
+        flex h-6 w-6 items-center justify-center rounded-full
+        ${
+          program.isFavorite
+            ? "bg-yellow-400 text-white"
+            : "bg-gray-100"
+        }
+      `}
+    >
+      <Star
+        size={14}
+        fill={program.isFavorite ? "currentColor" : "none"}
+      />
+    </div>
 
-            <span className="text-sm font-medium">
-              {program.isFavorite
-                ? "Важная программа"
-                : "Обычная программа"}
-            </span>
-          </button>
-        </Field>
-
-
-          <Field
-            label="Текст баннера"
-            hint="Максимум 15 символов"
-          >
-            <div className="relative">
-              <input
-                value={program.bannerName}
-                maxLength={15}
-                onChange={(e) =>
-                  setProgram((prev) => ({
-                    ...prev,
-                    bannerName: e.target.value,
-                  }))
-                }
-                placeholder="Например: Новинка"
-                className="input-main pr-16"
-              />
-
-              <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-400">
-                {program.bannerName.length}/15
-              </span>
-            </div>
-          </Field>
+    <span className="text-sm font-medium">
+      {program.isFavorite
+        ? "Важная программа"
+        : "Обычная программа"}
+    </span>
+  </button>
+</Field>
 
            <Field
             label="Диплом"
