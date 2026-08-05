@@ -15,4 +15,7 @@ export type Activity = {
   created_at: string
   title_bg: string
   teacher_img: string
+  attendance_control: string | null;
+  location: string | null;
+  planned_results: string | null;
 }
