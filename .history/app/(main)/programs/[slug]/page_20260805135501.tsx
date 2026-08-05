@@ -202,8 +202,6 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
             Оплатите обучение онлайн,
             чтобы получить доступ к ближайшему старту.
           </p>
-
-          <p className="!font-semibold my-3 text-blue border border-gray-200 p-2 rounded-2xl shadow-xl">Стоимость программы - {program.price} ₽</p>
         </div>
 
        {/* <div className="mt-8">

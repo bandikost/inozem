@@ -203,7 +203,7 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
             чтобы получить доступ к ближайшему старту.
           </p>
 
-          <p className="!font-semibold my-3 text-blue border border-gray-200 p-2 rounded-2xl shadow-xl">Стоимость программы - {program.price} ₽</p>
+          <p className="!font-semibold mt-2 text-blue">Стоимость программы - {program.price}</p>
         </div>
 
        {/* <div className="mt-8">

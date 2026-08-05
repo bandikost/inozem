@@ -207,49 +207,53 @@ export default function ProfileClient({programs, user, tests} : Props) {
 
 
       </div> 
-      {tests.length > 0 &&  (
+      
       <div className=" mt-8 rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] overflow-hidden max-h-[200px]">
- 
-  
+
       <div className="h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
 
           <div className="p-6 md:p-8 flex flex-col justify-center ">
-          <h3 className="text-2xl font-semibold text-prpl">Мои тестирования</h3>
-            <div className="mt-6 space-y-4">
 
-            {
-            tests.map((test)=>(
-            <div
-            key={test.id}
-          
-            >
-
-            <p className="font-semibold border border-gray-200 p-2 bg-violet-100 rounded-2xl">
-            {test.name_test}
-            </p>
+          <h3 className="text-2xl font-semibold text-prpl">
+          Мои тестирования
+          </h3>
 
 
-            <p className="mt-2 text-gray-600">
-            Результат: <span className="underline !font-semibold">{test.result}</span>
-            </p>
+          {tests.length > 0 &&  (
+          <div className="mt-6 space-y-4">
+
+          {
+          tests.map((test)=>(
+          <div
+          key={test.id}
+        
+          >
+
+          <p className="font-semibold border border-gray-200 p-2 bg-violet-100 rounded-2xl">
+          {test.name_test}
+          </p>
 
 
-            <p className="text-sm text-gray-400">
-            {new Date(test.created_at).toLocaleDateString("ru-RU")}
-            </p>
+          <p className="mt-2 text-gray-600">
+          Результат: <span className="underline !font-semibold">{test.result}</span>
+          </p>
 
 
-            </div>
-            ))
-            }
+          <p className="text-sm text-gray-400">
+          {new Date(test.created_at).toLocaleDateString("ru-RU")}
+          </p>
 
-            </div>
+
+          </div>
+          ))
+          }
+
+          </div>
+          )}
+
           </div>
 
-      
       </div>
-)}
-
 
       
         <div className="mt-8 flex max-h-[200px] justify-center  flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">

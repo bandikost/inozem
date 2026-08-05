@@ -207,10 +207,10 @@ export default function ProfileClient({programs, user, tests} : Props) {
 
 
       </div> 
-      {tests.length > 0 &&  (
+      
       <div className=" mt-8 rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] overflow-hidden max-h-[200px]">
- 
-  
+ {tests.length > 0 &&  (
+  <>
       <div className="h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
 
           <div className="p-6 md:p-8 flex flex-col justify-center ">
@@ -247,10 +247,10 @@ export default function ProfileClient({programs, user, tests} : Props) {
           </div>
 
       
-      </div>
+      </>
 )}
 
-
+</div>
       
         <div className="mt-8 flex max-h-[200px] justify-center  flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
           <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
