@@ -12,9 +12,9 @@ export default async function ThirdBlock() {
     <section className="w-full mt-24 px-4">
 
       <div className="max-w-6xl mx-auto flex flex-col gap-2 px-2">
-        <h2 className="text-2xl font-semibold text-prpl ">
+        <h4 className="text-2xl font-semibold text-prpl ">
           Преподаватель месяца
-        </h2>
+        </h4>
         <p className="text-slate-600">
           Основано на активности и взаимодействии со студентами
         </p>
@@ -70,7 +70,7 @@ export default async function ThirdBlock() {
 
        
               <div className="mt-8">
-                <LoadingLink href="/programs" className="button-more">Перейти к программам →</LoadingLink>
+                <LoadingLink href={`/employees/${teacher.id}`} className="button-more">Подробнее о преподаватели →</LoadingLink>
               </div>
             </div>
           </div>

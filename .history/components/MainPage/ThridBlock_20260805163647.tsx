@@ -12,13 +12,17 @@ export default async function ThirdBlock() {
   return (
     <section className="w-full mt-24 px-4 relative overflow-hidden">
 
-      <div className="absolute inset-0 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-violet-50/50 via-white to-white -z-10" />
 
       <div className="max-w-6xl mx-auto px-2">
 
         <div className="mb-10">
+          <div className="flex items-center gap-2 text-prpl font-medium mb-3">
+            <Award size={20} />
+            Лучший преподаватель
+          </div>
 
-          <h4 className="text-3xl md:text-4xl font-bold text-prpl">
+          <h4 className="text-3xl md:text-4xl font-bold text-slate-900">
             Преподаватель месяца
           </h4>
 
@@ -93,7 +97,9 @@ export default async function ThirdBlock() {
                 <div className="
                   absolute inset-0
                   rounded-full
-                  
+                  bg-gradient-to-br
+                  from-prpl
+                  to-indigo-400
                   rotate-6
                   opacity-20
                 "/>
@@ -185,7 +191,7 @@ export default async function ThirdBlock() {
                     py-3
                     rounded-xl
                     bg-prpl
-                    !text-white
+                    text-white
                     font-medium
                     shadow-md
                     hover:shadow-xl

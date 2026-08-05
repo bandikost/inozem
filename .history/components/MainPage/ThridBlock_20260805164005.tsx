@@ -17,8 +17,12 @@ export default async function ThirdBlock() {
       <div className="max-w-6xl mx-auto px-2">
 
         <div className="mb-10">
+          <div className="flex items-center gap-2 text-prpl font-medium mb-3">
+            <Award size={20} color="gold" />
+            Лучший преподаватель
+          </div>
 
-          <h4 className="text-3xl md:text-4xl font-bold text-prpl">
+          <h4 className="text-3xl md:text-4xl font-bold text-slate-900">
             Преподаватель месяца
           </h4>
 
