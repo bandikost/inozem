@@ -234,20 +234,25 @@ function getMainResult(total: number) {
     const risk = getScale(
       scales.risk.direct,
       scales.risk.reverse
-    )
+    );
 
-    const total = involvement + control + risk
+       const main = getMainResult(
+  involvement,
+  control,
+  risk
+);
 
-   const main = getMainResult(total)
 
-    setResult({
-      type: main.type,
-      description: main.description,
-      total,
-      involvement,
-      control,
-      risk,
-    })   
+setResult({
+  type: main.text,
+  total: involvement + control + risk,
+  involvement,
+  control,
+  risk
+})
+
+
+   
 
   }
 
@@ -423,8 +428,7 @@ return (
     <div className="mt-10 p-6 rounded-xl bg-gray-100">
 
         <h2 className="text-xl font-bold mb-4">Результаты</h2>
-        <p><b>Общая характеристика:</b> {result.type}</p>
-        <p>{result.description}</p>
+        <p>Основная характеристика: {result.type}</p>
         <p>Общая жизнестойкость: {result.total}</p>
         <p>Вовлеченность: {result.involvement}</p>
         <p>Контроль: {result.control}</p>

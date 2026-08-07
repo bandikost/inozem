@@ -102,14 +102,14 @@ export default async function ManagerPage() {
     </LoadingLink>
 
      <LoadingLink href="/dashboard/discharge" className="group bg-white rounded-2xl border border-gray-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1">
-      <div className="text-4xl mb-4">📊</div>
+      <div className="text-4xl mb-4">🗓️</div>
 
       <h2 className="text-2xl font-semibold text-prpl">
         Информация с базы данных
       </h2>
 
       <p className="text-gray-500 mt-2">
-        Просмотрите интересующую вас информацию
+        Создание и редактирование мероприятий
       </p>
     </LoadingLink>
   </div>
