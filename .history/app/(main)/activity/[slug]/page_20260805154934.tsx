@@ -314,7 +314,7 @@ __html: activity.planned_results
 
 
 
-
+{(activity.conditions || activity.paylink) && (
   <div className="mt-6 grid grid-cols-1 items-stretch gap-6 md:grid-cols-2">
 
   
@@ -391,7 +391,7 @@ __html: activity.planned_results
     </div>
 
   </div>
-
+)}
 </div>
       
       </div>

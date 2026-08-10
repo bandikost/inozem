@@ -123,8 +123,13 @@ export default function ActivityEditor({
       redirect("/dashboard/activity")
     } catch (error) {
       console.error(error);
-      toast.error("Ошибка сервера")
-      
+
+      alert(
+        error instanceof Error
+          ? error.message
+          : 
+          toast.error("Ошибка сервера")
+      );
     } finally {
       setLoading(false);
     }
