@@ -4,8 +4,10 @@ const EMAIL_USER = process.env.EMAIL_USER as string
 const EMAIL_RECIP = process.env.EMAIL_RECIP as string
 const EMAIL_PASS = process.env.EMAIL_PASS as string
 
-if (!EMAIL_USER || !EMAIL_PASS) {
-  throw new Error("EMAIL_USER или EMAIL_PASS не заданы в .env")
+if (!EMAIL_USER || !EMAIL_PASS || !EMAIL_RECIP) {
+  throw new Error(
+    "EMAIL_USER, EMAIL_PASS или EMAIL_RECIP не заданы в .env"
+  );
 }
 
 export const transporter = nodemailer.createTransport({
