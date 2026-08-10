@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { Nunito, Montserrat_Alternates } from "next/font/google";
 import "./globals.css";
 import InitialLoader from "@/components/Load/InitialLoader";
@@ -9,6 +10,9 @@ import LoadingOverlay from "@/components/Load/LoadingOverlay";
 import RouteLoader from "@/components/Load/RouteLoader";
 import { Analytics } from "@vercel/analytics/next"
 import ScrollToTop from "@/components/ScrollToTop";
+import { ToastProvider } from "@/components/ui/Toast/ToastProvider";
+import YandexMetrika from "@/components/analytics/yandex";
+
 
 const nunito = Nunito({
   variable: "--font-sans",
@@ -27,14 +31,20 @@ const montserratAlt = Montserrat_Alternates({
 export const metadata: Metadata = {
   title: "ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»",
   description: "Официальный сайт ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева». Дополнительное профессиональное образование для врачей, медсестер и лиц без медицинского образования.",
+
+   robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 
 export default function RootLayout({ children } : Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru"  className={`${nunito.variable} ${montserratAlt.variable} antialiased`}>
-    <head><meta charSet="UTF-8" /></head>
   <body className={`${nunito.variable} ${montserratAlt.variable} antialiased`}>
+    <YandexMetrika />
+    <ToastProvider>
     <NavigationDone />
     <InitialLoader />
     <QuestionButton />
@@ -44,6 +54,7 @@ export default function RootLayout({ children } : Readonly<{ children: React.Rea
     {children}
     <Script src="https://smartcaptcha.yandexcloud.net/captcha.js" strategy="afterInteractive"/>
     <ScrollToTop />
+    </ToastProvider>
   </body>
 </html>
 

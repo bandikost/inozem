@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import YandexMetrika from "@/components/analytics/YandexMetrika";
 import { Nunito, Montserrat_Alternates } from "next/font/google";
 import "./globals.css";
 import InitialLoader from "@/components/Load/InitialLoader";
@@ -11,7 +11,6 @@ import RouteLoader from "@/components/Load/RouteLoader";
 import { Analytics } from "@vercel/analytics/next"
 import ScrollToTop from "@/components/ScrollToTop";
 import { ToastProvider } from "@/components/ui/Toast/ToastProvider";
-import YandexMetrika from "@/components/analytics/yandex";
 
 
 const nunito = Nunito({
@@ -43,7 +42,7 @@ export default function RootLayout({ children } : Readonly<{ children: React.Rea
   return (
     <html lang="ru"  className={`${nunito.variable} ${montserratAlt.variable} antialiased`}>
   <body className={`${nunito.variable} ${montserratAlt.variable} antialiased`}>
-    <YandexMetrika />
+    
     <ToastProvider>
     <NavigationDone />
     <InitialLoader />
