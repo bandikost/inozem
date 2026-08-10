@@ -45,7 +45,7 @@ export default function ProfileClient({programs, user, tests} : Props) {
 
     const visiblePrograms = showAll
     ? programs
-    : programs.slice(0, 2)
+    : programs.slice(0, 3)
 
 
     return (
