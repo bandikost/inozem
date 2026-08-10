@@ -210,11 +210,11 @@ export default function ProfileClient({programs, user, tests} : Props) {
 
     <div>
       <h3 className="text-xl font-semibold tracking-tight text-prpl md:text-2xl">
-        Ближайшие вебинары
+        Вебинары
       </h3>
 
       <p className="mt-1 text-sm text-slate-500">
-         В вебинарную комнату могут попасть только пользователи, оплатившие доступ к программе.
+        Ближайшие вебинары. В вебинарную комнату могут попасть только те пользователи, которые оплатили доступ к программе.
       </p>
     </div>
 

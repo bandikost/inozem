@@ -4,52 +4,62 @@ import { UserRow } from "@/app/interface/user"
 import LoadingLink from "@/components/Load/LoadingLink"
 import LogoutButton from "@/components/ui/Buttons/LogoutButton"
 import { ProgramRow } from "@/lib/programm"
-import { CalendarDays, ChevronRight, CircleUserRound, GraduationCap, Handshake, Heart, LogOutIcon, Pencil, Star } from "lucide-react"
+import {
+  CalendarDays,
+  ChevronRight,
+  CircleUserRound,
+  GraduationCap,
+  LogOutIcon,
+  Pencil,
+  KeyRound,
+} from "lucide-react"
 import { useState, useEffect } from "react"
-import { KeyRound } from "lucide-react"
 import { getHourWord } from "@/components/ui/GetHourWord"
 
 interface Props {
   programs: ProgramRow[]
   user: UserRow
-  tests:any[]
+  tests: any
 }
 
+export default function ProfileClient({
+  programs,
+  user,
+  tests,
+}: Props) {
+  const [showAll, setShowAll] = useState(false)
 
-export default function ProfileClient({programs, user, tests} : Props) {
-    const [showAll, setShowAll] = useState(false)
-    const [webinars, setWebinars] = useState<any[]>([])
-    const [webinarsLoading, setWebinarsLoading] = useState(true)
+  const [webinars, setWebinars] = useState<any[]>([])
+  const [webinarsLoading, setWebinarsLoading] = useState(true)
 
-    useEffect(() => {
-  async function loadWebinars() {
-    try {
-      const res = await fetch("/api/pruffme/webinars")
+  useEffect(() => {
+    async function loadWebinars() {
+      try {
+        const res = await fetch("/api/pruffme/webinars")
 
-      if (!res.ok) {
-        throw new Error("Ошибка загрузки вебинаров")
+        if (!res.ok) {
+          throw new Error("Ошибка загрузки вебинаров")
+        }
+
+        const data = await res.json()
+
+        setWebinars(data)
+      } catch (error) {
+        console.error("WEBINARS ERROR:", error)
+      } finally {
+        setWebinarsLoading(false)
       }
-
-      const data = await res.json()
-
-      setWebinars(data)
-    } catch (error) {
-      console.error("WEBINARS ERROR:", error)
-    } finally {
-      setWebinarsLoading(false)
     }
-  }
 
-  loadWebinars()
-}, [])
+    loadWebinars()
+  }, [])
 
-    const visiblePrograms = showAll
+  const visiblePrograms = showAll
     ? programs
     : programs.slice(0, 2)
 
-
-    return (
-         <section className="min-h-screen pb-10">
+  return (
+    <section className="min-h-screen pb-10">
     <div className="container max-w-6xl px-2 my-27">
            <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500 px-6">
       
@@ -202,7 +212,7 @@ export default function ProfileClient({programs, user, tests} : Props) {
   </div>
 
 
-      <div className="mt-8 rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] overflow-hidden">
+   <div className="mt-8 rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] overflow-hidden">
 
   <div className="h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
 
@@ -210,11 +220,11 @@ export default function ProfileClient({programs, user, tests} : Props) {
 
     <div>
       <h3 className="text-xl font-semibold tracking-tight text-prpl md:text-2xl">
-        Ближайшие вебинары
+        Вебинары
       </h3>
 
       <p className="mt-1 text-sm text-slate-500">
-         В вебинарную комнату могут попасть только пользователи, оплатившие доступ к программе.
+        Ближайшие вебинары
       </p>
     </div>
 
@@ -294,7 +304,10 @@ export default function ProfileClient({programs, user, tests} : Props) {
   </div>
 </div>
 
-      
+ 
+
+
+      </div> 
       {tests.length > 0 &&  (
       <div className=" mt-8 rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] overflow-hidden max-h-[200px]">
  

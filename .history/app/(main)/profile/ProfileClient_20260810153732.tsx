@@ -48,6 +48,7 @@ export default function ProfileClient({programs, user, tests} : Props) {
     : programs.slice(0, 2)
 
 
+
     return (
          <section className="min-h-screen pb-10">
     <div className="container max-w-6xl px-2 my-27">
@@ -210,30 +211,36 @@ export default function ProfileClient({programs, user, tests} : Props) {
 
     <div>
       <h3 className="text-xl font-semibold tracking-tight text-prpl md:text-2xl">
-        Ближайшие вебинары
+        Вебинары
       </h3>
 
       <p className="mt-1 text-sm text-slate-500">
-         В вебинарную комнату могут попасть только пользователи, оплатившие доступ к программе.
+        Ближайшие вебинары
       </p>
     </div>
 
     {webinarsLoading ? (
+
       <div className="mt-6 space-y-3">
         <div className="h-20 animate-pulse rounded-2xl bg-slate-100" />
         <div className="h-20 animate-pulse rounded-2xl bg-slate-100" />
         <div className="h-20 animate-pulse rounded-2xl bg-slate-100" />
       </div>
+
     ) : webinars.length === 0 ? (
+
       <div className="mt-6 rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-6 text-center">
         <p className="text-slate-500">
           Ближайших вебинаров нет
         </p>
       </div>
+
     ) : (
+
       <div className="mt-6 space-y-4">
 
         {webinars.map((webinar) => {
+
           const date = new Date(
             webinar.date.replace(" ", "T")
           )
@@ -246,6 +253,7 @@ export default function ProfileClient({programs, user, tests} : Props) {
               rel="noopener noreferrer"
               className="group block rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-md"
             >
+
               <div className="flex items-start justify-between gap-4">
 
                 <div className="min-w-0">
@@ -284,17 +292,22 @@ export default function ProfileClient({programs, user, tests} : Props) {
                 </div>
 
               </div>
+
             </a>
           )
         })}
 
       </div>
+
     )}
 
   </div>
 </div>
 
-      
+ 
+
+
+      </div> 
       {tests.length > 0 &&  (
       <div className=" mt-8 rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] overflow-hidden max-h-[200px]">
  
