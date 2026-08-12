@@ -114,7 +114,7 @@ export default async function ManagerPage() {
     </LoadingLink>
 
     <LoadingLink href="/dashboard/test_creator" className="group bg-white rounded-2xl border border-gray-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1">
-      <div className="text-4xl mb-4">🧪</div>
+      <div className="text-4xl mb-4">📊</div>
 
       <h2 className="text-2xl font-semibold text-prpl">
         Создание тестов
