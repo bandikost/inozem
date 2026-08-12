@@ -164,15 +164,6 @@ export default function AddProgramForm() {
             />
           </Field>
 
-          <Field label="Подзаголовок">
-            <input
-              value={suptitle}
-              onChange={(e) =>setSuptitle(e.target.value)}
-              placeholder="Подзаголовок под названием программы"
-              className="input-main"
-            />
-          </Field>
-
             </div>
 
           </div>
