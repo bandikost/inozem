@@ -81,6 +81,41 @@ export default function UsersClient({
     }
   }
 
+  const handleDeleteProgram = async (
+  userId: number,
+  programId: number
+) => {
+  const confirmed = window.confirm(
+    "Вы действительно хотите убрать эту программу у пользователя?"
+  );
+
+  if (!confirmed) return;
+
+  try {
+    const res = await fetch("/api/user-program/delete", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId,
+        programId,
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Ошибка удаления программы");
+    }
+
+    toast.success("Программа удалена ✅");
+
+    router.refresh();
+  } catch (error) {
+    console.error(error);
+    toast.error("Не удалось удалить программу");
+  }
+};
+
   const processedUsers = useMemo(() => {
     return users
       .filter((user) =>
@@ -301,25 +336,47 @@ export default function UsersClient({
                                 if (!program) return null
 
                                 return (
-                                  <Link
+                                  <div
                                     key={`${program.id}-${name}`}
-                                    href={`/programs/${program.slug}`}
-                                    className="
-                                      rounded-lg
-                                      bg-blue
-                                      border
-                                      border-gray-200
-                                      p-3
-                                      px-3
-                                      py-2
-                                      text-sm
-                                      !text-white
-                                      transition
-                                      hover:opacity-70
-                                    "
+                                    className="flex items-center gap-1"
                                   >
-                                    {program.name}
-                                  </Link>
+                                    <Link
+                                      href={`/programs/${program.slug}`}
+                                      className="rounded-lg bg-blue
+                                        border
+                                        border-gray-200
+                                        px-3
+                                        py-2
+                                        text-sm
+                                        !text-white
+                                        transition
+                                        hover:opacity-70
+                                      "
+                                    >
+                                      {program.name}
+                                    </Link>
+
+                                    <button type="button" onClick={() => handleDeleteProgram(user.id, program.id)}
+                                      className="
+                                        flex
+                                        h-8
+                                        w-8
+                                        items-center
+                                        justify-center
+                                        rounded-lg
+                                        border
+                                        border-red-200
+                                        text-red-500
+                                        transition
+                                        hover:bg-red-50
+                                        hover:text-red-600
+                                        cursor-pointer
+                                      "
+                                      title="Удалить программу"
+                                    >
+                                      ×
+                                    </button>
+                                  </div>
                                 )
                               })}
                             </div>

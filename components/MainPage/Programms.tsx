@@ -13,7 +13,7 @@ export default async function Programms() {
   const favoritePrograms = programs.filter((p) => p.isFavorite);
 
   return (
-    <section className="w-full mt-24 px-4">
+    <section className="w-full  px-4">
       <div className="max-w-6xl mx-auto">
         <div className="mb-10">
           <h4 className="text-3xl font-semibold text-blue">
