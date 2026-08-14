@@ -1,7 +1,7 @@
 import LoadingLink from "@/components/Load/LoadingLink";
 import InputPrograms from "@/components/ui/Programs/inputPrograms";
 import { getPrograms } from "@/lib/programm";
-import { ChevronRight, MoveLeft } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 export const revalidate = 3600
 

@@ -47,3 +47,13 @@ export async function getTestsCreatedBySlug(
 
   return rows;
 }
+
+
+export async function deleteTest(slug:string){
+
+const [rows] = await db.execute(`Delete FROM tests_creator WHERE slug = ?`, [slug])
+
+
+return rows as any[]
+
+}

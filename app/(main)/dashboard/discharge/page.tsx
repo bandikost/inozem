@@ -4,6 +4,8 @@ import ActivityTable from "./components/ActivityTable";
 import TestsTable from "./components/TestsTable";
 import PaymentsTable from "./components/PaymentsTable";
 import Link from "next/link";
+import QuestionTable from "./components/QuestionsTable";
+import LearningTable from "./components/LearningTable";
 
 export const metadata = {
   title: 'Информация с базы | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»',
@@ -50,10 +52,10 @@ export default async function Page({ searchParams }: Props) {
           className={`rounded-xl px-5 py-3 transition ${
             tab === "activity"
               ? "bg-prpl !text-white"
-              : "bg-gray-100 hover:bg-gray-200"
+              : "bg-gray-100 border border-gray-300 hover:bg-gray-200"
           }`}
         >
-          📋 Заявки
+          📋 Мероприятия
         </Link>
 
         <Link
@@ -61,7 +63,7 @@ export default async function Page({ searchParams }: Props) {
           className={`rounded-xl px-5 py-3 transition ${
             tab === "tests"
               ? "bg-prpl !text-white"
-              : "bg-gray-100 hover:bg-gray-200"
+              : "bg-gray-100 border border-gray-300 hover:bg-gray-200"
           }`}
         >
           🧠 Тесты
@@ -72,10 +74,30 @@ export default async function Page({ searchParams }: Props) {
           className={`rounded-xl px-5 py-3 transition ${
             tab === "payments"
               ? "bg-prpl !text-white"
-              : "bg-gray-100 hover:bg-gray-200"
+              : "bg-gray-100 border border-gray-300 hover:bg-gray-200"
           }`}
         >
           💳 Платежи
+        </Link>
+        <Link
+          href="?tab=question"
+          className={`rounded-xl px-5 py-3 transition ${
+            tab === "question"
+              ? "bg-prpl !text-white"
+              : "bg-gray-100 border border-gray-300 hover:bg-gray-200"
+          }`}
+        >
+          ❓ Вопросы
+        </Link>
+        <Link
+          href="?tab=learning"
+          className={`rounded-xl px-5 py-3 transition ${
+            tab === "learning"
+              ? "bg-prpl !text-white"
+              : "bg-gray-100 border border-gray-300 hover:bg-gray-200"
+          }`}
+        >
+          🎓 Обучение
         </Link>
       </div>
 
@@ -83,6 +105,8 @@ export default async function Page({ searchParams }: Props) {
         {tab === "activity" && <ActivityTable /> }
         {tab === "tests" && <TestsTable />}
         {tab === "payments" && <PaymentsTable />}
+        {tab === "question" && <QuestionTable />}
+        {tab === "learning" && <LearningTable />}
       </div>
 
     </section>

@@ -69,7 +69,7 @@ export default async function Page({ params }: PageProps) {
         >
           <div className="absolute inset-0 bg-black/55" />
 
-          <div className="relative z-10 max-w-5xl px-6 text-center">
+          <div className="relative z-10 max-w-5xl px-6 text-center mb-10">
             <div className="inline-flex items-center rounded-full bg-white/15 backdrop-blur-md px-5 py-2 text-white text-sm mb-8 mt-6 sm:mt-0">
               Образовательное мероприятие
             </div>
@@ -196,8 +196,8 @@ export default async function Page({ params }: PageProps) {
         </div>
 
         {activity.teacher && (
-          <div className="mt-10 rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
-            <div className="flex flex-col md:flex-row gap-8">
+          <div className="mt-10 rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm ">
+            <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
               {activity.teacher_img && (
                 <ImageWithSkeleton
                   src={activity.teacher_img}

@@ -19,6 +19,8 @@ return rows as any[]
 }
 
 
+
+
 export async function getTests(){
 
 const [rows] = await db.query(`SELECT * FROM tests`)

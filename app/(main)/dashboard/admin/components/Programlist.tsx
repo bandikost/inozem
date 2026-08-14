@@ -32,6 +32,8 @@ export default function ProgramList({ program }: Props) {
     )
   }, [program, value])
 
+  const sortedFiltred = [...filtered].sort((a, b) => b.id - a.id)
+
   return (
     <section className=" mt-27 pb-16">
 
@@ -83,7 +85,7 @@ export default function ProgramList({ program }: Props) {
 
       <div className="grid gap-5">
 
-        {filtered.map((p) => (
+        {sortedFiltred.map((p) => (
 
           <Link
             key={p.id}

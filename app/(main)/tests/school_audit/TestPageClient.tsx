@@ -60,7 +60,7 @@ export default function TestPageClient({user} : Props) {
 useEffect(() => {
   async function check() {
     const res = await fetch(
-      `/api/tests_results/check?userId=${user.id}&nameTest=${encodeURIComponent(
+      `/api/tests_exclusive/check?userId=${user.id}&nameTest=${encodeURIComponent(
         "Тест жизнестойкости С. Мадди"
       )}`
     );
@@ -122,7 +122,7 @@ useEffect(() => {
 
    const handleSendResult = async () => {
   try {
-    const response = await fetch("/api/tests_results", {
+    const response = await fetch("/api/tests_exclusive", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

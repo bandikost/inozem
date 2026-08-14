@@ -1,6 +1,8 @@
 import LoadingLink from "@/components/Load/LoadingLink";
 import { getTestsCreatedBySlug } from "@/lib/tests_creator/tests";
 import { ChevronRight } from "lucide-react";
+import TestEditor from "../../edit/[slug]/components/TestEditor";
+import DeleteTestButton from "./components/DeleteTestButton";
 
 interface PageProps {
   params: Promise<{
@@ -29,10 +31,20 @@ export default async function Page({ params }: PageProps) {
     );
   }
 
-  return (
-    <section className="flex flex-col mt-27 px-6">
+  const questions = test
+    .filter((item) => item.content_id !== null)
+    .map((item) => ({
+      question_number: item.question_number ?? 1,
+      question: item.question ?? "",
+      answers: item.answers
+        ? (JSON.parse(item.answers) as TestAnswer[])
+        : [],
+    }));
 
-      <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500 text-left">
+  return (
+    <section className="flex flex-col mt-27 px-6 mb-10">
+
+      <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
 
         <LoadingLink
           href="/dashboard/manager"
@@ -41,7 +53,7 @@ export default async function Page({ params }: PageProps) {
           Главная страница Админки
         </LoadingLink>
 
-        <ChevronRight size={14} className="shrink-0" />
+        <ChevronRight size={14} />
 
         <LoadingLink
           href="/dashboard/test_creator"
@@ -50,7 +62,7 @@ export default async function Page({ params }: PageProps) {
           Тесты
         </LoadingLink>
 
-        <ChevronRight size={14} className="shrink-0" />
+        <ChevronRight size={14} />
 
         <span className="min-w-0 flex-1 truncate text-zinc-800 opacity-70">
           {test[0].title}
@@ -59,37 +71,15 @@ export default async function Page({ params }: PageProps) {
       </nav>
 
       <h1 className="text-prpl text-center text-3xl font-semibold">
-        {test[0].title}
+        Редактирование: {test[0].title}
       </h1>
 
-      <div className="mt-10 flex flex-col gap-6">
+      <DeleteTestButton slug={slug} />
 
-      {test.map((item) => { const answers = item.answers ? JSON.parse(item.answers) : []
-
-  return (
-    <div key={item.content_id}>
-      <h2>
-        Вопрос №{item.question_number}
-      </h2>
-
-      <p>
-        {item.question}
-      </p>
-
-      {answers.map((answer: {
-        id: number;
-        text: string;
-        correct: boolean;
-      }) => (
-        <div key={answer.id}>
-          {answer.correct ? "✓" : "○"} {answer.text}
-        </div>
-      ))}
-    </div>
-  );
-})}
-
-      </div>
+      <TestEditor
+        testId={test[0].id}
+        initialQuestions={questions}
+      />
 
     </section>
   );
