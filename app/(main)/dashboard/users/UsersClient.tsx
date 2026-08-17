@@ -13,6 +13,7 @@ import {
   Search,
   UserRound,
   Plus,
+  Trash,
 } from "lucide-react"
 import Link from "next/link"
 import { useMemo, useState } from "react"
@@ -365,7 +366,7 @@ export default function UsersClient({
                                         justify-center
                                         rounded-lg
                                         border
-                                        border-red-200
+                                        border-red-500
                                         text-red-500
                                         transition
                                         hover:bg-red-50
@@ -374,7 +375,7 @@ export default function UsersClient({
                                       "
                                       title="Удалить программу"
                                     >
-                                      ×
+                                      <Trash className="text-red-500" size={16} />
                                     </button>
                                   </div>
                                 )

@@ -32,6 +32,18 @@ const CardNav = ({
   }
 }, [pathname]);
 
+useEffect(() => {
+  if (isExpanded) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
+
+  return () => {
+    document.body.style.overflow = '';
+  };
+}, [isExpanded])
+
   const calculateHeight = () => {
     const navEl = navRef.current;
     if (!navEl) return 300;
@@ -70,7 +82,11 @@ const CardNav = ({
     const navEl = navRef.current;
     if (!navEl) return null;
 
-    gsap.set(navEl, { height: 60, overflow: 'hidden' });
+    gsap.set(navEl, {
+  height: 60,
+  overflowX: 'hidden',
+  overflowY: 'auto',
+})
     gsap.set(cardsRef.current, { y: 50, opacity: 0 });
 
     const tl = gsap.timeline({ paused: true });

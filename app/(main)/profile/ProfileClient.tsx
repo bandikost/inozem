@@ -4,7 +4,7 @@ import { UserRow } from "@/app/interface/user"
 import LoadingLink from "@/components/Load/LoadingLink"
 import LogoutButton from "@/components/ui/Buttons/LogoutButton"
 import { ProgramRow } from "@/lib/programm"
-import { CalendarDays, ChevronRight, CircleUserRound, GraduationCap, Handshake, Heart, LogOutIcon, Pencil, Star } from "lucide-react"
+import { CalendarDays, ChevronRight, CircleSmall, CircleUserRound, GraduationCap, Handshake, Heart, LogOutIcon, Pencil, Star } from "lucide-react"
 import { useState, useEffect } from "react"
 import { KeyRound } from "lucide-react"
 import { getHourWord } from "@/components/ui/GetHourWord"
@@ -239,13 +239,8 @@ export default function ProfileClient({programs, user, tests} : Props) {
           )
 
           return (
-            <a
-              key={webinar.id}
-              href={webinar.landing}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-md"
-            >
+            <a key={webinar.id} href={webinar.landing} target="_blank" rel="noopener noreferrer"
+              className="group block rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-md">
               <div className="flex items-start justify-between gap-4">
 
                 <div className="min-w-0">
@@ -266,12 +261,26 @@ export default function ProfileClient({programs, user, tests} : Props) {
                       year: "numeric",
                     })}
 
-                    {" в "}
+                    {date.getTime() <= Date.now() ? (
+                      <>
+                        <span className="flex items-center gap-1.5 text-green-500">
+                          <span className="relative flex h-2 w-2">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                            <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                          </span>
 
-                    {date.toLocaleTimeString("ru-RU", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
+                          в сети
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        {" в "}
+                        {date.toLocaleTimeString("ru-RU", {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </>
+                    )}
                   </p>
 
                 </div>
