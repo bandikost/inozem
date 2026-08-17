@@ -44,6 +44,7 @@ export default async function Page({ params }: PageProps) {
       <h1 className="text-prpl text-center">
         Тесты | Админ
       </h1>
+      <p>Все тесты создаются по пути: /tests/slug теста</p>
 
       <TestList testlist={testlist} />
     </section>
