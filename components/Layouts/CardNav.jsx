@@ -32,61 +32,35 @@ const CardNav = ({
   }
 }, [pathname]);
 
-useEffect(() => {
-  if (isExpanded) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = '';
-  }
 
-  return () => {
-    document.body.style.overflow = '';
-  };
-}, [isExpanded])
 
   const calculateHeight = () => {
-    const navEl = navRef.current;
-    if (!navEl) return 300;
+  const navEl = navRef.current;
 
-    const isMobile = window.matchMedia('(max-width: 769px)').matches;
-    if (isMobile) {
-      const contentEl = navEl.querySelector('.card-nav-content');
-      if (contentEl) {
-        const wasVisible = contentEl.style.visibility;
-        const wasPointerEvents = contentEl.style.pointerEvents;
-        const wasPosition = contentEl.style.position;
-        const wasHeight = contentEl.style.height;
+  if (!navEl) return 300;
 
-        contentEl.style.visibility = 'visible';
-        contentEl.style.pointerEvents = 'auto';
-        contentEl.style.position = 'static';
-        contentEl.style.height = 'auto';
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-
-        const topBar = 60;
-        const padding = 16;
-        const contentHeight = contentEl.scrollHeight;
-
-        contentEl.style.visibility = wasVisible;
-        contentEl.style.pointerEvents = wasPointerEvents;
-        contentEl.style.position = wasPosition;
-        contentEl.style.height = wasHeight;
-
-        return topBar + contentHeight + padding;
-      }
-    }
+  if (!isMobile) {
     return 300;
-  };
+  }
+
+  const contentEl = navEl.querySelector('.card-nav-content');
+
+  if (!contentEl) {
+    return 60;
+  }
+
+  const contentHeight = contentEl.scrollHeight;
+
+  return 60 + contentHeight;
+};
 
   const createTimeline = () => {
     const navEl = navRef.current;
     if (!navEl) return null;
 
-    gsap.set(navEl, {
-  height: 60,
-  overflowX: 'hidden',
-  overflowY: 'auto',
-})
+    gsap.set(navEl, { height: 60, overflow: 'hidden' });
     gsap.set(cardsRef.current, { y: 50, opacity: 0 });
 
     const tl = gsap.timeline({ paused: true });

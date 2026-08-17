@@ -75,16 +75,13 @@ export default function ProfileClient({programs, user, tests} : Props) {
                   </div>
               </div>
               
-                <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 mt-8">
+                <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 mt-8 px-6">
                   <LogoutButton />
-
                   
 
                   {!!user.isAdmin && (
-                    <LoadingLink
-                      href="/dashboard/"
-                      className="flex items-center text-center justify-center gap-1 !text-white cursor-pointer bg-prpl p-3 text-lg rounded-md hover:opacity-70 shadow-2xl"
-                    >
+                    <LoadingLink href="/dashboard/"
+                      className="flex items-center text-center justify-center gap-1 !text-white cursor-pointer bg-prpl p-3 text-lg rounded-md hover:opacity-70 shadow-2xl">
                       <LogOutIcon size={20} />
                       Перейти в админку
                     </LoadingLink>
@@ -98,10 +95,10 @@ export default function ProfileClient({programs, user, tests} : Props) {
       
       
       <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch gap-8 mt-2">
-  <div className="mt-8 flex min-h-[300px] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
+  <div className="mt-8 flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
     <div className="h-1 h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
 
-    <div className="p-6 md:p-8 flex flex-col h-full justify-center">
+    <div className="p-6 md:p-8 flex flex-col">
       <div className="flex items-center gap-3">
         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 ring-1 ring-violet-100">
           <GraduationCap size={22} strokeWidth={1.8} />
@@ -240,8 +237,19 @@ export default function ProfileClient({programs, user, tests} : Props) {
 
           return (
             <a key={webinar.id} href={webinar.landing} target="_blank" rel="noopener noreferrer"
-              className="group block rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-md">
-              <div className="flex items-start justify-between gap-4">
+              className="group
+                block
+                rounded-2xl
+                border border-slate-200
+                bg-white
+                p-5
+                transition
+                duration-200
+                hover:-translate-y-0.5
+                hover:border-violet-300
+                hover:shadow-md
+              ">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
 
                 <div className="min-w-0">
 
@@ -285,12 +293,15 @@ export default function ProfileClient({programs, user, tests} : Props) {
 
                 </div>
 
-                <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-400 transition-colors group-hover:bg-violet-50 group-hover:text-violet-600">
-                  <ChevronRight
-                    size={22}
-                    strokeWidth={1.8}
-                  />
-                </div>
+                <div className="flex w-full items-center justify-between sm:w-auto">
+  <span className="text-sm font-medium text-slate-500 transition-colors group-hover:text-violet-600 sm:hidden">
+    Перейти
+  </span>
+
+  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-400 transition-colors group-hover:bg-violet-50 group-hover:text-violet-600">
+    <ChevronRight size={22} strokeWidth={1.8} />
+  </div>
+</div>
 
               </div>
             </a>
@@ -327,12 +338,7 @@ export default function ProfileClient({programs, user, tests} : Props) {
 
 
             <p className="mt-2 text-gray-600">
-            Результат: <span className="underline !font-semibold">{test.result}</span>
-            </p>
-
-
-            <p className="text-sm text-gray-400">
-            {new Date(test.created_at).toLocaleDateString("ru-RU")}
+            <span className="underline !font-semibold">{test.result}</span>
             </p>
 
 
