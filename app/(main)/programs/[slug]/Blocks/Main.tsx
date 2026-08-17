@@ -68,7 +68,7 @@ export default function Main({ sources = [], links = [] }: Props) {
           <div className="space-y-12 p-5 md:p-8">
             {hasLinks &&
               links.map((group, i) => (
-                <div key={`${group.title}-${i}`} className="rounded-2xl bg-slate-50/80 p-5 ring-1 ring-slate-200/70 md:p-6">
+                <div key={`${group.title}-${i}`} className="rounded-2xl bg-slate-50/80 py-5 px-1 ring-1 ring-slate-200/70 md:p-6">
                   {group.title?.trim() && <SectionTitle title={group.title} />}
 
                   <div className="grid gap-3 md:grid-cols-2">

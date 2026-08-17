@@ -27,7 +27,7 @@ export default async function NotifyPage() {
   const initialHasMore = initialRows.length > 1;
 
   return (
-    <section className="w-full bg-zinc-50/40 px-4 py-12 sm:px-6">
+    <section className="w-full px-4 py-12 sm:px-6">
       <div className="mx-auto max-w-6xl">
 
         <div className="mb-8">

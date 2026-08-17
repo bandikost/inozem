@@ -50,7 +50,7 @@ export default function VideoPreview({ src, preview, subtitles }: Props) {
               <p
                 key={i}
                 lang="ru"
-                className="text-sm font-medium leading-snug text-white md:text-base"
+                className="!text-sm font-medium leading-snug text-white md:text-base"
                 style={{
                   hyphens: "auto",
                   wordBreak: "normal",
