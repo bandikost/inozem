@@ -468,14 +468,14 @@ export default function ProgramEditor({
                     description: e.target.value,
                   }))
                 }
-                maxLength={2000}
+                maxLength={7000}
                 rows={6}
                 placeholder="Введите описание программы..."
                 className="input-main min-h-[160px] resize-y pr-20"
               />
 
               <span className="pointer-events-none absolute bottom-3 right-3 text-xs text-gray-400">
-                {program.description.length} / 2000
+                {program.description.length} / 7000
               </span>
             </div>
           </Field>
