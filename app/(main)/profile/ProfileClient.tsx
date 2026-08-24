@@ -80,7 +80,7 @@ export default function ProfileClient({programs, user, tests} : Props) {
                   
 
                   {!!user.isAdmin && (
-                    <LoadingLink href="/dashboard/"
+                    <LoadingLink href="/dashboard/manager"
                       className="flex items-center text-center justify-center gap-1 !text-white cursor-pointer bg-prpl p-3 text-lg rounded-md hover:opacity-70 shadow-2xl">
                       <LogOutIcon size={20} />
                       Перейти в админку

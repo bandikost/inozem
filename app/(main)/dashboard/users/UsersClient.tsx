@@ -26,17 +26,41 @@ interface UsersClientProps {
   programs: ProgramRow[]
 }
 
-export default function UsersClient({
-  users,
-  programs,
-}: UsersClientProps) {
+type SortOption =
+  | "newest"
+  | "oldest"
+  | "lastNameAsc"
+  | "lastNameDesc"
+
+type ProgramFilter = "all" | "hasProgram" | "noProgram"
+
+function formatCreatedAt(date: string | Date) {
+  const parsed =
+    date instanceof Date
+      ? date
+      : new Date(date.replace(" ", "T"))
+
+  if (isNaN(parsed.getTime())) return ""
+
+  return parsed
+    .toLocaleString("ru-RU", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+    .replace(",", " в")
+}
+export default function UsersClient({users, programs}: UsersClientProps) {
   const router = useRouter()
   const toast = useToast()
   const [value, setValue] = useState("")
   const [visibleItems, setVisibleItems] = useState(8)
-  const [selectedPrograms, setSelectedPrograms] = useState<
-    Record<number, number>
-  >({})
+  const [selectedPrograms, setSelectedPrograms] = useState<Record<number, number>>({})
+  const [sortBy, setSortBy] = useState<SortOption>("newest")
+  const [programFilter, setProgramFilter] =
+  useState<ProgramFilter>("all")
 
   const handleShowMore = () => {
     setVisibleItems((prev) => prev + 8)
@@ -58,7 +82,7 @@ export default function UsersClient({
     }
 
     try {
-      const res = await fetch("/api/user-program", {
+      const res = await fetch("/api/users/user-program", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +117,7 @@ export default function UsersClient({
   if (!confirmed) return;
 
   try {
-    const res = await fetch("/api/user-program/delete", {
+    const res = await fetch("/api/users/user-program/delete", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -118,16 +142,57 @@ export default function UsersClient({
 };
 
   const processedUsers = useMemo(() => {
-    return users
-      .filter((user) =>
-        `${user.last_name} ${user.name} ${user.patronymic}`
-          .toLowerCase()
-          .startsWith(value.toLowerCase())
+  const filtered = users.filter((user) => {
+    const fullName = `${user.last_name} ${user.name} ${user.patronymic}`
+      .toLowerCase()
+
+    const matchesSearch = fullName.startsWith(
+      value.toLowerCase()
+    )
+
+    const hasProgram = Boolean(user.program_name?.trim())
+
+    const matchesProgram =
+      programFilter === "all" ||
+      (programFilter === "hasProgram" && hasProgram) ||
+      (programFilter === "noProgram" && !hasProgram)
+
+    return matchesSearch && matchesProgram
+  })
+
+
+  return filtered.sort((a, b) => {
+    if (sortBy === "newest") {
+      return (
+        new Date(b.created_at).getTime() -
+        new Date(a.created_at).getTime()
       )
-      .sort((a, b) =>
-        a.last_name.localeCompare(b.last_name, "ru")
+    }
+
+    if (sortBy === "oldest") {
+      return (
+        new Date(a.created_at).getTime() -
+        new Date(b.created_at).getTime()
       )
-  }, [users, value])
+    }
+
+    if (sortBy === "lastNameAsc") {
+      return a.last_name.localeCompare(
+        b.last_name,
+        "ru"
+      )
+    }
+
+    if (sortBy === "lastNameDesc") {
+      return b.last_name.localeCompare(
+        a.last_name,
+        "ru"
+      )
+    }
+
+    return 0
+  })
+}, [users, value, sortBy, programFilter])
 
   return (
     <section className="min-h-screen bg-zinc-50/40 px-4 pb-24 pt-28 sm:px-6">
@@ -196,10 +261,102 @@ export default function UsersClient({
             />
           </div>
 
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+  <div>
+    <label className="mb-2 block text-md font-medium text-zinc-700">
+      Сортировка
+    </label>
+
+    <select
+      value={sortBy}
+      onChange={(e) =>
+        setSortBy(e.target.value as SortOption)
+      }
+      className="
+        h-11
+        w-full
+        rounded-xl
+        border
+        border-zinc-200
+        bg-white
+        px-3
+        text-md
+        text-zinc-700
+        outline-none
+        transition
+        focus:border-prpl/50
+        focus:ring-4
+        focus:ring-prpl/10
+      "
+    >
+      <option value="newest">
+        Новые регистрации
+      </option>
+
+      <option value="oldest">
+        Старые регистрации
+      </option>
+
+      <option value="lastNameAsc">
+        Фамилия: А → Я
+      </option>
+
+      <option value="lastNameDesc">
+        Фамилия: Я → А
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label className="mb-2 block text-md font-medium text-zinc-700">
+      Образовательная программа
+    </label>
+
+    <select
+      value={programFilter}
+      onChange={(e) =>
+        setProgramFilter(
+          e.target.value as ProgramFilter
+        )
+      }
+      className="
+        h-11
+        w-full
+        rounded-xl
+        border
+        border-zinc-200
+        bg-white
+        px-3
+        text-md
+        text-zinc-700
+        outline-none
+        transition
+        focus:border-prpl/50
+        focus:ring-4
+        focus:ring-prpl/10
+      "
+    >
+      <option value="all">
+        Все пользователи
+      </option>
+
+      <option value="hasProgram">
+        Есть программа
+      </option>
+
+      <option value="noProgram">
+        Нет программы
+      </option>
+    </select>
+  </div>
+</div>
+
           <p className="mt-3 text-xs text-zinc-400">
             Поиск выполняется по фамилии пользователя
           </p>
         </div>
+
+
 
 
         <div className="space-y-4">
@@ -226,13 +383,10 @@ export default function UsersClient({
                 user.last_name,
                 user.name,
                 user.patronymic,
+               
               ]
                 .filter(Boolean)
                 .join(" ")
-
-              const initials = `${user.last_name?.[0] ?? ""}${
-                user.name?.[0] ?? ""
-              }`
 
               return (
                 <article
@@ -257,7 +411,7 @@ export default function UsersClient({
 
                         <div className="mb-6 flex items-center gap-4">
                           <div className="
-                            flex h-14 w-14 shrink-0
+                            flex h-auto w-auto shrink-0
                             items-center justify-center
                             rounded-2xl
                             bg-prpl/10
@@ -265,7 +419,7 @@ export default function UsersClient({
                             font-medium
                             text-prpl
                           ">
-                            {initials}
+                           <UserRound />
                           </div>
 
                           <div className="min-w-0">
@@ -275,6 +429,10 @@ export default function UsersClient({
 
                             <p className="mt-1 text-sm text-zinc-500">
                               Пользователь академии
+                            </p>
+
+                            <p className="mt-1 text-xs text-zinc-400">
+                              Зарегистрирован: {formatCreatedAt(user.created_at)}
                             </p>
                           </div>
                         </div>

@@ -1,4 +1,5 @@
 import MediaGallery from "@/components/ui/LazyLoad/ImageGallery"
+import Comments from "../Components/Comments"
 
 type LinkGroup = {
   title: string
@@ -24,6 +25,7 @@ type VideoGroup = {
 interface Props {
   sources?: VideoGroup[] | VideoItem[]
   links?: LinkGroup[]
+  programmId: number
 }
 
 function normalizeSources(sources: VideoGroup[] | VideoItem[] = []): VideoGroup[] {
@@ -52,7 +54,7 @@ function SectionTitle({ title }: { title: string }) {
   )
 }
 
-export default function Main({ sources = [], links = [] }: Props) {
+export default function Main({ sources = [], links = [], programmId }: Props) {
   const normalizedSources = normalizeSources(sources)
   const hasVideos = normalizedSources.length > 0
   const hasLinks = links.length > 0
@@ -101,6 +103,7 @@ export default function Main({ sources = [], links = [] }: Props) {
           </div>
         </div>
       </div>
+      <Comments programmId={programmId} />
     </section>
   )
 }

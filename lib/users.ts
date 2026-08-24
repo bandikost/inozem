@@ -62,6 +62,7 @@ export async function getAllUsers(): Promise<UserRow[]> {
       u.phone,
       u.specialization,
       u.education_level,
+      u.created_at,
 
       GROUP_CONCAT(
         DISTINCT p.name
@@ -74,7 +75,7 @@ export async function getAllUsers(): Promise<UserRow[]> {
       ON up.user_id = u.id
       AND up.status = 'active'
 
-    LEFT JOIN programms p
+    LEFT JOIN programms p 
       ON p.id = up.programm_id
 
     GROUP BY u.id

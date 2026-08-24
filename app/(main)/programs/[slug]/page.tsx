@@ -65,6 +65,7 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
     <Main
       sources={block.data.sources}
       links={block.data.links}
+      programmId={program.id}
     />
   ),
 }))
@@ -206,12 +207,6 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
           <p className="!font-semibold my-3 text-blue border border-gray-200 p-2 rounded-2xl shadow-xl">Стоимость программы - {program.price} ₽</p>
         </div>
 
-       {/* <div className="mt-8">
-          <ProgramSelect
-            program={program}
-            userId={user ? user.id : 0}
-          />
-        </div> */}
         <PayButton programId={program.id} />  
         
       </div>

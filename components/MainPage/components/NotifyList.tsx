@@ -181,7 +181,7 @@ export default function NotifyList({
                         items-center
                         rounded-full
                         bg-prpl/10
-                        px-3
+                        
                         py-1
                         text-sm
                         font-medium

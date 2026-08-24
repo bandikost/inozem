@@ -2,7 +2,7 @@
 import LoadingLink from "@/components/Load/LoadingLink"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
-
+import jwt from "jsonwebtoken"
 
 export const metadata = {
   title:
@@ -11,9 +11,27 @@ export const metadata = {
 
 export default async function ManagerPage() {
   const cookieStore = await cookies()
-  const manager = cookieStore.get("manager")
 
-  if (!manager) redirect("/dashboard")
+  const token = cookieStore.get("token")?.value
+
+  if (!token) {
+    redirect("/login")
+  }
+
+  let userId: number
+
+  try {
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET!
+    ) as { id: number }
+
+    userId = decoded.id
+  } catch {
+    redirect("/login")
+  }
+
+
 
   return (
      <section className="max-w-6xl mx-auto px-2 mt-30 mb-10">

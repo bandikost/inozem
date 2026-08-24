@@ -2,6 +2,7 @@
 
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useState } from 'react'
+import Comments from './Comments'
 
 interface ProgramSliderProps {
   blocks: {
@@ -12,11 +13,7 @@ interface ProgramSliderProps {
   suptitle: string
 }
 
-export default function ProgramSlider({
-  blocks,
-  name,
-  suptitle,
-}: ProgramSliderProps) {
+export default function ProgramSlider({ blocks, name, suptitle }: ProgramSliderProps) {
   const [current, setCurrent] = useState(0)
 
   if (!blocks.length) return null
@@ -33,7 +30,7 @@ export default function ProgramSlider({
 
   return (
     <section className="mt-10">
-      {/* Заголовок */}
+     
       <div className="mx-auto max-w-4xl text-center">
         <h1 className="!text-3xl font-semibold tracking-tight text-prpl md:!text-4xl">
           {name}
@@ -102,6 +99,8 @@ export default function ProgramSlider({
           {currentBlock.component}
         </div>
 
+       
+
         <div className="flex items-center justify-between border-t border-slate-100 bg-slate-50/50 px-4 py-4 md:px-8">
           <button
             onClick={prevSlide}
@@ -164,6 +163,8 @@ export default function ProgramSlider({
           </button>
         </div>
       </div>
+
+          
     </section>
   )
 }

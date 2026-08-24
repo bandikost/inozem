@@ -15,11 +15,11 @@ export default async function LearningTable() {
     <div className="w-full">
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-gray-900">
-          Вопросы
+          Заявки
         </h2>
 
         <p className="text-sm text-gray-500 mt-1">
-          Всего Вопросов: {application.length}
+          Всего заявок: {application.length}
         </p>
       </div>
 

@@ -15,11 +15,6 @@ interface PageProps {
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
 
-  const cookieStore = await cookies();
-  const manager = cookieStore.get("manager");
-
-  if (!manager) redirect("/dashboard");
-
   const testlist = await getTestsCreated();
 
   return (
