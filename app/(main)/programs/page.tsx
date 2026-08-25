@@ -3,8 +3,6 @@ import InputPrograms from "@/components/ui/Programs/inputPrograms";
 import { getPrograms } from "@/lib/programm";
 import { ChevronRight } from "lucide-react";
 
-export const revalidate = 3600
-
 export const metadata = {
   title: 'Образование | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»',
 }
