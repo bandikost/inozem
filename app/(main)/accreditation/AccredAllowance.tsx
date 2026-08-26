@@ -8,18 +8,18 @@ interface Props {
   accred: Accred[];
 }
 
-export default function AccredResult({ accred }: Props) {
+export default function AccredAllowance({ accred }: Props) {
 
-  const resultAccred = useMemo(() => {
-    return accred.filter((a) => a.stage !== "Допуск");
+  const allowedAccred = useMemo(() => {
+    return accred.filter((a) => a.stage === "Допуск");
   }, [accred]);
 
 
   const years = useMemo(() => {
-    return [...new Set(resultAccred.map((a) => a.year))]
+    return [...new Set(allowedAccred.map((a) => a.year))]
       .filter(Boolean)
       .sort((a, b) => Number(b) - Number(a));
-  }, [resultAccred]);
+  }, [allowedAccred]);
 
 
   const latestYear = years.length
@@ -31,17 +31,15 @@ export default function AccredResult({ accred }: Props) {
 
 
   const specializations = useMemo(() => {
-
     return [
       ...new Set(
-        resultAccred
+        allowedAccred
           .filter((a) => String(a.year) === year)
           .map((a) => a.specialization)
           .filter(Boolean)
       ),
     ];
-
-  }, [year, resultAccred]);
+  }, [year, allowedAccred]);
 
 
   const [specialization, setSpecialization] = useState(
@@ -53,47 +51,24 @@ export default function AccredResult({ accred }: Props) {
 
     setYear(newYear);
 
-    const firstSpec = resultAccred.find(
+    const firstSpec = allowedAccred.find(
       (a) => String(a.year) === newYear
     )?.specialization;
 
     setSpecialization(firstSpec ?? "");
-
   };
 
 
   const filteredAccred = useMemo(() => {
-
-    return resultAccred.filter(
+    return allowedAccred.filter(
       (a) =>
         String(a.year) === year &&
         a.specialization === specialization
     );
-
-  }, [year, specialization, resultAccred]);
-
-
-  const groupedAccred = useMemo(() => {
-
-    return filteredAccred.reduce(
-      (acc, item) => {
-
-        if (!acc[item.stage]) {
-          acc[item.stage] = [];
-        }
-
-        acc[item.stage].push(item);
-
-        return acc;
-
-      },
-      {} as Record<string, Accred[]>
-    );
-
-  }, [filteredAccred]);
+  }, [year, specialization, allowedAccred]);
 
 
-  if (!resultAccred.length) {
+  if (!allowedAccred.length) {
     return (
       <div className="rounded-2xl border border-dashed border-zinc-300 bg-zinc-50 p-8 text-center text-zinc-500">
         Результаты аккредитации пока не опубликованы.
@@ -144,6 +119,7 @@ export default function AccredResult({ accred }: Props) {
         </div>
 
       </div>
+
       {specializations.length > 0 && (
 
         <div>
@@ -214,7 +190,7 @@ export default function AccredResult({ accred }: Props) {
           <div>
 
             <h3 className="text-lg font-semibold text-zinc-800">
-              Результаты аккредитации
+              Протокол о допуске
             </h3>
 
             {specialization && (
@@ -225,119 +201,89 @@ export default function AccredResult({ accred }: Props) {
 
           </div>
 
+          <span className="
+            w-fit
+            rounded-full
+            bg-green/10
+            px-3
+            py-1
+            text-xs
+            font-medium
+            text-green
+          ">
+            Допуск
+          </span>
+
         </div>
 
 
-        {Object.entries(groupedAccred).map(
-          ([stage, items]) => (
+        {filteredAccred.length > 0 ? (
 
-            <div
-              key={stage}
-              className="mb-6 last:mb-0"
-            >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 
-              <div className="mb-3 flex items-center gap-3">
+            {filteredAccred.map((item) => (
 
-                <h4 className="
-                  text-base
-                  md:text-lg
-                  font-semibold
+              <a
+                key={item.id}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  group
+                  flex
+                  min-h-[72px]
+                  items-center
+                  justify-between
+                  gap-4
+                  rounded-2xl
+                  border
+                  border-zinc-200
+                  bg-white
+                  px-5
+                  py-4
                   text-zinc-800
-                ">
-                  {stage}
-                </h4>
+                  transition
+
+                  hover:border-blue
+                  hover:shadow-md
+                "
+              >
 
                 <span className="
-                  rounded-full
-                  bg-zinc-100
-                  px-2.5
-                  py-1
-                  text-xs
-                  font-medium
-                  text-zinc-500
+                  leading-5
+                  transition
+                  group-hover:text-blue
                 ">
-                  {items.length}
+                  {item.name}
                 </span>
 
-              </div>
-              <div className="
-                grid
-                grid-cols-1
-                md:grid-cols-2
-                gap-3
-              ">
 
-                {items.map((item) => (
+                <span className="
+                  flex
+                  shrink-0
+                  items-center
+                  gap-2
+                  text-sm
+                  font-medium
+                  text-blue
+                ">
 
-                  <a
-                    key={item.id}
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="
-                      group
-                      flex
-                      min-h-[72px]
-                      items-center
-                      justify-between
-                      gap-4
-                      rounded-2xl
-                      border
-                      border-zinc-200
-                      bg-white
-                      px-5
-                      py-4
-                      text-zinc-800
-                      transition
-                      hover:border-blue
-                      hover:shadow-md
-                    "
-                  >
+                  PDF
 
-                    <span className="
-                      leading-5
-                      transition
-                      group-hover:text-blue
-                    ">
-                      {item.name}
-                    </span>
+                  <ArrowUpRight
+                    size={16}
+                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
 
+                </span>
 
-                    <span className="
-                      flex
-                      shrink-0
-                      items-center
-                      gap-2
-                      text-sm
-                      font-medium
-                      text-blue
-                    ">
+              </a>
 
-                      PDF
+            ))}
 
-                      <ArrowUpRight
-                        size={16}
-                        className="
-                          transition-transform
-                          group-hover:translate-x-0.5
-                          group-hover:-translate-y-0.5
-                        "
-                      />
+          </div>
 
-                    </span>
-
-                  </a>
-
-                ))}
-
-              </div>
-
-            </div>
-
-          )
-        )}
-
-        {filteredAccred.length === 0 && (
+        ) : (
 
           <div className="
             rounded-2xl

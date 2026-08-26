@@ -53,8 +53,7 @@ export default async function AdminProgramsPage({params} : ProgramsPageProps) {
   
       
       {program && (
-        <ProgramEditor initialProgram={{...program, blocks}}
-        />
+        <ProgramEditor initialProgram={{...program, blocks}} />
       )}
     </section>
   );

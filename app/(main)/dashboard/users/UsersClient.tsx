@@ -52,6 +52,7 @@ function formatCreatedAt(date: string | Date) {
     })
     .replace(",", " в")
 }
+
 export default function UsersClient({users, programs}: UsersClientProps) {
   const router = useRouter()
   const toast = useToast()

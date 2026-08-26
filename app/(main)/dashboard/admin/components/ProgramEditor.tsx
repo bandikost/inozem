@@ -55,7 +55,7 @@ export default function ProgramEditor({
     description: initialProgram?.description || "",
     diplom: initialProgram?.diplom || "",
     time: initialProgram?.time || "",
-    dates: initialProgram?.date || "",
+    dates: initialProgram?.dates || "",
     blocks: initialProgram?.blocks || [],
   });
 
@@ -577,15 +577,13 @@ export default function ProgramEditor({
                     </>
                   )}
                 </button>
-
-                <button
-                  type="button"
-                  onClick={() => removeBlock(i)}
-                  className="cursor-pointer hover:opacity-80 inline-flex items-center gap-2 rounded-lg border border-red-100 bg-red-50 px-3 py-2 text-sm text-red-600 transition hover:bg-red-100"
-                >
+                
+                  <button type="button" onClick={() => removeBlock(i)} className="cursor-pointer hover:opacity-80 inline-flex items-center gap-2 rounded-lg border border-red-100 bg-red-50 px-3 py-2 text-sm text-red-600 transition hover:bg-red-100">
                   <Trash2 size={16} />
                   Удалить
                 </button>
+                
+                
               </div>
             </div>
 
