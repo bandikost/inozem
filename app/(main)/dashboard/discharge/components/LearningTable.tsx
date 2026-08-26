@@ -87,7 +87,7 @@ export default async function LearningTable() {
                   </td>
 
                    <td className="px-6 py-4 text-xs text-gray-500">
-                    <Link target="_blank" href="https://mail.360.yandex.ru/?uid=229873017#folder/66">Перейти в почту</Link>
+                    <Link target="_blank" href="https://mail.360.yandex.ru/?uid=229873017#/folder/67">Перейти в почту</Link>
                   </td>
 
                 </tr>

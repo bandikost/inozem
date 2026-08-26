@@ -28,7 +28,7 @@ export default function Page() {
       if (value) data.append(key, value as any);
     });
 
-    await fetch("/api/admin/accred/upload", {
+    await fetch("/api/admin/accred", {
       method: "POST",
       body: data,
     });

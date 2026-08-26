@@ -16,7 +16,7 @@ export default function Home() {
           <FirstBlock />
           <Activity />
           <NotifyPage />
-          <Programms />
+         {/* <Programms /> */} 
           <SecondBlock />
           <ThirdBlock />
           <Advantages />

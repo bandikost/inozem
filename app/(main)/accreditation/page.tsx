@@ -1,19 +1,10 @@
-import { getAccred, getAccredShedule } from "@/lib/accred";
+import { getAccred } from "@/lib/accred";
 import AccredResult from "./AccredResult";
 import SideButtons from "./components/SideButtons";
-import AccredTable from "./AccredTable";
 import LoadingLink from "@/components/Load/LoadingLink";
-import {
-  ChevronRight,
-  ShieldCheck,
-  BookOpen,
-  ClipboardCheck,
-  FileCheck2,
-} from "lucide-react";
+import { ChevronRight, ShieldCheck, BookOpen, ClipboardCheck } from "lucide-react";
 import { higherEducation, secondaryEducation } from "@/data/accred";
-import AccredAllowance from "./AccredAllowance";
 
-export const revalidate = 3600;
 
 export const metadata = {
   title:
@@ -23,20 +14,14 @@ export const metadata = {
 
 
 export default async function Page() {
-  const accred = await getAccred();
-  const schedule = await getAccredShedule();
+  const accred = await getAccred()
 
   return (
     <section className="min-h-screen">
       <div className="container mx-auto px-4 my-27">
         <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500 px-2 md:px-6">
 
-          <LoadingLink
-            href="/"
-            className="shrink-0 hover:text-blue transition hover:underline"
-          >
-            Главная
-          </LoadingLink>
+          <LoadingLink href="/" className="shrink-0 hover:text-blue transition hover:underline">Главная</LoadingLink>
 
           <ChevronRight size={14} className="shrink-0" />
 
@@ -385,44 +370,6 @@ export default async function Page() {
 
             </div>
 
-            <section className="rounded-3xl bg-white border border-zinc-200 shadow-sm overflow-hidden">
-
-              <div className="bg-green px-6 py-6">
-
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-
-                  <FileCheck2
-                    size={26}
-                    className="text-white"
-                  />
-
-                  <div>
-
-                    <h2 className="text-xl md:text-2xl font-semibold text-white">
-                      Допуск к аккредитации СПО
-                    </h2>
-
-                    <p className="mt-1 text-sm text-white/80">
-                      Протоколы допуска специалистов к прохождению аккредитации
-                    </p>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-
-             <div className="p-6 md:p-8">
-
-                
-                    <AccredAllowance accred={accred} />
-
-               
-
-              </div>
-
-            </section>
 
             <section className="rounded-3xl bg-white border border-zinc-200 shadow-sm overflow-hidden">
 

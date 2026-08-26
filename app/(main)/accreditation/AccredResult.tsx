@@ -11,7 +11,7 @@ interface Props {
 export default function AccredResult({ accred }: Props) {
 
   const resultAccred = useMemo(() => {
-    return accred.filter((a) => a.stage !== "Допуск");
+    return accred.filter((a) => a.stage)
   }, [accred]);
 
 
