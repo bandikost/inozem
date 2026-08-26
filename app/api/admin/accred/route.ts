@@ -67,26 +67,27 @@ export async function POST(req: NextRequest) {
     const extension =
       file.name.split(".").pop()?.toLowerCase() || "";
 
-    const safeName =
-      name?.trim()
-        ? `${name.trim()}.${extension}`
-        : file.name;
+    const safeName = name?.trim()
+      ? `${name.trim()}.${extension}`
+      : file.name;
+
+    const sanitize = (value: string) =>
+      value
+        .replace(/[\/\\]/g, "-")
+        .trim();
+
+    const safeYear = sanitize(year);
+    const safeEducation = sanitize(education);
+    const safeSpecialization = sanitize(specialization);
+    const safeFileName = sanitize(safeName);
 
     const key = [
       "accred",
-      year,
-      month,
-      education,
-      specialization,
-      stage,
-      safeName,
-    ]
-      .map((item) =>
-        item
-          .replace(/[\/\\]/g, "-")
-          .trim()
-      )
-      .join("/");
+      safeYear,
+      safeEducation,
+      safeSpecialization,
+      safeFileName,
+    ].join("/");
 
     await s3.send(
       new PutObjectCommand({
@@ -100,7 +101,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       key,
-      fileName: safeName,
+      fileName: safeFileName,
     });
 
   } catch (error) {
