@@ -357,7 +357,7 @@ export default async function Page() {
 
             </section>
 
-            <section className="rounded-3xl bg-white border border-zinc-200 shadow-sm overflow-hidden">
+          {/*   <section className="rounded-3xl bg-white border border-zinc-200 shadow-sm overflow-hidden">
 
               <div className="bg-blue px-6 py-6">
 
@@ -377,7 +377,8 @@ export default async function Page() {
 
               </div>
 
-            </section>
+            </section>*/}
+
             <div>
 
               <SideButtons />

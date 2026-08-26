@@ -31,13 +31,7 @@ let programsCache: ProgramRow[] | null = null
 let programsCacheTime = 0
 
 export async function getPrograms(): Promise<ProgramRow[]> {
-  const now = Date.now()
   await cleanOldDates()
-
-
-  if (programsCache && now - programsCacheTime < CACHE_TTL) {
-    return programsCache
-  }
 
   const [rows] = await db.query<ProgramRow[]>(
     `SELECT id, name, slug, time, time_secondary, dates, education, suptitle,
@@ -45,8 +39,11 @@ export async function getPrograms(): Promise<ProgramRow[]> {
      FROM programms`
   )
 
-  programsCache = rows
-  programsCacheTime = now
+  console.log("PROGRAMS COUNT:", rows.length)
+  console.log(
+    "PROGRAMS:",
+    rows.map(p => `${p.id} | ${p.slug}`)
+  )
 
   return rows
 }
