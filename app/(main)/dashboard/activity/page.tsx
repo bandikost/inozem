@@ -7,18 +7,12 @@ import {
   Plus,
   ArrowRight,
 } from "lucide-react";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+
 
 export const dynamic = "force-dynamic";
 
 export default async function Page() {
-  const cookieStore = await cookies();
-  const manager = cookieStore.get("manager");
-
-  if (!manager) {
-    redirect("/dashboard");
-  }
+ 
 
   const activity = await getActivity();
 

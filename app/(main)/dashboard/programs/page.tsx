@@ -1,6 +1,4 @@
-import { cookies } from "next/headers";
 import AddProgramForm from "./AddProgramForm";
-import { redirect } from "next/navigation";
 import LoadingLink from "@/components/Load/LoadingLink";
 import { ChevronRight } from "lucide-react";
 
@@ -12,10 +10,6 @@ export const metadata = {
 
 
 export default async function Page() { 
-    const cookieStore = await cookies()
-    const manager = cookieStore.get("manager")
-    if (!manager) redirect("/dashboard")
-
     
 return ( 
     <section className="flex flex-col mt-27 px-6"> 
