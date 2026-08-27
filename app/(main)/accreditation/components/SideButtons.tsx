@@ -13,8 +13,6 @@ export default function SideButtons() {
 
     return (
         <section className="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm md:rounded-3xl">
-
-            {/* HEADER */}
             <div className="bg-blue px-4 py-5 sm:px-5 sm:py-6 md:px-6">
                 <h2 className="text-lg font-semibold text-white sm:text-xl md:text-2xl">
                     Информация для аккредитуемых
@@ -25,10 +23,7 @@ export default function SideButtons() {
                 </p>
             </div>
 
-            {/* CONTENT */}
             <div className="p-3 sm:p-5 md:p-8">
-
-                {/* TABS */}
                 <div className="border-b border-zinc-200">
 
                     <div className="flex overflow-x-auto scrollbar-none">
@@ -80,7 +75,6 @@ export default function SideButtons() {
 
                 </div>
 
-                {/* LINKS */}
                 <div className="mt-5 sm:mt-6 md:mt-8">
 
                     <div className="space-y-2.5 sm:space-y-3">
@@ -120,7 +114,6 @@ export default function SideButtons() {
                                         "
                                     >
 
-                                        {/* ICON */}
                                         <div
                                             className="
                                                 flex
@@ -144,7 +137,6 @@ export default function SideButtons() {
                                             />
                                         </div>
 
-                                        {/* NAME */}
                                         <span
                                             className="
                                                 min-w-0
@@ -162,7 +154,6 @@ export default function SideButtons() {
                                             {link.name}
                                         </span>
 
-                                        {/* ARROW */}
                                         <ArrowUpRight
                                             size={18}
                                             className="
