@@ -77,30 +77,21 @@ const filteredPrograms = useMemo(() => {
     );
   }
 
-  // Фильтр по специальности
-  if (
-    specialization &&
-    specialization.trim().toLowerCase() !== "все специальности"
-  ) {
+ if (specialization) {
     const selectedSpecialty = specialization.trim().toLowerCase();
 
-    filtered = filtered.filter((p) => {
-      const programSpecialties =
-        p.specialization
-          ?.split(",")
-          .map((s) => s.trim().toLowerCase())
-          .filter(Boolean) ?? [];
+    if (selectedSpecialty !== "все специальности") {
+        filtered = filtered.filter((p) => {
+            const programSpecialties = p.specialization
+                    ?.split(",")
+                    .map((s) => s.trim().toLowerCase())
+                    .filter(Boolean) ?? [];
 
-      return (
-        programSpecialties.includes("все специальности") ||
-        programSpecialties.includes(selectedSpecialty)
-      );
-    });
-  }
-
-  filtered.sort((a, b) => {
-  return (b.time ?? Infinity) - (a.time ?? Infinity);
-}) 
+            return programSpecialties.includes("все специальности") || programSpecialties.includes(selectedSpecialty)
+            
+        })
+    }
+}
 
 return filtered
 }, [

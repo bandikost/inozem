@@ -146,73 +146,109 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
         </p>
       </div>
 
-  <section className="mt-12">
+  <section className="mt-16">
 
-    <div className="mb-7">
-      <span className="text-sm uppercase tracking-[0.12em] text-blue font-semibold">
-        Как поступить
-      </span>
+  <div className="mb-8">
+    <span className="text-sm uppercase tracking-[0.12em] text-blue font-semibold">
+      Как поступить
+    </span>
 
-      <h2 className="mt-2 text-2xl tablet:text-3xl font-semibold">
-        Выберите удобный способ
-      </h2>
-    </div>
+    <h2 className="mt-2 text-2xl tablet:text-3xl font-semibold">
+      Выберите удобный способ
+    </h2>
+  </div>
 
-    <div className="grid grid-cols-1 tablet:grid-cols-2 gap-6">
+  <div className="grid grid-cols-1 tablet:grid-cols-2 gap-6">
 
-  
-      <div className="group relative overflow-hidden rounded-2xl bg-[#f5f7fa] p-7 min-h-[260px] flex flex-col justify-between">
+    <div className="group relative overflow-hidden rounded-3xl border border-zinc-200 bg-white p-8 min-h-[320px] flex flex-col justify-between transition hover:border-zinc-300">
 
-        <div>
-          <span className="text-5xl font-semibold text-blue/15">
-            01
+      <div className="absolute -right-16 -top-16 h-44 w-44 rounded-full bg-zinc-100 transition-transform duration-500 group-hover:scale-110" />
+
+      <div className="relative">
+
+        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-zinc-100">
+          <span className="text-lg">
+            ?
           </span>
-
-          <h3 className="mt-3 text-xl font-semibold">
-            Остались вопросы?
-          </h3>
-
-          <p className="mt-3 text-default/60 leading-relaxed">
-            Оставьте заявку, и наши специалисты свяжутся с вами,
-            чтобы ответить на вопросы и помочь с выбором программы.
-          </p>
         </div>
 
-        <div className="flex flex-wrap gap-3 mt-8">
-          
-          <LoadingLink className="button-more w-full" href="/bid">
-            Подать заявку
-          </LoadingLink>
+        <h3 className="mt-6 text-2xl font-semibold">
+          Остались вопросы?
+        </h3>
 
-        </div>
+        <p className="mt-3 max-w-md leading-relaxed text-default/60">
+          Не уверены, подходит ли вам программа?
+          Оставьте заявку — специалист свяжется с вами,
+          ответит на вопросы и поможет с выбором.
+        </p>
+
       </div>
 
-    
-      <div className="group relative overflow-hidden rounded-2xl border border-gray-300 shadow-xl p-7 min-h-[260px] flex flex-col justify-between">
+      <div className="relative mt-8">
 
-        <div>
-          <span className="text-5xl font-semibold text-blue/15">
-            02
+        <LoadingLink
+          href="/bid"
+          className="
+            flex w-full items-center justify-center
+            rounded-xl
+            border border-zinc-200
+            bg-zinc-50
+            px-6 py-4
+            font-semibold
+            text-default
+            transition
+            hover:bg-zinc-100
+          "
+        >
+          Получить консультацию
+        </LoadingLink>
+
+      </div>
+
+    </div>
+
+
+    {/* Оплата */}
+    <div className="relative overflow-hidden rounded-3xl bg-blue text-white p-8 min-h-[320px] flex flex-col justify-between">
+
+      <div className="absolute -right-20 -top-20 w-56 h-56 rounded-full border border-white/10" />
+      <div className="absolute -right-10 -top-10 w-36 h-36 rounded-full border border-white/10" />
+
+      <div className="relative">
+
+        <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white/70">
+          Онлайн-оплата
+        </span>
+
+        <h3 className="mt-5 text-2xl font-semibold">
+          Готовы начать обучение?
+        </h3>
+
+        <p className="mt-3 text-white/65 leading-relaxed">
+          Оплатите программу онлайн и получите доступ
+          к обучению после подтверждения оплаты.
+        </p>
+
+        <div className="mt-7">
+          <span className="block text-sm text-white/55">
+            Стоимость программы
           </span>
 
-          <h3 className="mt-3 text-xl font-semibold">
-            Готовы начать обучение?
-          </h3>
-
-          <p className="mt-3 text-default/60 leading-relaxed">
-            Оплатите обучение онлайн,
-            чтобы получить доступ к ближайшему старту.
-          </p>
-
-          <p className="!font-semibold my-3 text-blue border border-gray-200 p-2 rounded-2xl shadow-xl">Стоимость программы - {program.price} ₽</p>
+          <span className="mt-1 block text-4xl font-semibold tracking-tight">
+            {program.price} ₽
+          </span>
         </div>
 
-        <PayButton programId={program.id} />  
-        
       </div>
- 
+
+      <div className="relative mt-8">
+        <PayButton programId={program.id} />
+      </div>
+
     </div>
-  </section>
+
+  </div>
+</section>
 </>
       ) : (   
         <ProgramSlider blocks={blocks} name={program.name} suptitle={program.suptitle} />       

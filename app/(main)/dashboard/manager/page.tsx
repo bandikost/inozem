@@ -142,6 +142,18 @@ export default async function ManagerPage() {
         Создание и редактирование тестов
       </p>
     </LoadingLink>
+
+    <LoadingLink href="/dashboard/notify" className="group bg-white rounded-2xl border border-gray-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1">
+      <div className="text-4xl mb-4">📢</div>
+
+      <h2 className="text-2xl font-semibold text-prpl">
+        Уведомление на главной странице
+      </h2>
+
+      <p className="text-gray-500 mt-2">
+        Создание уведомления на главной странице
+      </p>
+    </LoadingLink>
   </div>
 </section>
   )

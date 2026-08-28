@@ -4,8 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import LoadingLink from "@/components/Load/LoadingLink";
 import { ChevronRight } from "lucide-react";
-import { useToast } from "@/components/ui/Toast/ToastProvider";
-import { redirect } from "next/navigation";
+import { useToast } from "@/components/ui/Toast/ToastProvider";import { useRouter } from "next/navigation";
+;
 
 interface ActivityEditorProps {
   initialSlug: string;
@@ -80,6 +80,7 @@ export default function ActivityEditor({
 
   const [loading, setLoading] = useState(false)
   const toast = useToast()
+  const router = useRouter()
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -120,7 +121,7 @@ export default function ActivityEditor({
       }
 
       toast.success("Мероприятие успешно обновлено!");
-      redirect("/dashboard/activity")
+      router.push("/dashboard/activity")
     } catch (error) {
       console.error(error);
       toast.error("Ошибка сервера")
