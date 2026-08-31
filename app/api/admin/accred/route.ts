@@ -19,7 +19,7 @@ const s3 = new S3Client({
 const allowedStages = [
   "Основной этап",
   "Второй этап",
-  "Итог",
+  "Итоги",
 ];
 
 const MAX_FILE_SIZE = 20 * 1024 * 1024;
@@ -199,16 +199,13 @@ export async function POST(
 
 
     const extension =
-      file.name
-        .split(".")
-        .pop()
-        ?.toLowerCase() || "pdf";
+    file.name
+      .split(".")
+      .pop()
+      ?.toLowerCase() || "pdf";
 
-    const uniqueId =
-      crypto.randomUUID();
-
-    const safeFileName =
-      `${safeName}-${uniqueId}.${extension}`;
+  const safeFileName =
+    `${safeName}.${extension}`
 
 
     const storageKey = [

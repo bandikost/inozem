@@ -39,7 +39,7 @@ interface AccredItem {
 const STAGES = [
   "Основной этап",
   "Второй этап",
-  "Итог",
+  "Итоги",
 ];
 
 export default function Page() {

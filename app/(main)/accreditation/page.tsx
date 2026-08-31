@@ -12,6 +12,8 @@ import { higherEducation, secondaryEducation } from "@/data/accred";
 import AccredResults from "./components/AccredResults";
 
 
+export const dynamic = "force-dynamic"
+
 export const metadata = {
   title:
     "Аккредитация | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»",
