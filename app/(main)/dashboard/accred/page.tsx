@@ -45,6 +45,18 @@ export default async function Page() {
                     </p>
                 </Link>
 
+                <Link href="/dashboard/accred/schedule" className="group text-xl !font-normal bg-white rounded-2xl border border-gray-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1">
+                    <div className="text-4xl mb-4">📅</div>
+
+                    <h2 className="text-2xl font-semibold text-prpl">
+                        Загрузить на страницу
+                    </h2>
+
+                    <p className="text-gray-500 mt-2">
+                        Расписание экзаменов.
+                    </p>
+                </Link>
+
                 <Link href="/dashboard/accred/result" className="group text-xl !font-normal bg-white rounded-2xl border border-gray-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1">
                     <div className="text-4xl mb-4">📄</div>
 

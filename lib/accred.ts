@@ -5,7 +5,7 @@ import { RowDataPacket } from "mysql2";
 
 export async function getAccred(): Promise<Accred[]> {
     const [rows] = await db.query<Accred[] & RowDataPacket[]>(`
-        select id, year, month, education, specialization, stage, name, link, created_at from accreditation`)
+        select id, year, month, education, specialization, stage, name, link, storage_key, created_at from accreditation`)
 
     return rows
 }

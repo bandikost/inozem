@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   S3Client,
   PutObjectCommand,
+  DeleteObjectCommand,
 } from "@aws-sdk/client-s3";
 
 import { db } from "@/lib/db";
@@ -21,22 +22,112 @@ const allowedStages = [
   "Итог",
 ];
 
-export async function POST(req: NextRequest) {
+const MAX_FILE_SIZE = 20 * 1024 * 1024;
+
+const sanitize = (value: string) =>
+  value
+    .replace(/[\/\\]/g, "-")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const createPublicUrl = (key: string) => {
+  const baseUrl =
+    process.env.YANDEX_STORAGE_PUBLIC_URL!;
+
+  const encodedKey = key
+    .split("/")
+    .map(encodeURIComponent)
+    .join("/");
+
+  return `${baseUrl}/${encodedKey}`;
+};
+
+
+
+export async function GET() {
   try {
-    const formData = await req.formData();
+    const [rows] = await db.execute(`
+      SELECT
+        id,
+        year,
+        month,
+        education,
+        specialization,
+        stage,
+        name,
+        link,
+        created_at
+      FROM accreditation
+      ORDER BY created_at DESC
+    `);
 
-    const file = formData.get("file") as File | null;
+    return NextResponse.json({
+      success: true,
+      items: rows,
+    });
 
-    const year = formData.get("year")?.toString();
-    const month = formData.get("month")?.toString();
-    const education = formData.get("education")?.toString();
-    const specialization = formData.get("specialization")?.toString();
-    const stage = formData.get("stage")?.toString();
-    const name = formData.get("name")?.toString();
+  } catch (error) {
 
-    if (!file) {
+    console.error(
+      "Accred GET error:",
+      error
+    );
+
+    return NextResponse.json(
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : "Не удалось загрузить протоколы",
+      },
+      { status: 500 }
+    );
+  }
+}
+
+export async function POST(
+  req: NextRequest
+) {
+  let uploadedKey: string | null = null;
+
+  try {
+    const formData =
+      await req.formData();
+
+    const file =
+      formData.get("file");
+
+    const year =
+      formData.get("year")?.toString().trim();
+
+    const month =
+      formData.get("month")?.toString().trim();
+
+    const education =
+      formData.get("education")
+        ?.toString()
+        .trim();
+
+    const specialization =
+      formData.get("specialization")
+        ?.toString()
+        .trim();
+
+    const stage =
+      formData.get("stage")
+        ?.toString()
+        .trim();
+
+    let name =
+      formData.get("name")
+        ?.toString()
+        .trim();
+
+    if (!(file instanceof File)) {
       return NextResponse.json(
-        { error: "Файл не выбран" },
+        {
+          error: "Файл не выбран",
+        },
         { status: 400 }
       );
     }
@@ -46,50 +137,81 @@ export async function POST(req: NextRequest) {
       !month ||
       !education ||
       !specialization ||
-      !stage ||
-      !name
+      !stage
     ) {
       return NextResponse.json(
-        { error: "Не заполнены обязательные поля" },
+        {
+          error:
+            "Заполните все обязательные поля",
+        },
         { status: 400 }
       );
     }
 
     if (!allowedStages.includes(stage)) {
       return NextResponse.json(
-        { error: "Недопустимый этап" },
+        {
+          error:
+            "Недопустимый этап",
+        },
         { status: 400 }
       );
     }
 
-    const maxSize = 20 * 1024 * 1024;
-
-    if (file.size > maxSize) {
+    if (file.size === 0) {
       return NextResponse.json(
-        { error: "Файл слишком большой. Максимум 20 МБ" },
+        {
+          error: "Файл пустой",
+        },
         { status: 400 }
       );
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
+    if (file.size > MAX_FILE_SIZE) {
+      return NextResponse.json(
+        {
+          error:
+            "Файл слишком большой. Максимум 20 МБ",
+        },
+        { status: 400 }
+      );
+    }
+
+
+    if (!name) {
+      name = file.name.replace(
+        /\.[^/.]+$/,
+        ""
+      );
+    }
+
+    const safeYear =
+      sanitize(year);
+
+    const safeEducation =
+      sanitize(education);
+
+    const safeSpecialization =
+      sanitize(specialization);
+
+    const safeName =
+      sanitize(name);
+
 
     const extension =
-      file.name.split(".").pop()?.toLowerCase() || "";
+      file.name
+        .split(".")
+        .pop()
+        ?.toLowerCase() || "pdf";
 
-    const sanitize = (value: string) =>
-      value
-        .replace(/[\/\\]/g, "-")
-        .trim();
+    const uniqueId =
+      crypto.randomUUID();
 
-    const safeYear = sanitize(year);
-    const safeEducation = sanitize(education);
-    const safeSpecialization = sanitize(specialization);
+    const safeFileName =
+      `${safeName}-${uniqueId}.${extension}`;
 
-    const safeName = sanitize(name);
 
-    const safeFileName = `${safeName}.${extension}`;
-
-    const key = [
+    const storageKey = [
       "accred",
       safeYear,
       safeEducation,
@@ -97,56 +219,231 @@ export async function POST(req: NextRequest) {
       safeFileName,
     ].join("/");
 
+
+    const buffer =
+      Buffer.from(
+        await file.arrayBuffer()
+      );
+
+
     await s3.send(
       new PutObjectCommand({
-        Bucket: process.env.YANDEX_STORAGE_BUCKET!,
-        Key: key,
+        Bucket:
+          process.env
+            .YANDEX_STORAGE_BUCKET!,
+
+        Key: storageKey,
+
         Body: buffer,
-        ContentType: file.type || "application/octet-stream",
+
+        ContentType:
+          file.type ||
+          "application/octet-stream",
       })
     );
 
+    uploadedKey =
+      storageKey;
 
-    const link = `${process.env.YANDEX_STORAGE_PUBLIC_URL}/${key}`;
 
-  
-    const [result] = await db.execute(
-      `
-        INSERT INTO accred
-        (
+    const link =
+      createPublicUrl(
+        storageKey
+      );
+
+
+    const [result] =
+      await db.execute(
+        `
+          INSERT INTO accreditation
+          (
+            year,
+            month,
+            education,
+            specialization,
+            stage,
+            name,
+            link,
+            storage_key
+          )
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        `,
+        [
           year,
           month,
           education,
           specialization,
           stage,
-          name,
-          link
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-      `,
-      [
-        year,
-        month,
-        education,
-        specialization,
-        stage,
-        safeName,
-        link,
-      ]
-    );
+          safeName,
+          link,
+          storageKey,
+        ]
+      );
+
 
     return NextResponse.json({
       success: true,
-      id: (result as any).insertId,
+
+      id: (result as any)
+        .insertId,
+
       name: safeName,
+
       link,
+
+      storage_key:
+        storageKey,
     });
 
+
   } catch (error) {
-    console.error("Accred upload error:", error);
+
+    console.error(
+      "Accred POST error:",
+      error
+    );
+
+
+    if (uploadedKey) {
+
+      try {
+
+        await s3.send(
+          new DeleteObjectCommand({
+            Bucket:
+              process.env
+                .YANDEX_STORAGE_BUCKET!,
+
+            Key: uploadedKey,
+          })
+        );
+
+      } catch (cleanupError) {
+
+        console.error(
+          "Cleanup error:",
+          cleanupError
+        );
+      }
+    }
+
 
     return NextResponse.json(
-      { error: "Ошибка при загрузке протокола" },
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : "Ошибка при загрузке протокола",
+      },
+      { status: 500 }
+    );
+  }
+}
+
+
+export async function DELETE(
+  req: NextRequest
+) {
+
+  try {
+
+    const { searchParams } =
+      new URL(req.url);
+
+    const id =
+      searchParams.get("id");
+
+
+    if (!id) {
+
+      return NextResponse.json(
+        {
+          error:
+            "Не указан ID протокола",
+        },
+        { status: 400 }
+      );
+    }
+
+
+    const [rows] =
+      await db.execute(
+        `
+          SELECT storage_key
+          FROM accreditation
+          WHERE id = ?
+          LIMIT 1
+        `,
+        [id]
+      );
+
+
+    const items =
+      rows as {
+        storage_key:
+          string | null;
+      }[];
+
+
+    if (!items.length) {
+
+      return NextResponse.json(
+        {
+          error:
+            "Протокол не найден",
+        },
+        { status: 404 }
+      );
+    }
+
+
+    const storageKey =
+      items[0].storage_key;
+
+
+    if (storageKey) {
+
+      await s3.send(
+        new DeleteObjectCommand({
+          Bucket:
+            process.env
+              .YANDEX_STORAGE_BUCKET!,
+
+          Key: storageKey,
+        })
+      );
+    }
+
+
+    await db.execute(
+      `
+        DELETE FROM accreditation
+        WHERE id = ?
+      `,
+      [id]
+    );
+
+
+    return NextResponse.json({
+      success: true,
+    });
+
+
+  } catch (error) {
+
+    console.error(
+      "Accred DELETE error:",
+      error
+    );
+
+
+    return NextResponse.json(
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : "Не удалось удалить протокол",
+      },
       { status: 500 }
     );
   }
