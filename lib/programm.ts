@@ -17,6 +17,7 @@ export interface ProgramRow extends RowDataPacket {
   created_at: string
   slug: string
   suptitle: string
+
 }
 
 type ProgramStructureRow = RowDataPacket & {
@@ -35,7 +36,7 @@ export async function getPrograms(): Promise<ProgramRow[]> {
 
   const [rows] = await db.query<ProgramRow[]>(
     `SELECT id, name, slug, time, time_secondary, dates, education, suptitle,
-            specialization, isFavorite, bannerName, description, price, category
+            specialization, isFavorite, bannerName, description, price, category, created_at
      FROM programms`
   )
 

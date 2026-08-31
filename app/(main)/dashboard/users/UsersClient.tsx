@@ -67,6 +67,8 @@ export default function UsersClient({users, programs}: UsersClientProps) {
     setVisibleItems((prev) => prev + 8)
   }
 
+
+
   const handleSelectProgram = (userId: number, programId: number) => {
     setSelectedPrograms((prev) => ({
       ...prev,
@@ -587,11 +589,9 @@ export default function UsersClient({users, programs}: UsersClientProps) {
                             Выберите образовательную программу
                           </option>
 
-                          {availablePrograms.map((program) => (
-                            <option
-                              key={program.id}
-                              value={program.id}
-                            >
+                          {[...availablePrograms]
+                          .sort((a, b) => a.name.localeCompare(b.name, "ru", { sensitivity: "base" })).map((program) => (
+                            <option key={program.id} value={program.id}>
                               {program.name} — {program.time}{" "}
                               {getHourWord(program.time)} —{" "}
                               {program.education}

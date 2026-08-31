@@ -4,6 +4,8 @@ import {
   PutObjectCommand,
 } from "@aws-sdk/client-s3";
 
+import { db } from "@/lib/db";
+
 const s3 = new S3Client({
   region: "ru-central1",
   endpoint: process.env.YANDEX_STORAGE_ENDPOINT,
@@ -39,7 +41,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!year || !month || !education || !specialization || !stage) {
+    if (
+      !year ||
+      !month ||
+      !education ||
+      !specialization ||
+      !stage ||
+      !name
+    ) {
       return NextResponse.json(
         { error: "Не заполнены обязательные поля" },
         { status: 400 }
@@ -67,10 +76,6 @@ export async function POST(req: NextRequest) {
     const extension =
       file.name.split(".").pop()?.toLowerCase() || "";
 
-    const safeName = name?.trim()
-      ? `${name.trim()}.${extension}`
-      : file.name;
-
     const sanitize = (value: string) =>
       value
         .replace(/[\/\\]/g, "-")
@@ -79,7 +84,10 @@ export async function POST(req: NextRequest) {
     const safeYear = sanitize(year);
     const safeEducation = sanitize(education);
     const safeSpecialization = sanitize(specialization);
-    const safeFileName = sanitize(safeName);
+
+    const safeName = sanitize(name);
+
+    const safeFileName = `${safeName}.${extension}`;
 
     const key = [
       "accred",
@@ -98,17 +106,47 @@ export async function POST(req: NextRequest) {
       })
     );
 
+
+    const link = `${process.env.YANDEX_STORAGE_PUBLIC_URL}/${key}`;
+
+  
+    const [result] = await db.execute(
+      `
+        INSERT INTO accred
+        (
+          year,
+          month,
+          education,
+          specialization,
+          stage,
+          name,
+          link
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+      `,
+      [
+        year,
+        month,
+        education,
+        specialization,
+        stage,
+        safeName,
+        link,
+      ]
+    );
+
     return NextResponse.json({
       success: true,
-      key,
-      fileName: safeFileName,
+      id: (result as any).insertId,
+      name: safeName,
+      link,
     });
 
   } catch (error) {
-    console.error("Yandex upload error:", error);
+    console.error("Accred upload error:", error);
 
     return NextResponse.json(
-      { error: "Ошибка при загрузке файла" },
+      { error: "Ошибка при загрузке протокола" },
       { status: 500 }
     );
   }

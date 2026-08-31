@@ -14,7 +14,7 @@ export async function getTeachers(): Promise<UserRow[]> {
 
   const [rows] = await db.query<UserRow[] & RowDataPacket[]>(
     `SELECT id, name, last_name, education_level, specialization,
-            patronymic, Teacher_text, photo_url, isTeacher, isRated
+            patronymic, Teacher_text, photo_url, isTeacher, isRated, superAdmin
      FROM users
      WHERE isTeacher = 1 AND isRated = 1`
   );
@@ -30,7 +30,7 @@ export async function getAllTeachers(): Promise<UserRow[]> {
 
   const [rows] = await db.query<UserRow[] & RowDataPacket[]>(
     `SELECT id, name, last_name, education_level, specialization,
-            patronymic, Teacher_text, photo_url, isTeacher, isRated
+            patronymic, Teacher_text, photo_url, isTeacher, isRated, superAdmin
      FROM users
      WHERE isTeacher = 1`
   );
@@ -42,7 +42,7 @@ export async function getAllEmlployeer(): Promise<UserRow[]> {
 
   const [rows] = await db.query<UserRow[] & RowDataPacket[]>(
     `SELECT id, name, last_name, education_level, specialization,
-            patronymic, Teacher_text, photo_url, isEmployer, isAdmin, isRated
+            patronymic, Teacher_text, photo_url, isEmployer, isAdmin, isRated, superAdmin
      FROM users
      WHERE isEmployer = 1`
   );
@@ -63,6 +63,7 @@ export async function getAllUsers(): Promise<UserRow[]> {
       u.specialization,
       u.education_level,
       u.created_at,
+      
 
       GROUP_CONCAT(
         DISTINCT p.name

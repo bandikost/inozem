@@ -265,8 +265,7 @@ export default function NotifyList({
             </div>
 
             <div className="p-6 sm:p-8">
-              <div
-                className="
+              <div className="
                   prose
                   prose-zinc
                   max-w-none

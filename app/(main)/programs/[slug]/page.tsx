@@ -39,7 +39,6 @@ export default async function Page({ params }: ProgramsPageProps) {
   const programPromise =  await getProgramBySlug(slug)
   const cookieStore = await cookies() 
   const token = cookieStore.get("token")?.value 
-
   const program = await programPromise
 
   if (!program) return <div>Программа не найдена</div>
@@ -54,6 +53,9 @@ export default async function Page({ params }: ProgramsPageProps) {
     hasAccess = await hasUserProgram(user.id, program.id)
   }
   
+  console.log("USER:", user);
+console.log("hasAccess:", hasAccess);
+console.log("superAdmin:", user?.superAdmin);
   
   const dates = program.dates?.split("\n").filter(Boolean) ?? []
   
@@ -96,8 +98,15 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
       
       
 
-      {!hasAccess ? ( 
-      <>
+      {hasAccess ? ( 
+        <ProgramSlider blocks={blocks} name={program.name} suptitle={program.suptitle} /> 
+
+      ) : user?.superAdmin ? (
+
+  <ProgramSlider blocks={blocks} name={program.name} suptitle={program.suptitle}/>
+
+      ) : (   
+           <>
 <h1 className="!text-3xl font-semibold text-prpl text-center">{program.name}</h1>
   <div className="grid grid-cols-1 tablet:grid-cols-[1.4fr_0.6fr] gap-8 mt-12 mb-16">
 
@@ -207,8 +216,6 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
 
     </div>
 
-
-    {/* Оплата */}
     <div className="relative overflow-hidden rounded-3xl bg-blue text-white p-8 min-h-[320px] flex flex-col justify-between">
 
       <div className="absolute -right-20 -top-20 w-56 h-56 rounded-full border border-white/10" />
@@ -249,9 +256,7 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
 
   </div>
 </section>
-</>
-      ) : (   
-        <ProgramSlider blocks={blocks} name={program.name} suptitle={program.suptitle} />       
+</>  
       )}  
       </div>
     </section>

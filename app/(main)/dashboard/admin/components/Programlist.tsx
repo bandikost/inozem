@@ -4,10 +4,12 @@ import { getHourWord } from "@/components/ui/GetHourWord"
 import {
   ArrowRight,
   BookOpen,
-  ChevronRight,
   Clock3,
   Pencil,
   Search,
+  ArrowDownAZ,
+  Clock,
+  CalendarDays,
 } from "lucide-react"
 import Link from "next/link"
 import { useMemo, useState } from "react"
@@ -17,27 +19,55 @@ interface Program {
   name: string
   time: number
   slug: string
+  created_at: string
 }
 
 interface Props {
   program: Program[]
 }
 
+type SortType = "alphabet" | "hours" | "date"
+
 export default function ProgramList({ program }: Props) {
   const [value, setValue] = useState("")
+  const [sort, setSort] = useState<SortType>("date")
 
   const filtered = useMemo(() => {
-    return program.filter((p) =>
-      p.name.toLowerCase().startsWith(value.toLowerCase())
-    )
-  }, [program, value])
+    const search = value.trim().toLowerCase()
 
-  const sortedFiltred = [...filtered].sort((a, b) => b.id - a.id)
+    const result = program.filter((p) =>
+      p.name.toLowerCase().startsWith(search)
+    )
+
+    return [...result].sort((a, b) => {
+      switch (sort) {
+        case "alphabet": return a.name.localeCompare(b.name, "ru", { sensitivity: "base" })
+        case "hours": return b.time - a.time
+        case "date": default: return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      }
+    })
+  }, [program, value, sort])
+
+  const sortOptions = [
+    {
+      value: "alphabet" as const,
+      label: "Алфавит",
+      icon: ArrowDownAZ,
+    },
+    {
+      value: "hours" as const,
+      label: "Часы",
+      icon: Clock,
+    },
+    {
+      value: "date" as const,
+      label: "Дата",
+      icon: CalendarDays,
+    },
+  ]
 
   return (
-    <section className=" mt-27 pb-16">
-
-
+    <section className="mt-10 pb-16">
       <div className="mb-8">
 
         <div className="relative">
@@ -57,7 +87,9 @@ export default function ProgramList({ program }: Props) {
             value={value}
             onChange={(e) => setValue(e.target.value)}
             placeholder="Введите название программы..."
-            className="h-13 w-full
+            className="
+              h-13
+              w-full
               rounded-2xl
               border
               border-zinc-200
@@ -76,16 +108,79 @@ export default function ProgramList({ program }: Props) {
 
         </div>
 
-        <p className="mt-3 text-sm text-zinc-500">
-          Найдено программ: {filtered.length}
-        </p>
+        <div className="
+          mt-4
+          flex
+          flex-col
+          gap-3
+          sm:flex-row
+          sm:items-center
+          sm:justify-between
+        ">
+
+          <p className="text-sm text-zinc-500">
+            Найдено программ:{" "}
+            <span className="font-semibold text-zinc-800">
+              {filtered.length}
+            </span>
+          </p>
+
+
+          <div className="
+            flex
+            w-full
+            rounded-2xl
+            border
+            border-zinc-200
+            bg-zinc-100
+            p-1
+            sm:w-auto
+          ">
+
+            {sortOptions.map((option) => {
+              const Icon = option.icon
+              const active = sort === option.value
+
+              return (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() => setSort(option.value)}
+                  className={`
+                    flex
+                    flex-1
+                    items-center
+                    justify-center
+                    gap-2
+                    rounded-xl
+                    px-4
+                    py-2.5
+                    text-sm
+                    font-medium
+                    transition
+                    sm:flex-none
+                    cursor-pointer
+                    ${
+                      active
+                        ? "bg-white text-zinc-900 shadow-sm"
+                        : "text-zinc-500 hover:text-zinc-800"
+                    }
+                  `}
+                >
+                  <Icon size={16} />
+                  {option.label}
+                </button>
+              )
+            })}
+
+          </div>
+
+        </div>
 
       </div>
-
-
       <div className="grid gap-5">
 
-        {sortedFiltred.map((p) => (
+        {filtered.map((p) => (
 
           <Link
             key={p.id}
@@ -145,8 +240,8 @@ export default function ProgramList({ program }: Props) {
                       {p.name}
                     </h2>
 
-                    <div className="mt-4 flex flex-wrap gap-3">
 
+                    <div className="mt-4 flex flex-wrap gap-3">
 
                       <div className="
                         inline-flex
@@ -159,12 +254,29 @@ export default function ProgramList({ program }: Props) {
                         text-sm
                         text-zinc-700
                       ">
-
                         <Clock3 size={16} />
 
                         {p.time} академических{" "}
                         {getHourWord(p.time)}
+                      </div>
 
+
+                      <div className="
+                        inline-flex
+                        items-center
+                        gap-2
+                        rounded-xl
+                        bg-zinc-100
+                        px-3
+                        py-2
+                        text-sm
+                        text-zinc-500
+                      ">
+                        <CalendarDays size={15} />
+
+                        {new Date(p.created_at).toLocaleDateString(
+                          "ru-RU"
+                        )}
                       </div>
 
 
@@ -178,9 +290,7 @@ export default function ProgramList({ program }: Props) {
                         text-sm
                         text-zinc-500
                       ">
-
                         /{p.slug}
-
                       </div>
 
                     </div>
@@ -192,13 +302,11 @@ export default function ProgramList({ program }: Props) {
               </div>
 
 
-
               <div className="
-                
+                hidden
                 shrink-0
                 items-center
                 gap-3
-                hidden
                 lg:flex
               ">
 
@@ -210,9 +318,7 @@ export default function ProgramList({ program }: Props) {
                   group-hover:bg-black
                   group-hover:text-white
                 ">
-
                   <Pencil size={20} />
-
                 </div>
 
                 <ArrowRight
@@ -232,9 +338,6 @@ export default function ProgramList({ program }: Props) {
         ))}
 
       </div>
-
-
-
 
       {filtered.length === 0 && (
 

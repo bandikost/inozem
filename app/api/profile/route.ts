@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
     }
 
     const [rows] = await db.query<UserRow[]>(
-      "SELECT id, name, last_name, patronymic, email, education_level, specialization, phone, isTeacher, isAdmin, photo_url, created_at FROM users WHERE id = ?",
+      "SELECT id, name, last_name, patronymic, email, education_level, specialization, phone, isTeacher, isAdmin, photo_url, created_at, superAdmin FROM users WHERE id = ?",
       [decoded.id]
     )
 
