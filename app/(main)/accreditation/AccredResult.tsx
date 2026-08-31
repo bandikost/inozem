@@ -334,7 +334,7 @@ export default function AccredResult({ accred }: Props) {
         <div className="
           truncate
           text-xs
-          sm:text-md
+          sm:text-base
           font-medium
           text-default
           transition-colors
