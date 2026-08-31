@@ -19,9 +19,11 @@ import {
   ExternalLink,
   Loader2,
   X,
+  ChevronRight,
 } from "lucide-react";
 
 import { useToast } from "@/components/ui/Toast/ToastProvider";
+import LoadingLink from "@/components/Load/LoadingLink";
 
 interface AccredItem {
   id: number;
@@ -318,6 +320,24 @@ export default function Page() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 pt-28 pb-16">
+      <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
+      
+                <LoadingLink href="/dashboard/manager" className="shrink-0 hover:text-blue transition hover:underline">
+                    Главная страница Админки
+                </LoadingLink>
+            
+                <ChevronRight size={14} className="shrink-0" />
+            
+                <LoadingLink href="/dashboard/accred/" className="shrink-0 hover:text-blue transition hover:underline">
+                Аккредитация
+                </LoadingLink>
+                <ChevronRight size={14} className="shrink-0" />
+            
+                <span className="min-w-0 flex-1 truncate text-zinc-800 opacity-70">
+                Выгрузка протоколов
+                </span>
+            
+            </nav>
       <div className="rounded-[2rem] border border-gray-200 bg-white p-6 shadow-sm md:p-8">
 
         <div className="mb-8">

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Accred } from "@/app/interface/accred";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ShieldCheck } from "lucide-react";
 
 interface Props {
   accred: Accred[];
@@ -174,10 +174,12 @@ export default function AccredResult({ accred }: Props) {
                   border
                   px-4
                   py-4
-                  text-left
-                  text-sm
+                  text-center
+                  text-md
                   font-medium
-                  leading-5
+                  hover:opacity-90
+                  hover:text-white
+                  hover:!bg-[#0a9688]
                   transition
                   cursor-pointer
 
@@ -236,101 +238,166 @@ export default function AccredResult({ accred }: Props) {
               className="mb-6 last:mb-0"
             >
 
-              <div className="mb-3 flex items-center gap-3">
+              <div className="mb-3 flex items-center justify-between gap-4">
 
-                <h4 className="
-                  text-base
-                  md:text-lg
-                  font-semibold
-                  text-zinc-800
-                ">
-                  {stage}
-                </h4>
+  <div className="flex min-w-0 items-center gap-3">
 
-                <span className="
-                  rounded-full
-                  bg-zinc-100
-                  px-2.5
-                  py-1
-                  text-xs
-                  font-medium
-                  text-zinc-500
-                ">
-                  {items.length}
-                </span>
+    <div className="
+      flex
+      h-8
+      w-8
+      shrink-0
+      items-center
+      justify-center
+      rounded-lg
+      bg-blue
+      text-xs
+      font-bold
+      text-white
+      shadow-sm
+    ">
+      {Object.keys(groupedAccred).indexOf(stage) + 1}
+    </div>
 
-              </div>
-              <div className="
-                grid
-                grid-cols-1
-                md:grid-cols-2
-                gap-3
-              ">
+    <div className="min-w-0">
+      <h4 className="
+        truncate
+        text-base
+        font-semibold
+        text-zinc-800
+        md:text-lg
+      ">
+        {stage}
+      </h4>
+    </div>
 
-                {items.map((item) => (
+  </div>
 
-                  <a
-                    key={item.id}
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="
-                      group
-                      flex
-                      min-h-[72px]
-                      items-center
-                      justify-between
-                      gap-4
-                      rounded-2xl
-                      border
-                      border-zinc-200
-                      bg-white
-                      px-5
-                      py-4
-                      text-zinc-800
-                      transition
-                      hover:border-blue
-                      hover:shadow-md
-                    "
-                  >
+   <div className="h-px flex-1 bg-zinc-200" />
 
-                    <span className="
-                      leading-5
-                      transition
-                      group-hover:text-blue
-                    ">
-                      {item.name}
-                    </span>
+  <div className="
+    shrink-0
+    rounded-full
+    bg-zinc-100
+    px-3
+    py-1.5
+    text-xs
+    font-semibold
+    text-zinc-500
+    hidden
+    sm:block
+  ">
+    {items.length}{" "}{items.length === 1 ? "документ" : items.length >= 2 && items.length <= 4 ? "документа" : "документов"}
+  </div>
 
+</div>
+              <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white">
 
-                    <span className="
-                      flex
-                      shrink-0
-                      items-center
-                      gap-2
-                      text-sm
-                      font-medium
-                      text-blue
-                    ">
+  {items.map((item, index) => (
+    <a
+      key={item.id}
+      href={item.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        group
+        relative
+        flex
+        items-center
+        gap-5
+        px-5
+        py-4
+        transition-colors
+        hover:bg-zinc-100
+        not-last:border-b
+        not-last:border-zinc-100
+      "
+    >
 
-                      PDF
+     
+      <div className="
+        hidden
+        w-8
+        shrink-0
+        text-sm
+        font-semibold
+        tabular-nums
+        text-zinc-300
+        sm:block
+      ">
+        {String(index + 1).padStart(2, "0")}
+      </div>
 
-                      <ArrowUpRight
-                        size={16}
-                        className="
-                          transition-transform
-                          group-hover:translate-x-0.5
-                          group-hover:-translate-y-0.5
-                        "
-                      />
+      
+      <div className="min-w-0 flex-1">
 
-                    </span>
+        <div className="
+          truncate
+          text-xs
+          sm:text-md
+          font-medium
+          text-default
+          transition-colors
+          group-hover:text-blue
+        ">
+          {item.name}
+        </div>
 
-                  </a>
+          <div className="
+        hidden
+        shrink-0
+        text-sm
+        items-center
+        gap-1
+        text-zinc-400
+        md:flex
+      ">
+        <ShieldCheck size={17} />
+        Утверждено
+      </div>
 
-                ))}
+      </div>
 
-              </div>
+     <div className="
+        hidden
+        shrink-0
+        text-xs
+        font-medium
+        text-zinc-400
+        md:block
+      ">
+        {new Date(item.created_at).toLocaleDateString("ru-RU")}
+      </div>
+    
+
+      <div className="
+        flex
+        h-9
+        w-9
+        shrink-0
+        items-center
+        justify-center
+        rounded-full
+        bg-zinc-100
+        text-zinc-400
+        transition-all
+        group-hover:bg-blue
+        group-hover:text-blue
+      ">
+        <ArrowUpRight
+          size={16}
+          className="
+            transition-transform
+            group-hover:-translate-y-0.5
+            group-hover:translate-x-0.5
+          "
+        />
+      </div>
+
+    </a>
+  ))}
+
+            </div>
 
             </div>
 

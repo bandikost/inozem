@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.1118.0",
+    "@aws-sdk/client-s3": "^3.1121.0",
     "@radix-ui/react-toast": "^1.2.21",
     "@tailwindcss/typography": "^0.5.19",
     "@tiptap/react": "^3.27.3",
@@ -27,7 +27,7 @@
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.563.0",
     "mysql": "^2.18.1",
-    "mysql2": "^3.16.2",
+    "mysql2": "^3.24.2",
     "next": "16.1.6",
     "nodemailer": "^8.0.5",
     "nprogress": "^0.2.0",
