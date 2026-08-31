@@ -18,7 +18,6 @@ import {
   Trash2,
   ExternalLink,
   Loader2,
-  CheckCircle2,
   X,
 } from "lucide-react";
 
