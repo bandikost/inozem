@@ -267,19 +267,20 @@ export default function NotifyList({
             <div className="p-6 sm:p-8">
               <div className="
                   prose
-                  prose-zinc
-                  max-w-none
-                  prose-headings:font-semibold
-                  prose-headings:text-zinc-900
-                  prose-h3:mb-3
-                  prose-h3:mt-7
-                  prose-h3:text-lg
-                  prose-p:leading-7
-                  prose-p:text-zinc-600
-                  prose-li:text-zinc-600
-                  prose-li:leading-7
-                  prose-strong:text-zinc-800
-                  prose-ul:my-4
+prose-zinc
+max-w-none
+prose-headings:font-semibold
+prose-headings:text-zinc-900
+prose-h3:mb-3
+prose-h3:mt-7
+prose-h3:text-lg
+prose-p:leading-7
+prose-p:text-zinc-600
+prose-li:text-zinc-600
+prose-li:leading-7
+[&_strong]:font-medium
+[&_strong]:text-[#8d4c98]
+prose-ul:my-4
                 "
                 dangerouslySetInnerHTML={{
                   __html: item.description || "",

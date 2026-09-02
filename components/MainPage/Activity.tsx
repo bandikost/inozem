@@ -62,19 +62,9 @@ export default async function Activity() {
 
         <div className="mb-5">
 
-            <span className="
-                inline-flex
-                items-center
-                rounded-full
-                bg-prpl/10
-               
-                py-2
-                text-sm
-                font-medium
-                text-prpl
-            ">
-                📅
-                <span className="ml-2">
+            <span className="flex rounded-full bg-prpl/10 py-2 text-base font-medium text-prpl">
+               <span className="hidden sm:flex">📅</span> 
+                <span className="ml-0 sm:ml-2">
                     <span dangerouslySetInnerHTML={{ __html: act.dates }} />
                     {act.year && ` | ${act.year}`}
                 </span>
@@ -87,7 +77,8 @@ export default async function Activity() {
 
         <div className="
             mt-8
-            flex
+            flex-col
+            sm:flex-row
             items-center
             justify-between
             border-t

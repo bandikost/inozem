@@ -45,7 +45,7 @@ const filteredPrograms = useMemo(() => {
 
   if (inputValue) {
     filtered = filtered.filter((p) =>
-      p.name.toLowerCase().startsWith(inputValue.toLowerCase())
+      p.name.toLowerCase().includes(inputValue.toLowerCase())
     );
   }
 
