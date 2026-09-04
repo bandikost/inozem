@@ -38,6 +38,7 @@ interface AccredItem {
 }
 
 const STAGES = [
+  "Допуск",
   "Основной этап",
   "Второй этап",
   "Итоги",

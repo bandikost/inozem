@@ -45,10 +45,7 @@ export default async function Page({ params }: PageProps) {
 
         <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
 
-          <LoadingLink
-            href="/"
-            className="shrink-0 hover:text-blue transition hover:underline"
-          >
+          <LoadingLink href="/" className="shrink-0 hover:text-blue transition hover:underline">
             Главная
           </LoadingLink>
 
