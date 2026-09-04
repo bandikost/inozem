@@ -8,6 +8,13 @@ interface Props {
   accred: Accred[];
 }
 
+const stageOrder = [
+    "Допуск",
+    "Основной этап",
+    "Второй этап",
+    "Итоги",
+];
+
 export default function AccredResult({ accred }: Props) {
 
   const resultAccred = useMemo(() => {
@@ -230,8 +237,11 @@ export default function AccredResult({ accred }: Props) {
         </div>
 
 
-        {Object.entries(groupedAccred).map(
-          ([stage, items]) => (
+        {Object.entries(groupedAccred)
+  .sort(([stageA], [stageB]) => {
+    return stageOrder.indexOf(stageA) - stageOrder.indexOf(stageB);
+  })
+  .map(([stage, items]) => (
 
             <div
               key={stage}

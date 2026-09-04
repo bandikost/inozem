@@ -1,5 +1,7 @@
 import CommentForm from "@/components/forms/CommentForm"
+import TokenCheck from "@/components/token/token"
 import { getComments } from "@/lib/comments"
+import { getProfile } from "@/lib/getProfile"
 import { UserRound } from "lucide-react"
 
 interface CommentsProps {
@@ -8,6 +10,9 @@ interface CommentsProps {
 
 export default async function Comments({ programmId }: CommentsProps) {
   const comments = await getComments(programmId)
+  const token = await TokenCheck() 
+  let user = null
+  if (token) user = await getProfile(token) 
 
   return (
     <section className="mt-12">
@@ -70,29 +75,62 @@ export default async function Comments({ programmId }: CommentsProps) {
                 
 
                 return (
-                  <article key={c.id} className="group flex gap-4 p-4 border border-gray-200 rounded-2xl shadow">
-    
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-violet-100 text-sm font-semibold text-violet-700">
-                      <UserRound />
-                    </div>
+                  <article key={c.id}  className="
+                    relative
+                    rounded-2xl
+                    border border-slate-200
+                    bg-white
+                    p-5
+                    pr-28
+                    transition
+                    hover:border-slate-300
+                    hover:shadow-sm
+                  ">
+                  {user?.isAdmin && (
+                    <button type="button"
+                      className="
+                        absolute
+                        right-0
+                        top-0
+                        rounded-2xl
+                        border border-slate-200
+                        bg-white
+                        px-3
+                        py-1.5
+                        text-sm
+                        font-medium
+                        text-slate-500
+                        transition
+                        hover:border-violet-200
+                        hover:bg-violet-50
+                        hover:text-violet-700
+                      "
+                    >
+                      Ответить 
+                    </button>
+                  )}
 
-                    <div className="min-w-0 flex-1">
+  <div className="flex gap-4">
+    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-violet-100 text-violet-700">
+      <UserRound className="h-5 w-5" />
+    </div>
+    <div className="min-w-0 flex-1">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+        <span className="font-semibold text-slate-900">
+          {fullName}
+        </span>
 
-                      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                        <span className="font-semibold text-slate-900">
-                          {fullName}
-                        </span>
+        <time className="text-xs text-slate-400">
+          {c.comment_date} · {c.comment_time}
+        </time>
+      </div>
 
-                       <time className="text-xs text-slate-400">
-                            {c.comment_date} · {c.comment_time}
-                        </time>
-                      </div>
+      <p className="mt-2 whitespace-pre-wrap text-[15px] leading-7 text-slate-600">
+        {c.comment}
+      </p>
 
-                      <p className="mt-1 whitespace-pre-wrap text-[15px] leading-7 text-slate-600">
-                        {c.comment}
-                      </p>
-
-                    </div>
+    </div>
+  </div>
                   </article>
                 )
               })}

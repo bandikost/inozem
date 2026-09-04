@@ -10,6 +10,7 @@ export async function getComments(programmId: number) {
             last_name,
             patronymic,
             comment,
+            answer_admin,
             DATE_FORMAT(created_at, '%d.%m.%Y') AS comment_date,
             DATE_FORMAT(created_at, '%H:%i') AS comment_time
         FROM comments

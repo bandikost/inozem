@@ -74,6 +74,8 @@ export default async function Page({ params }: PageProps) {
         Редактирование: {test[0].title}
       </h1>
 
+      <LoadingLink href={`/tests/${test[0].slug}`} className="my-10 flex items-center justify-center text-lg hover:underline cursor-pointer">Перейти на страницу теста</LoadingLink>
+
       <DeleteTestButton slug={slug} />
 
       <TestEditor
