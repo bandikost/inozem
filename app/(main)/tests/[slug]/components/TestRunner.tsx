@@ -27,7 +27,7 @@ interface UserData {
 
 interface Props {
   questions: Question[];
-  nameTest: string;
+  nameTest: string | null;
   userId: number;
 }
 
