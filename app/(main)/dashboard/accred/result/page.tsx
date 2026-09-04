@@ -423,15 +423,10 @@ export default function Page() {
               }
               className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-100"
             >
-              <option value="">
-                Выберите образование
-              </option>
+              <option value="">Выберите образование</option>
 
               {EDUCATION.map((item) => (
-                <option
-                  key={item}
-                  value={item}
-                >
+                <option key={item} value={item}>
                   {item}
                 </option>
               ))}
