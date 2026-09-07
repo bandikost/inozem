@@ -60,33 +60,33 @@ export default function Page() {
   });
 
   const [file, setFile] =
-    useState<File | null>(null);
+    useState<File | null>(null)
 
   const [items, setItems] =
-    useState<AccredItem[]>([]);
+    useState<AccredItem[]>([])
 
   const [loading, setLoading] =
-    useState(false);
+    useState(false)
 
   const [loadingItems, setLoadingItems] =
-    useState(true);
+    useState(true)
 
   const [dragActive, setDragActive] =
-    useState(false);
+    useState(false)
 
   const [deletingId, setDeletingId] =
-    useState<number | null>(null);
+    useState<number | null>(null)
 
   const loadItems = async () => {
     try {
-      setLoadingItems(true);
+      setLoadingItems(true)
 
       const response = await fetch(
         "/api/admin/accred",
         {
           cache: "no-store",
         }
-      );
+      )
 
       const data = await response.json();
 
@@ -94,26 +94,26 @@ export default function Page() {
         throw new Error(
           data.error ||
           "Не удалось загрузить протоколы"
-        );
+        )
       }
 
       setItems(data.items || []);
     } catch (error) {
-      console.error(error);
+      console.error(error)
 
       toast.error(
         error instanceof Error
           ? error.message
           : "Ошибка загрузки протоколов"
-      );
+      )
     } finally {
-      setLoadingItems(false);
+      setLoadingItems(false)
     }
-  };
+  }
 
   useEffect(() => {
-    loadItems();
-  }, []);
+    loadItems()
+  }, [])
 
   const handleChange = (
     key: keyof typeof form,
@@ -122,8 +122,8 @@ export default function Page() {
     setForm((prev) => ({
       ...prev,
       [key]: value,
-    }));
-  };
+    }))
+  }
 
 
   const handleFile = (
@@ -132,10 +132,8 @@ export default function Page() {
     if (!selectedFile) return;
 
     if (selectedFile.size > 20 * 1024 * 1024) {
-      toast.error(
-        "Файл слишком большой. Максимум 20 МБ"
-      );
-      return;
+      toast.error("Файл слишком большой. Максимум 20 МБ")
+      return
     }
 
     setFile(selectedFile);

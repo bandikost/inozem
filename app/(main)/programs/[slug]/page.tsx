@@ -10,6 +10,7 @@ import LoadingLink from "@/components/Load/LoadingLink";
 import { ChevronRight } from "lucide-react";
 import { cookies } from "next/headers";
 import PayButton from "@/components/ui/Buttons/PayButton";
+import Study from "./Components/Study";
 
 interface ProgramsPageProps { 
    params: { slug: string } // типизируем что хотм получить slug из url
@@ -105,7 +106,10 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
 
   <ProgramSlider blocks={blocks} name={program.name} suptitle={program.suptitle}/>
 
-      ) : (   
+      ) : program.study ? (
+        <Study programId={program.id} />
+      ) :(  
+       
            <>
 <h1 className="!text-3xl font-semibold text-prpl text-center">{program.name}</h1>
   <div className="grid grid-cols-1 tablet:grid-cols-[1.4fr_0.6fr] gap-8 mt-12 mb-16">

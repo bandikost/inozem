@@ -15,6 +15,8 @@ import {
   CreditCard,
   FileText,
 } from "lucide-react"
+import parseDateActivity from "@/lib/dates/filterDate"
+import parseDateActivitySlug from "@/lib/dates/filterDateSlug"
 
 interface PageProps {
   params: { slug: string }
@@ -35,18 +37,19 @@ export async function generateMetadata({ params }: ProgramsPageProps) {
   }
 }
 
+
 export default async function Page({ params }: PageProps) {
   const { slug } = await params
 
   const activities = await getActivity()
   const activity = activities.find((act) => act.slug === slug)
-
+  
   if (!activity) return notFound()
 
-  /*
-   * Информационные блоки.
-   * Пустые автоматически убираются.
-   */
+    const currentYear = new Date().getFullYear()
+    const endDate = activity.dates ? parseDateActivitySlug(activity.dates, currentYear) : null
+    const isActivityFinished = endDate ? new Date() > endDate : false
+
   const infoBlocks = [
     {
       title: "Цель мероприятия",
@@ -564,7 +567,7 @@ export default async function Page({ params }: PageProps) {
 
                 </div>
 
-
+              
                 <div className="mt-8 flex flex-col gap-3">
 
                   {activity.paylink && (
@@ -604,33 +607,58 @@ export default async function Page({ params }: PageProps) {
                   )}
 
 
-                  <LoadingLink
-                    href={`/activity-form?title=${encodeURIComponent(activity.name)}`}
-                    className="
-                      flex
-                      w-full
-                      items-center
-                      justify-center
-                      gap-2
-                      rounded-xl
-                      border
-                      border-white/20
-                      bg-white/10
-                      px-5
-                      py-4
-                      text-base
-                      font-medium
-                      !text-white
-                      backdrop-blur-sm
-                      transition
-                      hover:bg-white/15
-                    "
-                  >
-                    <FileText size={18} />
+                  {isActivityFinished ? (
+                    <div
+                      className="
+                        flex
+                        w-full
+                        items-center
+                        justify-center
+                        gap-2
+                        rounded-xl
+                        border
+                        border-white/10
+                        bg-white/5
+                        px-5
+                        py-4
+                        text-base
+                        font-medium
+                        text-white/50
+                        cursor-not-allowed
+                      "
+                    >
+                      <FileText size={18} />
 
-                    Подать заявку
+                      Мероприятие уже завершено
+                    </div>
+                  ) : (
+                    <LoadingLink
+                      href={`/activity-form?title=${encodeURIComponent(activity.name)}`}
+                      className="
+                        flex
+                        w-full
+                        items-center
+                        justify-center
+                        gap-2
+                        rounded-xl
+                        border
+                        border-white/20
+                        bg-white/10
+                        px-5
+                        py-4
+                        text-base
+                        font-medium
+                        !text-white
+                        backdrop-blur-sm
+                        transition
+                        hover:bg-white/15
+                      "
+                    >
+                      <FileText size={18} />
 
-                  </LoadingLink>
+                      Подать заявку
+                    </LoadingLink>
+                  )}
 
                 </div>
 

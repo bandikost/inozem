@@ -229,7 +229,7 @@ export default function Page() {
           <div className="mb-7">
 
             <h2 className="text-xl font-semibold text-gray-900">
-              Информация об обучении
+              Информация о мероприятии
             </h2>
 
             <p className="mt-1 text-sm text-gray-500">

@@ -1,4 +1,4 @@
-export default function parseDateActivity(
+export default function parseDateActivitySlug(
   dates: string,
   year: number
 ): Date | null {
@@ -18,16 +18,18 @@ export default function parseDateActivity(
     декабря: 11,
   }
 
-  const match = dates.match(/(\d{1,2})(?:\s*-\s*\d{1,2})?\s+([а-яё]+)/i)
+  const match = dates.match(
+    /(\d{1,2})(?:\s*-\s*(\d{1,2}))?\s+([а-яё]+)/i
+  )
 
   if (!match) return null
 
-  const day = Number(match[1])
-  const month = months[match[2].toLowerCase()]
+  const startDay = Number(match[1])
+  const endDay = match[2] ? Number(match[2]) : startDay + 1
+
+  const month = months[match[3].toLowerCase()]
 
   if (month === undefined) return null
 
-  return new Date(year, month, day)
+  return new Date(year, month, endDay)
 }
-
-
