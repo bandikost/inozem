@@ -169,8 +169,7 @@ export default async function Study({ programId }: StudyProps) {
                 Образовательная программа
               </span>
 
-              <h1
-                className="
+              <h1 className="
                   mt-4
                   !text-4xl
                   font-semibold
@@ -694,9 +693,7 @@ export default async function Study({ programId }: StudyProps) {
                 )}
 
                 <LoadingLink
-                  href={`/study-form?title=${encodeURIComponent(
-                    study.name
-                  )}`}
+                  href="/bid"
                   className="
                     flex
                     items-center

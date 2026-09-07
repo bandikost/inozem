@@ -16,10 +16,7 @@ type Props = {
   activity?: string
 }
 
-export default function FormActivity({
-  user,
-  activity,
-}: Props) {
+export default function FormActivity({ user, activity }: Props) {
   const [lastName, setLastName] = useState(user?.last_name || "")
   const [firstName, setFirstName] = useState(user?.name || "")
   const [patronymic, setPatronymic] = useState(user?.patronymic || "")
@@ -72,9 +69,7 @@ export default function FormActivity({
   return (
  
 
-      <form
-        onSubmit={(e) =>
-          handleSubmit({
+      <form onSubmit={(e) => handleSubmit({
             e,
             captcha,
             setNotice,

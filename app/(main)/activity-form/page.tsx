@@ -9,11 +9,7 @@ export const metadata = {
     "Заявка на мероприятие | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»",
 }
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: Promise<{ title?: string }>
-}) {
+export default async function Page({ searchParams }: { searchParams: Promise<{ title?: string }>}) {
   const cookieStore = await cookies()
   const token = cookieStore.get("token")?.value
 

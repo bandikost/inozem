@@ -200,7 +200,7 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
       <div className="relative mt-8">
 
         <LoadingLink
-          href="/bid"
+          href={`/bid?title=${encodeURIComponent(program.name)}`}
           className="
             flex w-full items-center justify-center
             rounded-xl
