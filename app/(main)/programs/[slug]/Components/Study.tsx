@@ -79,7 +79,8 @@ export default async function Study({ programId }: StudyProps) {
             style={{
               backgroundImage: `url(${study.title_bg})`,
               backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundPosition: "center 55%",
+            
             }}
           >
 
