@@ -17,6 +17,7 @@ const s3 = new S3Client({
 });
 
 const allowedStages = [
+  "Допуск",
   "Основной этап",
   "Второй этап",
   "Итоги",
