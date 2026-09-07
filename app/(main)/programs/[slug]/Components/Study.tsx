@@ -91,11 +91,11 @@ export default async function Study({ programId }: StudyProps) {
 
               <div className="w-full max-w-5xl px-6 pb-9 md:px-12 md:pb-12">
 
-                <span className="text-sm font-medium text-white/65">
+                <span className="text-lg font-medium text-white/65">
                   Образовательная программа
                 </span>
 
-                <h1
+                <h3
                   className="
                     mt-4
                     !text-3xl
@@ -109,7 +109,7 @@ export default async function Study({ programId }: StudyProps) {
                   "
                 >
                   {study.name}
-                </h1>
+                </h3>
 
                 {study.title && (
                   <div
