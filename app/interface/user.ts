@@ -18,4 +18,5 @@ export interface UserRow extends RowDataPacket{
   photo_url: string 
   created_at: Date
   program_name: string 
+  program_data: string | null
 }

@@ -366,21 +366,27 @@ export default function UsersClient({users, programs}: UsersClientProps) {
           {processedUsers
             .slice(0, visibleItems)
             .map((user) => {
-              const userPrograms = user.program_name
-              ? user.program_name
+              const userPrograms = user.program_data
+              ? user.program_data
                   .split("|||")
-                  .map((program) => program.trim())
-                  .filter(Boolean)
+                  .map((program) => {
+                    const [id, name, time, slug] = program.split(":::")
+
+                    return {
+                      id: Number(id),
+                      name,
+                      time: Number(time),
+                      slug,
+                    }
+                  })
+                  .filter((program) => program.id)
               : []
 
-              const availablePrograms = programs.filter(
-                (program) =>
-                  !userPrograms.some(
-                    (userProgram) =>
-                      userProgram.toLowerCase() ===
-                      program.name.trim().toLowerCase()
-                  )
-              )
+              const availablePrograms = programs.filter((program) =>
+                !userPrograms.some(
+                  (userProgram) => userProgram.id === program.id
+                )
+            )
 
               const fullName = [
                 user.last_name,
@@ -488,59 +494,60 @@ export default function UsersClient({users, programs}: UsersClientProps) {
                             </p>
 
                             <div className="flex flex-wrap gap-2">
-                              {userPrograms.map((name) => {
-                                const program = programs.find(
-                                  (item) =>
-                                    item.name.trim().toLowerCase() ===
-                                    name.trim().toLowerCase()
-                                )
-
-                                if (!program) return null
-
-                                return (
-                                  <div
-                                    key={`${program.id}-${name}`}
-                                    className="flex items-center gap-1"
-                                  >
-                                    <Link
-                                      href={`/programs/${program.slug}`}
-                                      className="rounded-lg bg-blue
-                                        border
-                                        border-gray-200
-                                        px-3
-                                        py-2
-                                        text-sm
-                                        !text-white
-                                        transition
-                                        hover:opacity-70
-                                      "
+                              {userPrograms.map((program) => {
+                                  return (
+                                    <div
+                                      key={program.id}
+                                      className="flex items-center gap-1"
                                     >
-                                      {program.name}
-                                    </Link>
+                                      <Link
+                                        href={`/programs/${program.slug}`}
+                                        className="
+                                          rounded-lg bg-blue
+                                          border
+                                          border-gray-200
+                                          px-3
+                                          py-2
+                                          text-sm
+                                          !text-white
+                                          transition
+                                          hover:opacity-70
+                                        "
+                                      >
+                                        {program.name} — {program.time}{" "}
+                                        {getHourWord(program.time)}
+                                      </Link>
 
-                                    <button type="button" onClick={() => handleDeleteProgram(user.id, program.id)}
-                                      className="
-                                        flex
-                                        h-8
-                                        w-8
-                                        items-center
-                                        justify-center
-                                        rounded-lg
-                                        border
-                                        border-red-500
-                                        text-red-500
-                                        transition
-                                        hover:bg-red-50
-                                        hover:text-red-600
-                                        cursor-pointer
-                                      "
-                                      title="Удалить программу"
-                                    >
-                                      <Trash className="text-red-500" size={16} />
-                                    </button>
-                                  </div>
-                                )
-                              })}
+                                      <button
+                                        type="button"
+                                        onClick={() =>
+                                          handleDeleteProgram(user.id, program.id)
+                                        }
+                                        className="
+                                          flex
+                                          h-8
+                                          w-8
+                                          items-center
+                                          justify-center
+                                          rounded-lg
+                                          border
+                                          border-red-500
+                                          text-red-500
+                                          transition
+                                          hover:bg-red-50
+                                          hover:text-red-600
+                                          cursor-pointer
+                                        "
+                                        title="Удалить программу"
+                                      >
+                                        <Trash
+                                          className="text-red-500"
+                                          size={16}
+                                        />
+                                      </button>
+                                    </div>
+                                  )
+                                })}
                             </div>
                           </div>
                         )}

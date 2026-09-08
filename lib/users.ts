@@ -63,12 +63,19 @@ export async function getAllUsers(): Promise<UserRow[]> {
       u.specialization,
       u.education_level,
       u.created_at,
-      
 
       GROUP_CONCAT(
-        DISTINCT p.name
+        DISTINCT CONCAT(
+          p.id,
+          ':::',
+          p.name,
+          ':::',
+          p.time,
+          ':::',
+          p.slug
+        )
         SEPARATOR '|||'
-      ) AS program_name
+      ) AS program_data
 
     FROM users u
 
