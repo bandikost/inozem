@@ -231,8 +231,7 @@ export default async function Study({ programId }: StudyProps) {
 
               <div className="max-w-4xl">
 
-                <div
-                  className="
+                <div className="
                     text-[16px]
                     leading-[1.8]
                     text-default/75
@@ -536,8 +535,7 @@ export default async function Study({ programId }: StudyProps) {
 
             </div>
 
-            <article
-              className="
+            <article className="
                 max-w-4xl
 
                 text-[16px]
@@ -660,9 +658,7 @@ export default async function Study({ programId }: StudyProps) {
               <div className="flex w-full flex-col gap-2.5 sm:w-auto sm:min-w-[250px]">
 
                 {study.paylink && (
-                  <LoadingLink
-                    href={study.paylink}
-                    className="
+                  <LoadingLink href={study.paylink} className="
                       group
                       flex
                       items-center
@@ -676,18 +672,13 @@ export default async function Study({ programId }: StudyProps) {
                       font-semibold
                       text-prpl
                       transition
-                      hover:bg-white/90
-                    "
-                  >
+                      hover:bg-white/90">
 
                     <CreditCard size={18} />
 
                     Оплатить обучение
 
-                    <ArrowRight
-                      size={17}
-                      className="transition-transform group-hover:translate-x-1"
-                    />
+                    <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
 
                   </LoadingLink>
                 )}
