@@ -15,7 +15,6 @@ import {
   CreditCard,
   FileText,
 } from "lucide-react"
-import parseDateActivity from "@/lib/dates/filterDate"
 import parseDateActivitySlug from "@/lib/dates/filterDateSlug"
 
 interface PageProps {

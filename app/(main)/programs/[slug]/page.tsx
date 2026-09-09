@@ -106,9 +106,7 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
 
   <ProgramSlider blocks={blocks} name={program.name} suptitle={program.suptitle}/>
 
-      ) : program.study ? (
-        <Study programId={program.id} />
-      ) :(  
+      )  :(  
        
            <>
 <h1 className="!text-3xl font-semibold text-prpl text-center">{program.name}</h1>
@@ -261,7 +259,11 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
   </div>
 </section>
 </>  
-      )}  
+      )}
+
+      {program.study && (
+        <Study programId={program.id} />
+      )}
       </div>
     </section>
   );
