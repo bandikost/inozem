@@ -6,8 +6,8 @@ const Footer = () => {
       label: "Академия",
       links: [
         { label: "Сведения об образовательной организаци", href: "/about" },
-        { label: "Кафедры", href: "/" },
-        { label: "Сотрудники", href: "/" },
+        { label: "Кафедры", href: "/departaments" },
+        { label: "Сотрудники", href: "/employees" },
         { label: "Блог", href: "/blog" },
         { label: "Отзывы", href: "/feedbacks" },
       ]
