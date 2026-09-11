@@ -1,21 +1,11 @@
-import {
-  legalInfo,
-  documents,
-  regulations,
-  smeta,
-  order,
-  prescript,
-} from "@/data/partners";
+import { legalInfo, documents, regulations, smeta, order, prescript } from "@/data/partners";
 
 import Link from "next/link";
 import { FileText, Info, ChevronRight } from "lucide-react";
 import { ToggleBlock } from "@/components/ui/Buttons/ToggleBlock";
 import LoadingLink from "@/components/Load/LoadingLink";
 
-export const metadata = {
-  title:
-    "Сведения об образовательной организации | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»",
-};
+export const metadata = { title: "Сведения об образовательной организации | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»" }
 
 export default function Page() {
   return (

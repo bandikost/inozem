@@ -10,9 +10,11 @@ const Header = () => {
       textColor: "#fff",
       links: [
       //  { label: "Блог", href: "/blog", ariaLabel: "Наш Блог" },
-       //  { label: "Кафедры", href: "/", ariaLabel: "Кафедры" },
-        { label: "Руководство", href: "/employees", ariaLabel: "Руководство" },
         { label: "Сведения об образовательной организации", href: "/about", ariaLabel: "Сведения об образовательной организации" },
+        { label: "Руководство", href: "/employees", ariaLabel: "Руководство" },
+        { label: "Кафедры", href: "/departaments", ariaLabel: "Кафедры" },
+        
+        
       ]
     },
     {
