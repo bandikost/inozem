@@ -109,8 +109,8 @@ export const smeta = [
 export const regulations = [
   { name: "Положение об Общем собрании работников ЧОУ ДПО «Академия медицинского образования им. Ф.И. Иноземцева»", link: "/files/about/regulations/polozhenie-o-sobranii.pdf"},
   { name: "Положение о Педагогическом совете", link: "/files/about/regulations/polozhenie-o-pedsovete.pdf" },
-   { name: "Общее собрание (ред. 2.0)", link: "/files/about/Положение об Общем собрании, ред. 2.0..pdf" },
-  { name: "Педагогические советы (ред. 2.0)", link: "/files/about/Положение о Педсовете, ред. 2.0.pdf" },
+   { name: "Положение об Общем собрании работников ЧОУ ДПО «Академия медицинского образования им. Ф.И. Иноземцева», (ред. 2.0)", link: "/files/about/Положение об Общем собрании, ред. 2.0..pdf" },
+  { name: "Положение о Педагогическом совете, (ред. 2.0)", link: "/files/about/Положение о Педсовете, ред. 2.0.pdf" },
   { name: "Положение об информационной открытости", link: "/files/about/regulations/polozhenie-inf-otkr.pdf" },
   { name: "Положение по организации и осуществлению образовательной деятельности", link: "/files/about/regulations/polozhenie-obr-deyat.pdf" },
   { name: "Положение об обработке и защите персональных данных", link: "/files/about/regulations/personal-data.pdf" },
