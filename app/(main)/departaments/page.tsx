@@ -5,6 +5,8 @@ import { ChevronRight } from "lucide-react";
 export default async function Page() {
     const departaments = await getDepartaments();
 
+    console.log(departaments)
+
     return (
         <section className="min-h-screen">
             <div className="container mx-auto px-2 my-27">

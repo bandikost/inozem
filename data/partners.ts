@@ -86,11 +86,10 @@ export const legalInfo = [
 ]
 
 export const documents = [
-  { name: "Общее собрание", link: "/files/about/Положение об Общем собрании, ред. 2.0..pdf" },
-  { name: "Педагогические советы", link: "/files/about/Положение о Педсовете, ред. 2.0.pdf" },
+ 
   { name: "Устав Академии от 2018 года", link: "/files/about/ustav_2017.pdf" },
   { name: "Лицензия на осуществление образовательной деятельности", link: "/files/about/litsenz.pdf" },
-  { name: "Выписка из реестра лицензий", link: "/files/about/Выписка из реестра лицензий.pdf" },
+  { name: "Выписка из реестра лицензий", link: "/files/about/Реестровая выписка.pdf" },
   { name: "Выписка из реестра", link: "/files/about/Выписка из реестра заключений РЗН.PDF" },
   { name: "Свидетельство о гос. регистрации", link: "/files/about/svid_2016.pdf" },
   { name: "Санитарно-эпидемиологическое заключение", link: "/files/about/san_epid.png" },
@@ -110,6 +109,8 @@ export const smeta = [
 export const regulations = [
   { name: "Положение об Общем собрании работников ЧОУ ДПО «Академия медицинского образования им. Ф.И. Иноземцева»", link: "/files/about/regulations/polozhenie-o-sobranii.pdf"},
   { name: "Положение о Педагогическом совете", link: "/files/about/regulations/polozhenie-o-pedsovete.pdf" },
+   { name: "Общее собрание (ред. 2.0)", link: "/files/about/Положение об Общем собрании, ред. 2.0..pdf" },
+  { name: "Педагогические советы (ред. 2.0)", link: "/files/about/Положение о Педсовете, ред. 2.0.pdf" },
   { name: "Положение об информационной открытости", link: "/files/about/regulations/polozhenie-inf-otkr.pdf" },
   { name: "Положение по организации и осуществлению образовательной деятельности", link: "/files/about/regulations/polozhenie-obr-deyat.pdf" },
   { name: "Положение об обработке и защите персональных данных", link: "/files/about/regulations/personal-data.pdf" },

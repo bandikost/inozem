@@ -1,10 +1,10 @@
 export type Departaments = {
-    id: number
-    name: string | null
-    slug: string
-    goals: string
-    directions: string
-    scientific: string
-    series: string
-    bases: string
+     id: number;
+  name: string | null;
+  slug: string | null;
+  goals: string | null;
+  directions: string | null;
+  scientific: string | null;
+  series: string | null;
+  bases: string | null;
 }
