@@ -10,6 +10,7 @@ import {
   BookOpen,
   Building2,
 } from "lucide-react"
+import ImageWithSkeleton from "@/components/ui/LazyLoad/ImageWithSkeleton"
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -86,6 +87,8 @@ export default async function Page({ params }: PageProps) {
           </div>
         </header>
 
+   
+
         <div className="grid gap-6 lg:grid-cols-2">
 
           {sections.map((section) => {
@@ -160,6 +163,60 @@ export default async function Page({ params }: PageProps) {
           })}
         </div>
 
+     {departament.teachers && departament.teachers.length > 0 && (
+  <section className="my-12">
+    <div className="mb-6">
+      <h2 className="text-2xl font-bold text-zinc-900 text-center sm:text-left">
+        Преподаватели кафедры
+      </h2>
+
+      <p className="mt-2 text-zinc-500 text-center sm:text-left">
+        Состав преподавателей кафедры
+      </p>
+    </div>
+
+    <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
+      {departament.teachers.map((teacher) => (
+        <article
+          key={teacher.id}
+          className="
+            rounded-3xl
+            border border-zinc-200
+            bg-white
+            p-5
+            shadow-[0_4px_20px_rgba(0,0,0,0.04)]
+            transition
+            hover:-translate-y-0.5
+            hover:shadow-[0_10px_35px_rgba(83,55,133,0.10)]
+          "
+        >
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+             <div className="w-[240px] h-auto shrink-0">
+                <ImageWithSkeleton src={teacher.photo_url} alt={teacher.last_name} wrapperClassName="w-full h-full object-cover" aspect="1/1"/>
+                   
+                  </div>
+                    <div className=" flex flex-col justify-between items-center sm:items-start min-w-0">
+                      <h3 className="text-lg md:text-xl font-medium text-gray-700 leading-snug !font-normal text-center sm:text-left">
+                                          {teacher.last_name} {teacher.name} <br className="hidden sm:visible" />
+                                          {teacher.patronymic}
+                                          </h3>
+                   
+                                          <p className="text-sm text-gray-500 line-clamp-4 !font-normal mt-2">
+                                          {teacher.Teacher_text}
+                                          </p>
+                                          <LoadingLink href={`/employees/${teacher.id}`}
+                                          className="mt-4 inline-flex w-fit items-center gap-2 rounded-lg bg-prpl px-5 py-3 text-sm !text-white transition hover:opacity-90">
+                                          Подробная информация
+                  
+                                          <ChevronRight size={17} />
+                                        </LoadingLink>
+                                      </div> 
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+)}
       </div>
     </section>
   )
