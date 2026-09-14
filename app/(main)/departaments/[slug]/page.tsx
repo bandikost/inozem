@@ -56,7 +56,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <section className="min-h-screen">
-      <div className="container mx-auto px-2 my-27">
+      <div className="container mx-auto px-2 mt-27">
             <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
 
                 <LoadingLink href="/" className="shrink-0 transition hover:text-blue hover:underline">Главная</LoadingLink>
@@ -164,7 +164,7 @@ export default async function Page({ params }: PageProps) {
         </div>
 
      {departament.teachers && departament.teachers.length > 0 && (
-  <section className="my-12">
+  <section className="mt-12">
     <div className="mb-6">
       <h2 className="text-2xl font-bold text-zinc-900 text-center sm:text-left">
         Преподаватели кафедры
@@ -218,6 +218,75 @@ export default async function Page({ params }: PageProps) {
   </section>
 )}
       </div>
+
+     <div className="my-16 overflow-hidden rounded-3xl bg-gradient-to-br from-[#533785] to-[#8D4C98] px-6 py-8 text-white sm:px-10 sm:py-10">
+  <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+    
+    <div className="max-w-xl">
+      <h2 className="text-2xl font-bold sm:text-3xl">
+        Хотите обучаться в Академии?
+      </h2>
+
+      <p className="mt-3 text-sm leading-6 text-white/75 sm:text-base">
+        Подайте заявку на обучение или свяжитесь с нами,
+        если у вас остались вопросы.
+      </p>
+    </div>
+
+    <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
+      <LoadingLink
+        href="/bid"
+        className="
+          inline-flex items-center justify-center
+          rounded-xl
+          bg-white
+          px-6 py-3
+          text-sm font-semibold
+          !text-[#533785]
+          transition
+          hover:bg-zinc-100
+        "
+      >
+        Подать заявку
+      </LoadingLink>
+
+      <LoadingLink
+        href="/question"
+        className="
+          inline-flex items-center justify-center
+          rounded-xl
+          border border-white/30
+          bg-white/10
+          px-6 py-3
+          text-sm font-semibold
+          !text-white
+          backdrop-blur
+          transition
+          hover:bg-white/20
+        "
+      >
+        Задать вопрос
+      </LoadingLink>
+
+      <LoadingLink
+        href="/contacts"
+        className="
+          inline-flex items-center justify-center
+          rounded-xl
+          px-6 py-3
+          text-sm font-semibold
+          !text-white/80
+          transition
+          !bg-white/10
+          hover:!text-white
+        "
+      >
+        Контакты
+      </LoadingLink>
+    </div>
+
+  </div>
+</div>
     </section>
   )
 }
