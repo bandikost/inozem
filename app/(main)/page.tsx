@@ -3,6 +3,7 @@ export const revalidate = 3600
 import Activity from "@/components/MainPage/Activity";
 import Advantages from "@/components/MainPage/Advantages";
 import FirstBlock from "@/components/MainPage/FirstBlock";
+import Mik from "@/components/MainPage/Mik";
 import NotifyPage from "@/components/MainPage/Notify";
 import Programms from "@/components/MainPage/Programms";
 import SecondBlock from "@/components/MainPage/SecondBlock";
@@ -15,6 +16,7 @@ export default function Home() {
       <div className="flex flex-col w-full mt-28 mb-10 items-center justify-center ">
           <FirstBlock />
           <Activity />
+          <Mik />
           <NotifyPage />
          {/* <Programms /> */} 
           <SecondBlock />

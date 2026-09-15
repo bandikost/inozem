@@ -15,6 +15,7 @@ export default async function Activity() {
 
      const activity = await getActivity()
       const now = new Date()
+    
 
     const upcomingActivities = activity
     .filter((act) => {
@@ -26,15 +27,18 @@ export default async function Activity() {
       const dateB = getActivityDate(b)
 
       if (!dateA || !dateB) return 0
+      
 
       return dateA.getTime() - dateB.getTime()
     })
 
+  
 
-    const upcomingYear = upcomingActivities[0]?.year ?? null
 
 
     return (
+       <>
+    {upcomingActivities.length > 0 && 
         <div className="w-full mt-24 px-4">
             <div className="flex flex-col items-start text-left px-2">
                 <h4 className="text-3xl font-bold text-prpl">
@@ -149,6 +153,10 @@ export default async function Activity() {
             />
           </LoadingLink>
         </div>
+           
         </div>
+
+      }
+      </>
     )
 }
