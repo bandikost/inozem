@@ -25,6 +25,16 @@ export default async function Page({ params }: PageProps) {
     notFound()
   }
 
+  const getDescriptionPreview = (html: string | null) => {
+  if (!html) return ""
+
+  return html
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+}
+
   const sections = [
     {
       title: "Цели",
@@ -163,7 +173,7 @@ export default async function Page({ params }: PageProps) {
           })}
         </div>
 
-     {departament.teachers && departament.teachers.length > 0 && (
+   {departament.teachers && departament.teachers.length > 0 && (
   <section className="mt-12">
     <div className="mb-6">
       <h2 className="text-2xl font-bold text-zinc-900 text-center sm:text-left">
@@ -190,27 +200,59 @@ export default async function Page({ params }: PageProps) {
             hover:shadow-[0_10px_35px_rgba(83,55,133,0.10)]
           "
         >
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-             <div className="w-[240px] h-auto shrink-0">
-                <ImageWithSkeleton src={teacher.photo_url} alt={teacher.last_name} wrapperClassName="w-full h-full object-cover" aspect="1/1"/>
-                   
-                  </div>
-                    <div className=" flex flex-col justify-between items-center sm:items-start min-w-0">
-                      <h3 className="text-lg md:text-xl font-medium text-gray-700 leading-snug !font-normal text-center sm:text-left">
-                                          {teacher.last_name} {teacher.name} <br className="hidden sm:visible" />
-                                          {teacher.patronymic}
-                                          </h3>
-                   
-                                          <p className="text-sm text-gray-500 line-clamp-4 !font-normal mt-2">
-                                          {teacher.Teacher_text}
-                                          </p>
-                                          <LoadingLink href={`/employees/${teacher.id}`}
-                                          className="mt-4 inline-flex w-fit items-center gap-2 rounded-lg bg-prpl px-5 py-3 text-sm !text-white transition hover:opacity-90">
-                                          Подробная информация
-                  
-                                          <ChevronRight size={17} />
-                                        </LoadingLink>
-                                      </div> 
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            
+            <div className="h-[240px] w-[240px] shrink-0 overflow-hidden rounded-2xl">
+              <ImageWithSkeleton
+                src={teacher.photo_url || "/images/default-user.jpg"}
+                alt={`${teacher.last_name} ${teacher.name}`}
+                wrapperClassName="h-full w-full object-cover"
+                aspect="1/1"
+              />
+            </div>
+
+            <div className="flex min-w-0 flex-1 flex-col items-center sm:items-start">
+              <h3 className="text-center text-lg font-medium leading-snug text-gray-700 sm:text-left md:text-xl">
+                {teacher.last_name} {teacher.name}
+                <br className="hidden sm:block" />
+                {teacher.patronymic}
+              </h3>
+
+              
+              <div className="mt-2 min-h-[112px] w-full">
+                {teacher.description && (
+                  <p className="line-clamp-4 text-center text-sm font-normal leading-6 text-gray-500 sm:text-left">
+                    {getDescriptionPreview(teacher.description)}
+                  </p>
+                )}
+              </div>
+
+
+              <div className="mt-4 min-h-[46px]">
+                {teacher.description && (
+                  <LoadingLink
+                    href={`/departament_user/${teacher.id}`}
+                    className="
+                      inline-flex
+                      w-fit
+                      items-center
+                      gap-2
+                      rounded-lg
+                      bg-prpl
+                      px-5
+                      py-3
+                      text-sm
+                      !text-white
+                      transition
+                      hover:opacity-90
+                    "
+                  >
+                    Подробная информация
+                    <ChevronRight size={17} />
+                  </LoadingLink>
+                )}
+              </div>
+            </div>
           </div>
         </article>
       ))}

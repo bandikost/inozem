@@ -21,7 +21,6 @@ export async function getDepartaments(): Promise<Departaments[]> {
   return rows;
 }
 
-
 export async function getDepartmentsBySlug(
   slug: string
 ): Promise<Departaments | null> {
@@ -40,11 +39,18 @@ export async function getDepartmentsBySlug(
   }
 
   const [teacherRows] = await db.execute(
-    `SELECT u.id, u.name, u.patronymic, u.last_name, u.photo_url
+    `SELECT
+       du.id,
+       du.name,
+       du.patronymic,
+       du.last_name,
+       du.photo_url,
+       du.description
      FROM departament_squad ds
-     JOIN users u ON u.id = ds.user_id
+     JOIN departament_user du
+       ON du.id = ds.departament_user_id
      WHERE ds.departament_id = ?
-     ORDER BY u.name`,
+     ORDER BY du.last_name, du.name`,
     [department.id]
   )
 
@@ -54,3 +60,23 @@ export async function getDepartmentsBySlug(
   }
 }
 
+
+export async function getTeacherById(
+  id: number
+): Promise<DepartmentTeacher | null> {
+  const [rows] = await db.execute(
+    `SELECT
+       id,
+       name,
+       patronymic,
+       last_name,
+       photo_url,
+       description
+     FROM departament_user
+     WHERE id = ?
+     LIMIT 1`,
+    [id]
+  )
+
+  return (rows as DepartmentTeacher[])[0] ?? null
+}
