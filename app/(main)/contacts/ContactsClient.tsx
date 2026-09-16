@@ -56,9 +56,11 @@ return (
 
             <div className='border border-gray-300 mt-8 rounded shadow-2xl bg-white pb-6 w-full max-w-[500px] mx-auto md:max-w-none md:mx-0'>
                 <div className="px-6 space-y-4 text-default">
-               <h2 className="text-prpl text-2xl py-6">Наши адреса</h2> 
-                <h3 className="text-prpl text-xl mt-4">Симуляционно-тренинговый центр</h3>
-                <p className="text-default text-base pb-6">Санкт-Петербург, Миллионная ул., д. 29</p>
+               <h2 className="text-prpl text-2xl py-6">Наш адрес</h2> 
+                
+                <p className="text-default text-base pb-6">Симуляционно-тренинговый центр Академии: Санкт-Петербург, ул. Миллионная, 29
+        Юридический адрес: пр. Московский, д.22, литер М, пом.Н
+        2009-2026 © Академия медицинского образования им. Ф. И. Иноземцева</p>
                 <iframe className="rounded mt-6" src="https://yandex.ru/map-widget/v1/?um=constructor%3A6257a2039c7175badc4451c50308ebe2a4b551bc12a26400ab4ab43414238c9d&amp;lang=ru_RU" width="100%" height="380" allowFullScreen loading="lazy" ></iframe>
                 </div>
             </div>

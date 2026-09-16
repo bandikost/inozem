@@ -59,8 +59,8 @@ const FooterNav: React.FC<FooterNavProps> = ({ items }) => {
 
       <div className='text-start sm:text-center mt-8 flex items-center justify-center opacity-75 text-sm pb-6'>
             <p className='md:w-full lg:w-2/3 !text-white'>Симуляционно-тренинговый центр Академии: Санкт-Петербург, ул. Миллионная, 29
-                Юридический адрес: пр. Московский, д.22, литер М, пом.Н
-                2009-2026 © Академия медицинского образования им. Ф. И. Иноземцева
+        Юридический адрес: пр. Московский, д.22, литер М, пом.Н
+        2009-2026 © Академия медицинского образования им. Ф. И. Иноземцева
             </p>
            
         </div>
