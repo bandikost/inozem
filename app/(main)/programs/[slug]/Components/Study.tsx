@@ -60,7 +60,7 @@ export default async function Study({ programId }: StudyProps) {
   ].filter((item) => item.content)
 
   return (
-    <main className="min-h-screen bg-[#f7f7f8] pb-20">
+    <main className="min-h-screen  pb-20">
 
 
       <section className="px-3 pt-3 md:px-5 md:pt-5">
@@ -340,6 +340,7 @@ export default async function Study({ programId }: StudyProps) {
                       rounded-2xl
                       border
                       border-zinc-200
+                      shadow
                       bg-white
                       p-6
                       ${isLast ? "sm:col-span-2" : ""}
@@ -423,7 +424,7 @@ export default async function Study({ programId }: StudyProps) {
         )}
 
         {study.teacher && (
-          <section className="mt-12">
+          <section className="mt-12 border border-gray-200 shadow-md px-6 py-8 md:px-10 md:py-10 rounded-3xl">
 
             <div className="mb-6">
 
@@ -521,7 +522,7 @@ export default async function Study({ programId }: StudyProps) {
 
 
         {study.content && (
-          <section className="mt-12 rounded-3xl bg-white px-6 py-8 md:px-10 md:py-10">
+          <section className="mt-12 rounded-3xl border border-gray-200 shadow-md bg-white px-6 py-8 md:px-10 md:py-10">
 
             <div className="mb-8">
 
