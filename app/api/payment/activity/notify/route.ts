@@ -25,7 +25,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // Оплата подтверждена
     if (data.Status === "CONFIRMED") {
 
       await db.query(
@@ -52,7 +51,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // Возврат
     if (data.Status === "REFUNDED") {
 
       await db.query(

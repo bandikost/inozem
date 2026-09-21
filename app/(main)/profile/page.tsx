@@ -5,6 +5,7 @@ import TokenCheck from "@/components/token/token"
 import ProfileClient from "./ProfileClient"
 import { UserRow } from "@/app/interface/user"
 import { getUserTests } from "@/lib/test"
+import { getActivityPayed } from "@/lib/activity"
 
 export const metadata = {
   title: "Личный кабинет | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»",
@@ -35,12 +36,15 @@ export default async function Page() {
     tests = []
   }
 
+  const activitylist = await getActivityPayed(user.id)
+
 
   return (
     <ProfileClient 
       programs={programs}
       user={user}
       tests={tests}
+      activitylist={activitylist}
     />
   )
 }

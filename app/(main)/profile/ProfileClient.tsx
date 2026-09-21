@@ -13,10 +13,11 @@ interface Props {
   programs: ProgramRow[]
   user: UserRow
   tests:any[]
+  activitylist: any[]
 }
 
 
-export default function ProfileClient({programs, user, tests} : Props) {
+export default function ProfileClient({programs, user, tests, activitylist} : Props) {
     const [showAll, setShowAll] = useState(false)
     const [webinars, setWebinars] = useState<any[]>([])
     const [webinarsLoading, setWebinarsLoading] = useState(true)
@@ -198,121 +199,209 @@ export default function ProfileClient({programs, user, tests} : Props) {
     </div>
   </div>
 
+      {activitylist.length > 0 && (
+        <div className="mt-8 rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] overflow-hidden">
+
+          <div className="h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
+
+          <div className="p-6 md:p-8">
+
+            <div className="flex items-start gap-3">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 ring-1 ring-violet-100">
+                <CalendarDays size={22} strokeWidth={1.8} />
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold tracking-tight text-prpl md:text-2xl">
+                  Мои мероприятия
+                </h3>
+
+                <p className="mt-1 text-sm text-slate-500">
+                  Мероприятия, на которые вы записаны
+                </p>
+              </div>
+            </div>
+
+      <div className="mt-6 space-y-4">
+
+        {activitylist.map((activity) => (
+          <div
+            key={activity.activity_id}
+            className="
+              group
+              rounded-2xl
+              border border-slate-200
+              bg-white
+              p-5
+              transition-all
+              duration-200
+              hover:-translate-y-0.5
+              hover:border-violet-300
+              hover:shadow-md
+            "
+          >
+
+            <div className="flex flex-col gap-5">
+              <div>
+                <p className="text-lg font-semibold leading-snug text-slate-900 transition-colors group-hover:text-violet-700 md:text-xl">
+                  {activity.name}
+                </p>
+              </div>
+         
+              <LoadingLink
+                href={`/activity/${activity.slug}`}
+                className="
+                  flex
+                  w-full
+                  items-center
+                  justify-between
+                  rounded-xl
+                  bg-slate-50
+                  px-4
+                  py-3
+                  text-sm
+                  font-medium
+                  text-slate-600
+                  transition
+                  hover:bg-violet-50
+                  hover:text-violet-700
+                "
+              >
+                <span>Подробнее о мероприятии</span>
+
+                <ChevronRight
+                  size={20}
+                  strokeWidth={1.8}
+                />
+              </LoadingLink>
+
+            </div>
+
+          </div>
+        ))}
+
+      </div>
+
+    </div>
+  </div>
+      )}
+  
+
 
       <div className="mt-8 rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] overflow-hidden">
 
-  <div className="h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
+      <div className="h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
 
-  <div className="p-6 md:p-8">
+      <div className="p-6 md:p-8">
 
-    <div>
-      <h3 className="text-xl font-semibold tracking-tight text-prpl md:text-2xl">
-        Ближайшие вебинары
-      </h3>
+        <div>
+          <h3 className="text-xl font-semibold tracking-tight text-prpl md:text-2xl">
+            Ближайшие вебинары
+          </h3>
 
-      <p className="mt-1 text-sm text-slate-500">
-         В вебинарную комнату могут попасть только пользователи, оплатившие доступ к программе.
-      </p>
+          <p className="mt-1 text-sm text-slate-500">
+            В вебинарную комнату могут попасть только пользователи, оплатившие доступ к программе.
+          </p>
+        </div>
+
+        {webinarsLoading ? (
+          <div className="mt-6 space-y-3">
+            <div className="h-20 animate-pulse rounded-2xl bg-slate-100" />
+            <div className="h-20 animate-pulse rounded-2xl bg-slate-100" />
+            <div className="h-20 animate-pulse rounded-2xl bg-slate-100" />
+          </div>
+        ) : webinars.length === 0 ? (
+          <div className="mt-6 rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-6 text-center">
+            <p className="text-slate-500">
+              Ближайших вебинаров нет
+            </p>
+          </div>
+        ) : (
+          <div className="mt-6 space-y-4">
+
+            {webinars.map((webinar) => {
+              const date = new Date(
+                webinar.date.replace(" ", "T")
+              )
+
+              return (
+                <a key={webinar.id} href={webinar.landing} target="_blank" rel="noopener noreferrer"
+                  className="group
+                    block
+                    rounded-2xl
+                    border border-slate-200
+                    bg-white
+                    p-5
+                    transition
+                    duration-200
+                    hover:-translate-y-0.5
+                    hover:border-violet-300
+                    hover:shadow-md
+                  ">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+
+                    <div className="min-w-0">
+
+                      <p className="text-lg font-semibold text-slate-900 transition-colors group-hover:text-violet-700">
+                        {webinar.name}
+                      </p>
+
+                      <p className="mt-2 flex items-center gap-2 text-sm text-slate-500">
+                        <CalendarDays
+                          className="h-4 w-4 shrink-0"
+                          strokeWidth={1.6}
+                        />
+
+                        {date.toLocaleDateString("ru-RU", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                        })}
+
+                        {date.getTime() <= Date.now() ? (
+                          <>
+                            <span className="flex items-center gap-1.5 text-green-500">
+                              <span className="relative flex h-2 w-2">
+                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                              </span>
+
+                              в сети
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            {" в "}
+                            {date.toLocaleTimeString("ru-RU", {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            })}
+                          </>
+                        )}
+                      </p>
+
+                    </div>
+
+                    <div className="flex w-full items-center justify-between sm:w-auto">
+      <span className="text-sm font-medium text-slate-500 transition-colors group-hover:text-violet-600 sm:hidden">
+        Перейти
+      </span>
+
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-400 transition-colors group-hover:bg-violet-50 group-hover:text-violet-600">
+        <ChevronRight size={22} strokeWidth={1.8} />
+      </div>
     </div>
 
-    {webinarsLoading ? (
-      <div className="mt-6 space-y-3">
-        <div className="h-20 animate-pulse rounded-2xl bg-slate-100" />
-        <div className="h-20 animate-pulse rounded-2xl bg-slate-100" />
-        <div className="h-20 animate-pulse rounded-2xl bg-slate-100" />
-      </div>
-    ) : webinars.length === 0 ? (
-      <div className="mt-6 rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-6 text-center">
-        <p className="text-slate-500">
-          Ближайших вебинаров нет
-        </p>
-      </div>
-    ) : (
-      <div className="mt-6 space-y-4">
+                  </div>
+                </a>
+              )
+            })}
 
-        {webinars.map((webinar) => {
-          const date = new Date(
-            webinar.date.replace(" ", "T")
-          )
-
-          return (
-            <a key={webinar.id} href={webinar.landing} target="_blank" rel="noopener noreferrer"
-              className="group
-                block
-                rounded-2xl
-                border border-slate-200
-                bg-white
-                p-5
-                transition
-                duration-200
-                hover:-translate-y-0.5
-                hover:border-violet-300
-                hover:shadow-md
-              ">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-
-                <div className="min-w-0">
-
-                  <p className="text-lg font-semibold text-slate-900 transition-colors group-hover:text-violet-700">
-                    {webinar.name}
-                  </p>
-
-                  <p className="mt-2 flex items-center gap-2 text-sm text-slate-500">
-                    <CalendarDays
-                      className="h-4 w-4 shrink-0"
-                      strokeWidth={1.6}
-                    />
-
-                    {date.toLocaleDateString("ru-RU", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                    })}
-
-                    {date.getTime() <= Date.now() ? (
-                      <>
-                        <span className="flex items-center gap-1.5 text-green-500">
-                          <span className="relative flex h-2 w-2">
-                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                            <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
-                          </span>
-
-                          в сети
-                        </span>
-                      </>
-                    ) : (
-                      <>
-                        {" в "}
-                        {date.toLocaleTimeString("ru-RU", {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </>
-                    )}
-                  </p>
-
-                </div>
-
-                <div className="flex w-full items-center justify-between sm:w-auto">
-  <span className="text-sm font-medium text-slate-500 transition-colors group-hover:text-violet-600 sm:hidden">
-    Перейти
-  </span>
-
-  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-400 transition-colors group-hover:bg-violet-50 group-hover:text-violet-600">
-    <ChevronRight size={22} strokeWidth={1.8} />
-  </div>
-</div>
-
-              </div>
-            </a>
-          )
-        })}
+          </div>
+        )}
 
       </div>
-    )}
-
-  </div>
-</div>
+    </div>
 
       
       {tests.length > 0 &&  (

@@ -70,6 +70,37 @@ export async function getActivityById(id: string) {
   return (rows as any[])[0] ?? null
 }
 
+export async function getActivityPayed(id: number) { 
+  const [rows] = await db.execute(`SELECT
+    uap.user_id,
+    uap.activity_id,
+    a.name,
+    a.slug,
+    a.price,
+    a.title,
+    a.description,
+    a.teacher,
+    a.purpose,
+    a.conditions,
+    a.audience,
+    a.dates,
+    a.year,
+    a.paylink,
+    a.teacher_img,
+    a.title_bg,
+    a.content,
+    a.attendance_control,
+    a.location,
+    a.planned_results
+FROM user_activity_payment uap
+JOIN activity a
+    ON uap.activity_id = a.id
+WHERE uap.user_id = ?`, [id] 
+
+  ) 
+  return (rows as any[]) ?? null
+}
+
 export async function getActivityUsers() { 
   const [rows] = await db.execute(`SELECT * FROM activity_users`) 
   return rows as any[]
