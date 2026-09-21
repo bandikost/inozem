@@ -14,8 +14,10 @@ import {
   ArrowRight,
   CreditCard,
   FileText,
+  BadgeRussianRuble,
 } from "lucide-react"
 import parseDateActivitySlug from "@/lib/dates/filterDateSlug"
+import PayButtonActivity from "@/components/ui/Buttons/PayButtonActivity"
 
 interface PageProps {
   params: { slug: string }
@@ -73,6 +75,11 @@ export default async function Page({ params }: PageProps) {
     {
       title: "Планируемые результаты",
       content: activity.planned_results,
+      icon: GraduationCap,
+    },
+    {
+      title: "Планируемые результаты",
+      content: activity.content,
       icon: GraduationCap,
     },
   ].filter((block) => block.content)
@@ -631,6 +638,7 @@ export default async function Page({ params }: PageProps) {
                       Мероприятие уже завершено
                     </div>
                   ) : (
+                    <>
                     <LoadingLink
                       href={`/activity-form?title=${encodeURIComponent(activity.name)}`}
                       className="
@@ -657,6 +665,12 @@ export default async function Page({ params }: PageProps) {
 
                       Подать заявку
                     </LoadingLink>
+                      {activity.price > 0 && (
+
+                      <PayButtonActivity activityId={activity.id} />
+                    
+                  )}
+                  </>
                   )}
 
                 </div>
