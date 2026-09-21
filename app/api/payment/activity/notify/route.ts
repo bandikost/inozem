@@ -9,9 +9,29 @@ export async function POST(req: Request) {
 
     const [rows]: any = await db.query(
       `
-      SELECT *
-      FROM payments
-      WHERE order_id = ?
+      SELECT
+        p.user_id,
+        p.activity_id,
+
+        a.name AS activity_name,
+
+        u.name,
+        u.last_name,
+        u.patronymic,
+        u.email,
+        u.phone,
+        u.city,
+        u.education_level
+
+      FROM payments p
+
+      JOIN users u
+        ON p.user_id = u.id
+
+      JOIN activity a
+        ON p.activity_id = a.id
+
+      WHERE p.order_id = ?
       `,
       [data.OrderId]
     );
@@ -27,6 +47,7 @@ export async function POST(req: Request) {
 
     if (data.Status === "CONFIRMED") {
 
+      // Добавляем пользователя в мероприятие
       await db.query(
         `
         INSERT INTO user_activity_payment (
@@ -41,6 +62,34 @@ export async function POST(req: Request) {
         ]
       );
 
+      // Добавляем регистрационные данные участника
+      await db.query(
+        `
+        INSERT INTO activity_users (
+          activity_name,
+          name,
+          last_name,
+          patronymic,
+          email,
+          phone,
+          city,
+          education_level
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        `,
+        [
+          payment.activity_name,
+          payment.name,
+          payment.last_name,
+          payment.patronymic,
+          payment.email,
+          payment.phone,
+          payment.city,
+          payment.education_level,
+        ]
+      );
+
+      // Обновляем статус платежа
       await db.query(
         `
         UPDATE payments
