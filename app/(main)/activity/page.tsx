@@ -22,18 +22,21 @@ export default async function Page() {
   const now = new Date()
 
   const upcomingActivities = activity
-    .filter((act) => {
-      const date = getActivityDate(act)
-      return date ? date >= now : false
-    })
-    .sort((a, b) => {
-      const dateA = getActivityDate(a)
-      const dateB = getActivityDate(b)
+  .filter((act) => {
+    const date = getActivityDate(act)
 
-      if (!dateA || !dateB) return 0
+    if (!date || date < now) return false
 
-      return dateA.getTime() - dateB.getTime()
-    })
+    return !!act.description?.trim()
+  })
+  .sort((a, b) => {
+    const dateA = getActivityDate(a)
+    const dateB = getActivityDate(b)
+
+    if (!dateA || !dateB) return 0
+
+    return dateA.getTime() - dateB.getTime()
+  })
 
   const pastActivities = activity
     .filter((act) => {
@@ -51,6 +54,23 @@ export default async function Page() {
 
   const upcomingYear = upcomingActivities[0]?.year ?? null
   const pastYear = pastActivities[0]?.year ?? null
+  
+  const activitiesWithoutDescription = activity
+  .filter((act) => {
+    const date = getActivityDate(act)
+
+    if (!date || date < now) return false
+
+    return !act.description?.trim()
+  })
+  .sort((a, b) => {
+    const dateA = getActivityDate(a)
+    const dateB = getActivityDate(b)
+
+    if (!dateA || !dateB) return 0
+
+    return dateA.getTime() - dateB.getTime()
+  })
 
   return (
     
@@ -170,6 +190,56 @@ export default async function Page() {
           </div>
         </>
       )}
+
+      {activitiesWithoutDescription.length > 0 && (
+  <div className="my-14">
+    <div className="mb-6 flex items-center gap-4">
+      <div className="h-12 w-2 rounded-full bg-zinc-300" />
+
+      <div>
+        <h2 className="text-3xl font-semibold text-zinc-900">
+          Данные уточняются
+        </h2>
+
+        <p className="mt-1 text-zinc-500">
+          Подробная информация по следующим мероприятиям пока уточняется
+        </p>
+      </div>
+    </div>
+
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      {activitiesWithoutDescription.map((act) => (
+        <div
+          key={act.id}
+          className="
+            rounded-2xl
+            border
+            border-zinc-200
+            bg-zinc-50
+            px-6
+            py-5
+          "
+        >
+          <div className="flex items-center gap-3">
+            <span className="text-lg">
+              📅
+            </span>
+
+            <div className="min-w-0">
+              <p className="font-medium text-zinc-800">
+                {act.name}
+              </p>
+
+              <p className="mt-1 text-sm text-zinc-400">
+                Информация уточняется
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
 
       {pastActivities.length > 0 && (
         <>

@@ -1,6 +1,8 @@
 "use client";
 
 import { useToast } from "@/components/ui/Toast/ToastProvider";
+import { ALL_SPECIALTIES, SECONDARY_SPECIALTIES } from "@/data/specialties";
+import { SPECIALTIES } from "@/lib/accred/specialization";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -111,12 +113,15 @@ export default function AddProgramForm() {
               </Field>
 
               <Field label="Направление / специализация">
-                <input
-                  value={specialization}
-                  onChange={(e) => setSpecialization(e.target.value)}
-                  placeholder="Анестезиология и реаниматология"
-                  className="input-main"
-                />
+                
+                <select value={specialization} onChange={(e) => (e.target.value)} className="input-main">
+                              <option value=""> Выберите специализацию </option>
+                              {ALL_SPECIALTIES.map((item) => (
+                                <option key={item} value={item}>
+                                  {item}
+                                </option>
+                              ))}
+                            </select>
               </Field>
 
             </div>
