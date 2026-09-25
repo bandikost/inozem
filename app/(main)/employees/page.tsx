@@ -29,11 +29,11 @@ return (
             <ChevronRight size={14} className="shrink-0" />
       
         <span className="min-w-0 flex-1 truncate text-zinc-800 opacity-70">
-          Руководство
+          Структура академии
         </span>
       
       </nav>
-    <h2 className="text-prpl text-center">Руководство ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h2>
+    <h2 className="text-prpl text-center">Структура ЧОУ ДПО «Академия медицинского образования им.Ф.И.Иноземцева»</h2>
 
     <div className="grid gap-6 grid-cols-1 md:grid-cols-2 mt-8">
   {filtredEmployeer
@@ -71,7 +71,7 @@ return (
                         {teacher.specialization}
                         </p>
 
-                        <p className="!text-sm text-gray-500 line-clamp-4 !font-normal mt-2 whitespace-pre-wrap leading-4">
+                        <p className="!text-sm text-gray-500 !font-normal mt-2 whitespace-pre-wrap leading-4">
                         {teacher.Teacher_text}
                         </p>
                     </div> 

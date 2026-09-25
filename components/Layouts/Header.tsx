@@ -11,7 +11,7 @@ const Header = () => {
       links: [
       //  { label: "Блог", href: "/blog", ariaLabel: "Наш Блог" },
         { label: "Сведения об образовательной организации", href: "/about", ariaLabel: "Сведения об образовательной организации" },
-        { label: "Руководство", href: "/employees", ariaLabel: "Руководство" },
+        { label: "Структура академии", href: "/employees", ariaLabel: "Структура академии" },
         { label: "Кафедры", href: "/departaments", ariaLabel: "Кафедры" },
         
         

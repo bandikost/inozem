@@ -7,17 +7,17 @@ const Footer = () => {
       links: [
         { label: "Сведения об образовательной организаци", href: "/about" },
         { label: "Кафедры", href: "/departaments" },
-        { label: "Сотрудники", href: "/employees" },
+        { label: "Структура академии", href: "/employees" },
         { label: "Блог", href: "/blog" },
         { label: "Отзывы", href: "/feedbacks" },
       ]
     },
     {
-      label: "Обучение",
+      label: "Образование",
       links: [
         { label: "Мероприятия", href: "/activity" },
         { label: "Симуляционный центр", href: "/simcenter" },
-        { label: "Обучение", href: "/programs" },
+        { label: "Образование", href: "/programs" },
         { label: "Подать заявку на обучение", href: "/bid" },
       ]
     },
