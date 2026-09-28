@@ -1,8 +1,7 @@
 "use client";
 
 import { useToast } from "@/components/ui/Toast/ToastProvider";
-import { ALL_SPECIALTIES, SECONDARY_SPECIALTIES } from "@/data/specialties";
-import { SPECIALTIES } from "@/lib/accred/specialization";
+import { ALL_SPECIALTIES } from "@/data/specialties";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 

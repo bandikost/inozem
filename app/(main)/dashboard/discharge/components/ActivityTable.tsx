@@ -1,7 +1,13 @@
 import { getActivityUsers } from "@/lib/activity";
+import ActivityExport from "./ActivityExport";
 
 export default async function ActivityUsersTable() {
-  const users = await getActivityUsers();
+    const users = await getActivityUsers()
+
+    const activities = [...new Set(users.map(u => u.activity_name))]
+
+    console.log(activities)
+
 
   return (
     <div className="w-full">
@@ -16,6 +22,7 @@ export default async function ActivityUsersTable() {
         </p>
       </div>
 
+    <ActivityExport activities={activities} />
 
       <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
 
@@ -25,10 +32,6 @@ export default async function ActivityUsersTable() {
 
             <thead className="bg-gray-50">
               <tr className="text-sm text-gray-500">
-
-                <th className="px-6 py-4">
-                  ID
-                </th>
 
                 <th className="px-6 py-4">
                   Мероприятие
@@ -47,10 +50,6 @@ export default async function ActivityUsersTable() {
                 </th>
 
                 <th className="px-6 py-4">
-                  Образование
-                </th>
-
-                <th className="px-6 py-4">
                   Дата заявки
                 </th>
 
@@ -62,16 +61,7 @@ export default async function ActivityUsersTable() {
 
               {users.map((user) => (
 
-                <tr
-                  key={user.id}
-                  className="hover:bg-gray-50 transition"
-                >
-
-                  <td className="px-6 py-4 text-sm text-gray-500">
-                    #{user.id}
-                  </td>
-
-
+                <tr key={user.id} className="hover:bg-gray-50 transition">
                   <td className="px-6 py-4">
 
                     <span className="inline-flex px-3 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
@@ -79,7 +69,6 @@ export default async function ActivityUsersTable() {
                     </span>
 
                   </td>
-
 
                   <td className="px-6 py-4">
 
@@ -110,12 +99,6 @@ export default async function ActivityUsersTable() {
                   <td className="px-6 py-4 text-sm text-gray-700">
                     {user.city || "—"}
                   </td>
-
-
-                  <td className="px-6 py-4 text-sm text-gray-700">
-                    {user.education_level}
-                  </td>
-
 
                   <td className="px-6 py-4 text-sm text-gray-700">
                     {new Date(user.created_at).toLocaleDateString("ru-RU")}

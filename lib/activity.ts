@@ -102,7 +102,7 @@ WHERE uap.user_id = ?`, [id]
 }
 
 export async function getActivityUsers() { 
-  const [rows] = await db.execute(`SELECT * FROM activity_users`) 
+  const [rows] = await db.execute(`SELECT * FROM activity_users ORDER BY created_at DESC LIMIT 10000`) 
   return rows as any[]
 }
 

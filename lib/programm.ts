@@ -36,15 +36,8 @@ export async function getPrograms(): Promise<ProgramRow[]> {
   await cleanOldDates()
 
   const [rows] = await db.query<ProgramRow[]>(
-    `SELECT id, name, slug, time, time_secondary, dates, education, suptitle,
-            specialization, isFavorite, bannerName, description, price, category, created_at
+    `SELECT id, name, slug, time, time_secondary, dates, education, suptitle, specialization, isFavorite, bannerName, description, price, category, created_at
      FROM programms`
-  )
-
-  console.log("PROGRAMS COUNT:", rows.length)
-  console.log(
-    "PROGRAMS:",
-    rows.map(p => `${p.id} | ${p.slug}`)
   )
 
   return rows
