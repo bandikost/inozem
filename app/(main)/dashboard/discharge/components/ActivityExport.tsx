@@ -26,7 +26,17 @@ export default function ActivityExport({
         return
     } 
     const users = await response.json()
-    const excelData = users.map((user: any) => ({ Мероприятие: user.activity_name, Фамилия: user.last_name, Имя: user.name, Отчество: user.patronymic, Email: user.email, Телефон: user.phone, Город: user.city, "Дата заявки": new Date(user.created_at).toLocaleDateString("ru-RU"), }))
+
+    const excelData = users.map((user: any) => ({ 
+        Мероприятие: user.activity_name,
+        Фамилия: user.last_name, 
+        Имя: user.name, 
+        Отчество: user.patronymic,
+        Email: user.email, 
+        Телефон: user.phone, 
+        Город: user.city, "Дата заявки": new Date(user.created_at).toLocaleDateString("ru-RU"), 
+    }))
+    
     const worksheet = XLSX.utils.json_to_sheet(excelData)
     const workbook = XLSX.utils.book_new()
     XLSX.utils.book_append_sheet( workbook, worksheet, "Заявки" )
