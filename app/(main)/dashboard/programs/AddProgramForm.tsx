@@ -114,14 +114,17 @@ export default function AddProgramForm() {
 
               <Field label="Направление / специализация">
                 
-                <select value={specialization} onChange={(e) => (e.target.value)} className="input-main">
-                              <option value=""> Выберите специализацию </option>
-                              {ALL_SPECIALTIES.map((item) => (
-                                <option key={item} value={item}>
-                                  {item}
-                                </option>
-                              ))}
-                            </select>
+                <select value={specialization}
+                onChange={(e) => setSpecialization(e.target.value)}
+                className="input-main">
+                <option value="">Выберите специализацию</option>
+
+                {ALL_SPECIALTIES.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
               </Field>
 
             </div>
