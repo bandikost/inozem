@@ -33,7 +33,7 @@ export default async function Page() {
                 </p>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
-                <Link href="/dashboard/accred/schedule" className="group text-xl !font-normal bg-white rounded-2xl border border-gray-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1">
+             {/*  <Link href="/dashboard/accred/schedule" className="group text-xl !font-normal bg-white rounded-2xl border border-gray-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1">
                     <div className="text-4xl mb-4">📅</div>
 
                     <h2 className="text-2xl font-semibold text-prpl">
@@ -44,7 +44,7 @@ export default async function Page() {
                         Расписание экзаменов.
                     </p>
                 </Link>
-
+ */} 
 
                 <Link href="/dashboard/accred/result" className="group text-xl !font-normal bg-white rounded-2xl border border-gray-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1">
                     <div className="text-4xl mb-4">📄</div>

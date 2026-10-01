@@ -3,6 +3,8 @@ import LoadingLink from "@/components/Load/LoadingLink"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import jwt from "jsonwebtoken"
+import AdminActivityTracker from "../components/AdminActivityTracker"
+import AdminActivityStats from "../components/AdminActivityStats"
 
 export const metadata = {
   title:
@@ -35,7 +37,9 @@ export default async function ManagerPage() {
 
   return (
      <section className="max-w-6xl mx-auto px-2 mt-30 mb-10">
+      <AdminActivityTracker />
   <div className="text-center mb-12">
+  
     <h1 className="text-5xl font-bold text-prpl">
       Панель администратора
     </h1>
@@ -61,6 +65,8 @@ export default async function ManagerPage() {
         Выдача доступа и управление личными кабинетами.
       </p>
     </LoadingLink>
+
+     <AdminActivityStats />
 
     <LoadingLink
       href="/dashboard/accred"
@@ -154,7 +160,10 @@ export default async function ManagerPage() {
         Создание уведомления на главной странице
       </p>
     </LoadingLink>
+
+    
   </div>
+   
 </section>
   )
 }
