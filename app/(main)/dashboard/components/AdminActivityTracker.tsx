@@ -8,7 +8,7 @@ export default function AdminActivityTracker() {
       await fetch("/api/admin/activity", {
         method: "POST",
       })
-    }, 30_000)
+    }, 10_000)
 
     return () => clearTimeout(timer)
   }, [])
