@@ -28,7 +28,7 @@ useEffect(() => {
             .filter((webinar: any) =>
                 programs.some((program: any) => {
                     const webinarName = webinar.name?.trim().toLowerCase()
-                    const programSpec = program.specializtion?.trim().toLowerCase()
+                    const programSpec = program.specialization?.trim().toLowerCase()
 
                     return (
                         webinarName &&
