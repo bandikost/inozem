@@ -4,7 +4,7 @@ import { UserRow } from "@/app/interface/user"
 import LoadingLink from "@/components/Load/LoadingLink"
 import LogoutButton from "@/components/ui/Buttons/LogoutButton"
 import { ProgramRow } from "@/lib/programm"
-import { CalendarDays, ChevronRight, CircleSmall, CircleUserRound, GraduationCap, Handshake, Heart, LogOutIcon, Pencil, Star } from "lucide-react"
+import { Archive, CalendarDays, ChevronRight, CircleSmall, CircleUserRound, GraduationCap, Handshake, Heart, LogOutIcon, Pencil, Star } from "lucide-react"
 import { useState, useEffect } from "react"
 import { KeyRound } from "lucide-react"
 import { getHourWord } from "@/components/ui/GetHourWord"
@@ -396,6 +396,64 @@ export default function ProfileClient({programs, user, tests, activitylist} : Pr
                 </a>
               )
             })}
+
+            <LoadingLink
+  href="/archive"
+  className="
+    group mt-2 flex items-center justify-between
+    rounded-2xl
+    border border-violet-100
+    bg-violet-50/50
+    px-5 py-4
+    transition-all duration-200
+    hover:border-violet-200
+    hover:bg-violet-50
+    hover:shadow-sm
+  "
+>
+  <div className="flex items-center gap-3">
+    <div
+      className="
+        flex h-10 w-10 shrink-0 items-center justify-center
+        rounded-xl
+        bg-white
+        text-violet-600
+        shadow-sm
+        ring-1 ring-violet-100
+        transition-transform duration-200
+        group-hover:scale-105
+      "
+    >
+      <Archive size={19} strokeWidth={1.8} />
+    </div>
+
+    <div>
+      <p className="font-medium text-slate-800 transition-colors group-hover:text-violet-700">
+        Архив записей
+      </p>
+
+      <p className="mt-0.5 text-sm text-slate-500">
+        Все доступные записи вебинаров
+      </p>
+    </div>
+  </div>
+
+  <div
+    className="
+      flex h-9 w-9 shrink-0 items-center justify-center
+      rounded-full
+      bg-white
+      text-slate-400
+      shadow-sm
+      ring-1 ring-slate-100
+      transition-all duration-200
+      group-hover:translate-x-0.5
+      group-hover:text-violet-600
+    "
+  >
+    <ChevronRight size={19} strokeWidth={1.8} />
+  </div>
+</LoadingLink>
 
           </div>
         )}

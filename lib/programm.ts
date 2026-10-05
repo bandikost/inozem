@@ -309,6 +309,7 @@ export async function getIndividProgram(userId: number): Promise<ProgramRow[]> {
        p.price,
        p.time,
        p.slug,
+       p.specialization,
        up.created_at
      FROM user_programs up
      JOIN programms p ON p.id = up.programm_id

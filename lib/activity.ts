@@ -70,34 +70,70 @@ export async function getActivityById(id: string) {
   return (rows as any[])[0] ?? null
 }
 
-export async function getActivityPayed(id: number) { 
-  const [rows] = await db.execute(`SELECT
-    uap.user_id,
-    uap.activity_id,
-    a.name,
-    a.slug,
-    a.price,
-    a.title,
-    a.description,
-    a.teacher,
-    a.purpose,
-    a.conditions,
-    a.audience,
-    a.dates,
-    a.year,
-    a.paylink,
-    a.teacher_img,
-    a.title_bg,
-    a.content,
-    a.attendance_control,
-    a.location,
-    a.planned_results
-FROM user_activity_payment uap
-JOIN activity a
-    ON uap.activity_id = a.id
-WHERE uap.user_id = ?`, [id] 
+export async function getActivityPayed(id: number) {
+  const [rows] = await db.execute(
+    `SELECT
+      uap.user_id,
+      uap.activity_id,
+      a.name,
+      a.slug,
+      a.price,
+      a.title,
+      a.description,
+      a.teacher,
+      a.purpose,
+      a.conditions,
+      a.audience,
+      a.dates,
+      a.year,
+      a.paylink,
+      a.teacher_img,
+      a.title_bg,
+      a.content,
+      a.attendance_control,
+      a.location,
+      a.planned_results
+    FROM user_activity_payment uap
+    JOIN activity a
+      ON uap.activity_id = a.id
+    WHERE uap.user_id = ?
+      AND STR_TO_DATE(
+        CONCAT(
+          a.year,
+          '-',
+          CASE
+            WHEN a.dates LIKE '%января%' THEN '01'
+            WHEN a.dates LIKE '%февраля%' THEN '02'
+            WHEN a.dates LIKE '%марта%' THEN '03'
+            WHEN a.dates LIKE '%апреля%' THEN '04'
+            WHEN a.dates LIKE '%мая%' THEN '05'
+            WHEN a.dates LIKE '%июня%' THEN '06'
+            WHEN a.dates LIKE '%июля%' THEN '07'
+            WHEN a.dates LIKE '%августа%' THEN '08'
+            WHEN a.dates LIKE '%сентября%' THEN '09'
+            WHEN a.dates LIKE '%октября%' THEN '10'
+            WHEN a.dates LIKE '%ноября%' THEN '11'
+            WHEN a.dates LIKE '%декабря%' THEN '12'
+          END,
+          '-',
+          CASE
+            WHEN a.dates LIKE '% - %' THEN
+              TRIM(
+                SUBSTRING_INDEX(
+                  SUBSTRING_INDEX(a.dates, ' ', 3),
+                  ' ',
+                  -1
+                )
+              )
+            ELSE
+              TRIM(SUBSTRING_INDEX(a.dates, ' ', 1))
+          END
+        ),
+        '%Y-%m-%d'
+      ) >= CURDATE()`,
+    [id]
+  )
 
-  ) 
   return (rows as any[]) ?? null
 }
 
