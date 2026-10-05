@@ -73,7 +73,7 @@ export default function LoginForm() {
         </h1>
 
         <p className="mt-3 text-sm md:text-base leading-6 text-zinc-500">
-          Войдите в личный кабинет Академии медицинского образования
+          Войдите в личный кабинет Академии им. Ф.И.Иноземцева
         </p>
 
       </div>
