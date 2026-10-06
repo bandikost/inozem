@@ -3,7 +3,6 @@ import crypto from "crypto";
 import { getProgramById } from "@/lib/programm";
 import { db } from "@/lib/db";
 
-
 function makeToken(data: Record<string, any>, password: string) {
   const tokenData: Record<string, any> = {
     ...data,
@@ -11,6 +10,15 @@ function makeToken(data: Record<string, any>, password: string) {
   };
 
   const token = Object.keys(tokenData)
+    .filter((key) => {
+      const value = tokenData[key];
+
+      return (
+        value !== undefined &&
+        value !== null &&
+        typeof value !== "object"
+      );
+    })
     .sort()
     .map((key) => String(tokenData[key]))
     .join("");
@@ -23,127 +31,136 @@ function makeToken(data: Record<string, any>, password: string) {
 
 export async function POST(request: Request) {
   try {
-  const { programId, userId } = await request.json();
+    const { programId, userId } = await request.json();
 
-  const program = await getProgramById(programId);
+    const program = await getProgramById(programId);
 
-  if (!program) {
+    if (!program) {
+      return NextResponse.json(
+        { error: "Программа не найдена" },
+        { status: 404 }
+      );
+    }
+
+    const orderId = crypto.randomUUID();
+
+    await db.query(
+      `
+      INSERT INTO payments (
+        user_id,
+        program_id,
+        order_id,
+        amount,
+        status
+      )
+      VALUES (?, ?, ?, ?, 'NEW')
+      `,
+      [
+        userId,
+        programId,
+        orderId,
+        Number(program.price),
+      ]
+    );
+
+    const amount = Number(program.price) * 100;
+
+    const body = {
+      TerminalKey: process.env.TINKOFF_TERMINAL_KEY!,
+      Amount: amount,
+      OrderId: orderId,
+      Description: program.name,
+
+      SuccessURL: `https://xn--e1adcscg.xn--p1ai/payment/success?order=${orderId}`,
+      NotificationURL:
+        "https://xn--e1adcscg.xn--p1ai/api/payment/notify",
+
+      Receipt: {
+        Email: "ТУТ_ДОЛЖЕН_БЫТЬ_EMAIL",
+        Taxation: "usn_income",
+        Items: [
+          {
+            Name: program.name,
+            Price: amount,
+            Quantity: 1,
+            Amount: amount,
+            Tax: "none",
+          },
+        ],
+      },
+    };
+
+    const token = makeToken(
+      body,
+      process.env.TINKOFF_TERMINAL_PASSWORD!
+    );
+
+    console.log("TOKEN DATA:", {
+      TerminalKey: body.TerminalKey,
+      Amount: body.Amount,
+      OrderId: body.OrderId,
+      Description: body.Description,
+      Password: "***",
+    });
+
+    const res = await fetch(
+      "https://securepay.tinkoff.ru/v2/Init",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...body,
+          Token: token,
+        }),
+      }
+    );
+
+    const tinkoffResponse = await res.json();
+
+    console.log("TINKOFF:", tinkoffResponse);
+
+    if (tinkoffResponse.Success && tinkoffResponse.PaymentId) {
+      await db.query(
+        `
+        UPDATE payments
+        SET payment_id = ?
+        WHERE order_id = ?
+        `,
+        [
+          tinkoffResponse.PaymentId,
+          orderId,
+        ]
+      );
+    }
+
+    return NextResponse.json(tinkoffResponse);
+
+  } catch (error) {
+    console.error("PAYMENT ERROR:", error);
+
+    if (error instanceof Error) {
+      console.error("MESSAGE:", error.message);
+      console.error("CAUSE:", error.cause);
+      console.error("STACK:", error.stack);
+    }
+
     return NextResponse.json(
-      { error: "Программа не найдена" },
-      { status: 404 }
+      {
+        error: "Payment init failed",
+        details:
+          error instanceof Error
+            ? error.message
+            : String(error),
+        cause:
+          error instanceof Error
+            ? String(error.cause)
+            : null,
+      },
+      {
+        status: 500,
+      }
     );
   }
-
-  const orderId = crypto.randomUUID()
-
-  await db.query(
-  `
-  INSERT INTO payments (
-    user_id,
-    program_id,
-    order_id,
-    amount,
-    status
-  )
-  VALUES (?, ?, ?, ?, 'NEW')
-  `,
-  [
-    userId,
-    programId,
-    orderId,
-    Number(program.price)
-  ]
-)
-
-  const amount = Number(program.price) * 100;
-
-const body = {
-  TerminalKey: process.env.TINKOFF_TERMINAL_KEY!,
-  Amount: amount,
-  OrderId: orderId,
-  Description: program.name,
-
-  SuccessURL: `https://xn--e1adcscg.xn--p1ai/payment/success?order=${orderId}`,
-  NotificationURL: "https://xn--e1adcscg.xn--p1ai/api/payment/notify",
-
-  Receipt: {
-    Email: undefined,
-    Taxation: "usn_income",
-    Items: [
-      {
-        Name: program.name,
-        Price: amount,
-        Quantity: 1,
-        Amount: amount,
-        Tax: "none"
-      }
-    ]
-  }
-};
-
-  const token = makeToken(
-    body,
-    process.env.TINKOFF_SECRET_KEY!
-  );
-
-  const res = await fetch(
-  "https://securepay.tinkoff.ru/v2/Init",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      ...body,
-      Token: token,
-    }),
-  }
-);
-
-
-const tinkoffResponse = await res.json();
-
-console.log("TINKOFF:", tinkoffResponse);
-
-if (tinkoffResponse.Success && tinkoffResponse.PaymentId) {
-  await db.query(
-    `
-    UPDATE payments
-    SET payment_id = ?
-    WHERE order_id = ?
-    `,
-    [
-      tinkoffResponse.PaymentId,
-      orderId
-    ]
-  );
-}
-
-return NextResponse.json(tinkoffResponse);
-
-}
-
-catch (error) {
-  console.error("PAYMENT ERROR:", error);
-
-  if (error instanceof Error) {
-    console.error("MESSAGE:", error.message);
-    console.error("CAUSE:", error.cause);
-    console.error("STACK:", error.stack);
-  }
-
-  return NextResponse.json(
-    {
-      error: "Payment init failed",
-      details: error instanceof Error ? error.message : String(error),
-      cause:
-        error instanceof Error
-          ? String(error.cause)
-          : null,
-    },
-    {
-      status: 500,
-    }
-  );
-}
 }
