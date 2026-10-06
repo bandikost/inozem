@@ -55,15 +55,31 @@ export async function POST(request: Request) {
   ]
 )
 
-  const body = {
-    TerminalKey: process.env.TINKOFF_TERMINAL_KEY!,
-    Amount: Number(program.price) * 100,
-    OrderId: orderId,
-    Description: program.name,
+  const amount = Number(program.price) * 100;
 
-    SuccessURL: `https://xn--e1adcscg.xn--p1ai/payment/success?order=${orderId}`,
-     NotificationURL: "https://xn--e1adcscg.xn--p1ai/api/payment/notify"
-  };
+const body = {
+  TerminalKey: process.env.TINKOFF_TERMINAL_KEY!,
+  Amount: amount,
+  OrderId: orderId,
+  Description: program.name,
+
+  SuccessURL: `https://xn--e1adcscg.xn--p1ai/payment/success?order=${orderId}`,
+  NotificationURL: "https://xn--e1adcscg.xn--p1ai/api/payment/notify",
+
+  Receipt: {
+    Email: undefined,
+    Taxation: "usn_income",
+    Items: [
+      {
+        Name: program.name,
+        Price: amount,
+        Quantity: 1,
+        Amount: amount,
+        Tax: "none"
+      }
+    ]
+  }
+};
 
   const token = makeToken(
     body,

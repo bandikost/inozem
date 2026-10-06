@@ -250,9 +250,11 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
 
       </div>
 
-      <div className="relative mt-8">
-        <PayButton programId={program.id} />
-      </div>
+        <div className="grid grid-cols-2 gap-2">
+                <PayButton programId={program.id} />
+                <LoadingLink href="/bid" className="button-more-bulge">Подать заявку</LoadingLink>
+        </div>
+     
 
     </div>
 
