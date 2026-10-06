@@ -1,3 +1,4 @@
+
 import { pruffmeRequest } from "@/lib/lectures/pruffme"
 import { NextResponse } from "next/server"
 
@@ -19,25 +20,33 @@ export async function GET() {
 
           const times = info.webinar?.times ?? []
 
-          const futureTimes = times
-            .map((time: any) => ({
-              date: time.selected_date,
-              duration: time.duration,
-            }))
-            .filter((time: any) => {
-                const webinarStart = new Date(time.date).getTime()
+          console.log("================================")
+          console.log("WEBINAR:", webinar.name)
+          console.log("TIMES:", times)
+          console.log("================================")
 
-                const webinarEnd = webinarStart + 3 * 60 * 60 * 1000
+          const now = Date.now()
 
-                return webinarEnd > Date.now()
-                })
-            .sort(
-              (a: any, b: any) =>
-                new Date(a.date).getTime() -
-                new Date(b.date).getTime()
-            )
+const availableTimes = times
+  .map((time: any) => {
+    const start = new Date(time.selected_date).getTime()
+    const duration = Number(time.duration) || 0
 
-          const nextTime = futureTimes[0]
+    // Pruffme duration в минутах
+    const end = start + duration * 60 * 1000
+
+    return {
+      date: time.selected_date,
+      duration,
+      start,
+      end,
+      isLive: start <= now && now < end,
+    }
+  })
+  .filter((time: any) => time.end > now)
+  .sort((a: any, b: any) => a.start - b.start)
+
+const nextTime = availableTimes[0]
 
           return {
             id: webinar.id,
@@ -65,17 +74,20 @@ export async function GET() {
       })
     )
 
-    const upcomingWebinars = webinarsWithDates
+    const result = webinarsWithDates
       .filter((webinar: any) => webinar.date)
       .sort(
         (a: any, b: any) =>
           new Date(a.date).getTime() -
           new Date(b.date).getTime()
       )
-      .slice(0, 3)
+      .slice(0, 10)
 
-    return NextResponse.json(upcomingWebinars)
+    console.log("RESULT:", result)
 
+    return NextResponse.json({
+      result,
+    })
   } catch (error) {
     console.error("PRUFFME WEBINARS ERROR:", error)
 

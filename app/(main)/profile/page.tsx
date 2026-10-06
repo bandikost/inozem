@@ -11,8 +11,6 @@ export const metadata = {
   title: "Личный кабинет | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»",
 }
 
-
-
 export default async function Page() {
   const token = await TokenCheck()
 
@@ -32,7 +30,6 @@ export default async function Page() {
   try {
     tests = await getUserTests(user.id)
   } catch (error) {
-    console.error("TESTS ERROR:", error)
     tests = []
   }
 

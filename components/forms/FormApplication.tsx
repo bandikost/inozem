@@ -2,10 +2,7 @@
 
 import { useState } from "react"
 import CheckBox152 from "../ui/Checkbox/Checkbox"
-import {
-  HIGHER_SPECIALTIES,
-  SECONDARY_SPECIALTIES,
-} from "@/data/specialties"
+import {HIGHER_SPECIALTIES, SECONDARY_SPECIALTIES} from "@/data/specialties"
 import { useYandexCaptcha } from "@/hooks/useYandexCaptcha"
 import { UserRow } from "@/app/interface/user"
 import { useSubmitWithCaptcha } from "@/hooks/useSubmitWithCaptcha"
@@ -26,11 +23,9 @@ export default function FormApplication({ user, programs }: Props) {
   const [lastName, setLastName] = useState(user?.last_name || "")
   const [firstName, setFirstName] = useState(user?.name || "")
   const [patronymic, setPatronymic] = useState(user?.patronymic || "")
- const [phone, setPhone] = useState(user?.phone ? `+${user.phone}` : "")
+  const [phone, setPhone] = useState(user?.phone ? `+${user.phone}` : "")
   const [email, setEmail] = useState(user?.email || "")
-  const [education_level, setEducation_level] = useState(
-    user?.education_level || ""
-  )
+  const [education_level, setEducation_level] = useState(user?.education_level || "")
 
   const [captcha, setCaptcha] = useState<string>("")
   const [notice, setNotice] = useState("")
@@ -68,7 +63,9 @@ export default function FormApplication({ user, programs }: Props) {
               email,
               education_level,
               specialization,
-              programm_name: selectedProgram?.name || ""
+              programm_name: selectedProgram?.name || "",
+              programm_time: selectedProgram?.time || 0,
+              programm_category: selectedProgram?.category || "",
             },
           })
         }

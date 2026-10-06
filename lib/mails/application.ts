@@ -29,6 +29,8 @@ export async function sendApplicationEmail(
   education_level: string,
   specialization: string,
   programm_name: string,
+  programm_time: number,
+  programm_category: string,
   created_at: Date
 ) {
   const fullName = `${last_name} ${name} ${patronymic}`;
@@ -104,56 +106,72 @@ export async function sendApplicationEmail(
 
   try {
     await transporter.sendMail({
-      from: `"Обучение" <${EMAIL_USER}>`,
-      to: EMAIL_RECIP,
-      subject: "Новая заявка на обучение",
+  from: `"Обучение" <${EMAIL_USER}>`,
+  to: EMAIL_RECIP,
+  subject: "Новая заявка на обучение",
 
-      html: `
-        <div>
-          <h2>Поступила новая заявка</h2>
+  html: `
+    <div>
+      <h2>Поступила новая заявка</h2>
 
-          <p>
-            <strong>ФИО:</strong>
-            ${fullName}
-          </p>
+      <h3>Данные слушателя</h3>
 
-          <p>
-            <strong>Email:</strong>
-            ${email}
-          </p>
+      <p>
+        <strong>ФИО:</strong>
+        ${fullName}
+      </p>
 
-          <p>
-            <strong>Телефон:</strong>
-            ${phone}
-          </p>
+      <p>
+        <strong>Email:</strong>
+        ${email}
+      </p>
 
-          <p>
-            <strong>Уровень образования:</strong>
-            ${education_level}
-          </p>
+      <p>
+        <strong>Телефон:</strong>
+        ${phone}
+      </p>
 
-          <p>
-            <strong>Специальность:</strong>
-            ${specialization || "—"}
-          </p>
+      <p>
+        <strong>Уровень образования:</strong>
+        ${education_level}
+      </p>
 
-          <p>
-            <strong>Программа:</strong>
-            ${programm_name}
-          </p>
+      <p>
+        <strong>Специальность:</strong>
+        ${specialization || "—"}
+      </p>
 
-          <p>
-            <strong>Дата:</strong>
-            ${date}
-          </p>
+      <h3>Выбранная программа</h3>
 
-          <p>
-            <strong>Время:</strong>
-            ${time}
-          </p>
-        </div>
-      `,
-    });
+      <p>
+        <strong>Программа:</strong>
+        ${programm_name}
+      </p>
+
+      <p>
+        <strong>Количество часов:</strong>
+        ${programm_time}
+      </p>
+
+      <p>
+        <strong>Категория:</strong>
+        ${programm_category || "—"}
+      </p>
+
+      <hr />
+
+      <p>
+        <strong>Дата:</strong>
+        ${date}
+      </p>
+
+      <p>
+        <strong>Время:</strong>
+        ${time}
+      </p>
+    </div>
+  `,
+});
 
     console.log(
       "ADMIN APPLICATION EMAIL SENT:",

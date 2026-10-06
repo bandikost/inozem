@@ -21,7 +21,6 @@ export default function ProfileClient({programs, user, tests, activitylist} : Pr
     const [showAll, setShowAll] = useState(false)
     const [webinars, setWebinars] = useState<any[]>([])
     const [webinarsLoading, setWebinarsLoading] = useState(true)
-
     useEffect(() => {
   async function loadWebinars() {
     try {
@@ -33,16 +32,31 @@ export default function ProfileClient({programs, user, tests, activitylist} : Pr
 
       const data = await res.json()
 
-      setWebinars(data)
+const filteredWebinars = data.result
+  .filter((webinar: any) =>
+    programs.some((program: any) => {
+      const webinarName = webinar.name?.trim().toLowerCase()
+      const programSpec = program.specialization?.trim().toLowerCase()
+
+      return (
+        webinarName &&
+        programSpec &&
+        webinarName.includes(programSpec)
+      )
+    })
+  )
+  .slice(0, 3)
+
+setWebinars(filteredWebinars)
     } catch (error) {
-      console.error("WEBINARS ERROR:", error)
+      console.error(error)
     } finally {
       setWebinarsLoading(false)
     }
   }
 
   loadWebinars()
-}, [])
+}, [programs])
 
     const visiblePrograms = showAll
     ? programs

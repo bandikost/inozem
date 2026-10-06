@@ -6,15 +6,17 @@ import { sendApplicationEmail } from "@/lib/mails/application";
 export async function POST(req: NextRequest) {
   try {
     const {
-      last_name,
-      patronymic,
-      name,
-      phone,
-      email,
-      education_level,
-      specialization,
-      programm_name,
-    } = await req.json();
+    last_name,
+    patronymic,
+    name,
+    phone,
+    email,
+    education_level,
+    specialization,
+    programm_name,
+    programm_time,
+    programm_category,
+  } = await req.json()
 
     const created_at = new Date();
 
@@ -88,16 +90,18 @@ export async function POST(req: NextRequest) {
 
     try {
       await sendApplicationEmail(
-        last_name,
-        patronymic,
-        name,
-        phone,
-        email,
-        education_level,
-        specialization || "",
-        programm_name,
-        created_at
-      );
+      last_name,
+      patronymic,
+      name,
+      phone,
+      email,
+      education_level,
+      specialization || "",
+      programm_name,
+      programm_time,
+      programm_category,
+      created_at
+    )
 
       console.log("APPLICATION EMAILS SENT");
     } catch (emailError) {
