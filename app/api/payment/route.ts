@@ -184,8 +184,11 @@ export async function POST(request: Request) {
 
     const token = makeToken(
       body,
-      process.env.TINKOFF_TERMINAL_PASSWORD!
-    );
+      process.env.TINKOFF_SECRET_KEY!
+      
+    )
+
+    
 
     console.log("PAYMENT INIT:", {
       orderId,
