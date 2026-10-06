@@ -1,9 +1,13 @@
+
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { getProgramById } from "@/lib/programm";
 import { db } from "@/lib/db";
 
-function makeToken(data: Record<string, any>, password: string) {
+function makeToken(
+  data: Record<string, any>,
+  password: string
+) {
   const tokenData: Record<string, any> = {
     ...data,
     Password: password,
@@ -31,18 +35,87 @@ function makeToken(data: Record<string, any>, password: string) {
 
 export async function POST(request: Request) {
   try {
+    // --------------------------------
+    // 1. Получаем данные запроса
+    // --------------------------------
+
     const { programId, userId } = await request.json();
+
+    if (!programId || !userId) {
+      return NextResponse.json(
+        {
+          error: "Не переданы programId или userId",
+        },
+        {
+          status: 400,
+        }
+      );
+    }
+
+    // --------------------------------
+    // 2. Получаем программу
+    // --------------------------------
 
     const program = await getProgramById(programId);
 
     if (!program) {
       return NextResponse.json(
-        { error: "Программа не найдена" },
-        { status: 404 }
+        {
+          error: "Программа не найдена",
+        },
+        {
+          status: 404,
+        }
       );
     }
 
+    // --------------------------------
+    // 3. Получаем email пользователя
+    // --------------------------------
+
+    const [users] = await db.query(
+      `
+      SELECT email
+      FROM users
+      WHERE id = ?
+      LIMIT 1
+      `,
+      [userId]
+    );
+
+    const user = (users as { email: string | null }[])[0];
+
+    if (!user) {
+      return NextResponse.json(
+        {
+          error: "Пользователь не найден",
+        },
+        {
+          status: 404,
+        }
+      );
+    }
+
+    if (!user.email) {
+      return NextResponse.json(
+        {
+          error: "У пользователя отсутствует email",
+        },
+        {
+          status: 400,
+        }
+      );
+    }
+
+    // --------------------------------
+    // 4. Создаём OrderId
+    // --------------------------------
+
     const orderId = crypto.randomUUID();
+
+    // --------------------------------
+    // 5. Сохраняем платёж в БД
+    // --------------------------------
 
     await db.query(
       `
@@ -63,7 +136,18 @@ export async function POST(request: Request) {
       ]
     );
 
-    const amount = Number(program.price) * 100;
+    // --------------------------------
+    // 6. Сумма для Tinkoff
+    // Tinkoff принимает копейки
+    // --------------------------------
+
+    const amount = Math.round(
+      Number(program.price) * 100
+    );
+
+    // --------------------------------
+    // 7. Формируем запрос Tinkoff
+    // --------------------------------
 
     const body = {
       TerminalKey: process.env.TINKOFF_TERMINAL_KEY!,
@@ -71,13 +155,17 @@ export async function POST(request: Request) {
       OrderId: orderId,
       Description: program.name,
 
-      SuccessURL: `https://xn--e1adcscg.xn--p1ai/payment/success?order=${orderId}`,
+      SuccessURL:
+        `https://xn--e1adcscg.xn--p1ai/payment/success?order=${orderId}`,
+
       NotificationURL:
         "https://xn--e1adcscg.xn--p1ai/api/payment/notify",
 
       Receipt: {
-        Email: "ТУТ_ДОЛЖЕН_БЫТЬ_EMAIL",
+        Email: user.email,
+
         Taxation: "usn_income",
+
         Items: [
           {
             Name: program.name,
@@ -90,26 +178,37 @@ export async function POST(request: Request) {
       },
     };
 
+    // --------------------------------
+    // 8. Создаём Token
+    // --------------------------------
+
     const token = makeToken(
       body,
       process.env.TINKOFF_TERMINAL_PASSWORD!
     );
 
-    console.log("TOKEN DATA:", {
-      TerminalKey: body.TerminalKey,
-      Amount: body.Amount,
-      OrderId: body.OrderId,
-      Description: body.Description,
-      Password: "***",
+    console.log("PAYMENT INIT:", {
+      orderId,
+      userId,
+      email: user.email,
+      programId,
+      programName: program.name,
+      amount,
     });
+
+    // --------------------------------
+    // 9. Отправляем запрос Tinkoff
+    // --------------------------------
 
     const res = await fetch(
       "https://securepay.tinkoff.ru/v2/Init",
       {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json",
         },
+
         body: JSON.stringify({
           ...body,
           Token: token,
@@ -117,11 +216,26 @@ export async function POST(request: Request) {
       }
     );
 
+    // --------------------------------
+    // 10. Получаем ответ Tinkoff
+    // --------------------------------
+
     const tinkoffResponse = await res.json();
 
-    console.log("TINKOFF:", tinkoffResponse);
+    console.log(
+      "TINKOFF RESPONSE:",
+      tinkoffResponse
+    );
 
-    if (tinkoffResponse.Success && tinkoffResponse.PaymentId) {
+    // --------------------------------
+    // 11. Если платёж создан —
+    // сохраняем PaymentId
+    // --------------------------------
+
+    if (
+      tinkoffResponse.Success &&
+      tinkoffResponse.PaymentId
+    ) {
       await db.query(
         `
         UPDATE payments
@@ -135,24 +249,42 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json(tinkoffResponse);
+    return NextResponse.json(
+      tinkoffResponse
+    );
 
   } catch (error) {
-    console.error("PAYMENT ERROR:", error);
+    console.error(
+      "PAYMENT ERROR:",
+      error
+    );
 
     if (error instanceof Error) {
-      console.error("MESSAGE:", error.message);
-      console.error("CAUSE:", error.cause);
-      console.error("STACK:", error.stack);
+      console.error(
+        "MESSAGE:",
+        error.message
+      );
+
+      console.error(
+        "CAUSE:",
+        error.cause
+      );
+
+      console.error(
+        "STACK:",
+        error.stack
+      );
     }
 
     return NextResponse.json(
       {
         error: "Payment init failed",
+
         details:
           error instanceof Error
             ? error.message
             : String(error),
+
         cause:
           error instanceof Error
             ? String(error.cause)
