@@ -4,8 +4,9 @@ import LoadingLink from "@/components/Load/LoadingLink"
 import { useToast } from "@/components/ui/Toast/ToastProvider"
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
+
 
 export default function Page() {
   const [form, setForm] = useState({
@@ -31,6 +32,7 @@ export default function Page() {
 
   const [loading, setLoading] = useState(false)
   const toast = useToast()
+  const router = useRouter()
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -67,17 +69,13 @@ export default function Page() {
           : null,
       }),
       })
+   
 
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(
-          data.error || "Ошибка создания программы"
-        )
-      }
+      if (!response.ok) throw new Error("Ошибка создания программы")
 
       toast.success("Программа успешно создана!")
-      redirect("/dashboard/activity")
+      router.push("/dashboard/activity")
+  
 
     } catch (error) {
       console.error(error)

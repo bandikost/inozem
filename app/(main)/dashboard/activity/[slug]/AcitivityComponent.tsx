@@ -114,10 +114,8 @@ export default function ActivityEditor({
       }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.error || "Ошибка обновления мероприятия");
+        throw new Error("Ошибка обновления мероприятия");
       }
 
       toast.success("Мероприятие успешно обновлено!");

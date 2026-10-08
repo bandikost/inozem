@@ -15,11 +15,12 @@ type UpdateActivity = {
   purpose: string;
   audience: string;
   conditions: string;
-   teacher_img: string;
+  teacher_img: string;
   title_bg: string;
   attendance_control: string;
-location: string;
-planned_results: string;
+  location: string;
+  planned_results: string;
+  content: string
 };
 
 
@@ -143,10 +144,7 @@ export async function getActivityUsers() {
 }
 
 
-export async function updateActivityBySlug(
-  slug: string,
-  data: UpdateActivity
-) {
+export async function updateActivityBySlug(slug: string, data: UpdateActivity) {
   const [result] = await db.execute<ResultSetHeader>(
     `
       UPDATE activity
@@ -168,6 +166,7 @@ export async function updateActivityBySlug(
         attendance_control = ?,
         location = ?,
         planned_results = ?
+        content = ?
       WHERE slug = ?
     `,
     [
@@ -188,6 +187,7 @@ export async function updateActivityBySlug(
       data.attendance_control,
       data.location,
       data.planned_results,
+      data.content,
       slug,
     ]
   );

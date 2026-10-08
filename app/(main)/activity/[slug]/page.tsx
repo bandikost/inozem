@@ -73,12 +73,12 @@ export default async function Page({ params }: PageProps) {
       icon: MapPin,
     },
     {
-      title: "Планируемые результаты",
+      title: "Программа",
       content: activity.planned_results,
       icon: GraduationCap,
     },
     {
-      title: "Планируемые результаты",
+      title: "Дополнительная информация",
       content: activity.content,
       icon: GraduationCap,
     },
