@@ -423,102 +423,90 @@
             </section>
           )}
 
-          {study.teacher && (
-            <section className="mt-12 border border-gray-200 shadow-md px-6 py-8 md:px-10 md:py-10 rounded-3xl">
+          {(study.teacher || study.teacher2) && (
+  <section className="mt-12 rounded-3xl border border-gray-200 px-6 py-8 shadow-md md:px-10 md:py-10 rounded-3xl">
+    <div className="mb-6">
+      <p className="text-sm font-medium text-blue">
+        Преподаватели
+      </p>
 
-              <div className="mb-6">
+      <h2 className="mt-1 !text-3xl font-semibold tracking-tight text-prpl">
+        Эксперты программы
+      </h2>
+    </div>
 
-                <p className="text-sm font-medium text-blue">
-                  Преподаватель
-                </p>
-
-                <h2 className="mt-1 !text-3xl font-semibold tracking-tight text-prpl">
-                  Эксперт программы
-                </h2>
-
-              </div>
-
-              <div className="overflow-hidden rounded-3xl bg-white">
-
-                <div
-                  className={
-                    study.teacher_img
-                      ? "grid md:grid-cols-[300px_1fr]"
-                      : "block"
-                  }
-                >
-
-                  {study.teacher_img && (
-                    <div className="min-h-[300px] bg-zinc-100">
-
-                      <ImageWithSkeleton
-                        src={study.teacher_img}
-                        alt="Преподаватель программы"
-                        wrapperClassName="h-full w-full"
-                        aspect="1/1"
-                      />
-
-                    </div>
-                  )}
-
-                  <div className="p-7 md:p-9">
-
-                    <div
-                      className="
-                        text-[16px]
-                        leading-7
-                        text-default/70
-
-                        [&_h2]:mb-4
-                        [&_h2]:!text-2xl
-                        [&_h2]:font-semibold
-                        [&_h2]:text-prpl
-
-                        [&_h3]:mb-3
-                        [&_h3]:!text-xl
-                        [&_h3]:font-semibold
-                        [&_h3]:text-prpl
-
-                        [&_p]:mb-5
-                        [&_p:last-child]:mb-0
-
-                        [&_strong]:font-semibold
-                        [&_strong]:text-default
-                      "
-                      dangerouslySetInnerHTML={{
-                        __html: study.teacher,
-                      }}
-                    />
-
-                    {study.teacher_description && (
-                      <div
-                        className="
-                          mt-6
-                          border-t
-                          border-zinc-100
-                          pt-6
-
-                          text-[15px]
-                          leading-7
-                          text-default/60
-
-                          [&_p]:mb-4
-                          [&_p:last-child]:mb-0
-                        "
-                        dangerouslySetInnerHTML={{
-                          __html: study.teacher_description,
-                        }}
-                      />
-                    )}
-
-                  </div>
-
+    <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+      {[
+        {
+          teacher: study.teacher,
+          description: study.teacher_description,
+          img: study.teacher_img,
+        },
+        {
+          teacher: study.teacher2,
+          description: study.teacher_description2,
+          img: study.teacher_img2,
+        },
+      ]
+        .filter((item) => item.teacher)
+        .map((item, index) => (
+          <div
+            key={index}
+            className="overflow-hidden rounded-3xl border border-gray-100 bg-white"
+          >
+            <div
+              className={
+                item.img
+                  ? "grid sm:grid-cols-[180px_1fr]"
+                  : "block"
+              }
+            >
+              {item.img && (
+                <div className="min-h-[200px] bg-zinc-100">
+                  <ImageWithSkeleton
+                    src={item.img}
+                    alt={`Преподаватель ${index + 1}`}
+                    wrapperClassName="h-full w-full"
+                    aspect="1/1"
+                  />
                 </div>
+              )}
 
+              <div className="p-6">
+                <div
+                  className="
+                    text-[16px] leading-7 text-default/70
+                    [&_h2]:mb-4 [&_h2]:!text-2xl
+                    [&_h2]:font-semibold [&_h2]:text-prpl
+                    [&_h3]:mb-3 [&_h3]:!text-xl
+                    [&_h3]:font-semibold [&_h3]:text-prpl
+                    [&_p]:mb-5 [&_p:last-child]:mb-0
+                    [&_strong]:font-semibold [&_strong]:text-default
+                  "
+                  dangerouslySetInnerHTML={{
+                    __html: item.teacher!,
+                  }}
+                />
+
+                {item.description && (
+                  <div
+                    className="
+                      mt-5 border-t border-zinc-100 pt-5
+                      text-[15px] leading-7 text-default/60
+                      [&_p]:mb-4 [&_p:last-child]:mb-0
+                    "
+                    dangerouslySetInnerHTML={{
+                      __html: item.description,
+                    }}
+                  />
+                )}
               </div>
-
-            </section>
-          )}
+            </div>
+          </div>
+        ))}
+    </div>
+  </section>
+)}
 
 
           {study.content && (
