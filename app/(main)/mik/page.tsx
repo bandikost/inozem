@@ -213,6 +213,22 @@ export default function ConferencePage() {
         </div>
       </section>
 
+      <section className={styles.program}>
+      <div className={styles.container}>
+        <h2 className={styles.program__title}>Программа конференции</h2>
+
+        <a
+          href="/files/Программа_МиК_ред.07.10.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.program__button}
+        >
+          <span>Открыть программу конференции</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
       <section className={styles.stats}>
         <div className={`${styles.container} ${styles.stats__grid}`}>
           <div className={styles.stats__item}>
