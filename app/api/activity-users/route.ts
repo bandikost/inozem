@@ -13,21 +13,28 @@ export async function POST(req: NextRequest) {
     }
 
     const [result] = await db.query<ResultSetHeader>(
-  `INSERT INTO activity_users (id, activity_name, name, last_name, patronymic, email, phone, city, education_level)
+  `INSERT INTO activity_users
+    (id, activity_name, name, last_name, patronymic, email, phone, city, education_level)
    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-  [id, activity_name, name, last_name, patronymic, email, phone, city, education_level  || ""]
-)
-    await sendActivityEmail({
-  email,
-  name,
-  lastName: last_name,
-  patronymic,
-  phone,
-  city,
-  educationLevel: education_level,
-  activityName: activity_name,
-})
-    return NextResponse.json({ id: result.insertId }, { status: 201 })
+  [id, activity_name, name, last_name, patronymic, email, phone, city, education_level || ""]
+);
+
+try {
+  await sendActivityEmail({
+    email,
+    name,
+    lastName: last_name,
+    patronymic,
+    phone,
+    city,
+    educationLevel: education_level,
+    activityName: activity_name,
+  });
+} catch (emailError) {
+  console.error("Заявка сохранена, но письмо отправить не удалось:", emailError);
+}
+
+return NextResponse.json({ id: result.insertId }, { status: 201 });
   } catch (err) {
     console.error(err)
     return NextResponse.json({ error: "Ошибка сервера" }, { status: 500 });

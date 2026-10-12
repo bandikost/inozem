@@ -112,13 +112,12 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json(
-      {
-        id: result.insertId,
-      },
-      {
-        status: 201,
-      }
-    );
+  {
+    id: result.insertId,
+    message: "Заявка принята и сохранена. Повторно отправлять её не нужно.",
+  },
+  { status: 201 }
+);
   } catch (error) {
     console.error(
       "APPLICATION ERROR:",
