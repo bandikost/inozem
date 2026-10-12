@@ -17,6 +17,7 @@ interface ActivityEditorProps {
     title: string | null;
     description: string | null;
     teacher: string | null;
+    teacher2: string | null;
     purpose: string | null;
     conditions: string | null;
     audience: string | null;
@@ -24,6 +25,7 @@ interface ActivityEditorProps {
     year: number | null;
     paylink: string | null;
     teacher_img: string | null;
+    teacher2_img: string | null;
     title_bg: string | null;
     content: string | null;
     attendance_control: string;
@@ -39,6 +41,7 @@ type FormData = {
   title: string;
   description: string;
   teacher: string;
+  teacher2: string;
   purpose: string;
   conditions: string;
   audience: string;
@@ -46,6 +49,7 @@ type FormData = {
   year: string;
   paylink: string;
   teacher_img: string;
+  teacher2_img: string;
   title_bg: string;
   content: string;
   attendance_control: string;
@@ -64,6 +68,7 @@ export default function ActivityEditor({
     title: activity.title ?? "",
     description: activity.description ?? "",
     teacher: activity.teacher ?? "",
+    teacher2: activity.teacher2 ?? "",
     purpose: activity.purpose ?? "",
     conditions: activity.conditions ?? "",
     audience: activity.audience ?? "",
@@ -71,6 +76,7 @@ export default function ActivityEditor({
     year: activity.year?.toString() ?? "",
     paylink: activity.paylink ?? "",
     teacher_img: activity.teacher_img ?? "",
+    teacher2_img: activity.teacher2_img ?? "",
     title_bg: activity.title_bg ?? "",
     content: activity.content ?? "",
     attendance_control: activity.attendance_control ?? "",
@@ -262,6 +268,18 @@ export default function ActivityEditor({
               className="input-main resize-y"
             />
           </Field>
+          
+        <Field label="Второй спикер">
+          <textarea
+            name="teacher2"
+            value={form.teacher2}
+            onChange={handleChange}
+            rows={5}
+            placeholder="Укажите информацию о втором спикере..."
+            className="input-main resize-y"
+          />
+        </Field>
+
 
           <Field label="Цель мероприятия">
             <textarea
@@ -376,7 +394,7 @@ export default function ActivityEditor({
           description="Изображения, используемые на странице мероприятия"
           gray
         >
-          <Field label="Изображение преподавателя">
+          <Field label="Фотография спикера">
             <input
               name="teacher_img"
               value={form.teacher_img}
@@ -385,6 +403,16 @@ export default function ActivityEditor({
               className="input-main"
             />
           </Field>
+           <Field label="Фотография второго спикера">
+          <input
+            type="text"
+            name="teacher2_img"
+            value={form.teacher2_img}
+            onChange={handleChange}
+            placeholder="Укажите путь к фотографии второго спикера..."
+            className="input-main"
+          />
+        </Field>
 
           <div className="flex flex-wrap items-center rounded-2xl border border-gray-300 bg-yellow-100 p-5 text-base shadow-md">
             <span>Изображения находятся</span>

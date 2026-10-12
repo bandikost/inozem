@@ -31,5 +31,5 @@ export default function parseDateActivitySlug(
 
   if (month === undefined) return null
 
-  return new Date(year, month, endDay)
+  return new Date(year, month, endDay + 1)
 }

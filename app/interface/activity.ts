@@ -6,6 +6,7 @@ export type Activity = {
   title: string
   description: string
   teacher: string
+  teacher2: string
   purpose: string
   audience: string
   conditions: string
@@ -15,6 +16,7 @@ export type Activity = {
   created_at: string
   title_bg: string
   teacher_img: string
+  teacher2_img: string
   attendance_control: string | null;
   location: string | null;
   content: string | null

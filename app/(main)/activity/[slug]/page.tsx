@@ -49,7 +49,7 @@ export default async function Page({ params }: PageProps) {
 
     const currentYear = new Date().getFullYear()
     const endDate = activity.dates ? parseDateActivitySlug(activity.dates, currentYear) : null
-    const isActivityFinished = endDate ? new Date() > endDate : false
+    const isActivityFinished = endDate ? new Date() >= endDate : false
 
   const infoBlocks = [
     {
@@ -309,102 +309,83 @@ export default async function Page({ params }: PageProps) {
 
           )}
 
-        {activity.teacher && (
-  <section className="mt-10 overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm">
-    <div className="relative overflow-hidden bg-zinc-50 px-7 py-8 md:px-10 md:py-9">
+        
+        {(activity.teacher || activity.teacher2) && (
+          <section className="mt-10 overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm">
+            <div className="relative overflow-hidden bg-zinc-50 px-7 py-8 md:px-10 md:py-9">
+              <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-prpl/5" />
+              <div className="absolute -right-5 -top-5 h-28 w-28 rounded-full border border-purple-500/80" />
 
-      <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-prpl/5" />
-      <div className="absolute -right-5 -top-5 h-28 w-28 rounded-full border border-purple-500/80" />
+              <div className="relative">
+                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-prpl/60">
+                  Спикеры мероприятия
+                </span>
 
-      <div className="relative">
+                <h2 className="mt-3 !text-2xl font-semibold text-prpl md:!text-3xl">
+                  Кто будет вести мероприятие
+                </h2>
 
-        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-prpl/60">
-          Спикеры мероприятия
-        </span>
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-default/60">
+                  Мероприятие проводят практикующие специалисты и эксперты
+                  в соответствующих областях.
+                </p>
+              </div>
+            </div>
 
-        <h2 className="mt-3 !text-2xl font-semibold text-prpl md:!text-3xl">
-          Кто будет вести мероприятие
-        </h2>
+            <div className="grid grid-cols-1 gap-6 p-6 md:p-8 md:grid-cols-2">
+              {[
+                {
+                  name: activity.teacher,
+                  image: activity.teacher_img,
+                  key: "teacher",
+                },
+                {
+                  name: activity.teacher2,
+                  image: null,
+                  key: "teacher2",
+                },
+              ]
+                .filter((teacher) => teacher.name)
+                .map((teacher) => (
+                  <div
+                    key={teacher.key}
+                    className="flex flex-col gap-5 overflow-hidden rounded-2xl border border-zinc-200 bg-white"
+                  >
+                    {teacher.image && (
+                      <div className="relative min-h-[280px] overflow-hidden bg-zinc-100 md:min-h-[360px]">
+                        <ImageWithSkeleton
+                          src={teacher.image}
+                          alt="Спикер мероприятия"
+                          wrapperClassName="h-full w-full overflow-hidden"
+                          aspect="1/1"
+                        />
+                      </div>
+                    )}
 
-        <p className="mt-2 max-w-2xl text-sm leading-6 text-default/60">
-          Мероприятие проводят практикующие специалисты и эксперты
-          в соответствующих областях.
-        </p>
-
-      </div>
-
-    </div>
-
-
-  
-    <div className="p-6 md:p-8">
-
-      <div className={`grid grid-cols-1 gap-6 ${  activity.teacher_img ? "md:grid-cols-2" : ""}`}>
-    
-        {activity.teacher_img && (
-          <div className="
-            relative
-            overflow-hidden
-            rounded-2xl
-            bg-zinc-100
-            min-h-[280px]
-            md:min-h-[360px]
-          ">
-
-            <ImageWithSkeleton
-              src={activity.teacher_img}
-              alt="Спикер мероприятия"
-              wrapperClassName="
-                h-full
-                w-full
-                overflow-hidden
-                rounded-2xl
-              "
-              aspect="1/1"
-            />
-
-          </div>
+                    <div className="flex flex-col justify-center p-6 md:p-8">
+                      <div
+                        className="
+                          text-default/75
+                          leading-7
+                          [&_h3]:!text-xl
+                          [&_h3]:md:!text-2xl
+                          [&_h3]:font-semibold
+                          [&_h3]:text-prpl
+                          [&_h3]:mb-3
+                          [&_p]:mb-5
+                          [&_p:last-child]:mb-0
+                        "
+                        dangerouslySetInnerHTML={{
+                          __html: teacher.name!,
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </section>
         )}
 
-        <div className="
-          flex
-          flex-col
-          justify-center
-          rounded-2xl
-          border
-          border-zinc-200
-          bg-white
-          p-6
-          md:p-8
-        ">
-
-          <div
-            className="
-              text-default/75
-              leading-7
-
-              [&_h3]:!text-xl
-              [&_h3]:md:!text-2xl
-              [&_h3]:font-semibold
-              [&_h3]:text-prpl
-              [&_h3]:mb-3
-
-              [&_p]:mb-5
-              [&_p:last-child]:mb-0
-            "
-            dangerouslySetInnerHTML={{
-              __html: activity.teacher,
-            }}
-          />
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-)}
 
           {infoBlocks.length > 0 && (
 
