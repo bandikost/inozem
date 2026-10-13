@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingLink from "@/components/Load/LoadingLink";
 import { useState } from "react";
 
 interface Answer {
@@ -178,7 +179,8 @@ if (!response.ok) {
           </strong>
         </p>
 
-        <button
+<div className="grid grid-cols-2 gap-2">
+ <button
           type="button"
           onClick={() => {
             setCurrentQuestion(0);
@@ -190,6 +192,11 @@ if (!response.ok) {
         >
           Пройти ещё раз
         </button>
+        <LoadingLink href="/leaderboard" className="mt-8 rounded-xl bg-prpl px-6 py-3 !text-white transition hover:opacity-90">
+          К таблице результатов
+        </LoadingLink>
+</div>
+       
 
       </div>
     );
