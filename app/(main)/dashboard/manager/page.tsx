@@ -50,8 +50,24 @@ export default async function ManagerPage() {
   </div>
 
   <div className="grid md:grid-cols-2 gap-6">
+     <LoadingLink
+      href="/dashboard/instruction"
+      className="group bg-white rounded-2xl border border-gray-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"
+    >
+      <div className="text-4xl mb-4">📚</div>
+
+      <h2 className="text-2xl font-semibold text-prpl">
+        Инструкции
+      </h2>
+
+      <p className="text-gray-500 mt-2">Все инструкции сайта</p>
+    </LoadingLink>
  
-    <LoadingLink
+   
+
+     <AdminActivityStats />
+
+      <LoadingLink
       href="/dashboard/users"
       className="group bg-white rounded-2xl border border-gray-200 p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"
     >
@@ -65,8 +81,6 @@ export default async function ManagerPage() {
         Выдача доступа и управление личными кабинетами.
       </p>
     </LoadingLink>
-
-     <AdminActivityStats />
 
     <LoadingLink
       href="/dashboard/accred"
