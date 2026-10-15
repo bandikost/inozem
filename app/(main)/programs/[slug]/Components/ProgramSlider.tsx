@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, TriangleAlert } from 'lucide-react'
 import { useState } from 'react'
 import Comments from './Comments'
 
@@ -71,6 +71,26 @@ export default function ProgramSlider({ blocks, name, suptitle }: ProgramSliderP
               </button>
             )
           })}
+        </div>
+      </div>
+        
+      <div role="status" className="mt-6 flex items-start gap-4 rounded-2xl border border-amber-200 bg-amber-50/80 p-4 md:p-5">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
+          <TriangleAlert size={22} />
+        </div>
+
+        <div className="min-w-0">
+          <h3 className="!text-base font-semibold text-amber-900">
+            Уведомление о технических неполадках
+          </h3>
+
+          <p className="mt-1 !text-sm leading-relaxed text-amber-900/80 md:!text-base">
+            В связи с техническими неполадками на серверах Яндекса некоторые
+            видео могут не загружаться, а файлы - не открываться.
+            Приносим извинения за временные неудобства! Мы уже работаем
+            над решением проблемы и стараемся восстановить доступ как можно
+            скорее. Просим вас немного подождать и благодарим за понимание.
+          </p>
         </div>
       </div>
 
