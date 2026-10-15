@@ -7,3 +7,4 @@ export async function getLeaderboardTests(user_id: Number) {
 
   return rows as any[];
 }
+

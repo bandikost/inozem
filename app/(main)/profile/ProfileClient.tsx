@@ -4,15 +4,16 @@ import { UserRow } from "@/app/interface/user"
 import LoadingLink from "@/components/Load/LoadingLink"
 import LogoutButton from "@/components/ui/Buttons/LogoutButton"
 import { ProgramRow } from "@/lib/programm"
-import { Archive, CalendarDays, ChevronRight, CircleSmall, CircleUserRound, GraduationCap, Handshake, Heart, LogOutIcon, Pencil, Star } from "lucide-react"
+import { Archive, ArrowRight, CalendarDays, ChevronRight, CircleSmall, CircleUserRound, ClipboardCheck, GraduationCap, Handshake, Heart, LogOutIcon, Pencil, Star } from "lucide-react"
 import { useState, useEffect } from "react"
 import { KeyRound } from "lucide-react"
 import { getHourWord } from "@/components/ui/GetHourWord"
 
+
 interface Props {
   programs: ProgramRow[]
   user: UserRow
-  tests:any[]
+  tests: any[]
   activitylist: any[]
 }
 
@@ -21,6 +22,9 @@ export default function ProfileClient({programs, user, tests, activitylist} : Pr
     const [showAll, setShowAll] = useState(false)
     const [webinars, setWebinars] = useState<any[]>([])
     const [webinarsLoading, setWebinarsLoading] = useState(true)
+   
+
+
     useEffect(() => {
   async function loadWebinars() {
     try {
@@ -476,42 +480,39 @@ setWebinars(filteredWebinars)
     </div>
 
       
-      {tests.length > 0 &&  (
-      <div className=" mt-8 rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] overflow-hidden max-h-[200px]">
- 
-  
-      <div className="h-1 bg-gradient-to-r from-[#7A4385] via-[#8D4C98] to-[#A75BB3]" />
+     {tests && (
+  <div className="mt-8 overflow-hidden rounded-3xl border border-purple-100 bg-white shadow-[0_8px_30px_rgba(122,67,133,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(122,67,133,0.14)]">
+    <div className="h-1.5 bg-gradient-to-r from-[#7A4385] via-[#9553A0] to-[#B879C2]" />
 
-          <div className="p-6 md:p-8 flex flex-col justify-center ">
-          <h3 className="text-2xl font-semibold text-prpl">Мои тестирования</h3>
-            <div className="mt-6 space-y-4">
+    <div className="flex flex-col gap-5 p-6  items-start sm:justify-between sm:p-8">
+      <div className="flex items-center gap-4">
+        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-purple-50 text-prpl">
+          <ClipboardCheck size={28} strokeWidth={1.8} />
+        </div>
 
-            {
-            tests.map((test)=>(
-            <div
-            key={test.id}
-          
-            >
-
-            <p className="font-semibold border border-gray-200 p-2 bg-violet-100 rounded-2xl">
-            {test.name_test}
-            </p>
-
-
-            <p className="mt-2 text-gray-600">
-            <span className="underline !font-semibold">{test.result}</span>
-            </p>
-
-
-            </div>
-            ))
-            }
-
-            </div>
-          </div>
-
-      
+        <div>
+          <h3 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
+            Мои тестирования
+          </h3>
+          <p className="mt-1 text-sm text-slate-500">
+            Просматривайте результаты и следите за своими достижениями
+          </p>
+        </div>
       </div>
+
+      <LoadingLink
+        href="/leaderboard"
+        className="button-more w-full"
+      >
+        Таблица лидеров
+        <ArrowRight
+          size={18}
+          strokeWidth={2}
+          className="transition-transform duration-200 group-hover:translate-x-1"
+        />
+      </LoadingLink>
+    </div>
+  </div>
 )}
 
 

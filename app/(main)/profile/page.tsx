@@ -4,8 +4,8 @@ import { getProfile } from "@/lib/getProfile"
 import TokenCheck from "@/components/token/token"
 import ProfileClient from "./ProfileClient"
 import { UserRow } from "@/app/interface/user"
-import { getUserTests } from "@/lib/test"
 import { getActivityPayed } from "@/lib/activity"
+import { getLeaderboardTests } from "@/lib/leaderboard"
 
 export const metadata = {
   title: "Личный кабинет | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»",
@@ -13,10 +13,16 @@ export const metadata = {
 
 export default async function Page() {
   const token = await TokenCheck()
-
+ 
   let user: UserRow
   let programs: ProgramRow[] = []
-  let tests = []
+ {/*  let tests = []
+  try {
+    tests = await getUserTests(user.id)
+  } catch (error) {
+    tests = []
+  }
+  */}
 
   try {
     user = await getProfile(token)
@@ -24,14 +30,10 @@ export default async function Page() {
     redirect("/login")
   }
 
-
+   const tests = await getLeaderboardTests(user.id)
   programs = await getIndividProgram(user.id)
 
-  try {
-    tests = await getUserTests(user.id)
-  } catch (error) {
-    tests = []
-  }
+  
 
   const activitylist = await getActivityPayed(user.id)
 

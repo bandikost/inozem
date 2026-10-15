@@ -5,18 +5,21 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    const { title, slug } = body;
+    const {
+      user_id,
+      name_test,
+      result,
+      exp,
+    } = body;
 
-    if (!title?.trim()) {
+    if (
+      !user_id ||
+      !name_test?.trim() ||
+      result == null ||
+      exp == null
+    ) {
       return NextResponse.json(
-        { error: "Введите название теста" },
-        { status: 400 }
-      );
-    }
-
-    if (!slug?.trim()) {
-      return NextResponse.json(
-        { error: "Введите slug" },
+        { error: "Не переданы обязательные поля" },
         { status: 400 }
       );
     }
@@ -24,54 +27,83 @@ export async function POST(request: NextRequest) {
     const [existing] = await db.execute(
       `
         SELECT id
-        FROM tests_creator
-        WHERE slug = ?
+        FROM tests_results
+        WHERE user_id = ? AND name_test = ?
         LIMIT 1
       `,
-      [slug]
+      [user_id, name_test.trim()]
     );
 
-    if ((existing as any[]).length > 0) {
+    const rows = existing as { id: number }[];
+
+    if (rows.length > 0) {
+      await db.execute(
+        `
+          UPDATE tests_results
+          SET result = ?,
+              exp = ?,
+              created_at = CURRENT_TIMESTAMP
+          WHERE id = ?
+        `,
+        [result, exp, rows[0].id]
+      );
+
+      return NextResponse.json({
+        success: true,
+        action: "updated",
+        id: rows[0].id,
+      });
+    }
+
+    const [insertResult] = await db.execute(
+      `
+        INSERT INTO tests_results (
+          user_id,
+          name_test,
+          name,
+          patronymic,
+          last_name,
+          result,
+          exp,
+          education_level
+        )
+        SELECT
+          id,
+          ?,
+          name,
+          patronymic,
+          last_name,
+          ?,
+          ?,
+          education_level
+        FROM users
+        WHERE id = ?
+      `,
+      [name_test.trim(), result, exp, user_id]
+    );
+
+    const inserted = insertResult as {
+      insertId: number;
+      affectedRows: number;
+    };
+
+    if (inserted.affectedRows === 0) {
       return NextResponse.json(
-        { error: "Тест с таким slug уже существует" },
-        { status: 409 }
+        { error: "Пользователь не найден" },
+        { status: 404 }
       );
     }
 
-    const [result] = await db.execute(
-      `
-        INSERT INTO tests_creator (
-          title,
-          slug
-        )
-        VALUES (?, ?)
-      `,
-      [
-        title.trim(),
-        slug.trim(),
-      ]
-    );
-
-    const insertResult = result as {
-      insertId: number;
-    };
-
     return NextResponse.json({
       success: true,
-      id: insertResult.insertId,
-      slug: slug.trim(),
+      action: "created",
+      id: inserted.insertId,
     });
-
   } catch (error) {
-    console.error("POST /api/tests_creator:", error);
+    console.error("POST /api/tests_results:", error);
 
     return NextResponse.json(
-      {
-        error:
-          error instanceof Error
-            ? error.message
-            : "Ошибка создания теста",
-      },
+      { error: "Ошибка сохранения результата теста" },
       { status: 500 }
     );
   }
