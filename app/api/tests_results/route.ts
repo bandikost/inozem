@@ -5,16 +5,12 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    const {
-      user_id,
-      name_test,
-      result,
-      exp,
-    } = body;
+    const { user_id, name_test, result, exp } = body;
 
     if (
       !user_id ||
-      !name_test?.trim() ||
+      typeof name_test !== "string" ||
+      !name_test.trim() ||
       result == null ||
       exp == null
     ) {
@@ -24,6 +20,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
+  
+    const [testRows] = await db.execute(
+      `
+        SELECT title
+        FROM tests_creator
+        WHERE slug = ?
+        LIMIT 1
+      `,
+      [name_test.trim()]
+    );
+
+    const tests = testRows as { title: string }[];
+
+    if (tests.length === 0) {
+      return NextResponse.json(
+        { error: "Тест не найден" },
+        { status: 404 }
+      );
+    }
+
+    const testTitle = tests[0].title;
+
     const [existing] = await db.execute(
       `
         SELECT id
@@ -31,7 +49,7 @@ export async function POST(request: NextRequest) {
         WHERE user_id = ? AND name_test = ?
         LIMIT 1
       `,
-      [user_id, name_test.trim()]
+      [user_id, testTitle]
     );
 
     const rows = existing as { id: number }[];
@@ -79,7 +97,7 @@ export async function POST(request: NextRequest) {
         FROM users
         WHERE id = ?
       `,
-      [name_test.trim(), result, exp, user_id]
+      [testTitle, result, exp, user_id]
     );
 
     const inserted = insertResult as {
