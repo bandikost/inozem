@@ -201,7 +201,7 @@ export default async function Page() {
                 return (
                   <li key={test.id}>
                     <LoadingLink
-                      href={`/tests/${encodeURIComponent(test.name_test)}`}
+                       href={`/tests/${encodeURIComponent(test.test_slug ?? "")}`}
                       className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm shadow-zinc-900/[0.02] transition duration-300 hover:-translate-y-1 hover:border-purple-200 hover:shadow-xl hover:shadow-purple-950/[0.06] sm:p-6"
                     >
                       <div className="flex items-start gap-4">
@@ -211,7 +211,7 @@ export default async function Page() {
 
                         <div className="min-w-0 flex-1">
                           <h3 className="line-clamp-2 font-semibold leading-6 text-zinc-900 transition group-hover:text-violet-800">
-                            {test.name_test}
+                            {test.test_title ?? test.name_test}
                           </h3>
 
                           <p className="mt-1.5 text-sm text-zinc-500">
