@@ -16,7 +16,7 @@ export default function Home() {
       <div className="flex flex-col w-full mt-28 mb-10 items-center justify-center ">
           <FirstBlock />
           <Activity />
-          <Mik />
+         {/* <Mik /> */}
           <NotifyPage />
          {/* <Programms /> */} 
           <SecondBlock />
