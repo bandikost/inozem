@@ -1,4 +1,5 @@
 import { getTests } from "@/lib/test";
+import TestsExport from "./TestsExport";
 
 export default async function TestsTable() {
   const tests = await getTests();
@@ -9,9 +10,7 @@ export default async function TestsTable() {
         <h2 className="text-2xl font-bold text-gray-900">
           Результаты тестирования
         </h2>
-        <p className="text-sm text-gray-500 mt-1">
-          Всего пройдено тестов: {tests.length}
-        </p>
+         <TestsExport />
       </div>
 
       <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
@@ -23,8 +22,7 @@ export default async function TestsTable() {
                 <th className="px-6 py-4 font-medium">Дата</th>
                 <th className="px-6 py-4 font-medium">ФИО</th>
                 <th className="px-6 py-4 font-medium">Тест</th>
-                <th className="px-6 py-4 font-medium">Возраст</th>
-                <th className="px-6 py-4 font-medium">Пол</th>
+            
                 <th className="px-6 py-4 font-medium">Результат</th>
               </tr>
             </thead>
@@ -58,17 +56,11 @@ export default async function TestsTable() {
                     </span>
                   </td>
 
-                  <td className="px-6 py-4 text-sm text-gray-700">
-                    {test.age} лет
-                  </td>
-
-                  <td className="px-6 py-4 text-sm text-gray-700">
-                    {test.gender}
-                  </td>
+                
 
                   <td className="px-6 py-4">
-                    <span className="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-green-50 text-green-700">
-                      {test.result}
+                    <span className={`inline-flex px-3 py-1 rounded-full text-xs font-semibold ${test.result >= 70 ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}>
+                      {test.result >= 70 ? `${test.result} Сдано` : `${test.result} Не сдано`}
                     </span>
                   </td>
                 </tr>

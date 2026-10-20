@@ -23,7 +23,7 @@ return rows as any[]
 
 export async function getTests(){
 
-const [rows] = await db.query(`SELECT * FROM tests`)
+const [rows] = await db.query(`SELECT * FROM tests_results WHERE created_at >= DATE_SUB(NOW(), INTERVAL 1 MONTH) order by created_at DESC`)
 
 
 return rows as any[]
