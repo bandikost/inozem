@@ -103,12 +103,10 @@ export default function AddProgramForm() {
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
 
               <Field label="Образование">
-                <input
-                  value={education}
-                  onChange={(e) => setEducation(e.target.value)}
-                  placeholder="Высшее медицинское образование"
-                  className="input-main"
-                />
+                <select value={education} onChange={(e) => setEducation(e.target.value)} className="input-main">
+                    <option value="Высшее">Высшее</option>
+                    <option value="Среднее">Среднее</option>
+                </select>
               </Field>
 
               <Field label="Направление / специализация">
@@ -163,12 +161,10 @@ export default function AddProgramForm() {
               </Field>
 
               <Field label="Категория">
-            <input
-              value={category}
-              onChange={(e) =>setCategory(e.target.value)}
-              placeholder="Повышение квалификации"
-              className="input-main"
-            />
+            <select value={category} onChange={(e) =>setCategory(e.target.value)} className="input-main">
+                <option value="Повышение квалификации">Повышение квалификации</option>
+                <option value="Профессиональная переподготовка">Профессиональная переподготовка</option>
+            </select>
           </Field>
 
           <Field label="Подзаголовок">

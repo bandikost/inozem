@@ -250,24 +250,25 @@ export default function ProgramEditor({
             label="Уровень образования"
             icon={<GraduationCap size={15} />}
           >
-            <input
-              value={program.education}
-              onChange={(e) =>
+            <select value={program.education} onChange={(e) =>
                 setProgram({
                   ...program,
                   education: e.target.value,
                 })
               }
-              placeholder="Высшее медицинское образование"
+              
               className="input-main"
-            />
+            >
+            <option value="Высшее">Высшее</option>
+                    <option value="Среднее">Среднее</option>
+                </select>
           </Field>
 
           <Field
             label="Категория"
             icon={<Tag size={15} />}
           >
-            <input
+            <select
               value={program.category}
               onChange={(e) =>
                 setProgram({
@@ -275,9 +276,12 @@ export default function ProgramEditor({
                   category: e.target.value,
                 })
               }
-              placeholder="Повышение квалификации"
+              
               className="input-main"
-            />
+            >
+              <option value="Повышение квалификации">Повышение квалификации</option>
+                <option value="Профессиональная переподготовка">Профессиональная переподготовка</option>
+              </select>
           </Field>
 
           <Field
