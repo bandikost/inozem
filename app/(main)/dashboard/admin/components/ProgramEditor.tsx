@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   BookOpen,
   ChevronDown,
@@ -19,6 +19,7 @@ import {
 import BlockEditor from "./BlockEditor";
 import { Block } from "@/lib/Block/Block";
 import * as Toast from "@radix-ui/react-toast";
+import DescriptionEditor from "./DescriptionEditor";
 
 type Program = {
   specialization: string;
@@ -460,29 +461,27 @@ export default function ProgramEditor({
 
           <br />
 
+          
           <Field
             label="Описание программы"
-            hint="Используется при ознакомлении с программой">
-            <div className="relative">
-              <textarea
-                value={program.description}
-                onChange={(e) =>
-                  setProgram((prev) => ({
-                    ...prev,
-                    description: e.target.value,
-                  }))
-                }
-                maxLength={7000}
-                rows={6}
-                placeholder="Введите описание программы..."
-                className="input-main min-h-[160px] resize-y pr-20"
-              />
+            hint="Заголовки, списки, форматирование и текст из Word"
+            full
+          >
+            <DescriptionEditor
+              value={program.description}
+              onChange={(description) => {
+                setProgram((prev) => ({
+                  ...prev,
+                  description,
+                }));
+              }}
+            />
 
-              <span className="pointer-events-none absolute bottom-3 right-3 text-xs text-gray-400">
-                {program.description.length} / 7000
-              </span>
-            </div>
+            <p className="mt-2 text-right text-xs text-gray-400">
+              {program.description.replace(/<[^>]*>/g, "").length} / 7000
+            </p>
           </Field>
+
 
         </div>
       </section>
