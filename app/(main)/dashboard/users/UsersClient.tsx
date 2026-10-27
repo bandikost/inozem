@@ -562,49 +562,61 @@ export default function UsersClient({users, programs}: UsersClientProps) {
 
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
 
-                      <div className="flex-1">
+                      <div className="min-w-0 flex-1">
                         <label className="mb-2 block text-md font-medium text-zinc-800">
                           Добавить программу
                         </label>
 
                         <select
-                          value={selectedPrograms[user.id] ?? ""}
-                          onChange={(e) =>
-                            handleSelectProgram(
-                              user.id,
-                              Number(e.target.value)
-                            )
-                          }
-                          className="
-                            h-11
-                            w-full
-                            rounded-xl
-                            border
-                            border-zinc-200
-                            bg-white
-                            px-3
-                            text-md
-                            text-zinc-700
-                            outline-none
-                            transition
-                            focus:border-prpl/50
-                            focus:ring-4
-                            focus:ring-prpl/10
-                          "
-                        >
-                          <option value="">
-                            Выберите образовательную программу
-                          </option>
+  value={selectedPrograms[user.id] ?? ""}
+  onChange={(e) =>
+    handleSelectProgram(user.id, Number(e.target.value))
+  }
+  className="
+    h-11
+    w-full
+    min-w-0
+    max-w-full
+    rounded-xl
+    border
+    border-zinc-200
+    bg-white
+    px-3
+    text-sm
+    text-zinc-700
+    outline-none
+    transition
+    focus:border-prpl/50
+    focus:ring-4
+    focus:ring-prpl/10
+  "
+>
+  <option value="">
+    Выберите образовательную программу
+  </option>
 
-                          {[...availablePrograms]
-                          .sort((a, b) => a.name.localeCompare(b.name, "ru", { sensitivity: "base" })).map((program) => (
-                            <option key={program.id} value={program.id}>
-                              {program.name} — {program.time}{" "}
-                              {getHourWord(program.time)} —{" "}
-                              {program.education}
-                            </option>
-                          ))}
-                        </select>
+  {[...availablePrograms]
+    .sort((a, b) =>
+      a.name.localeCompare(b.name, "ru", {
+        sensitivity: "base",
+      })
+    )
+    .map((program) => {
+      const label =
+        `${program.name} — ${program.time} ` +
+        `${getHourWord(program.time)} — ${program.education}`;
+
+      return (
+        <option
+          key={program.id}
+          value={program.id}
+          title={label}
+        >
+          {label}
+        </option>
+      );
+    })}
+</select>
                       </div>
 
                       <button
