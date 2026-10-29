@@ -332,57 +332,80 @@ export default async function Page({ params }: PageProps) {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 p-6 md:p-8 md:grid-cols-2">
-              {[
-                {
-                  name: activity.teacher,
-                  image: activity.teacher_img,
-                  key: "teacher",
-                },
-                {
-                  name: activity.teacher2,
-                  image: null,
-                  key: "teacher2",
-                },
-              ]
-                .filter((teacher) => teacher.name)
-                .map((teacher) => (
-                  <div
-                    key={teacher.key}
-                    className="flex flex-col gap-5 overflow-hidden rounded-2xl border border-zinc-200 bg-white"
-                  >
-                    {teacher.image && (
-                      <div className="relative min-h-[280px] overflow-hidden bg-zinc-100 md:min-h-[360px]">
-                        <ImageWithSkeleton
-                          src={teacher.image}
-                          alt="Спикер мероприятия"
-                          wrapperClassName="h-full w-full overflow-hidden"
-                          aspect="1/1"
-                        />
-                      </div>
-                    )}
+            <div
+  className={`grid grid-cols-1 gap-6 p-6 md:p-8 ${
+    [activity.teacher, activity.teacher2].filter(Boolean).length > 1
+      ? "md:grid-cols-2"
+      : ""
+  }`}
+>
+  {[
+    {
+      name: activity.teacher,
+      image: activity.teacher_img,
+      key: "teacher",
+    },
+    {
+      name: activity.teacher2,
+      image: activity.teacher2_img,
+      key: "teacher2",
+    },
+  ]
+    .filter((teacher) => teacher.name)
+    .map((teacher) => {
+      const singleTeacher =
+        [activity.teacher, activity.teacher2].filter(Boolean).length === 1;
 
-                    <div className="flex flex-col justify-center p-6 md:p-8">
-                      <div
-                        className="
-                          text-default/75
-                          leading-7
-                          [&_h3]:!text-xl
-                          [&_h3]:md:!text-2xl
-                          [&_h3]:font-semibold
-                          [&_h3]:text-prpl
-                          [&_h3]:mb-3
-                          [&_p]:mb-5
-                          [&_p:last-child]:mb-0
-                        "
-                        dangerouslySetInnerHTML={{
-                          __html: teacher.name!,
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
+      return (
+        <div
+          key={teacher.key}
+          className={`flex overflow-hidden rounded-2xl border border-zinc-200 bg-white ${
+            singleTeacher ? "flex-col md:flex-row" : "flex-col"
+          }`}
+        >
+          {teacher.image && (
+            <div
+              className={`relative overflow-hidden bg-zinc-100 ${
+                singleTeacher
+                  ? "w-full md:w-2/5"
+                  : "min-h-[280px] md:min-h-[360px]"
+              }`}
+            >
+              <ImageWithSkeleton
+                src={teacher.image}
+                alt="Спикер мероприятия"
+                wrapperClassName="h-full w-full overflow-hidden"
+                aspect="1/1"
+              />
             </div>
+          )}
+
+          <div
+            className={`flex flex-col justify-center p-6 md:p-8 ${
+              singleTeacher && teacher.image ? "flex-1" : "w-full"
+            }`}
+          >
+            <div
+              className="
+                text-default/75
+                leading-7
+                [&_h3]:!text-xl
+                [&_h3]:md:!text-2xl
+                [&_h3]:font-semibold
+                [&_h3]:text-prpl
+                [&_h3]:mb-3
+                [&_p]:mb-5
+                [&_p:last-child]:mb-0
+              "
+              dangerouslySetInnerHTML={{
+                __html: teacher.name!,
+              }}
+            />
+          </div>
+        </div>
+      );
+    })}
+</div>
           </section>
         )}
 

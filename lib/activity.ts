@@ -167,7 +167,7 @@ export async function updateActivityBySlug(slug: string, data: UpdateActivity) {
         title_bg = ?,
         attendance_control = ?,
         location = ?,
-        planned_results = ?
+        planned_results = ?,
         content = ?
       WHERE slug = ?
     `,
