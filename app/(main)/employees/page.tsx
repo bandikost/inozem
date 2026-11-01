@@ -3,8 +3,6 @@ import ImageWithSkeleton from "@/components/ui/LazyLoad/ImageWithSkeleton"
 import { getAllEmlployeer, getAllTeachers } from "@/lib/users"
 import { ChevronRight } from "lucide-react"
 
-export const revalidate = 3600
-
 export const metadata = {
   title: 'Руководство | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»',
 }
