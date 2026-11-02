@@ -13,23 +13,23 @@ type TestResult = {
   patronymic: string | null;
   last_name: string;
   result: number | string;
+  specialization: string | null;
   created_at: string;
 };
 
-export default function TestsExport() {
+type Props = {
+  tests: TestResult[];
+  specialty: string;
+};
+
+export default function TestsExport({ tests, specialty }: Props) {
+
   const [loading, setLoading] = useState(false);
+  
 
   async function downloadExcel() {
     try {
       setLoading(true);
-
-      const response = await fetch("/api/tests_results/export");
-
-      if (!response.ok) {
-        throw new Error("Не удалось получить результаты тестов");
-      }
-
-      const tests: TestResult[] = await response.json();
 
       if (!tests.length) {
         alert("Нет результатов для выгрузки");
@@ -222,7 +222,18 @@ export default function TestsExport() {
         "Результаты тестов"
       );
 
-      XLSX.writeFile(workbook, "Результаты_тестирования.xlsx");
+      
+      const date = new Date().toLocaleDateString("ru-RU").replace(/\./g, "-");
+
+      const specialtyName =
+        specialty === "Все специальности"
+          ? "Все_специальности"
+          : specialty.replace(/[^а-яА-ЯёЁa-zA-Z0-9_-]/g, "_");
+
+      XLSX.writeFile(
+        workbook,
+        `Результаты_${specialtyName}_${date}.xlsx`
+      );
     } catch (error) {
       console.error("Ошибка экспорта:", error);
       alert("Не удалось сформировать Excel-файл");

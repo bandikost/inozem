@@ -30,12 +30,14 @@ interface Props {
   questions: Question[];
   nameTest: string | null;
   userId: number;
+  specialization: string | null;
 }
 
 export default function TestRunner({
   questions,
   nameTest,
   userId,
+  specialization,
 }: Props) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
@@ -119,6 +121,7 @@ export default function TestRunner({
   body: JSON.stringify({
     user_id: userId,
     name_test: nameTest,
+    specialization,
     result: percentage,
     exp: correctCount,
   }),

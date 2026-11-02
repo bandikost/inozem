@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    const { user_id, name_test, result, exp } = body;
+    const { user_id, name_test, specialization, result, exp } = body;
 
     if (
       !user_id ||
@@ -22,25 +22,29 @@ export async function POST(request: NextRequest) {
 
   
     const [testRows] = await db.execute(
-      `
-        SELECT title
-        FROM tests_creator
-        WHERE slug = ?
-        LIMIT 1
-      `,
-      [name_test.trim()]
-    );
-
-    const tests = testRows as { title: string }[];
-
-    if (tests.length === 0) {
-      return NextResponse.json(
-        { error: "Тест не найден" },
-        { status: 404 }
+        `
+          SELECT title, specialization
+          FROM tests_creator
+          WHERE slug = ?
+          LIMIT 1
+        `,
+        [name_test.trim()]
       );
-    }
 
-    const testTitle = tests[0].title;
+      const tests = testRows as {
+        title: string;
+        specialization: string | null;
+      }[];
+
+      if (tests.length === 0) {
+        return NextResponse.json(
+          { error: "Тест не найден" },
+          { status: 404 }
+        );
+      }
+
+      const testTitle = tests[0].title;
+      const testSpecialization = tests[0].specialization;
 
     const [existing] = await db.execute(
       `
@@ -57,13 +61,14 @@ export async function POST(request: NextRequest) {
     if (rows.length > 0) {
       await db.execute(
         `
-          UPDATE tests_results
-          SET result = ?,
-              exp = ?,
-              created_at = CURRENT_TIMESTAMP
-          WHERE id = ?
+           UPDATE tests_results
+    SET result = ?,
+        exp = ?,
+        specialization = ?,
+        created_at = CURRENT_TIMESTAMP
+    WHERE id = ?
         `,
-        [result, exp, rows[0].id]
+       [result, exp, testSpecialization, rows[0].id]
       );
 
       return NextResponse.json({
@@ -73,32 +78,34 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const [insertResult] = await db.execute(
-      `
-        INSERT INTO tests_results (
-          user_id,
-          name_test,
-          name,
-          patronymic,
-          last_name,
-          result,
-          exp,
-          education_level
-        )
-        SELECT
-          id,
-          ?,
-          name,
-          patronymic,
-          last_name,
-          ?,
-          ?,
-          education_level
-        FROM users
-        WHERE id = ?
-      `,
-      [testTitle, result, exp, user_id]
-    );
+   const [insertResult] = await db.execute(
+  `
+    INSERT INTO tests_results (
+      user_id,
+      name_test,
+      name,
+      patronymic,
+      last_name,
+      result,
+      exp,
+      education_level,
+      specialization
+    )
+    SELECT
+      id,
+      ?,
+      name,
+      patronymic,
+      last_name,
+      ?,
+      ?,
+      education_level,
+      ?
+    FROM users
+    WHERE id = ?
+  `,
+  [testTitle, result, exp, testSpecialization, user_id]
+);
 
     const inserted = insertResult as {
       insertId: number;

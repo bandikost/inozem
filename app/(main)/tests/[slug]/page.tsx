@@ -71,10 +71,11 @@ export default async function Page({ params }: PageProps) {
         </h1>
 
         <TestRunner
-  questions={test}
-  nameTest={test[0].slug}
-  userId={user.id}
-/>
+          questions={test}
+          nameTest={test[0].slug}
+          userId={user.id}
+          specialization={test[0].specialization}
+        />
 
       </div>
 

@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ALL_SPECIALTIES } from "@/data/specialties";
 
 export default function CreateTestForm() {
   const router = useRouter();
 
   const [title, setTitle] = useState("");
-  const [slug, setSlug] = useState("");
+  const [slug, setSlug] = useState("")
+  const [specialization, setSpecialization] = useState("")
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -27,6 +29,7 @@ export default function CreateTestForm() {
         body: JSON.stringify({
           title,
           slug,
+          specialization
         }),
       });
 
@@ -89,6 +92,23 @@ export default function CreateTestForm() {
           placeholder="osnovy-programmirovaniya"
           className="rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-prpl"
         />
+      </div>
+
+      <div className="mt-6 flex flex-col gap-2">
+        <label className="font-medium">
+          Специальность
+        </label>
+
+        <select value={specialization}  onChange={(e) => setSpecialization(e.target.value)}
+                        className="input-main rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-prpl">
+                        <option value="">Выберите специализацию</option>
+        
+                        {ALL_SPECIALTIES.map((item) => (
+                          <option key={item} value={item}>
+                            {item}
+                          </option>
+                        ))}
+                      </select>
       </div>
 
       <button

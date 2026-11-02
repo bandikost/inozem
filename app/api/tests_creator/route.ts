@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    const { title, slug } = body;
+    const { title, slug, specialization } = body;
 
     if (!title?.trim()) {
       return NextResponse.json(
@@ -43,13 +43,16 @@ export async function POST(request: NextRequest) {
       `
         INSERT INTO tests_creator (
           title,
-          slug
+          slug,
+          specialization
+
         )
-        VALUES (?, ?)
+        VALUES (?, ?, ?)
       `,
       [
         title.trim(),
         slug.trim(),
+        specialization.trim(),
       ]
     );
 
