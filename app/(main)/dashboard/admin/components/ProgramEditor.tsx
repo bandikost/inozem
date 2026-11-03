@@ -282,6 +282,7 @@ export default function ProgramEditor({
             >
               <option value="Повышение квалификации">Повышение квалификации</option>
                 <option value="Профессиональная переподготовка">Профессиональная переподготовка</option>
+                <option value="Профессиональное обучение">Профессиональное обучение</option>
               </select>
           </Field>
 
