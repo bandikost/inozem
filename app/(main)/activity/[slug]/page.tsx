@@ -47,9 +47,14 @@ export default async function Page({ params }: PageProps) {
   
   if (!activity) return notFound()
 
-    const currentYear = new Date().getFullYear()
-    const endDate = activity.dates ? parseDateActivitySlug(activity.dates, currentYear) : null
-    const isActivityFinished = endDate ? new Date() >= endDate : false
+    
+   const endDate = activity.dates
+  ? parseDateActivitySlug(activity.dates, activity.year)
+  : null
+
+const isActivityFinished = endDate
+  ? new Date() >= endDate
+  : false
 
   const infoBlocks = [
     {

@@ -1,8 +1,7 @@
 export default function parseDateActivitySlug(
   dates: string,
-  year: number
+  year: number | string
 ): Date | null {
-
   const months: Record<string, number> = {
     января: 0,
     февраля: 1,
@@ -19,17 +18,22 @@ export default function parseDateActivitySlug(
   }
 
   const match = dates.match(
-    /(\d{1,2})(?:\s*-\s*(\d{1,2}))?\s+([а-яё]+)/i
+    /(\d{1,2})(?:\s*[-–—]\s*(\d{1,2}))?\s+([а-яё]+)/i
   )
 
   if (!match) return null
 
-  const startDay = Number(match[1])
-  const endDay = match[2] ? Number(match[2]) : startDay + 1
+  const endDay = match[2]
+    ? Number(match[2])
+    : Number(match[1])
 
   const month = months[match[3].toLowerCase()]
 
   if (month === undefined) return null
 
-  return new Date(year, month, endDay + 1)
+  const eventYear = Number(year)
+
+  if (!eventYear) return null
+
+  return new Date(eventYear, month, endDay + 1)
 }
