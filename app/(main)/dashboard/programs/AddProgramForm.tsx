@@ -106,6 +106,7 @@ export default function AddProgramForm() {
                 <select value={education} onChange={(e) => setEducation(e.target.value)} className="input-main">
                     <option value="Высшее">Высшее</option>
                     <option value="Среднее">Среднее</option>
+                    <option value="Среднее общее образование">Среднее общее образование</option>
                 </select>
               </Field>
 

@@ -262,6 +262,7 @@ export default function ProgramEditor({
             >
             <option value="Высшее">Высшее</option>
                     <option value="Среднее">Среднее</option>
+                    <option value="Среднее общее образование">Среднее общее образование</option>
                 </select>
           </Field>
 
