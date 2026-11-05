@@ -34,6 +34,7 @@ export default function Page() {
           
          
  <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
+   <h2 className="my-6 !text-3xl font-semibold text-prpl text-center">Основные сведения</h2>
   <div className="space-y-4">
     {legalInfo.map((item, index) => (
       <ToggleBlock key={index} title={item.title}>
@@ -48,41 +49,45 @@ export default function Page() {
           </div>
 
           <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-            
-              
+            <ToggleBlock title="Структура и органы управления образовательной организацией">
+    
+       <LoadingLink href="/employees" className="text-prpl hover:underline" >
+        Перейти к списку
+      </LoadingLink>
+   
+    </ToggleBlock>
+              <div className="mt-4">
                 <ToggleBlock title="Документы">
-              
-            
+                    
+                  <div className="grid gap-3">
+                    {documents.map((doc, index) => (
+                      <Link
+                        key={index}
+                        href={doc.link}
+                        target="_blank"
+                        className="
+                        flex
+                        justify-between
+                        items-center
+                        p-4
+                        rounded-2xl
+                        border
+                        border-slate-200
+                        hover:border-prpl
+                        hover:bg-prpl/5
+                        transition-all
+                        cursor-poiner
+                        text-lg
+                        "
+                      >
+                        <span>{doc.name}</span>
 
-              
-            <div className="grid gap-3">
-              {documents.map((doc, index) => (
-                <Link
-                  key={index}
-                  href={doc.link}
-                  target="_blank"
-                  className="
-                  flex
-                  justify-between
-                  items-center
-                  p-4
-                  rounded-2xl
-                  border
-                  border-slate-200
-                  hover:border-prpl
-                  hover:bg-prpl/5
-                  transition-all
-                  cursor-poiner
-                  text-lg
-                  "
-                >
-                  <span>{doc.name}</span>
-
-                  <ChevronRight size={18} />
-                </Link>
-              ))}
-            </div>
-</ToggleBlock>
+                        <ChevronRight size={18} />
+                      </Link>
+                    ))}
+                  </div>
+      </ToggleBlock>
+      </div>
             <div className="mt-4 space-y-4">
 
                <ToggleBlock title="Образование">
@@ -92,12 +97,10 @@ export default function Page() {
     </ToggleBlock>
 
   
-    <ToggleBlock title="Структура и органы управления образовательной организацией">
-    
-       <LoadingLink href="/employees" className="text-prpl hover:underline" >
-        Перейти к списку
+    <ToggleBlock title="Руководство">
+      <LoadingLink href="/employees" className="text-prpl hover:underline">
+        Перейти к сведениям о педагогическом составе
       </LoadingLink>
-   
     </ToggleBlock>
 
   
@@ -128,8 +131,51 @@ export default function Page() {
                   </Link>
                 ))}
               </ToggleBlock>
+
+              <ToggleBlock title="Финансово-хозяйственная деятельность">
+                {smeta.map((doc, i) => (
+                  <Link
+                    key={i}
+                    href={doc.link}
+                    target="_blank"
+                    className="block py-2 hover:text-prpl hover:underline cursor-pointer"
+                  >
+                    {doc.name}
+                  </Link>
+                ))}
+              </ToggleBlock>
+               <ToggleBlock title="Вакантные места для приема (перевода) обучающихся">
+                <p>Не предусмотрено</p>
+              </ToggleBlock>
              
-           <ToggleBlock title="Образовательные стандарты и требования">
+         
+
+         {/*     <ToggleBlock title="Локальные нормативные акты">
+                {regulations.map((doc, i) => (
+                  <Link
+                    key={i}
+                    href={doc.link}
+                    target="_blank"
+                    className="block py-2 hover:text-prpl hover:underline cursor-pointer"
+                  >
+                    {doc.name}
+                  </Link>
+                ))}
+              </ToggleBlock>
+*/} 
+                   
+            
+
+              <ToggleBlock title="Стипендии и меры поддержки обучающихся">
+                <p>Не предусмотрено</p>
+              </ToggleBlock>
+             
+
+              <ToggleBlock title="Организация питания в образовательной организации">
+                <p>Не предусмотрено</p>
+              </ToggleBlock>
+
+                <ToggleBlock title="Образовательные стандарты и требования">
     <div className="space-y-8 text-slate-700 leading-7">
 
       <p>
@@ -324,49 +370,6 @@ export default function Page() {
 
     </div>
   </ToggleBlock>
-
-         {/*     <ToggleBlock title="Локальные нормативные акты">
-                {regulations.map((doc, i) => (
-                  <Link
-                    key={i}
-                    href={doc.link}
-                    target="_blank"
-                    className="block py-2 hover:text-prpl hover:underline cursor-pointer"
-                  >
-                    {doc.name}
-                  </Link>
-                ))}
-              </ToggleBlock>
-*/} 
-                   <ToggleBlock title="Финансово-хозяйственная деятельность">
-                {smeta.map((doc, i) => (
-                  <Link
-                    key={i}
-                    href={doc.link}
-                    target="_blank"
-                    className="block py-2 hover:text-prpl hover:underline cursor-pointer"
-                  >
-                    {doc.name}
-                  </Link>
-                ))}
-              </ToggleBlock>
-            
-
-              <ToggleBlock title="Стипендии и меры поддержки обучающихся">
-                <p>Не предусмотрено</p>
-              </ToggleBlock>
-
-              <ToggleBlock title="Международное сотрудничество">
-                <p>Не предусмотрено</p>
-              </ToggleBlock>
-
-              <ToggleBlock title="Вакантные места для приема (перевода) обучающихся">
-                <p>Не предусмотрено</p>
-              </ToggleBlock>
-
-              <ToggleBlock title="Организация питания в образовательной организации">
-                <p>Не предусмотрено</p>
-              </ToggleBlock>
 
          {/*       <ToggleBlock title="Плата за присмотр и уход / содержание детей / группы продленного дня">
                 <p>Не предусмотрено</p>
