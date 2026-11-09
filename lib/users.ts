@@ -1,6 +1,7 @@
 import { RowDataPacket } from "mysql2/promise"
 import { db } from "@/lib/db"
 import { UserRow } from "@/app/interface/user"
+import { AcademyStructureRow } from "@/app/interface/academy";
 
 let cachedTeachers: UserRow[] | null = null;
 let cacheTime = 0;
@@ -45,6 +46,48 @@ export async function getAllEmlployeer(): Promise<UserRow[]> {
             patronymic, Teacher_text, photo_url, isEmployer, isAdmin, isRated, superAdmin
      FROM users
      WHERE isEmployer = 1`
+  );
+
+  return rows;
+}
+
+export async function getAcademyStructure(): Promise<AcademyStructureRow[]> {
+  const [rows] = await db.query<
+    (AcademyStructureRow & RowDataPacket)[]
+  >(
+    `SELECT
+        s.id,
+        s.user_id,
+        s.employer_id,
+        e.name AS employer_name,
+        s.position,
+        s.sort_order,
+        s.contact_phone,
+        s.contact_email,
+
+        u.name,
+        u.last_name,
+        u.patronymic,
+        u.photo_url,
+        u.specialization,
+        u.Teacher_text
+
+     FROM academy_structure s
+
+     INNER JOIN employers e
+        ON e.id = s.employer_id
+
+     LEFT JOIN users u
+        ON u.id = s.user_id
+
+     WHERE
+    e.is_active = 1
+    AND s.user_id IS NOT NULL
+
+     ORDER BY
+        e.sort_order ASC,
+        s.sort_order ASC,
+        s.id ASC`
   );
 
   return rows;
