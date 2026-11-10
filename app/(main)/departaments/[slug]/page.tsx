@@ -262,72 +262,72 @@ export default async function Page({ params }: PageProps) {
       </div>
 
      <div className="my-16 overflow-hidden rounded-3xl bg-gradient-to-br from-[#533785] to-[#8D4C98] px-6 py-8 text-white sm:px-10 sm:py-10">
-  <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-    
-    <div className="max-w-xl">
-      <h2 className="text-2xl font-bold sm:text-3xl">
-        Хотите обучаться в Академии?
-      </h2>
+      <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+        
+        <div className="max-w-xl">
+          <h2 className="text-2xl font-bold sm:text-3xl">
+            Хотите обучаться в Академии?
+          </h2>
 
-      <p className="mt-3 text-sm leading-6 text-white/75 sm:text-base">
-        Подайте заявку на обучение или свяжитесь с нами,
-        если у вас остались вопросы.
-      </p>
-    </div>
+          <p className="mt-3 text-sm leading-6 text-white/75 sm:text-base">
+            Подайте заявку на обучение или свяжитесь с нами,
+            если у вас остались вопросы.
+          </p>
+        </div>
 
-    <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
-      <LoadingLink
-        href="/bid"
-        className="
-          inline-flex items-center justify-center
-          rounded-xl
-          bg-white
-          px-6 py-3
-          text-sm font-semibold
-          !text-[#533785]
-          transition
-          hover:bg-zinc-100
-        "
-      >
-        Подать заявку
-      </LoadingLink>
+        <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
+          <LoadingLink
+            href="/bid"
+            className="
+              inline-flex items-center justify-center
+              rounded-xl
+              bg-white
+              px-6 py-3
+              text-sm font-semibold
+              !text-[#533785]
+              transition
+              hover:bg-zinc-100
+            "
+          >
+            Подать заявку
+          </LoadingLink>
 
-      <LoadingLink
-        href="/question"
-        className="
-          inline-flex items-center justify-center
-          rounded-xl
-          border border-white/30
-          bg-white/10
-          px-6 py-3
-          text-sm font-semibold
-          !text-white
-          backdrop-blur
-          transition
-          hover:bg-white/20
-        "
-      >
-        Задать вопрос
-      </LoadingLink>
+          <LoadingLink
+            href="/question"
+            className="
+              inline-flex items-center justify-center
+              rounded-xl
+              border border-white/30
+              bg-white/10
+              px-6 py-3
+              text-sm font-semibold
+              !text-white
+              backdrop-blur
+              transition
+              hover:bg-white/20
+            "
+          >
+            Задать вопрос
+          </LoadingLink>
 
-      <LoadingLink
-        href="/contacts"
-        className="
-          inline-flex items-center justify-center
-          rounded-xl
-          px-6 py-3
-          text-sm font-semibold
-          !text-white/80
-          transition
-          !bg-white/10
-          hover:!text-white
-        "
-      >
-        Контакты
-      </LoadingLink>
-    </div>
+          <LoadingLink
+            href="/contacts"
+            className="
+              inline-flex items-center justify-center
+              rounded-xl
+              px-6 py-3
+              text-sm font-semibold
+              !text-white/80
+              transition
+              !bg-white/10
+              hover:!text-white
+            "
+          >
+            Контакты
+          </LoadingLink>
+        </div>
 
-  </div>
+      </div>
     </div>
     </section>
   )
