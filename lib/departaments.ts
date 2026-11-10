@@ -49,8 +49,7 @@ export async function getDepartmentsBySlug(
      FROM departament_squad ds
      JOIN departament_user du
        ON du.id = ds.departament_user_id
-     WHERE ds.departament_id = ?
-     ORDER BY du.last_name, du.name`,
+     WHERE ds.departament_id = ?`,
     [department.id]
   )
 
