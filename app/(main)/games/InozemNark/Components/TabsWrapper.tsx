@@ -4,6 +4,7 @@ import { useState } from "react"
 import Buttons from "./Buttons"
 import { Game } from "@/app/interface/games"
 import { AchievementKey, achievementsMap } from "@/lib/games/achievements"
+import LearningTab from "./LearningTab"
 
 
 type Props = {
@@ -24,7 +25,7 @@ export default function TabsWrapper({ leaderboard, userRank, achievements }: Pro
         <>
             <Buttons current={current} setCurrent={setCurrent} />
 
-            {current === 0 && <div className="flex items-center justify-center text-lg mt-10 text-center">Тут нужно разместить контент обучения</div>}
+            {current === 0 && <LearningTab />}
             {current === 1 && <div className="flex flex-col gap-4 mt-10" >
                         {keys.map((key) => {
                             const item = achievementsMap[key]
