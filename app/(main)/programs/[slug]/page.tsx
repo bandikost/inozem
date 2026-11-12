@@ -45,7 +45,29 @@ export default async function Page({ params }: ProgramsPageProps) {
   if (!program) return <div>Программа не найдена</div>
 
   if (Number(program.study) === 1) {
-  return <Study programId={program.id} />
+  return (
+    <div className=" px-2 my-27">
+       <nav className="mb-8 flex flex-wrap items-center gap-x-2 gap-y-2 text-md text-zinc-500">
+      
+            <LoadingLink href="/" className="shrink-0 hover:text-blue transition hover:underline">
+              Главная
+            </LoadingLink>
+      
+            <ChevronRight size={14} className="shrink-0" />
+
+            <LoadingLink href="/programs" className="shrink-0 hover:text-blue transition hover:underline">
+              Образование
+            </LoadingLink>
+      
+            <ChevronRight size={14} className="shrink-0" />
+      
+        <span className="min-w-0 flex-1 truncate text-zinc-800 opacity-70">
+          {program.name}
+        </span>
+      
+      </nav>
+  <Study programId={program.id} />
+  </div>)
 }
 
   let user = null
