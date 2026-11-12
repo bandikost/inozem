@@ -17,6 +17,7 @@
   } from "lucide-react"
 
   import { getStudyByProgramId } from "@/lib/programs/study"
+import PayButton from "@/components/ui/Buttons/PayButton"
 
   interface StudyProps {
     programId: number
@@ -510,61 +511,111 @@
 
 
           {study.content && (
-            <section className="mt-12 rounded-3xl border border-gray-200 shadow-md bg-white px-6 py-8 md:px-10 md:py-10">
+  <section className="mt-14">
 
-              <div className="mb-8">
+    <div className="mb-9">
+      <p className="text-sm font-semibold uppercase tracking-wider text-blue">
+        📚 Обучение
+      </p>
 
-                <p className="text-sm font-medium text-blue">
-                  Обучение
-                </p>
+      <h2 className="mt-2 !text-3xl font-semibold tracking-tight text-prpl md:!text-4xl">
+        Программа обучения
+      </h2>
 
-                <h2 className="mt-1 !text-3xl font-semibold tracking-tight text-prpl">
-                  Программа обучения
-                </h2>
+      <p className="mt-3 max-w-2xl text-default/55 leading-7">
+        Подробная информация о программе, тематике занятий и преподавателях.
+      </p>
+    </div>
 
-              </div>
+    <article
+      className="
+        space-y-8
 
-              <article className="
-                  max-w-4xl
+        [&>section]:rounded-3xl
+        [&>section]:border
+        [&>section]:border-zinc-200
+        [&>section]:bg-white
+        [&>section]:p-6
+        [&>section]:shadow-sm
+        md:[&>section]:p-10
 
-                  text-[16px]
-                  leading-8
-                  text-default/70
+        [&_h2]:mb-6
+        [&_h2]:mt-0
+        [&_h2]:!text-2xl
+        [&_h2]:font-semibold
+        [&_h2]:leading-tight
+        [&_h2]:text-prpl
 
-                  [&_h2]:mb-5
-                  [&_h2]:mt-10
-                  [&_h2]:!text-2xl
-                  [&_h2]:font-semibold
-                  [&_h2]:leading-tight
-                  [&_h2]:text-prpl
+        [&_h3]:mb-4
+        [&_h3]:mt-8
+        [&_h3]:!text-xl
+        [&_h3]:font-semibold
+        [&_h3]:text-prpl
 
-                  [&_h3]:mb-4
-                  [&_h3]:mt-8
-                  [&_h3]:!text-xl
-                  [&_h3]:font-semibold
-                  [&_h3]:text-prpl
+        [&_p]:mb-5
+        [&_p]:leading-8
+        [&_p:last-child]:mb-0
 
-                  [&_p]:mb-5
+        [&_strong]:font-semibold
+        [&_strong]:text-default
 
-                  [&_ul]:my-6
-                  [&_ul]:space-y-3
+        [&_ul]:my-6
+        [&_ul]:space-y-3
+        [&_ol]:my-6
+        [&_ol]:space-y-3
 
-                  [&_ol]:my-6
-                  [&_ol]:space-y-3
+        [&_li]:relative
+        [&_li]:pl-6
+        [&_li]:leading-7
+        [&_li]:before:absolute
+        [&_li]:before:left-0
+        [&_li]:before:top-[0.8em]
+        [&_li]:before:h-1.5
+        [&_li]:before:w-1.5
+        [&_li]:before:rounded-full
+        [&_li]:before:bg-prpl
 
-                  [&_li]:pl-1
-                  [&_li]:marker:text-prpl
+        [&_table]:w-full
+        [&_table]:border-collapse
+        [&_table]:my-6
+        [&_td]:border
+        [&_td]:border-zinc-200
+        [&_td]:px-4
+        [&_td]:py-4
+        [&_th]:border
+        [&_th]:border-zinc-200
+        [&_th]:bg-prpl/5
+        [&_th]:px-4
+        [&_th]:py-4
+        [&_th]:text-left
+        [&_th]:font-semibold
 
-                  [&_strong]:font-semibold
-                  [&_strong]:text-default
-                "
-                dangerouslySetInnerHTML={{
-                  __html: study.content,
-                }}
-              />
+        [&_.teacher-grid]:grid
+        [&_.teacher-grid]:grid-cols-1
+        [&_.teacher-grid]:gap-6
+        [&_.teacher-grid]:md:grid-cols-2
 
-            </section>
-          )}
+        [&_.teacher-card]:overflow-hidden
+        [&_.teacher-card]:rounded-2xl
+        [&_.teacher-card]:border
+        [&_.teacher-card]:border-zinc-200
+        [&_.teacher-card]:bg-white
+
+        [&_.teacher-card_img]:h-[480px]
+        [&_.teacher-card_img]:w-full
+        [&_.teacher-card_img]:object-cover
+        [&_.teacher-card_img]:object-center
+
+        [&_img]:max-w-full
+        [&_img]:rounded-2xl
+      "
+      dangerouslySetInnerHTML={{
+        __html: study.content,
+      }}
+    />
+
+  </section>
+)}
 
 
           {study.conditions && (
@@ -617,94 +668,69 @@
             </section>
           )}
 
-          <section className="mt-8 overflow-hidden rounded-3xl bg-prpl">
+         <section className="mt-12 overflow-hidden rounded-3xl bg-prpl">
 
-            <div className="px-6 py-8 md:px-10 md:py-10">
+  <div className="relative px-6 py-10 md:px-12 md:py-12">
 
-              <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+    <div className="absolute -right-16 -top-20 h-64 w-64 rounded-full border border-white/10" />
+    <div className="absolute -right-8 -top-12 h-44 w-44 rounded-full border border-white/10" />
 
-                <div>
+    <div className="relative flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
 
-                  <p className="text-sm font-medium text-white/55">
-                    Готовы присоединиться?
-                  </p>
+      <div className="max-w-2xl">
 
-                  <h2 className="mt-2 !text-3xl font-semibold text-white md:!text-4xl">
-                    Запишитесь на обучение
-                  </h2>
+        <p className="text-sm font-medium text-white/55">
+          🎓 Начните обучение
+        </p>
 
-                  {price > 0 && (
-                    <p className="mt-3 text-lg text-white/65">
-                      Стоимость - {" "}
-                      <span className="font-semibold text-white">
-                        {price.toLocaleString("ru-RU")} ₽
-                      </span>
-                    </p>
-                  )}
+        <h2 className="mt-3 !text-3xl font-semibold text-white md:!text-4xl">
+          Готовы присоединиться?
+        </h2>
 
-                </div>
+        <p className="mt-4 leading-7 text-white/65">
+          Получите необходимые знания и практические навыки
+          под руководством ведущих специалистов.
+        </p>
 
-                <div className="flex w-full flex-col gap-2.5 sm:w-auto sm:min-w-[250px]">
+        {price > 0 && (
+          <div className="mt-6">
+            <span className="block text-sm text-white/55">
+              Стоимость программы
+            </span>
 
-                  {study.paylink && (
-                    <LoadingLink href={study.paylink} className="
-                        group
-                        flex
-                        items-center
-                        justify-center
-                        gap-2
-                        rounded-xl
-                        bg-white
-                        px-6
-                        py-4
-                        text-sm
-                        font-semibold
-                        text-prpl
-                        transition
-                        hover:bg-white/90">
+            <span className="mt-1 block text-4xl font-semibold text-white">
+              {price.toLocaleString("ru-RU")} ₽
+            </span>
+          </div>
+        )}
 
-                      <CreditCard size={18} />
+      </div>
 
-                      Оплатить обучение
+      <div className="relative flex w-full flex-col gap-3 md:w-auto md:min-w-[260px]">
 
-                      <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
+        <PayButton programId={programId} />
 
-                    </LoadingLink>
-                  )}
+        <LoadingLink
+          href="/bid"
+          className="
+            flex items-center justify-center gap-2
+            rounded-xl border border-white/20
+            px-6 py-4
+            text-sm font-semibold !text-white
+            transition hover:bg-white/10
+          "
+        >
+          <FileText size={18} />
+          Подать заявку
+        </LoadingLink>
 
-                  <LoadingLink
-                    href="/bid"
-                    className="
-                      flex
-                      items-center
-                      justify-center
-                      gap-2
-                      rounded-xl
-                      border
-                      border-white/20
-                      px-6
-                      py-4
-                      text-sm
-                      font-semibold
-                      !text-white
-                      transition
-                      hover:bg-white/10
-                    "
-                  >
+      </div>
 
-                    <FileText size={18} />
+    </div>
 
-                    Подать заявку
+  </div>
 
-                  </LoadingLink>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </section>
+</section>
 
         </div>
 
