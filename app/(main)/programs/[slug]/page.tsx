@@ -44,6 +44,10 @@ export default async function Page({ params }: ProgramsPageProps) {
 
   if (!program) return <div>Программа не найдена</div>
 
+  if (Number(program.study) === 1) {
+  return <Study programId={program.id} />
+}
+
   let user = null
   let hasAccess = false
 
@@ -263,9 +267,7 @@ const blocks: ProgramSliderBlock[] = currentBlocks.map((block: any) => ({
 </>  
       )}
 
-      {program.study && (
-        <Study programId={program.id} />
-      )}
+      
       </div>
     </section>
   );
