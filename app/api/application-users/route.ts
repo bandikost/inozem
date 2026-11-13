@@ -11,12 +11,15 @@ export async function POST(req: NextRequest) {
     name,
     phone,
     email,
+    passport,
+    snils,
     education_level,
     specialization,
     programm_name,
     programm_time,
     programm_category,
   } = await req.json()
+    
 
     const created_at = new Date();
 
@@ -57,31 +60,35 @@ export async function POST(req: NextRequest) {
       created_at,
     });
 
-    const [result] = await db.query<ResultSetHeader>(
-      `INSERT INTO application (
-        last_name,
-        patronymic,
-        name,
-        phone,
-        email,
-        education_level,
-        specialization,
-        programm_name,
-        created_at
-      )
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        last_name,
-        patronymic,
-        name,
-        phone,
-        email,
-        education_level,
-        specialization || null,
-        programm_name,
-        created_at,
-      ]
-    );
+   const [result] = await db.query<ResultSetHeader>(
+  `INSERT INTO application (
+    last_name,
+    patronymic,
+    name,
+    phone,
+    passport,
+    snils,
+    email,
+    education_level,
+    specialization,
+    programm_name,
+    created_at
+  )
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  [
+    last_name,
+    patronymic,
+    name,
+    phone,
+    passport?.trim() || null,
+    snils?.trim() || null,
+    email,
+    education_level,
+    specialization || null,
+    programm_name,
+    created_at,
+  ]
+);
 
     console.log(
       "APPLICATION INSERTED:",
@@ -89,19 +96,21 @@ export async function POST(req: NextRequest) {
     );
 
     try {
-      await sendApplicationEmail(
-      last_name,
-      patronymic,
-      name,
-      phone,
-      email,
-      education_level,
-      specialization || "",
-      programm_name,
-      programm_time,
-      programm_category,
-      created_at
-    )
+     await sendApplicationEmail(
+  last_name,
+  patronymic,
+  name,
+  phone,
+  passport?.trim() || "",
+  snils?.trim() || "",
+  email,
+  education_level,
+  specialization || "",
+  programm_name,
+  programm_time,
+  programm_category,
+  created_at
+)
 
       console.log("APPLICATION EMAILS SENT");
     } catch (emailError) {

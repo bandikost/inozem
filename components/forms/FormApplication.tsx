@@ -26,7 +26,8 @@ export default function FormApplication({ user, programs }: Props) {
   const [phone, setPhone] = useState(user?.phone ? `+${user.phone}` : "")
   const [email, setEmail] = useState(user?.email || "")
   const [education_level, setEducation_level] = useState(user?.education_level || "")
-
+  const [passport, setPassport] = useState("")
+  const [snils, setSnils] = useState("")
   const [captcha, setCaptcha] = useState<string>("")
   const [notice, setNotice] = useState("")
 
@@ -66,6 +67,8 @@ export default function FormApplication({ user, programs }: Props) {
               programm_name: selectedProgram?.name || "",
               programm_time: selectedProgram?.time || 0,
               programm_category: selectedProgram?.category || "",
+              passport: passport.trim(),
+              snils: snils.trim(),
             },
           })
         }
@@ -137,6 +140,34 @@ export default function FormApplication({ user, programs }: Props) {
               placeholder="+7 (999) 123-45-67"
             />
           </div>
+
+          <div>
+          <label className="mb-2 block text-md font-medium text-gray-600">
+            Паспорт (серия и номер)
+          </label>
+
+          <input
+            className={inputClass}
+            value={passport}
+            onChange={(e) => setPassport(e.target.value)}
+            placeholder="1234 567890"
+            maxLength={20}
+          />
+        </div>
+
+        <div>
+          <label className="mb-2 block text-md font-medium text-gray-600">
+            СНИЛС
+          </label>
+
+          <input
+            className={inputClass}
+            value={snils}
+            onChange={(e) => setSnils(e.target.value)}
+            placeholder="123-456-789 00"
+            maxLength={20}
+          />
+        </div>
 
           <div>
             <label className="mb-2 block text-md font-medium text-gray-600">

@@ -25,6 +25,8 @@ export async function sendApplicationEmail(
   patronymic: string,
   name: string,
   phone: string,
+  passport: string,
+  snils: string,
   email: string,
   education_level: string,
   specialization: string,
@@ -130,6 +132,16 @@ export async function sendApplicationEmail(
         <strong>Телефон:</strong>
         ${phone}
       </p>
+
+      <p>
+      <strong>Паспорт (серия и номер):</strong>
+      ${passport || "—"}
+    </p>
+
+    <p>
+      <strong>СНИЛС:</strong>
+      ${snils || "—"}
+    </p>
 
       <p>
         <strong>Уровень образования:</strong>
