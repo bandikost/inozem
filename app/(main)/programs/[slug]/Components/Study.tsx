@@ -668,7 +668,7 @@ import PayButton from "@/components/ui/Buttons/PayButton"
             </section>
           )}
 
-         <section className="mt-12 overflow-hidden rounded-3xl bg-prpl">
+         <section className="mt-12 overflow-hidden rounded-3xl bg-blue">
 
   <div className="relative px-6 py-10 md:px-12 md:py-12">
 
