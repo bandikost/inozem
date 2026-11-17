@@ -350,12 +350,8 @@ return filtered
 
         <select
             value={specialization}
-            onChange={(e) => {
-
-                setSpecialization(e.target.value)
-                setActiveTab("programs")
-
-            }}
+            onChange={(e) => { setSpecialization(e.target.value)
+                 setActiveTab("programs")}}
             className="
             w-full
             rounded-xl
@@ -367,8 +363,6 @@ return filtered
             focus:ring-blue-300
             "
         >
-
-            
 
             {(education === "Высшее"
                 ? HIGHER_SPECIALTIES
