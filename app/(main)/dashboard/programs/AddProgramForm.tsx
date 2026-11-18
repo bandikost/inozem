@@ -15,8 +15,7 @@ export default function AddProgramForm() {
   const [specialization, setSpecialization] = useState("");
   const [isFavorite, setIsFavorite] = useState(false);
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [slug, setSlug] = useState("");
+  const [price, setPrice] = useState(""); 
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
@@ -39,7 +38,7 @@ export default function AddProgramForm() {
           isFavorite: isFavorite ? 1 : 0,
           description,
           price: Number(price),
-          slug,
+    
           suptitle,
         }),
       });
@@ -225,27 +224,7 @@ export default function AddProgramForm() {
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
 
-            <Field
-              label="URL программы"
-              required
-              hint="Используется в адресе страницы"
-            >
-              <div className="flex items-center overflow-hidden rounded-xl border border-gray-200 bg-white">
-
-                <span className="whitespace-nowrap border-r border-gray-200 bg-gray-50 px-4 text-sm text-gray-400">
-                  /program/
-                </span>
-
-                <input
-                  required
-                  value={slug}
-                  onChange={(e) => setSlug(e.target.value)}
-                  placeholder="anesteziologiya"
-                  className="w-full border-0 bg-transparent px-4 py-3.5 text-base outline-none"
-                />
-
-              </div>
-            </Field>
+            
 
             <div className="flex items-end">
 
