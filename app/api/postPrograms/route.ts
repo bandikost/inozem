@@ -5,7 +5,10 @@ export async function POST(req: Request) {
   try {
     const program = await req.json();
 
-    const { name, time, category, education, specialization, isFavorite, bannerName, description, price, slug, suptitle } = program;
+    const { name, time, specialization, isFavorite, bannerName, description, price, slug, suptitle } = program;
+
+    const category = program.category || "Повышение квалификации";
+    const education = program.education || "Высшее";
 
     const [result] = await db.query<ResultSetHeader>(
       `INSERT INTO programms 

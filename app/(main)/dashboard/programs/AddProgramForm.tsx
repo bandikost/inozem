@@ -10,8 +10,8 @@ export default function AddProgramForm() {
   const [name, setName] = useState("");
   const [time, setTime] = useState("");
   const [suptitle, setSuptitle] = useState("")
-  const [category, setCategory] = useState("");
-  const [education, setEducation] = useState("");
+  const [category, setCategory] = useState("Повышение квалификации");
+  const [education, setEducation] = useState("Высшее");
   const [specialization, setSpecialization] = useState("");
   const [isFavorite, setIsFavorite] = useState(false);
   const [description, setDescription] = useState("");
