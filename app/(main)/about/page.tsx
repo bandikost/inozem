@@ -1,7 +1,7 @@
-import { legalInfo, documents, regulations, smeta, order, prescript } from "@/data/partners";
+import { legalInfo, documents, smeta, order } from "@/data/partners";
 
 import Link from "next/link";
-import { FileText, Info, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { ToggleBlock } from "@/components/ui/Buttons/ToggleBlock";
 import LoadingLink from "@/components/Load/LoadingLink";
 

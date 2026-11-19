@@ -93,7 +93,7 @@ export const documents = [
   { name: "Устав Академии от 2018 года", link: "/files/about/ustav_2017.pdf" },
   { name: "Лицензия на осуществление образовательной деятельности", link: "/files/about/litsenz.pdf" },
   { name: "Выписка из реестра лицензий", link: "/files/about/Реестровая выписка.pdf" },
-  { name: "Выписка из реестра", link: "/files/about/Выписка из реестра заключений РЗН.PDF" },
+  { name: "Выписка из реестра заключений РЗН", link: "https://storage.yandexcloud.net/inozemstorage/about/%D0%92%D1%8B%D0%BF%D0%B8%D1%81%D0%BA%D0%B0%20%D0%B8%D0%B7%20%D1%80%D0%B5%D0%B5%D1%81%D1%82%D1%80%D0%B0%20%D0%B7%D0%B0%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%A0%D0%97%D0%9D.PDF" },
   { name: "Свидетельство о гос. регистрации", link: "/files/about/svid_2016.pdf" },
   { name: "Санитарно-эпидемиологическое заключение", link: "/files/about/san_epid.png" },
   { name: "Заключение о соответствии требованиям пожарной безопасности", link: "/files/about/pozh_bez.png" },
