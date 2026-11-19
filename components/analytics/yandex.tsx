@@ -13,13 +13,13 @@ declare global {
 export default function YandexMetrika() {
   const pathname = usePathname();
 
-  // Отправляем хит при каждой смене маршрута
+
   useEffect(() => {
     if (
       typeof window !== "undefined" &&
       typeof window.ym === "function"
     ) {
-      window.ym(111451816, "hit", pathname);
+      window.ym(114361819, "hit", pathname);
     }
   }, [pathname]);
 
@@ -31,34 +31,13 @@ export default function YandexMetrika() {
         dangerouslySetInnerHTML={{
           __html: `
             (function(m,e,t,r,i,k,a){
-              m[i]=m[i]||function(){
-                (m[i].a=m[i].a||[]).push(arguments)
-              };
-              m[i].l=1*new Date();
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114361819', 'ym');
 
-              for (var j = 0; j < document.scripts.length; j++) {
-                if (document.scripts[j].src === r) {
-                  return;
-                }
-              }
-
-              k=e.createElement(t),
-              a=e.getElementsByTagName(t)[0],
-              k.async=1,
-              k.src=r,
-              a.parentNode.insertBefore(k,a)
-            })(window, document, 'script',
-              'https://mc.yandex.ru/metrika/tag.js',
-              'ym'
-            );
-
-            ym(111451816, 'init', {
-              clickmap: true,
-              trackLinks: true,
-              accurateTrackBounce: true,
-              webvisor: true,
-              ecommerce: "dataLayer"
-            });
+    ym(114361819, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
           `,
         }}
       />
@@ -66,7 +45,7 @@ export default function YandexMetrika() {
       <noscript>
         <div>
           <img
-            src="https://mc.yandex.ru/watch/111451816"
+            src="https://mc.yandex.ru/watch/114361819"
             style={{
               position: "absolute",
               left: "-9999px",
