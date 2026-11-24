@@ -21,4 +21,5 @@ export type Activity = {
   location: string | null;
   content: string | null
   planned_results: string | null;
+  partners: string | null;
 }

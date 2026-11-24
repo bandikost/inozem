@@ -21,6 +21,7 @@ type UpdateActivity = {
   location: string;
   planned_results: string;
   content: string
+  partners: string | null;
 };
 
 
@@ -49,6 +50,7 @@ export async function getActivity(): Promise<Activity[]> {
       location,
       content,
       planned_results,
+      partners,
       created_at
 
     FROM activity
@@ -95,6 +97,7 @@ export async function getActivityPayed(id: number) {
       a.content,
       a.attendance_control,
       a.location,
+      a.partners,
       a.planned_results
     FROM user_activity_payment uap
     JOIN activity a
@@ -168,7 +171,8 @@ export async function updateActivityBySlug(slug: string, data: UpdateActivity) {
         attendance_control = ?,
         location = ?,
         planned_results = ?,
-        content = ?
+        content = ?,
+        partners = ?
       WHERE slug = ?
     `,
     [
@@ -190,6 +194,7 @@ export async function updateActivityBySlug(slug: string, data: UpdateActivity) {
       data.location,
       data.planned_results,
       data.content,
+      data.partners,
       slug,
     ]
   );
