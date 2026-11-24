@@ -414,7 +414,7 @@ const isActivityFinished = endDate
           </section>
         )}
 
-        {activity.partners && (
+       {activity.partners && (
   <section className="mt-10 overflow-hidden rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm md:p-10">
     <div className="mb-8">
       <span className="text-sm font-semibold uppercase tracking-[0.14em] text-blue">
@@ -426,33 +426,67 @@ const isActivityFinished = endDate
       </h2>
     </div>
 
-    <div className="prose prose-zinc max-w-none">
-  <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
-    {parse(activity.partners, {
-      replace: (domNode) => {
-        if (domNode instanceof Element && domNode.name === "img") {
-          const src = domNode.attribs.src;
+    <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
+      {parse(activity.partners, {
+        replace: (domNode) => {
+          if (domNode instanceof Element && domNode.name === "img") {
+            const src = domNode.attribs.src;
 
-          return (
-            <div className="flex h-36 w-full items-center justify-center overflow-hidden rounded-xl border border-zinc-200 bg-white p-4">
-              {src ? (
-                <img
-                  src={src}
-                  alt={domNode.attribs.alt || "Партнер мероприятия"}
-                  className="h-full w-full object-contain"
-                />
-              ) : (
-                <span className="text-center text-sm text-zinc-400">
-                  Фото партнера
-                </span>
-              )}
-            </div>
-          );
-        }
-      },
-    })}
-  </div>
-</div>
+            return (
+              <div className="flex h-36 w-full items-center justify-center overflow-hidden rounded-xl border border-zinc-200 bg-white p-4">
+                {src ? (
+                  <img
+                    src={src}
+                    alt={domNode.attribs.alt || "Партнер мероприятия"}
+                    className="h-full w-full object-contain"
+                  />
+                ) : (
+                  <span className="text-center text-sm text-zinc-400">
+                    Фото партнера
+                  </span>
+                )}
+              </div>
+            );
+          }
+
+          // Убираем HTML-обертки вокруг изображений
+          if (
+            domNode instanceof Element &&
+            ["p", "div"].includes(domNode.name) &&
+            domNode.children.some(
+              (child) => child instanceof Element && child.name === "img"
+            )
+          ) {
+            return domToReact(
+              domNode.children as unknown as DOMNode[],
+              {
+                replace: (child) => {
+                  if (child instanceof Element && child.name === "img") {
+                    const src = child.attribs.src;
+
+                    return (
+                      <div className="flex h-36 w-full items-center justify-center overflow-hidden rounded-xl border border-zinc-200 bg-white p-4">
+                        {src ? (
+                          <img
+                            src={src}
+                            alt="Партнер мероприятия"
+                            className="h-full w-full object-contain"
+                          />
+                        ) : (
+                          <span className="text-sm text-zinc-400">
+                            Фото партнера
+                          </span>
+                        )}
+                      </div>
+                    );
+                  }
+                },
+              }
+            );
+          }
+        },
+      })}
+    </div>
   </section>
 )}
 
