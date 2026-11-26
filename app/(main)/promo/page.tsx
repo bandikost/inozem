@@ -2,7 +2,6 @@ import LoadingLink from "@/components/Load/LoadingLink"
 import { getPromo } from "@/lib/promo"
 import { ChevronRight } from "lucide-react"
 
-export const revalidate = 3600
 
 export const metadata = {
   title: 'Акции | ЧОУ ДПО «Академия медицинского образования им. Ф.И.Иноземцева»',
