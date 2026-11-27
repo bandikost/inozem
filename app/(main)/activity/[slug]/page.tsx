@@ -699,64 +699,51 @@ const isActivityFinished = endDate
 
 
                   {isActivityFinished ? (
-                    <div
-                      className="
-                        flex
-                        w-full
-                        items-center
-                        justify-center
-                        gap-2
-                        rounded-xl
-                        border
-                        border-white/10
-                        bg-white/5
-                        px-5
-                        py-4
-                        text-base
-                        font-medium
-                        text-white/50
-                        cursor-not-allowed
-                      "
-                    >
-                      <FileText size={18} />
+  <div className="
+    flex w-full items-center justify-center gap-2
+    rounded-xl border border-white/10 bg-white/5
+    px-5 py-4 text-base font-medium text-white/50
+    cursor-not-allowed
+  ">
+    <FileText size={18} />
+    Мероприятие уже завершено
+  </div>
+) : !activity.accepting_applications ? (
+  <div className="
+    flex w-full flex-col items-center justify-center gap-2
+    rounded-xl border border-white/10 bg-white/5
+    px-5 py-5 text-center
+  ">
+    <FileText size={22} className="text-white/50" />
 
-                      Мероприятие уже завершено
-                    </div>
-                  ) : (
-                    <>
-                    <LoadingLink
-                      href={`/activity-form?title=${encodeURIComponent(activity.name)}`}
-                      className="
-                        flex
-                        w-full
-                        items-center
-                        justify-center
-                        gap-2
-                        rounded-xl
-                        border
-                        border-white/20
-                        bg-white/10
-                        px-5
-                        py-4
-                        text-base
-                        font-medium
-                        !text-white
-                        backdrop-blur-sm
-                        transition
-                        hover:bg-white/15
-                      "
-                    >
-                      <FileText size={18} />
+    <span className="font-semibold text-white">
+      Приём заявок временно приостановлен
+    </span>
 
-                      Подать заявку
-                    </LoadingLink>
-                      {activity.price > 0 && (
+    <span className="text-sm leading-relaxed text-white/60">
+      В настоящее время регистрация участников на мероприятие не осуществляется.
+    </span>
+  </div>
+) : (
+  <>
+    <LoadingLink
+      href={`/activity-form?title=${encodeURIComponent(activity.name)}`}
+      className="
+        flex w-full items-center justify-center gap-2
+        rounded-xl border border-white/20 bg-white/10
+        px-5 py-4 text-base font-medium !text-white
+        backdrop-blur-sm transition hover:bg-white/15
+      "
+    >
+      <FileText size={18} />
+      Подать заявку
+    </LoadingLink>
 
-                      <PayButtonActivity activityId={activity.id} />
-                    
-                  )}
-                  </>
-                  )}
+    {activity.price > 0 && (
+      <PayButtonActivity activityId={activity.id} />
+    )}
+  </>
+)}
 
                 </div>
 

@@ -22,4 +22,5 @@ export type Activity = {
   content: string | null
   planned_results: string | null;
   partners: string | null;
+  accepting_applications: boolean
 }

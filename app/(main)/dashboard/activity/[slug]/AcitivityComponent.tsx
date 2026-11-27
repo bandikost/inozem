@@ -31,6 +31,8 @@ interface ActivityEditorProps {
     attendance_control: string;
     location: string;
     planned_results: string;
+    partners: string;
+    accepting_applications: boolean;
   };
 }
 
@@ -55,6 +57,8 @@ type FormData = {
   attendance_control: string;
   location: string;
   planned_results: string;
+  partners: string;
+  accepting_applications: boolean;
 };
 
 export default function ActivityEditor({
@@ -82,6 +86,8 @@ export default function ActivityEditor({
     attendance_control: activity.attendance_control ?? "",
     location: activity.location ?? "",
     planned_results: activity.planned_results ?? "",
+    partners: activity.partners ?? "",
+    accepting_applications: activity.accepting_applications ?? true,
   });
 
   const [loading, setLoading] = useState(false)
@@ -134,6 +140,17 @@ export default function ActivityEditor({
       setLoading(false);
     }
   }
+
+  function handleCheckboxChange(
+  e: React.ChangeEvent<HTMLInputElement>
+) {
+  const { name, checked } = e.target;
+
+  setForm((prev) => ({
+    ...prev,
+    [name]: checked,
+  }));
+}
 
   return (
     <section className="mx-auto mt-27 w-full px-6 pb-20">
@@ -388,6 +405,43 @@ export default function ActivityEditor({
             </Field>
           </div>
         </FormSection>
+
+        <FormSection
+  title="Управление заявками"
+  description="Настройте возможность подачи заявок на мероприятие"
+  gray
+>
+  <label className="flex cursor-pointer items-start gap-4 rounded-2xl border border-gray-200 bg-white p-5">
+    <input
+      type="checkbox"
+      name="accepting_applications"
+      checked={form.accepting_applications}
+      onChange={handleCheckboxChange}
+      className="mt-1 h-5 w-5 cursor-pointer accent-blue-600"
+    />
+
+    <div>
+      <span className="block font-semibold text-gray-900">
+        Приём заявок открыт
+      </span>
+
+      <span className="mt-1 block text-sm text-gray-500">
+        Если снять галочку, посетители не смогут подать заявку на мероприятие.
+        Вместо кнопки появится информационное сообщение.
+      </span>
+
+      <span className={`mt-3 inline-flex rounded-full px-3 py-1 text-xs font-semibold ${
+        form.accepting_applications
+          ? "bg-green-100 text-green-700"
+          : "bg-red-100 text-red-700"
+      }`}>
+        {form.accepting_applications
+          ? "Приём заявок активен"
+          : "Приём заявок остановлен"}
+      </span>
+    </div>
+  </label>
+</FormSection>
 
         <FormSection
           title="Изображения"

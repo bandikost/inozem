@@ -180,162 +180,146 @@ export default function ProgramList({ program }: Props) {
       </div>
       <div className="grid gap-5">
 
-        {filtered.map((p) => (
+       
+{filtered.map((p) => (
+  <Link
+    key={p.id}
+    href={`/dashboard/admin/programs/${p.slug}`}
+    className="
+      group
+      block
+      w-full
+      min-w-0
+      overflow-hidden
+      rounded-3xl
+      border
+      border-zinc-200
+      bg-white
+      p-5
+      md:p-6
+      shadow-sm
+      transition
+      hover:-translate-y-1
+      hover:border-zinc-300
+      hover:shadow-xl
+    "
+  >
+    <div className="
+      flex
+      w-full
+      min-w-0
+      items-start
+      gap-4
+      lg:items-center
+    ">
 
-          <Link
-            key={p.id}
-            href={`/dashboard/admin/programs/${p.slug}`}
-            className="
-              group
-              rounded-3xl
-              border
-              border-zinc-200
-              bg-white
-              p-6
-              shadow-sm
-              transition
-              hover:-translate-y-1
-              hover:border-zinc-300
-              hover:shadow-xl
-            "
-          >
+      <div className="
+        flex
+        shrink-0
+        items-center
+        justify-center
+        rounded-2xl
+        bg-zinc-100
+        p-3
+        transition
+        group-hover:bg-black
+        group-hover:text-white
+      ">
+        <BookOpen size={22} />
+      </div>
 
-            <div className="
-              flex
-              flex-col
-              gap-6
-              lg:flex-row
-              lg:items-center
-              lg:justify-between
-            ">
+      <div className="min-w-0 flex-1">
 
-              <div className="min-w-0">
+        <h2 className="
+          min-w-0
+          break-words
+          [overflow-wrap:anywhere]
+          text-xl
+          md:text-2xl
+          font-bold
+          text-zinc-900
+        ">
+          {p.name}
+        </h2>
 
-                <div className="flex items-start gap-4">
+        <div className="mt-4 flex min-w-0 flex-wrap gap-2">
 
-                  <div className="
-                    flex
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-2xl
-                    bg-zinc-100
-                    p-3
-                    transition
-                    group-hover:bg-black
-                    group-hover:text-white
-                  ">
-                    <BookOpen size={22} />
-                  </div>
+          <div className="
+            inline-flex
+            min-w-0
+            items-center
+            gap-2
+            rounded-xl
+            bg-zinc-100
+            px-3
+            py-2
+            text-sm
+            text-zinc-700
+          ">
+            <Clock3 size={16} className="shrink-0" />
+            <span>{p.time} академических {getHourWord(p.time)}</span>
+          </div>
 
+          <div className="
+            inline-flex
+            items-center
+            gap-2
+            rounded-xl
+            bg-zinc-100
+            px-3
+            py-2
+            text-sm
+            text-zinc-500
+          ">
+            <CalendarDays size={15} className="shrink-0" />
+            {new Date(p.created_at).toLocaleDateString("ru-RU")}
+          </div>
 
-                  <div className="min-w-0">
+          <div className="
+            min-w-0
+            max-w-full
+            truncate
+            rounded-xl
+            bg-zinc-100
+            px-3
+            py-2
+            text-sm
+            text-zinc-500
+          ">
+            /{p.slug}
+          </div>
 
-                    <h2 className="
-                      break-words
-                      text-2xl
-                      font-bold
-                      text-zinc-900
-                    ">
-                      {p.name}
-                    </h2>
+        </div>
+      </div>
 
+      <div className="
+        hidden
+        shrink-0
+        items-center
+        gap-3
+        lg:flex
+      ">
+        <div className="
+          rounded-2xl
+          bg-zinc-100
+          p-3
+          transition
+          group-hover:bg-black
+          group-hover:text-white
+        ">
+          <Pencil size={20} />
+        </div>
 
-                    <div className="mt-4 flex flex-wrap gap-3">
+        <ArrowRight
+          size={20}
+          className="transition group-hover:translate-x-1"
+        />
+      </div>
 
-                      <div className="
-                        inline-flex
-                        items-center
-                        gap-2
-                        rounded-xl
-                        bg-zinc-100
-                        px-3
-                        py-2
-                        text-sm
-                        text-zinc-700
-                      ">
-                        <Clock3 size={16} />
+    </div>
+  </Link>
+))}
 
-                        {p.time} академических{" "}
-                        {getHourWord(p.time)}
-                      </div>
-
-
-                      <div className="
-                        inline-flex
-                        items-center
-                        gap-2
-                        rounded-xl
-                        bg-zinc-100
-                        px-3
-                        py-2
-                        text-sm
-                        text-zinc-500
-                      ">
-                        <CalendarDays size={15} />
-
-                        {new Date(p.created_at).toLocaleDateString(
-                          "ru-RU"
-                        )}
-                      </div>
-
-
-                      <div className="
-                        max-w-full
-                        truncate
-                        rounded-xl
-                        bg-zinc-100
-                        px-3
-                        py-2
-                        text-sm
-                        text-zinc-500
-                      ">
-                        /{p.slug}
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-
-              <div className="
-                hidden
-                shrink-0
-                items-center
-                gap-3
-                lg:flex
-              ">
-
-                <div className="
-                  rounded-2xl
-                  bg-zinc-100
-                  p-3
-                  transition
-                  group-hover:bg-black
-                  group-hover:text-white
-                ">
-                  <Pencil size={20} />
-                </div>
-
-                <ArrowRight
-                  size={20}
-                  className="
-                    transition
-                    group-hover:translate-x-1
-                  "
-                />
-
-              </div>
-
-            </div>
-
-          </Link>
-
-        ))}
 
       </div>
 
