@@ -21,7 +21,7 @@ export default function InputPrograms({ programs }: { programs: ProgramRow[] }) 
     const [timeSecondary, setTimeSecondary] = useState("")
     const [specialization, setSpecialization] = useState("")
 
-    const [activeTab, setActiveTab] = useState<"programs" | "price" | "forms" | "learn">("programs")
+    const [activeTab, setActiveTab] = useState<"programs" | "programm" | "price" | "forms" | "learn">("programs")
     const [showFilter, setShowFilter] = useState(false)
 
     const show = useLoadingStore((s) => s.show)
@@ -149,6 +149,21 @@ return filtered
       Каталог
 
       {activeTab === "programs" && (
+        <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-blue" />
+      )}
+    </button>
+
+    <button
+      onClick={() => setActiveTab("programm")}
+      className={`relative whitespace-nowrap px-5 py-4 text-lg !font-normal transition cursor-pointer ${
+        activeTab === "programm"
+          ? "text-blue"
+          : "text-zinc-500 hover:text-zinc-900"
+      }`}
+    >
+      Программы
+
+      {activeTab === "programm" && (
         <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-blue" />
       )}
     </button>
@@ -461,20 +476,20 @@ return filtered
 <div className="flex-1">
 
     {activeTab === "programs" && (
-
         <ProgrammCard
             filteredPrograms={filteredPrograms}
             visibleItems={visibleItems}
             handleShowMore={handleShowMore}
         />
-
     )}
 
-    {activeTab === "price" && <PriceList />}
+    {activeTab === "programm" && <PriceList activeId={2} />}
 
-    {activeTab === "forms" && <FormsAndActs />}
+        {activeTab === "price" && <PriceList activeId={3} />}
 
-    {activeTab === "learn" && <Learn />}
+        {activeTab === "forms" && <PriceList activeId={1} />}
+
+        {activeTab === "learn" && <PriceList activeId={4} />}
 
     {filteredPrograms.length === 0 &&
         activeTab === "programs" && (

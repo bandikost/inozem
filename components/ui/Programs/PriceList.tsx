@@ -1,20 +1,22 @@
+
 'use client'
 
 import { learning } from "@/data/learning"
 import { FileText, ArrowUpRight } from "lucide-react"
-import { useState } from "react"
 
-export default function PriceList() {
+type Props = {
+  activeId: number
+}
 
-  const [activeId] = useState(2)
+export default function PriceList({ activeId }: Props) {
+
   const activeItem = learning.find(item => item.id === activeId)
 
   if (!activeItem) return null
 
   return (
     <div className="mb-12 flex justify-center">
-
-      <div className="w-full max-w-6xl ">
+      <div className="w-full max-w-6xl">
 
         <h2 className="mb-8 text-center text-2xl font-semibold text-green">
           {activeItem.title}
@@ -23,29 +25,12 @@ export default function PriceList() {
         <div className="grid gap-4 sm:grid-cols-2 justify-center">
 
           {activeItem.links.map((link, index) => (
-
             <a
               key={index}
-              href={link.url}
+              href={link.url === "В разработке" ? undefined : link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="
-                group
-                flex
-                items-center
-                justify-between
-                rounded-2xl
-                border
-                border-zinc-200
-                bg-white
-                p-5
-                shadow-sm
-                transition-all
-                duration-200
-                hover:-translate-y-1
-                hover:border-blue
-                hover:shadow-lg
-              "
+              className="group flex items-center justify-between rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue hover:shadow-lg"
             >
               <div className="flex items-center gap-4">
                 <FileText
@@ -58,18 +43,21 @@ export default function PriceList() {
                 </span>
               </div>
 
-              <ArrowUpRight
-                size={20}
-                className="text-zinc-400 transition group-hover:text-blue"
-              />
+              {link.url === "В разработке" ? (
+                <span className="text-xs text-zinc-400">
+                  Скоро
+                </span>
+              ) : (
+                <ArrowUpRight
+                  size={20}
+                  className="text-zinc-400 transition group-hover:text-blue"
+                />
+              )}
             </a>
-
           ))}
 
         </div>
-
       </div>
-
     </div>
   )
 }

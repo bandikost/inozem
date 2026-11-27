@@ -8,10 +8,11 @@ export const learning = [
         {name: "Заявление на выдачу дубликата (ошибка)", url: "https://storage.yandexcloud.net/inozemstorage/docs/Acts%26Price/dubl_error.pdf" },
         {name: "Доверенность на получение документа об образовании", url: "https://storage.yandexcloud.net/inozemstorage/docs/Acts%26Price/dover.pdf" },
         {name: "Анкета обратной связи", url: "https://storage.yandexcloud.net/inozemstorage/docs/Acts%26Price/feedback.pdf" },
+        {name: "Инструкция по регистрации", url: "/files/personalize/instruction.pdf" },
         
     ]},
 
-    { id: 2, title: "Программы и прейскурант",
+    { id: 2, title: "Программы",
     links: [
        
         {name: "Приказ утверждения КТП на 2027 год", url: "https://storage.yandexcloud.net/inozemstorage/docs/Acts%26Price/2027/43-%D0%90%D0%9E_26%20%D0%9E%D0%B1%20%D1%83%D1%82%D0%B2%D0%B5%D1%80%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B8%20%D0%9A%D0%A2%D0%9F%20%D0%BD%D0%B0%20%202027%20%D0%B3..pdf"},
